@@ -75,10 +75,19 @@ void juwu(std::string inputFile, std::string outputFile){
     Int_t*   genMo2      = data.GetPtrInt("genMo2");
     Int_t*   genDa1      = data.GetPtrInt("genDa1");
     Int_t*   genDa2      = data.GetPtrInt("genDa2");
+    
+    Int_t    nGenJet     = data.GetInt("nGenJet");
+    Float_t* genJetE     = data.GetPtrFloat("genJetE");
+    Float_t* genJetPt    = data.GetPtrFloat("genJetPt");
+    Float_t* genJetEta   = data.GetPtrFloat("genJetEta");
+    Float_t* genJetPhi   = data.GetPtrFloat("genJetPhi");
+
 
     Int_t    CA8nJet     = data.GetInt("CA8nJet");
     Float_t* CA8jetPt    = data.GetPtrFloat("CA8jetPt");
     Float_t* CA8jetEta   = data.GetPtrFloat("CA8jetEta");
+    Float_t* CA8jetPhi   = data.GetPtrFloat("CA8jetPhi");
+    Float_t* CA8jetMass  = data.GetPtrFloat("CA8jetMass");
     Int_t*   CA8jetID    = data.GetPtrInt("CA8jetPassID");
     Float_t* CA8jetTau1  = data.GetPtrFloat("CA8jetTau1");
     Float_t* CA8jetTau2  = data.GetPtrFloat("CA8jetTau2");
@@ -186,6 +195,10 @@ void juwu(std::string inputFile, std::string outputFile){
         if(CA8jetPt[i] > CA8jetPt[j]){
           swap(CA8jetPt[i], CA8jetPt[j]);
           swap(CA8jetEta[i], CA8jetEta[j]);
+	  swap(CA8jetPhi[i], CA8jetPhi[j]);
+	  swap(CA8jetMass[i], CA8jetMass[j]);
+	  swap(CA8jetTau1[i], CA8jetTau1[j]);
+	  swap(CA8jetTau2[i], CA8jetTau2[j]);
         }
       }
     } // jet
@@ -223,7 +236,8 @@ void juwu(std::string inputFile, std::string outputFile){
     if(jetPtCut==false || jetEtaCut==false)continue;
 
 
-    // plot ele histos
+
+    // plot ele histos                                                                                                     
     if(nEle>=1)h_elePt->Fill(elePt[0]);
     if(nEle>=2)h_eleSecPt->Fill(elePt[1]);
     if(nEle>=1 && eleID[0]>0)h_elePt_ID->Fill(elePt[0]);
@@ -235,7 +249,7 @@ void juwu(std::string inputFile, std::string outputFile){
     }
 
 
-    // plot mu histos
+    // plot mu histos                                                                                                      
     if(nMu>=1)h_muPt->Fill(muPt[0]);
     if(nMu>=2)h_muSecPt->Fill(muPt[1]);
     if(nMu>=1 && muID[0]&4)h_muPt_track->Fill(muPt[0]);
@@ -251,27 +265,69 @@ void juwu(std::string inputFile, std::string outputFile){
     }
 
 
-    // plot jet histos
+    // plot jet histos                                                                                                     
     if(CA8nJet>=1)h_CA8jetPt->Fill(CA8jetPt[0]);
     if(CA8nJet>=1 && CA8jetID[0]>0){
       h_CA8jetPt_ID->Fill(CA8jetPt[0]);
-      h_CA8jetTau21->Fill(CA8jetTau2[0]/CA8jetTau1[0]);
+      //      h_CA8jetTau21->Fill(CA8jetTau2[0]/CA8jetTau1[0]);
     }
 
     for(int i=0; i<CA8nJet; i++){
       h_CA8jetEta->Fill(CA8jetEta[i]);
 
       if(CA8jetID[i]>0){
-	h_CA8jetEta_ID->Fill(CA8jetEta[i]);
-	//h_CA8jetTau21->Fill(CA8jetTau2[i]/CA8jetTau1[i]);
+        h_CA8jetEta_ID->Fill(CA8jetEta[i]);
       }
     }
 
 
-    if(CA8nJet>2 && ( (CA8jetPt[0]-CA8jetPt[1])<0 || (CA8jetPt[1]-CA8jetPt[2])<0) )cout<<"Jet Fail"<<endl;
-    if(nEle>2 && ( (elePt[0]-elePt[1])<0 || (elePt[1]-elePt[2]<0) ))cout<<"ele Fail"<<endl;
-    if(nMu>2 && ( (muPt[0]-muPt[1])<0 || (muPt[1]-muPt[2]<0)) )cout<<"mu Fail"<<endl;
 
+    // genjet matching
+    TLorentzVector mcJet;
+    for(int i=0; i<nGenPar; i++){
+      if(fabs(genParId[i])==5 && genMomParId[i]==25)mcJet.SetPtEtaPhiE(genParPt[i],genParEta[i],genParPhi[i],genParE[i]);
+    }
+    
+
+    // eleID 
+    bool eleIDcut=false;
+    for(int i=0; i<nEle; i++){
+      if(eleID[i]<=0)eleIDcut=true;
+    }
+    if(eleIDcut==true)continue;
+
+    /*
+    // muID
+    bool muIDcut=false;
+    for(int i=0; i<nMu; i++){
+      if(muID[i]&4 || muID[i]&2)muIDcut=true;
+    }
+    if(muIDcut==false)continue;
+    */
+
+    // jetID
+    bool jetIDcut=false;
+    for(int i=0; i<CA8nJet; i++){
+      if(CA8jetID[i]<=0)jetIDcut=true;
+    }
+    if(jetIDcut==true)continue;
+
+  
+    // recojet
+    TLorentzVector recoJet;
+    float dRjj=-999;
+    for(int i=0; i<CA8nJet; i++){
+      recoJet.SetPtEtaPhiM(CA8jetPt[i],CA8jetEta[i],CA8jetPhi[i],CA8jetMass[i]);
+      dRjj=recoJet.DeltaR(mcJet);
+
+    }
+
+
+    // plot Tau21
+    if(CA8nJet>=1 && dRjj<0.8 && dRjj!=-999)h_CA8jetTau21->Fill(CA8jetTau2[0]/CA8jetTau1[0]);
+
+    
+    
 
 
 
