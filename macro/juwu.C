@@ -300,7 +300,7 @@ void juwu(std::string inputFile, std::string outputFile){
     }
 
     
-    
+        
 
     // ee channel cuts 
     bool eleIDcut=false;
@@ -435,10 +435,23 @@ void juwu(std::string inputFile, std::string outputFile){
     
 
     // plot tau21
-    if(CA8nJet>0)h_CA8jetTau21->Fill(CA8jetTau2[0]/CA8jetTau1[0]);
+    //if(CA8nJet>0)h_CA8jetTau21->Fill(CA8jetTau2[0]/CA8jetTau1[0]);
 
-    
-    
+    int maxjet=-1;
+    float maxjetpt=-999;
+
+    for(int i=0; i<CA8nJet; i++){
+
+      float jpt=CA8jetPt[i];
+
+      if(jpt>maxjetpt){
+	
+	maxjet=i;
+	maxjetpt=jpt;
+
+      }
+    }
+    if(maxjet>=0 && maxjetpt>0)h_CA8jetTau21->Fill(CA8jetTau2[maxjet]/CA8jetTau1[maxjet]);
 
 
 
