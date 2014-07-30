@@ -435,22 +435,10 @@ void juwu(std::string inputFile, std::string outputFile){
     
 
     // plot tau21
-    // if(CA8nJet>0)h_CA8jetTau21->Fill(CA8jetTau2[0]/CA8jetTau1[0]);
+    if(CA8nJet>0)h_CA8jetTau21->Fill(CA8jetTau2[0]/CA8jetTau1[0]);
 
-    int maxjet=-1;
-    float maxjetpt=-999;
-    for(int i=0; i<CA8nJet; i++){
-
-      float jPt=CA8jetPt[i];
-
-      if(jPt>maxjetpt){
-	maxjet=i;
-	maxjetpt=jPt;
-      }
-
-    }
     
-    if(maxjet>=0 && maxjetpt>0)h_CA8jetTau21->Fill(CA8jetTau2[maxjet]/CA8jetTau1[maxjet]);
+    
 
 
 
