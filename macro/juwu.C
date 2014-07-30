@@ -34,6 +34,11 @@ void juwu(std::string inputFile, std::string outputFile){
   TH1F* h_CA8jetEta     = new TH1F("h_CA8jetEta","",10,-3,3);
   TH1F* h_CA8jetEta_ID  = (TH1F*)h_CA8jetEta->Clone("h_CA8jetEta_ID");
   TH1F* h_CA8jetTau21   = new TH1F("h_CA8jetTau21","",20,0,1);
+  TH1F* h_tau21_ee      = (TH1F*)h_CA8jetTau21->Clone("h_tau21_ee");
+  TH1F* h_tau21_mm      = (TH1F*)h_CA8jetTau21->Clone("h_tau21_mm");
+  TH1F* h_tau21_eeC     = (TH1F*)h_CA8jetTau21->Clone("h_tau21_eeC");
+  TH1F* h_tau21_mmC     = (TH1F*)h_CA8jetTau21->Clone("h_tau21_mmC");
+
 
   TH1F* h_elePt         = new TH1F("h_elePt","",100,0,1200);
   TH1F* h_eleSecPt      = (TH1F*)h_elePt->Clone("h_eleSecPt");
@@ -294,12 +299,31 @@ void juwu(std::string inputFile, std::string outputFile){
 
     // determine which channel
     bool ee=false;
+    bool mm=false;
     for(int i=0; i<nGenPar; i++){
       if(genParId[i]==23 && genMomParId[i]==1023 && fabs(genDa1[i])==11)ee=true;
-      if(genParId[i]==23 && genMomParId[i]==1023 && fabs(genDa1[i])==13)ee=false;
+      if(genParId[i]==23 && genMomParId[i]==1023 && fabs(genDa1[i])==13)mm=true;
     }
 
     
+    int maxjet=-1;
+    float maxjetpt=-999;
+
+    for(int i=0; i<CA8nJet; i++){
+
+      float jpt=CA8jetPt[i];
+
+      if(jpt>maxjetpt){
+
+        maxjet=i;
+        maxjetpt=jpt;
+
+      }
+    }
+    if(maxjet>=0 && maxjetpt>0 && ee==true)h_tau21_ee->Fill(CA8jetTau2[maxjet]/CA8jetTau1[maxjet]);
+    if(maxjet>=0 && maxjetpt>0 && mm==true)h_tau21_mm->Fill(CA8jetTau2[maxjet]/CA8jetTau1[maxjet]);
+
+
         
 
     // ee channel cuts 
@@ -340,7 +364,7 @@ void juwu(std::string inputFile, std::string outputFile){
     bool muIDcut=false;
     bool mumuCut=false;
 
-    if(ee==false){
+    if(mm==true){
 
       for(int i=0; i<nMu; i++){
 	for(int j=0; j<i; j++){
@@ -436,7 +460,7 @@ void juwu(std::string inputFile, std::string outputFile){
 
     // plot tau21
     //if(CA8nJet>0)h_CA8jetTau21->Fill(CA8jetTau2[0]/CA8jetTau1[0]);
-
+    /*
     int maxjet=-1;
     float maxjetpt=-999;
 
@@ -452,6 +476,11 @@ void juwu(std::string inputFile, std::string outputFile){
       }
     }
     if(maxjet>=0 && maxjetpt>0)h_CA8jetTau21->Fill(CA8jetTau2[maxjet]/CA8jetTau1[maxjet]);
+    */
+
+    if(maxjet>=0 && maxjetpt>0 && ee==true)h_tau21_eeC->Fill(CA8jetTau2[maxjet]/CA8jetTau1[maxjet]);
+    if(maxjet>=0 && maxjetpt>0 && mm==true)h_tau21_mmC->Fill(CA8jetTau2[maxjet]/CA8jetTau1[maxjet]);
+
 
 
 
@@ -483,6 +512,12 @@ void juwu(std::string inputFile, std::string outputFile){
   h_CA8jetEta->Write();
   h_CA8jetEta_ID->Write();
   h_CA8jetTau21->Write();
+  h_tau21_ee->Write();
+  h_tau21_mm->Write();
+  h_tau21_eeC->Write();
+  h_tau21_mmC->Write();
+
+
 
   h_elePt->Write();
   h_eleSecPt->Write();
