@@ -91,15 +91,21 @@ void juwu(std::string inputFile, std::string outputFile){
     Int_t*   CA8jetID    = data.GetPtrInt("CA8jetPassID");
     Float_t* CA8jetTau1  = data.GetPtrFloat("CA8jetTau1");
     Float_t* CA8jetTau2  = data.GetPtrFloat("CA8jetTau2");
+    Float_t* CA8jetPrunedPt = data.GetPtrFloat("CA8jetPrunedPt");
+    Float_t* CA8jetPrunedMass = data.GetPtrFloat("CA8jetPrunedMass");
     
     Int_t    nEle        = data.GetInt("nEle");
     Float_t* elePt       = data.GetPtrFloat("elePt");
     Float_t* eleEta      = data.GetPtrFloat("eleEta");
+    Float_t* elePhi      = data.GetPtrFloat("elePhi");
+    Float_t* eleM        = data.GetPtrFloat("eleM");
     Int_t*   eleID       = data.GetPtrInt("elePassID");
 
     Int_t    nMu         = data.GetInt("nMu");
     Float_t* muPt        = data.GetPtrFloat("muPt");
     Float_t* muEta       = data.GetPtrFloat("muEta");
+    Float_t* muPhi       = data.GetPtrFloat("muPhi");
+    Float_t* muM         = data.GetPtrFloat("muM");
     Int_t*   muID        = data.GetPtrInt("muPassID");
 
 
@@ -179,6 +185,8 @@ void juwu(std::string inputFile, std::string outputFile){
 	if(elePt[i] > elePt[j]){
 	  swap(elePt[i], elePt[j]);
 	  swap(eleEta[i], eleEta[j]);
+	  swap(elePhi[i], elePhi[j]);
+	  swap(eleM[i], eleM[j]);
 	}
       }
     } // ele
@@ -187,6 +195,8 @@ void juwu(std::string inputFile, std::string outputFile){
 	if(muPt[i] > muPt[j]){
 	  swap(muPt[i], muPt[j]);
           swap(muEta[i], muEta[j]);
+	  swap(muPhi[i], muPhi[j]);
+          swap(muM[i], muM[j]);
         }
       }
     } // mu
@@ -199,6 +209,8 @@ void juwu(std::string inputFile, std::string outputFile){
 	  swap(CA8jetMass[i], CA8jetMass[j]);
 	  swap(CA8jetTau1[i], CA8jetTau1[j]);
 	  swap(CA8jetTau2[i], CA8jetTau2[j]);
+	  swap(CA8jetPrunedPt[i], CA8jetPrunedPt[j]);
+	  swap(CA8jetPrunedMass[i], CA8jetPrunedMass[j]);
         }
       }
     } // jet
@@ -267,10 +279,8 @@ void juwu(std::string inputFile, std::string outputFile){
 
     // plot jet histos                                                                                                     
     if(CA8nJet>=1)h_CA8jetPt->Fill(CA8jetPt[0]);
-    if(CA8nJet>=1 && CA8jetID[0]>0){
-      h_CA8jetPt_ID->Fill(CA8jetPt[0]);
-      //      h_CA8jetTau21->Fill(CA8jetTau2[0]/CA8jetTau1[0]);
-    }
+    if(CA8nJet>=1 && CA8jetID[0]>0)h_CA8jetPt_ID->Fill(CA8jetPt[0]);
+
 
     for(int i=0; i<CA8nJet; i++){
       h_CA8jetEta->Fill(CA8jetEta[i]);
@@ -282,52 +292,165 @@ void juwu(std::string inputFile, std::string outputFile){
 
 
 
-    // genjet matching
-    TLorentzVector mcJet;
+    // determine which channel
+    bool ee=false;
     for(int i=0; i<nGenPar; i++){
-      if(fabs(genParId[i])==5 && genMomParId[i]==25)mcJet.SetPtEtaPhiE(genParPt[i],genParEta[i],genParPhi[i],genParE[i]);
+      if(genParId[i]==23 && genMomParId[i]==1023 && fabs(genDa1[i])==11)ee=true;
+      if(genParId[i]==23 && genMomParId[i]==1023 && fabs(genDa1[i])==13)ee=false;
     }
+
+    
     
 
-    // eleID 
+    // ee channel cuts 
     bool eleIDcut=false;
-    for(int i=0; i<nEle; i++){
-      if(eleID[i]<=0)eleIDcut=true;
-    }
-    if(eleIDcut==true)continue;
+    bool eeCut=false;
 
-    /*
-    // muID
-    bool muIDcut=false;
-    for(int i=0; i<nMu; i++){
-      if(muID[i]&4 || muID[i]&2)muIDcut=true;
+    if(ee==true){
+
+      for(int i=0; i<nEle; i++){
+	for(int j=0; j<i; j++){
+
+	  if(eleID[i]>0)eleIDcut=true;
+
+	  TLorentzVector e1(0,0,0,0);
+	  TLorentzVector e2(0,0,0,0);
+	  
+	  e1.SetPtEtaPhiM(elePt[i],eleEta[i],elePhi[i],eleM[i]);
+	  e2.SetPtEtaPhiM(elePt[j],eleEta[j],elePhi[j],eleM[j]);
+
+	  float eePt=-999;
+	  float eeM=-999;
+	  eePt=(e1+e2).Pt();
+	  eeM=(e1+e2).M();
+
+	  if(eePt>80 || (eeM>70 && eeM<110) )eeCut=true;
+
+      }
     }
+    if(eleIDcut==false)continue;
+    if(eeCut==false)continue;
+    if(nEle>0 && elePt[0]<40)continue;
+    if(nEle>1 && elePt[1]<40)continue;
+    } // if
+
+    
+
+    // mumu channel cuts
+    bool muIDcut=false;
+    bool mumuCut=false;
+
+    if(ee==false){
+
+      for(int i=0; i<nMu; i++){
+	for(int j=0; j<i; j++){
+
+	if(muID[i]&4 || muID[i]&2)muIDcut=true;
+
+	TLorentzVector mu1(0,0,0,0);
+	TLorentzVector mu2(0,0,0,0);
+
+	mu1.SetPtEtaPhiM(muPt[i],muEta[i],muPhi[i],muM[i]);
+	mu2.SetPtEtaPhiM(muPt[j],muEta[j],muPhi[j],muM[j]);
+
+        float mumuPt=-999;
+	float mumuM=-999;
+	mumuPt=(mu1+mu2).Pt();
+	mumuM=(mu1+mu2).M();
+
+	if(mumuPt>80 || (mumuM>70 && mumuM<110) )mumuCut=true;
+
+
+	} 
+     }
     if(muIDcut==false)continue;
-    */
+    if(mumuCut==false)continue;
+    if(nMu>0 && muPt[0]<40)continue;
+    if(nMu>1 && muPt[1]<20)continue;
+    }// if
+
+    
 
     // jetID
     bool jetIDcut=false;
     for(int i=0; i<CA8nJet; i++){
-      if(CA8jetID[i]<=0)jetIDcut=true;
+      if(CA8jetID[i]>0)jetIDcut=true;
     }
-    if(jetIDcut==true)continue;
+    if(jetIDcut==false)continue;
 
+
+    // prunedjet cut
+    bool pjetcut=false;
+    for(int i=0; i<CA8nJet; i++){
+      if(CA8jetPrunedMass[i]>40 || CA8jetPrunedPt[i]>80)pjetcut=true;
+    }
+    if(pjetcut=false)continue;
+
+
+    // Xmass cut
+    float Xmass=-999;
+    TLorentzVector e1(0,0,0,0);
+    TLorentzVector e2(0,0,0,0);
+    TLorentzVector mu1(0,0,0,0);
+    TLorentzVector mu2(0,0,0,0);
+    TLorentzVector recoZ(0,0,0,0);
+    TLorentzVector recoJet(0,0,0,0);
+    
+    if(ee==true){
+
+      for(int i=0; i<nEle; i++){
+	for(int j=0; j<i; j++){
+
+	  e1.SetPtEtaPhiM(elePt[i],eleEta[i],elePhi[i],eleM[i]);
+          e2.SetPtEtaPhiM(elePt[j],eleEta[j],elePhi[j],eleM[j]);
+	  recoZ=(e1+e2);
+
+	} // e2
+      } // e1
+
+    } // ee channel
+
+    if(ee==false){
+
+      for(int i=0; i<nMu; i++){
+        for(int j=0; j<i; j++){
+
+          mu1.SetPtEtaPhiM(muPt[i],muEta[i],muPhi[i],muM[i]);
+          mu2.SetPtEtaPhiM(muPt[j],muEta[j],muPhi[j],muM[j]);
+	  recoZ=(mu1+mu2);
+
+        } // mu2                                                                                                           
+      } // mu1                                                                                                       
   
-    // recojet
-    TLorentzVector recoJet;
-    float dRjj=-999;
+    } // mumu channel             
+
+
     for(int i=0; i<CA8nJet; i++){
       recoJet.SetPtEtaPhiM(CA8jetPt[i],CA8jetEta[i],CA8jetPhi[i],CA8jetMass[i]);
-      dRjj=recoJet.DeltaR(mcJet);
-
     }
 
-
-    // plot Tau21
-    if(CA8nJet>=1 && dRjj<0.8 && dRjj!=-999)h_CA8jetTau21->Fill(CA8jetTau2[0]/CA8jetTau1[0]);
+    Xmass=(recoJet+recoZ).M();
+    if(Xmass>1725 || Xmass<1275)continue;
 
     
+
+    // plot tau21
+    // if(CA8nJet>0)h_CA8jetTau21->Fill(CA8jetTau2[0]/CA8jetTau1[0]);
+
+    int maxjet=-1;
+    float maxjetpt=-999;
+    for(int i=0; i<CA8nJet; i++){
+
+      float jPt=CA8jetPt[i];
+
+      if(jPt>maxjetpt){
+	maxjet=i;
+	maxjetpt=jPt;
+      }
+
+    }
     
+    if(maxjet>=0 && maxjetpt>0)h_CA8jetTau21->Fill(CA8jetTau2[maxjet]/CA8jetTau1[maxjet]);
 
 
 
