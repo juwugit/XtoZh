@@ -59,6 +59,7 @@ void juwu(std::string inputFile, std::string outputFile){
   TH1F* h_muEta_globe   = (TH1F*)h_muEta->Clone("h_muEta_globe");
 
 
+  int counter=0;
 
 
   //Event loop
@@ -229,75 +230,49 @@ void juwu(std::string inputFile, std::string outputFile){
     // determine which channel                                                                                             
     bool ee=false;
     bool mm=false;
-    for(int i=0; i<nGenPar; i++){
-      if(genParId[i]==11 && genMomParId[i]==23) ee=true;
-      if(genParId[i]==13 && genMomParId[i]==23) mm=true;
-    }
+    if(nEle>0 && nMu==0) ee=true;
+    if(nEle==0 && nMu>0) mm=true;
+    if(nEle>0 && nMu>0 && elePt[0]>muPt[0]) ee=true;
+    if(nEle>0 && nMu>0 && elePt[0]<muPt[0]) mm=true;
 
 
 
 
-
-    // use flag to determine maxjet index
-    int maxjet=-1;
-    float maxjetpt=-999;
-
-    for(int i=0; i<CA8nJet; i++){
-
-      float jpt=CA8jetPt[i];
-
-      if(jpt>maxjetpt){
-
-        maxjet=i;
-        maxjetpt=jpt;
-
-      }
-    }
-
-
-      
-    // basic ele cut
+    // basic ele cut                                                                                                      
     bool eleBasicCut=false;
 
-    if(ee==true){
-    
     for(int i=0; i<nEle; i++){
-      if(elePt[i]>35)eleBasicCut=true;
-      if(fabs(eleEta[i])<2.5)eleBasicCut=true;
+      if(elePt[i]>35 || fabs(eleEta[i])<2.5) eleBasicCut=true;
     }
-    if(eleBasicCut==false)continue;
-
-    }
+    if(eleBasicCut==false && ee==true)continue;
 
 
 
-    // basic mu cut                                                           
+    // basic mu cut                                                                                                        
     bool muBasicCut=false;
-    
-    if(mm==true){
 
     for(int i=0; i<nMu; i++){
-      if(muPt[i]>20)muBasicCut=true;
-      if(fabs(muEta[i])<2.4)muBasicCut=true;
-    }
-    if(muBasicCut==false)continue;
+      if(muPt[i]>20 || fabs(muEta[i])<2.4) muBasicCut=true;
+     }
+    if(muBasicCut==false && mm==true)continue;
+      
+    
 
-    }
-
-
-
-
-    // basic jet cut                                                           
+    // basic jet cut                                                                                                       
     bool jetBasicCut=false;
     for(int i=0; i<CA8nJet; i++){
-      if(CA8jetPt[i]>30)jetBasicCut=true;
-      if(fabs(CA8jetEta[i])<2.4)jetBasicCut=true;
+      if(CA8jetPt[i]>30 || fabs(CA8jetEta[i])<2.4) jetBasicCut=true;
     }
     if(jetBasicCut==false)continue;
 
 
 
 
+
+
+
+
+    /*
     // plot ele histos                                                                                                     
     if(nEle>=1)h_elePt->Fill(elePt[0]);
     if(nEle>=2)h_eleSecPt->Fill(elePt[1]);
@@ -338,14 +313,55 @@ void juwu(std::string inputFile, std::string outputFile){
         h_CA8jetEta_ID->Fill(CA8jetEta[i]);
       }
     }
+    */
+
+
+
+
+
+    // remove jet-lepton overlape                                                                                          
+    TLorentzVector lep1(0,0,0,0);
+    TLorentzVector lep2(0,0,0,0);
+    TLorentzVector overjet(0,0,0,0);
+
+    float dRjl1=-999;
+    float dRjl2=-999;
+    bool overlape=false;
+
+    if(CA8nJet>0) overjet.SetPtEtaPhiM(CA8jetPt[0],
+                                       CA8jetEta[0],
+                                       CA8jetPhi[0],
+                                       CA8jetMass[0]);
+
+
+    for(int i=0; i<nEle; i++){
+      lep1.SetPtEtaPhiM(elePt[i],eleEta[i],elePhi[i],eleM[i]);
+
+      dRjl1=lep1.DeltaR(overjet);
+      if(dRjl1<0.5 && dRjl1!=-999) overlape=true;
+
+    }
+    for(int i=0; i<nMu; i++){
+      lep2.SetPtEtaPhiM(muPt[i],muEta[i],muPhi[i],muM[i]);
+
+      dRjl2=lep2.DeltaR(overjet);
+      if(dRjl2<0.5 && dRjl2!=-999) overlape=true;
+    }
+    if(overlape==true)continue;
+
+
+
+
+    counter++;
+    cout<<counter<<endl;
 
 
 
     
     // plot tau21 with only basic cuts
-    if(maxjet>=0 && maxjetpt>0) h_CA8jetTau21->Fill(CA8jetTau2[maxjet]/CA8jetTau1[maxjet]);
-    if(maxjet>=0 && maxjetpt>0 && ee==true) h_tau21_ee->Fill(CA8jetTau2[maxjet]/CA8jetTau1[maxjet]);
-    if(maxjet>=0 && maxjetpt>0 && mm==true) h_tau21_mm->Fill(CA8jetTau2[maxjet]/CA8jetTau1[maxjet]);
+    if(CA8nJet>0) h_CA8jetTau21->Fill(CA8jetTau2[0]/CA8jetTau1[0]);
+    if(CA8nJet>0 && ee==true) h_tau21_ee->Fill(CA8jetTau2[0]/CA8jetTau1[0]);
+    if(CA8nJet>0 && mm==true) h_tau21_mm->Fill(CA8jetTau2[0]/CA8jetTau1[0]);
 
 
         
@@ -417,14 +433,16 @@ void juwu(std::string inputFile, std::string outputFile){
     if(nMu>1 && muPt[1]<20)continue;
     }// if
 
-    
 
+ 
+ 
     // jetID
     bool jetIDcut=false;
     for(int i=0; i<CA8nJet; i++){
       if(CA8jetID[i]>0)jetIDcut=true;
     }
     if(jetIDcut==false)continue;
+
 
 
     // prunedjet cut
@@ -436,7 +454,8 @@ void juwu(std::string inputFile, std::string outputFile){
 
 
 
-    // Xmass cut and block deltaR jet-lepton <0.5
+    // Xmass cut
+
     float Xmass=-999;
     TLorentzVector e1(0,0,0,0);
     TLorentzVector e2(0,0,0,0);
@@ -444,9 +463,6 @@ void juwu(std::string inputFile, std::string outputFile){
     TLorentzVector mu2(0,0,0,0);
     TLorentzVector recoZ(0,0,0,0);
     TLorentzVector recoJet(0,0,0,0);
-
-    float dRje=-999;
-    float dRjm=-999;
     
     if(ee==true){
 
@@ -456,6 +472,7 @@ void juwu(std::string inputFile, std::string outputFile){
 	  e1.SetPtEtaPhiM(elePt[i],eleEta[i],elePhi[i],eleM[i]);
           e2.SetPtEtaPhiM(elePt[j],eleEta[j],elePhi[j],eleM[j]);
 	  recoZ=(e1+e2);
+	  break;
 
 	} // e2
       } // e1
@@ -470,6 +487,7 @@ void juwu(std::string inputFile, std::string outputFile){
           mu1.SetPtEtaPhiM(muPt[i],muEta[i],muPhi[i],muM[i]);
           mu2.SetPtEtaPhiM(muPt[j],muEta[j],muPhi[j],muM[j]);
 	  recoZ=(mu1+mu2);
+	  break;
 
         } // mu2                                                                                                           
       } // mu1                                                                                                       
@@ -479,25 +497,19 @@ void juwu(std::string inputFile, std::string outputFile){
 
     for(int i=0; i<CA8nJet; i++){
       recoJet.SetPtEtaPhiM(CA8jetPt[i],CA8jetEta[i],CA8jetPhi[i],CA8jetMass[i]);
-      
-      if(ee==true) dRje=recoJet.DeltaR(e1);
-      if(mm==true) dRjm=recoJet.DeltaR(mu1);
-
     }
 
     Xmass=(recoJet+recoZ).M();
     if(Xmass>1725 || Xmass<1275)continue;
-    if(ee==true && dRje<0.5 && dRje!=-999)continue;
-    if(mm==true && dRjm<0.5 && dRjm!=-999)continue;
 
-    // plot tau21
-    //if(CA8nJet>0)h_CA8jetTau21->Fill(CA8jetTau2[0]/CA8jetTau1[0]);
+
+
 
 
     // plot tau21 with all cuts
-    if(maxjet>=0 && maxjetpt>0 && ee==true) h_tau21_eeC->Fill(CA8jetTau2[maxjet]/CA8jetTau1[maxjet]);
-    if(maxjet>=0 && maxjetpt>0 && mm==true) h_tau21_mmC->Fill(CA8jetTau2[maxjet]/CA8jetTau1[maxjet]);
-    if(maxjet>=0 && maxjetpt>0) h_CA8jetTau21cut->Fill(CA8jetTau2[maxjet]/CA8jetTau1[maxjet]);
+    if(CA8nJet>0 && ee==true) h_tau21_eeC->Fill(CA8jetTau2[0]/CA8jetTau1[0]);
+    if(CA8nJet>0 && mm==true) h_tau21_mmC->Fill(CA8jetTau2[0]/CA8jetTau1[0]);
+    if(CA8nJet>0) h_CA8jetTau21cut->Fill(CA8jetTau2[0]/CA8jetTau1[0]);
 
 
 
