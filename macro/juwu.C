@@ -401,7 +401,7 @@ void juwu(std::string inputFile, std::string outputFile){
 
 	  float dRje=gjet.DeltaR(ele);
 	  float dRjm=gjet.DeltaR(mu);
-	  if(dRje<0.5 || dRjm<0.5) cout<<"overlape"<<endl;;
+	  if(dRje<0.5 || dRjm<0.5) cout<<"overlape"<<endl;
 
 	} // mu
       } // ele
