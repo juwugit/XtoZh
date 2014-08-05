@@ -12,7 +12,7 @@
 
 
 using namespace std;
-void juwu(std::string inputFile, std::string outputFile){
+void juwu_tau21(std::string inputFile, std::string outputFile){
 
 
   //get TTree from file ...
@@ -20,34 +20,12 @@ void juwu(std::string inputFile, std::string outputFile){
 
 
   //histogram anoucement
-  TH1F* h_CA8jetPt      = new TH1F("h_CA8jetPt","",100,0,1200);
-  TH1F* h_CA8jetPt_ID   = (TH1F*)h_CA8jetPt->Clone("h_CA8jetPt_ID");
-  TH1F* h_CA8jetEta     = new TH1F("h_CA8jetEta","",10,-3,3);
-  TH1F* h_CA8jetEta_ID  = (TH1F*)h_CA8jetEta->Clone("h_CA8jetEta_ID");
   TH1F* h_CA8jetTau21   = new TH1F("h_CA8jetTau21","",20,0,1);
   TH1F* h_CA8jetTau21cut= (TH1F*)h_CA8jetTau21->Clone("h_CA8jetTau21cut");
   TH1F* h_tau21_ee      = (TH1F*)h_CA8jetTau21->Clone("h_tau21_ee");
   TH1F* h_tau21_mm      = (TH1F*)h_CA8jetTau21->Clone("h_tau21_mm");
   TH1F* h_tau21_eeC     = (TH1F*)h_CA8jetTau21->Clone("h_tau21_eeC");
   TH1F* h_tau21_mmC     = (TH1F*)h_CA8jetTau21->Clone("h_tau21_mmC");
-
-
-  TH1F* h_elePt         = new TH1F("h_elePt","",100,0,1200);
-  TH1F* h_eleSecPt      = (TH1F*)h_elePt->Clone("h_eleSecPt");
-  TH1F* h_elePt_ID      = (TH1F*)h_elePt->Clone("h_elePt_ID");
-  TH1F* h_eleSecPt_ID   = (TH1F*)h_elePt->Clone("h_eleSecPt_ID");
-  TH1F* h_eleEta        = new TH1F("h_eleEta","",10,-3,3);
-  TH1F* h_eleEta_ID     = (TH1F*)h_eleEta->Clone("h_eleEta_ID");
-
-  TH1F* h_muPt          = new TH1F("h_muPt","",100,0,1200);
-  TH1F* h_muSecPt       = (TH1F*)h_muPt->Clone("h_muSecPt");
-  TH1F* h_muPt_track    = (TH1F*)h_muPt->Clone("h_muPt_track");
-  TH1F* h_muSecPt_track = (TH1F*)h_muPt->Clone("h_muSecPt_track");
-  TH1F* h_muPt_globe    = (TH1F*)h_muPt->Clone("h_muPt_globe");
-  TH1F* h_muSecPt_globe = (TH1F*)h_muPt->Clone("h_muSecPt_globe");
-  TH1F* h_muEta         = new TH1F("h_muEta","",10,-3,3);
-  TH1F* h_muEta_track   = (TH1F*)h_muEta->Clone("h_muEta_track");
-  TH1F* h_muEta_globe   = (TH1F*)h_muEta->Clone("h_muEta_globe");
 
 
 
@@ -260,6 +238,7 @@ void juwu(std::string inputFile, std::string outputFile){
 
 
 
+
     
     // plot tau21 with only basic cuts
     for(int i=0; i<GoodnJet; i++){
@@ -370,8 +349,8 @@ void juwu(std::string inputFile, std::string outputFile){
     TLorentzVector recoZ(0,0,0,0);
     TLorentzVector recoJet(0,0,0,0);
     
-    for(int i=0; i<GoodnJet; i++){
-      recoJet.SetPtEtaPhiM(GoodjetPt[i],GoodjetEta[i],GoodjetPhi[i],GoodjetM[i]);
+    for(int k=0; k<GoodnJet; k++){
+      recoJet.SetPtEtaPhiM(GoodjetPt[k],GoodjetEta[k],GoodjetPhi[k],GoodjetM[k]);
 
       if(ee==true){
 
