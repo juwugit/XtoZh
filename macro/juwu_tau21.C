@@ -310,7 +310,7 @@ void juwu_tau21(std::string inputFile, std::string outputFile){
 
 
 
-    /*  
+      
     // Xmass cut
     float Xmass=-999;
     TLorentzVector e1(0,0,0,0);
@@ -357,7 +357,7 @@ void juwu_tau21(std::string inputFile, std::string outputFile){
     } // jet
 
     if( (Xmass>1725 || Xmass<1275) && Xmass!=-999 )continue;
-    */
+    
 
 
 
@@ -380,14 +380,10 @@ void juwu_tau21(std::string inputFile, std::string outputFile){
     
 
 
-  //normalization
-
-
 
 
   //save output
   TFile* outFile = new TFile(outputFile.data(),"recreate");
-
 
 
   h_CA8jetTau21->Write();
