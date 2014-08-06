@@ -62,43 +62,67 @@ void juwu_tau21(std::string inputFile, std::string outputFile){
 
 
 
+    // Ordering lepton array by Pt
+    for(int i=0; i<nEle; i++){
+      for(int j=0; j<i; j++){
+        if(elePt[i] > elePt[j]){
+          swap(elePt[i], elePt[j]);
+          swap(eleEta[i], eleEta[j]);
+          swap(elePhi[i], elePhi[j]);
+          swap(eleM[i], eleM[j]);
+        }
+      }
+    } // ele                                                                                                              
+    for(int i=0; i<nMu; i++){
+      for(int j=0; j<i; j++){
+        if(muPt[i] > muPt[j]){
+          swap(muPt[i], muPt[j]);
+          swap(muEta[i], muEta[j]);
+          swap(muPhi[i], muPhi[j]);
+          swap(muM[i], muM[j]);
+        }
+      }
+    } // mu                        
+
+
+
+    // determine which channel                                                                                             
+    bool ee=false;
+    bool mm=false;
+    if(nEle>0 && nMu==0) ee=true;
+    if(nEle==0 && nMu>0) mm=true;
+    if(nEle>0 && nMu>0 && elePt[0]>muPt[0]) ee=true;
+    if(nEle>0 && nMu>0 && elePt[0]<muPt[0]) mm=true;
+
+
+
 
 
     // remove jet-lepton overlape                                                                                          
     vector<int> GoodjetIndex;
 
     for(int i=0; i<CA8nJet; i++){
-      bool overlape=false;
-
-      for(int j=0; j<nEle; j++){
-        for(int k=0; k<nMu; k++){
-
-          TLorentzVector lep1(0,0,0,0);
-          TLorentzVector lep2(0,0,0,0);
-          TLorentzVector alljets(0,0,0,0);
-
-          lep1.SetPtEtaPhiM(elePt[j],eleEta[j],elePhi[j],eleM[j]);
-          lep2.SetPtEtaPhiM(muPt[k],muEta[k],muPhi[k],muM[k]);
-          alljets.SetPtEtaPhiM(CA8jetPt[i],
-                               CA8jetEta[i],
-                               CA8jetPhi[i],
-                               CA8jetM[i]);
-
-          float dRjl1=-999;
-          dRjl1=lep1.DeltaR(alljets);
-          float dRjl2=-999;
-          dRjl2=lep2.DeltaR(alljets);
-
-          if( (dRjl1<0.5 && dRjl1!=-999) || (dRjl2<0.5 && dRjl2!=-999) ) overlape=true;
    
+      TLorentzVector lep(0,0,0,0);
+      TLorentzVector alljets(0,0,0,0);
 
-        } // mu                                                                                                            
-      } // ele                                                                                                             
+      if(ee==true) lep.SetPtEtaPhiM(elePt[0],eleEta[0],elePhi[0],eleM[0]);
+      if(mm==true) lep.SetPtEtaPhiM(muPt[0],muEta[0],muPhi[0],muM[0]);
 
-      if(overlape==true)continue;
+      alljets.SetPtEtaPhiM(CA8jetPt[i],
+			   CA8jetEta[i],
+			   CA8jetPhi[i],
+			   CA8jetM[i]);
+
+      float dRjl=-999;
+      dRjl=lep.DeltaR(alljets);
+
+      if(dRjl<0.5 && dRjl!=-999) continue;
       GoodjetIndex.push_back(i);
+  
+    } // loop jet                          
 
-    } // jet                          
+
 
 
 
@@ -133,28 +157,7 @@ void juwu_tau21(std::string inputFile, std::string outputFile){
 
 
  
-
-    // Ordering array by Pt
-    for(int i=0; i<nEle; i++){
-      for(int j=0; j<i; j++){
-	if(elePt[i] > elePt[j]){
-	  swap(elePt[i], elePt[j]);
-	  swap(eleEta[i], eleEta[j]);
-	  swap(elePhi[i], elePhi[j]);
-	  swap(eleM[i], eleM[j]);
-	}
-      }
-    } // ele
-    for(int i=0; i<nMu; i++){
-      for(int j=0; j<i; j++){
-	if(muPt[i] > muPt[j]){
-	  swap(muPt[i], muPt[j]);
-          swap(muEta[i], muEta[j]);
-	  swap(muPhi[i], muPhi[j]);
-          swap(muM[i], muM[j]);
-        }
-      }
-    } // mu
+    // Ordering jet array by Pt
     for(int i=0; i<GoodnJet; i++){
       for(int j=0; j<i; j++){
         if(GoodjetPt[i] > GoodjetPt[j]){
@@ -167,20 +170,10 @@ void juwu_tau21(std::string inputFile, std::string outputFile){
 	  swap(GoodjetPrunedPt[i], GoodjetPrunedPt[j]);
 	  swap(GoodjetPrunedM[i], GoodjetPrunedM[j]);
         }
-      }
-    } // jet
+      } 
+    } 
 
 
-
-
-
-    // determine which channel                                                                                             
-    bool ee=false;
-    bool mm=false;
-    if(nEle>0 && nMu==0) ee=true;
-    if(nEle==0 && nMu>0) mm=true;
-    if(nEle>0 && nMu>0 && elePt[0]>muPt[0]) ee=true;
-    if(nEle>0 && nMu>0 && elePt[0]<muPt[0]) mm=true;
 
 
 
@@ -208,33 +201,11 @@ void juwu_tau21(std::string inputFile, std::string outputFile){
     // basic jet cut                                                                                                       
     bool jetBasicCut=false;
     for(int i=0; i<GoodnJet; i++){
-      if(GoodjetPt[i]>30 || fabs(GoodjetEta[i])<2.4) jetBasicCut=true;
+      if(GoodjetPt[i]<30 || fabs(GoodjetEta[i])>2.4) jetBasicCut=true;
     }
-    if(jetBasicCut==false)continue;
+    if(jetBasicCut==true)continue;
 
 
-
-
-    // check overlape
-    for(int i=0; i<GoodnJet; i++){
-      for(int j=0; j<nEle; j++){
-	for(int k=0; k<nMu; k++){
-
-	  TLorentzVector gjet(0,0,0,0);
-	  TLorentzVector ele(0,0,0,0);
-	  TLorentzVector mu(0,0,0,0);
-	  
-	  gjet.SetPtEtaPhiM(GoodjetPt[i],GoodjetEta[i],GoodjetPhi[i],GoodjetM[i]);
-	  ele.SetPtEtaPhiM(elePt[j],eleEta[j],elePhi[j],eleM[j]);
-	  mu.SetPtEtaPhiM(muPt[k],muEta[k],muPhi[k],muM[k]);
-
-	  float dRje=gjet.DeltaR(ele);
-	  float dRjm=gjet.DeltaR(mu);
-	  if(dRje<0.5 || dRjm<0.5) cout<<"overlape"<<endl;
-
-	} // mu
-      } // ele
-    } // jet
 
 
 
@@ -339,7 +310,7 @@ void juwu_tau21(std::string inputFile, std::string outputFile){
 
 
 
-    
+    /*  
     // Xmass cut
     float Xmass=-999;
     TLorentzVector e1(0,0,0,0);
@@ -386,7 +357,7 @@ void juwu_tau21(std::string inputFile, std::string outputFile){
     } // jet
 
     if( (Xmass>1725 || Xmass<1275) && Xmass!=-999 )continue;
-
+    */
 
 
 
