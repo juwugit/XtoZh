@@ -6,7 +6,7 @@
 #include <string.h>
 #include <iostream.h>
 
-void scaleHistos(std::string inputFile_="delpanj_DYJetsToLL_PtZ-70To100.root", Float_t scale=3.58531628)
+void scaleHistos(std::string inputFile_="delpanj_DYJetsToLL_PtZ-70To100.root", Float_t scale=1.713980857)
 {
 
 

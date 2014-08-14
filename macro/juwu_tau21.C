@@ -20,12 +20,12 @@ void juwu_tau21(std::string inputFile, std::string outputFile){
 
 
   //histogram anoucement
-  TH1F* h_CA8jetTau21   = new TH1F("h_CA8jetTau21","",20,0,1);
-  TH1F* h_CA8jetTau21cut= (TH1F*)h_CA8jetTau21->Clone("h_CA8jetTau21cut");
-  TH1F* h_tau21_ee      = (TH1F*)h_CA8jetTau21->Clone("h_tau21_ee");
-  TH1F* h_tau21_mm      = (TH1F*)h_CA8jetTau21->Clone("h_tau21_mm");
-  TH1F* h_tau21_eeC     = (TH1F*)h_CA8jetTau21->Clone("h_tau21_eeC");
-  TH1F* h_tau21_mmC     = (TH1F*)h_CA8jetTau21->Clone("h_tau21_mmC");
+  TH1F* h_CA8jetTau21    = new TH1F("h_CA8jetTau21","",20,0,1);
+  TH1F* h_CA8jetTau21cut = (TH1F*)h_CA8jetTau21->Clone("h_CA8jetTau21cut");
+  TH1F* h_CA8jetTau31    = (TH1F*)h_CA8jetTau21->Clone("h_CA8jetTau31");
+  TH1F* h_CA8jetTau31cut = (TH1F*)h_CA8jetTau21->Clone("h_CA8jetTau31cut");
+  TH1F* h_CA8jetTau41    = (TH1F*)h_CA8jetTau21->Clone("h_CA8jetTau41");
+  TH1F* h_CA8jetTau41cut = (TH1F*)h_CA8jetTau21->Clone("h_CA8jetTau41cut");
 
 
 
@@ -43,6 +43,8 @@ void juwu_tau21(std::string inputFile, std::string outputFile){
     Int_t*   CA8jetID    = data.GetPtrInt("CA8jetPassID");
     Float_t* CA8jetTau1  = data.GetPtrFloat("CA8jetTau1");
     Float_t* CA8jetTau2  = data.GetPtrFloat("CA8jetTau2");
+    Float_t* CA8jetTau3  = data.GetPtrFloat("CA8jetTau3");
+    Float_t* CA8jetTau4  = data.GetPtrFloat("CA8jetTau4");
     Float_t* CA8jetPrunedPt = data.GetPtrFloat("CA8jetPrunedPt");
     Float_t* CA8jetPrunedM  = data.GetPtrFloat("CA8jetPrunedMass");
     
@@ -135,6 +137,8 @@ void juwu_tau21(std::string inputFile, std::string outputFile){
     vector<int> GoodjetID;
     vector<float> GoodjetTau1;
     vector<float> GoodjetTau2;
+    vector<float> GoodjetTau3;
+    vector<float> GoodjetTau4;
     vector<float> GoodjetPrunedPt;
     vector<float> GoodjetPrunedM;
 
@@ -149,6 +153,8 @@ void juwu_tau21(std::string inputFile, std::string outputFile){
       GoodjetID.push_back(CA8jetID[index]);
       GoodjetTau1.push_back(CA8jetTau1[index]);
       GoodjetTau2.push_back(CA8jetTau2[index]);
+      GoodjetTau3.push_back(CA8jetTau3[index]);
+      GoodjetTau4.push_back(CA8jetTau4[index]);
       GoodjetPrunedPt.push_back(CA8jetPrunedPt[index]);
       GoodjetPrunedM.push_back(CA8jetPrunedM[index]);
 
@@ -167,6 +173,8 @@ void juwu_tau21(std::string inputFile, std::string outputFile){
 	  swap(GoodjetM[i], GoodjetM[j]);
 	  swap(GoodjetTau1[i], GoodjetTau1[j]);
 	  swap(GoodjetTau2[i], GoodjetTau2[j]);
+	  swap(GoodjetTau3[i], GoodjetTau3[j]);
+	  swap(GoodjetTau4[i], GoodjetTau4[j]);
 	  swap(GoodjetPrunedPt[i], GoodjetPrunedPt[j]);
 	  swap(GoodjetPrunedM[i], GoodjetPrunedM[j]);
         }
@@ -211,12 +219,12 @@ void juwu_tau21(std::string inputFile, std::string outputFile){
 
 
     
-    // plot tau21 with only basic cuts
+    // plot tau21 tau31 tau41 with only basic cuts
     for(int i=0; i<GoodnJet; i++){
 
       h_CA8jetTau21->Fill(GoodjetTau2[i]/GoodjetTau1[i]);
-      if(ee==true) h_tau21_ee->Fill(GoodjetTau2[i]/GoodjetTau1[i]);
-      if(mm==true) h_tau21_mm->Fill(GoodjetTau2[i]/GoodjetTau1[i]);
+      h_CA8jetTau31->Fill(GoodjetTau3[i]/GoodjetTau1[i]);
+      h_CA8jetTau41->Fill(GoodjetTau4[i]/GoodjetTau1[i]);
 
     }
         
@@ -362,12 +370,12 @@ void juwu_tau21(std::string inputFile, std::string outputFile){
 
 
 
-    // plot tau21 with all cuts
+    // plot tau21 tau31 tau41 with all cuts
     for(int i=0; i<GoodnJet; i++){
 
       h_CA8jetTau21cut->Fill(GoodjetTau2[i]/GoodjetTau1[i]);
-      if(ee==true) h_tau21_eeC->Fill(GoodjetTau2[i]/GoodjetTau1[i]);
-      if(mm==true) h_tau21_mmC->Fill(GoodjetTau2[i]/GoodjetTau1[i]);
+      h_CA8jetTau31cut->Fill(GoodjetTau3[i]/GoodjetTau1[i]);
+      h_CA8jetTau41cut->Fill(GoodjetTau4[i]/GoodjetTau1[i]);
 
     }
 
@@ -388,10 +396,11 @@ void juwu_tau21(std::string inputFile, std::string outputFile){
 
   h_CA8jetTau21->Write();
   h_CA8jetTau21cut->Write();
-  h_tau21_ee->Write();
-  h_tau21_mm->Write();
-  h_tau21_eeC->Write();
-  h_tau21_mmC->Write();
+  h_CA8jetTau31->Write();
+  h_CA8jetTau31cut->Write();
+  h_CA8jetTau41->Write();
+  h_CA8jetTau41cut->Write();
+
 
 
   outFile->Close();
