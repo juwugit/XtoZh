@@ -5,8 +5,8 @@
 void run()
 {
 
-   TFile* root1 = new TFile("/home/juwu/XtoZh/results/scaled_delpanj_DYJetsToLL_PtZ-70To100.root");
-   TFile* root2 = new TFile("/home/juwu/XtoZh/results/delpanj_DYJetsToLL_PtZ-100.root");
+   TFile* root1 = new TFile("scaled_delpanj_DYJetsToLL_PtZ-70To100.root");
+   TFile* root2 = new TFile("delpanj_DYJetsToLL_PtZ-100.root");
 
    TH1F* h1_CA8jetTau21 = (TH1F*)root1->Get("h_CA8jetTau21");
    TH1F* h2_CA8jetTau21 = (TH1F*)root2->Get("h_CA8jetTau21");
