@@ -6,13 +6,13 @@
 void run()
 {
   
-  TFile * SIG  = new TFile("/home/juwu/XtoZh/results/delpanj_diboson_signal_ZPrime_hZ_qqll_LHC8_M1500_norm.root");   
-  TFile * BKD  = new TFile("/home/juwu/XtoZh/results/delpanj_DYJetsToLL_PtZ-70_norm.root");  
+  TFile * SIG  = new TFile("results/norm_delpanj_diboson_signal_ZPrime_hZ_qqll_LHC8_M2000.root");   
+  TFile * BKD  = new TFile("results/norm_delpanj_background_M2000.root");  
 
-  TH1F * DENOM_BKD  = (TH1F*)BKD->Get("h_CA8jetTau21cut"); 
-  TH1F * DENOM_SIG  = (TH1F*)SIG->Get("h_CA8jetTau21cut"); 
-  TH1F * NUMER_BKD  = (TH1F*)BKD->Get("h_CA8jetTau21cut");
-  TH1F * NUMER_SIG  = (TH1F*)SIG->Get("h_CA8jetTau21cut");
+  TH1F * DENOM_BKD  = (TH1F*)BKD->Get("h_CA8jetTau41cut"); 
+  TH1F * DENOM_SIG  = (TH1F*)SIG->Get("h_CA8jetTau41cut"); 
+  TH1F * NUMER_BKD  = (TH1F*)BKD->Get("h_CA8jetTau41cut");
+  TH1F * NUMER_SIG  = (TH1F*)SIG->Get("h_CA8jetTau41cut");
 
   TGraphErrors * ROC1 = SigIntegrateUp(NUMER_BKD, DENOM_BKD, NUMER_SIG, DENOM_SIG);
   TGraphErrors * ROC2 = BkdIntegrateUp(NUMER_BKD, DENOM_BKD, NUMER_SIG, DENOM_SIG);
@@ -20,8 +20,8 @@ void run()
 
   ROC1->SetTitle("");
   ROC2->SetTitle("");
-  ROC1->GetYaxis()->SetTitle("Efficiency");
-  //ROC1->GetYaxis()->SetTitle("eff_sig/1+sqrt(B)");
+  //ROC1->GetYaxis()->SetTitle("Efficiency");
+  ROC1->GetYaxis()->SetTitle("eff_sig/1+sqrt(B)");
   ROC1->GetYaxis()->SetTitleOffset(1.5);
   ROC1->SetLineColor(2);
   ROC2->SetLineColor(4);
@@ -29,8 +29,9 @@ void run()
   ROC2->SetMarkerStyle(20);
   ROC1->SetLineWidth(2);
   ROC2->SetLineWidth(2);
-  ROC1->GetXaxis()->SetTitle("#tau_{21} upper threshold");
-  ROC2->GetXaxis()->SetTitle("#tau_{21} upper threshold");
+  //ROC1->GetXaxis()->SetTitle("#tau_{21} upper threshold");
+  //ROC1->GetXaxis()->SetTitle("#tau_{31} upper threshold");
+  ROC1->GetXaxis()->SetTitle("#tau_{41} upper threshold");
 
 
   gROOT->SetStyle("Plain");
@@ -41,16 +42,17 @@ void run()
   ROC2->SetMarkerSize(2);
   ROC2->SetMarkerColor(4);
   ROC1->Draw("apc");
-  ROC2->Draw("pc");
+  //ROC2->Draw("pc");
 
   
+  /*
   leg = new TLegend(0.15,0.67,0.4,0.85);
   leg->SetBorderSize(0);
   leg->SetFillColor(0);
   leg->AddEntry(ROC1,"Zprime_M1500","L");
   leg->AddEntry(ROC2,"Drell-Yan","L");
   leg->Draw("same");
-  
+  */
 
 
 
@@ -143,7 +145,7 @@ TGraphErrors * SigIntegrateUp(TH1 * Numer_bkd, TH1 * Denom_bkd, TH1 * Numer_sig,
   }
 
 
-  TGraphErrors *g=new TGraphErrors(sig_nbinsx,sig_nbincontent,sig_eff,sig_ex,sig_ey);
+  TGraphErrors *g=new TGraphErrors(sig_nbinsx,sig_nbincontent,sign,sig_ex,sig_ey);
   return g;
 }
 
