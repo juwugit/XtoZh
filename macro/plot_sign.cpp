@@ -35,6 +35,9 @@ void run()
 
 
   gROOT->SetStyle("Plain");
+  gStyle->SetPadGridY(kTRUE);
+  gStyle->SetPadGridX(kTRUE);
+
   TCanvas *c1= new TCanvas("c1","",200,10,800,800);
 
   ROC1->SetMarkerSize(2);
