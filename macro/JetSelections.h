@@ -1,6 +1,15 @@
-// note that this macro do only two things
-// remove overlape and make cut on tau21<0.5
-// no basic kinematic cut and jetID cut
+/*
+
+This macro does following selections:
+
+tau21<0.5
+jetPt>30 , fabs(Eta)<2.4
+PrunedJetMass>40 , PrunedJetPt>80 (at least one jet passes this selection)
+jetID>0 (at least one jet passes ID cut)
+
+
+*/
+
 
 
 
@@ -60,7 +69,7 @@ void GoodJetIndex(TreeReader &data, vector<int> &accepted){
 
 
 
-    // determine which channel                                                                                             
+  // determine which channel                                                                                        
   bool ee=false;
   bool mm=false;
   if(nEle>0 && nMu==0) ee=true;
@@ -72,7 +81,14 @@ void GoodJetIndex(TreeReader &data, vector<int> &accepted){
 
 
   // remove overlape and make cut on Tau21
+  bool jetIDcut=false;
+  bool pjetcut=false;
+
   for(int i=0; i<CA8nJet; i++){
+
+    if(CA8jetID[i]>0)jetIDcut=true;
+    if(CA8jetPrunedM[i]>40 || CA8jetPrunedPt[i]>80)pjetcut=true;
+
 
     TLorentzVector lep(0,0,0,0);
     TLorentzVector alljets(0,0,0,0);
@@ -93,12 +109,13 @@ void GoodJetIndex(TreeReader &data, vector<int> &accepted){
 
     if(dRjl<0.5 && dRjl!=-999) continue;
     if(Tau21>0.5 && Tau21!=-999) continue;
+    if(CA8jetPt[i]<30 || fabs(CA8jetEta[i]>2.4)) continue;
+    if(jetIDcut==false) continue; 
+    if(pjetcut==false) continue;
+
     accepted.push_back(i);
 
   } // loop jet                                     
-
-
-
 
 
 
