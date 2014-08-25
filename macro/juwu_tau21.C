@@ -26,6 +26,8 @@ void juwu_tau21(std::string inputFile, std::string outputFile){
   TH1F* h_CA8jetTau31cut = (TH1F*)h_CA8jetTau21->Clone("h_CA8jetTau31cut");
   TH1F* h_CA8jetTau41    = (TH1F*)h_CA8jetTau21->Clone("h_CA8jetTau41");
   TH1F* h_CA8jetTau41cut = (TH1F*)h_CA8jetTau21->Clone("h_CA8jetTau41cut");
+  TH1F* h_CA8jetTau42    = (TH1F*)h_CA8jetTau21->Clone("h_CA8jetTau42");
+  TH1F* h_CA8jetTau42cut = (TH1F*)h_CA8jetTau21->Clone("h_CA8jetTau42cut");
 
 
 
@@ -225,6 +227,8 @@ void juwu_tau21(std::string inputFile, std::string outputFile){
       h_CA8jetTau21->Fill(GoodjetTau2[i]/GoodjetTau1[i]);
       h_CA8jetTau31->Fill(GoodjetTau3[i]/GoodjetTau1[i]);
       h_CA8jetTau41->Fill(GoodjetTau4[i]/GoodjetTau1[i]);
+      h_CA8jetTau42->Fill(GoodjetTau4[i]/GoodjetTau2[i]);
+
 
     }
         
@@ -364,7 +368,7 @@ void juwu_tau21(std::string inputFile, std::string outputFile){
 
     } // jet
 
-    if( (Xmass>1725 || Xmass<1275) && Xmass!=-999 )continue;
+    if( (Xmass>2300 || Xmass<1700) && Xmass!=-999 )continue;
     
 
 
@@ -376,6 +380,7 @@ void juwu_tau21(std::string inputFile, std::string outputFile){
       h_CA8jetTau21cut->Fill(GoodjetTau2[i]/GoodjetTau1[i]);
       h_CA8jetTau31cut->Fill(GoodjetTau3[i]/GoodjetTau1[i]);
       h_CA8jetTau41cut->Fill(GoodjetTau4[i]/GoodjetTau1[i]);
+      h_CA8jetTau42cut->Fill(GoodjetTau4[i]/GoodjetTau2[i]);
 
     }
 
@@ -400,6 +405,8 @@ void juwu_tau21(std::string inputFile, std::string outputFile){
   h_CA8jetTau31cut->Write();
   h_CA8jetTau41->Write();
   h_CA8jetTau41cut->Write();
+  h_CA8jetTau42->Write();
+  h_CA8jetTau42cut->Write();
 
 
 

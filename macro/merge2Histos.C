@@ -16,10 +16,15 @@ void run()
    TH1F* h2_CA8jetTau31 = (TH1F*)root2->Get("h_CA8jetTau31");
    TH1F* h1_CA8jetTau31cut = (TH1F*)root1->Get("h_CA8jetTau31cut");
    TH1F* h2_CA8jetTau31cut = (TH1F*)root2->Get("h_CA8jetTau31cut");
-   TH1F* h1_CA8jetTau41 = (TH1F*)root1->Get("h_CA8jetTau31");
-   TH1F* h2_CA8jetTau41 = (TH1F*)root2->Get("h_CA8jetTau31");
-   TH1F* h1_CA8jetTau41cut = (TH1F*)root1->Get("h_CA8jetTau31cut");
-   TH1F* h2_CA8jetTau41cut = (TH1F*)root2->Get("h_CA8jetTau31cut");
+   TH1F* h1_CA8jetTau41 = (TH1F*)root1->Get("h_CA8jetTau41");
+   TH1F* h2_CA8jetTau41 = (TH1F*)root2->Get("h_CA8jetTau41");
+   TH1F* h1_CA8jetTau41cut = (TH1F*)root1->Get("h_CA8jetTau41cut");
+   TH1F* h2_CA8jetTau41cut = (TH1F*)root2->Get("h_CA8jetTau41cut");
+   TH1F* h1_CA8jetTau42 = (TH1F*)root1->Get("h_CA8jetTau42");
+   TH1F* h2_CA8jetTau42 = (TH1F*)root2->Get("h_CA8jetTau42");
+   TH1F* h1_CA8jetTau42cut = (TH1F*)root1->Get("h_CA8jetTau42cut");
+   TH1F* h2_CA8jetTau42cut = (TH1F*)root2->Get("h_CA8jetTau42cut");
+
 
 
 
@@ -29,6 +34,9 @@ void run()
    TH1F* h_CA8jetTau31cut = new TH1F("h_CA8jetTau31cut","",20,0,1);
    TH1F* h_CA8jetTau41    = new TH1F("h_CA8jetTau41","",20,0,1);
    TH1F* h_CA8jetTau41cut = new TH1F("h_CA8jetTau41cut","",20,0,1);
+   TH1F* h_CA8jetTau42    = new TH1F("h_CA8jetTau42","",20,0,1);
+   TH1F* h_CA8jetTau42cut = new TH1F("h_CA8jetTau42cut","",20,0,1);
+
 
 
 
@@ -41,6 +49,9 @@ void run()
    h_CA8jetTau41->Add(h1_CA8jetTau41,h2_CA8jetTau41,1,1);
    h_CA8jetTau41cut->Add(h1_CA8jetTau41cut,h2_CA8jetTau41cut,1,1);
 
+   h_CA8jetTau42->Add(h1_CA8jetTau42,h2_CA8jetTau42,1,1);
+   h_CA8jetTau42cut->Add(h1_CA8jetTau42cut,h2_CA8jetTau42cut,1,1);
+
 
 
 
@@ -52,6 +63,9 @@ void run()
    h_CA8jetTau31cut->Write();
    h_CA8jetTau41->Write();
    h_CA8jetTau41cut->Write();
+   h_CA8jetTau42->Write();
+   h_CA8jetTau42cut->Write();
+
 
 
    outFile->Close();
