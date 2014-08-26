@@ -2,10 +2,12 @@
 
 This macro does following selections:
 
-tau21<0.5
+tau21<0.5 for leading jet
 jetPt>30 , fabs(Eta)<2.4
 PrunedJetMass>40 , PrunedJetPt>80 (at least one jet passes this selection)
 jetID>0 (at least one jet passes ID cut)
+
+return leading jet index
 
 
 */
@@ -13,9 +15,9 @@ jetID>0 (at least one jet passes ID cut)
 
 
 
-void GoodJetIndex(TreeReader &data, vector<int> &accepted){
+Bool_t PassJet(TreeReader &data, Int_t &accepted){
 
-  accepted.clear();
+  accepted=0;
 
   Int_t    CA8nJet     = data.GetInt("CA8nJet");
   Float_t* CA8jetPt    = data.GetPtrFloat("CA8jetPt");
@@ -25,8 +27,6 @@ void GoodJetIndex(TreeReader &data, vector<int> &accepted){
   Int_t*   CA8jetID    = data.GetPtrInt("CA8jetPassID");
   Float_t* CA8jetTau1  = data.GetPtrFloat("CA8jetTau1");
   Float_t* CA8jetTau2  = data.GetPtrFloat("CA8jetTau2");
-  Float_t* CA8jetTau3  = data.GetPtrFloat("CA8jetTau3");
-  Float_t* CA8jetTau4  = data.GetPtrFloat("CA8jetTau4");
   Float_t* CA8jetPrunedPt = data.GetPtrFloat("CA8jetPrunedPt");
   Float_t* CA8jetPrunedM  = data.GetPtrFloat("CA8jetPrunedMass");
 
@@ -35,37 +35,57 @@ void GoodJetIndex(TreeReader &data, vector<int> &accepted){
   Float_t* eleEta      = data.GetPtrFloat("eleEta");
   Float_t* elePhi      = data.GetPtrFloat("elePhi");
   Float_t* eleM        = data.GetPtrFloat("eleM");
-  Int_t*   eleID       = data.GetPtrInt("elePassID");
 
   Int_t    nMu         = data.GetInt("nMu");
   Float_t* muPt        = data.GetPtrFloat("muPt");
   Float_t* muEta       = data.GetPtrFloat("muEta");
   Float_t* muPhi       = data.GetPtrFloat("muPhi");
   Float_t* muM         = data.GetPtrFloat("muM");
-  Int_t*   muID        = data.GetPtrInt("muPassID");
 
 
-  // Ordering lepton array by Pt                                                                                          
-  for(int i=0; i<nEle; i++){
-    for(int j=0; j<i; j++){
-      if(elePt[i] > elePt[j]){
-	swap(elePt[i], elePt[j]);
-	swap(eleEta[i], eleEta[j]);
-	swap(elePhi[i], elePhi[j]);
-	swap(eleM[i], eleM[j]);
-      }
-    }
-  } // ele                                                                                                                
-  for(int i=0; i<nMu; i++){
-    for(int j=0; j<i; j++){
-      if(muPt[i] > muPt[j]){
-	swap(muPt[i], muPt[j]);
-	swap(muEta[i], muEta[j]);
-	swap(muPhi[i], muPhi[j]);
-	swap(muM[i], muM[j]);
-      }
-    }
-  } // mu                                                                                                                 
+
+
+  // define Map and MapIter
+  typedef map<double, int, std::greater<double> > Map;
+  typedef Map::iterator MapIter;
+
+
+
+  // Sorting electron
+  Map sortElePt;
+  vector<Int_t> sortEleIndex;
+  sortEleIndex.clear();
+
+  for(Int_t i=0; i<nEle; i++){
+    sortElePt.insert(std::pair<Float_t, Int_t>(elePt[i], i));
+  }
+
+  for(MapIter it_part=sortElePt.begin(); it_part!=sortElePt.end(); ++it_part){
+    sortEleIndex.push_back(it_part->second);
+  }
+
+
+
+  // Sorting muon
+  Map sortMuPt;
+  vector<Int_t> sortMuIndex;
+  sortMuIndex.clear();
+
+  for(Int_t i=0; i<nMu; i++){
+    sortMuPt.insert(std::pair<Float_t, Int_t>(muPt[i], i));
+  }
+
+  for(MapIter it_part=sortMuPt.begin(); it_part!=sortMuPt.end(); ++it_part){
+    sortMuIndex.push_back(it_part->second);
+  }
+
+
+
+  for(Int_t i=0; i<sortEleIndex.size(); i++){
+    
+    cout<<"size:"<<sortEleIndex.size()<<endl;
+    cout<<"elePt["<<i<<"]:"<<elePt[sortEleIndex[i]]<<endl;
+  }
 
 
 
@@ -74,50 +94,110 @@ void GoodJetIndex(TreeReader &data, vector<int> &accepted){
   bool mm=false;
   if(nEle>0 && nMu==0) ee=true;
   if(nEle==0 && nMu>0) mm=true;
-  if(nEle>0 && nMu>0 && elePt[0]>muPt[0]) ee=true;
-  if(nEle>0 && nMu>0 && elePt[0]<muPt[0]) mm=true;
+  if(sortEleIndex.size()>0 && sortMuIndex.size()>0 && elePt[sortEleIndex[0]]>muPt[sortMuIndex[0]]) ee=true;
+  if(sortEleIndex.size()>0 && sortMuIndex.size()>0 && elePt[sortEleIndex[0]]<muPt[sortMuIndex[0]]) mm=true;
   
 
 
+  // declare Map for jets and do sorting
+  Map sortJetPt;
+  Int_t sortJetIndex;
 
-  // remove overlape and make cut on Tau21
-  bool jetIDcut=false;
-  bool pjetcut=false;
+  for(Int_t i=0; i<CA8nJet; i++){
+    sortJetPt.insert(std::pair<Float_t, Int_t>(CA8jetPt[i], i));
+  }
 
-  for(int i=0; i<CA8nJet; i++){
 
-    if(CA8jetID[i]>0)jetIDcut=true;
-    if(CA8jetPrunedM[i]>40 || CA8jetPrunedPt[i]>80)pjetcut=true;
 
+  // remove overlape for ee channel
+  bool overlape=false;
+
+  for(MapIter it_part=sortJetPt.begin(); it_part!=sortJetPt.end(); ++it_part){
+    sortJetIndex=it_part->second;
 
     TLorentzVector lep(0,0,0,0);
     TLorentzVector alljets(0,0,0,0);
 
-    if(ee==true) lep.SetPtEtaPhiM(elePt[0],eleEta[0],elePhi[0],eleM[0]);
-    if(mm==true) lep.SetPtEtaPhiM(muPt[0],muEta[0],muPhi[0],muM[0]);
+    if(ee==true) lep.SetPtEtaPhiM(elePt[sortEleIndex[0]],
+				  eleEta[sortEleIndex[0]],
+				  elePhi[sortEleIndex[0]],
+				  eleM[sortEleIndex[0]]);
 
-    alljets.SetPtEtaPhiM(CA8jetPt[i],
-			 CA8jetEta[i],
-			 CA8jetPhi[i],
-			 CA8jetM[i]);
+    if(mm==true) lep.SetPtEtaPhiM(muPt[sortMuIndex[0]],
+				  muEta[sortMuIndex[0]],
+				  muPhi[sortMuIndex[0]],
+				  muM[sortMuIndex[0]]);
+	
+    alljets.SetPtEtaPhiM(CA8jetPt[sortJetIndex],
+			 CA8jetEta[sortJetIndex],
+			 CA8jetPhi[sortJetIndex],
+			 CA8jetM[sortJetIndex]);
+
 
     float dRjl=-999;
     dRjl=lep.DeltaR(alljets);
 
-    float Tau21=-999;
-    Tau21=CA8jetTau2[i]/CA8jetTau1[i];
+    if(dRjl<0.5 && dRjl!=-999) overlape=true;
 
-    if(dRjl<0.5 && dRjl!=-999) continue;
-    if(Tau21>0.5 && Tau21!=-999) continue;
-    if(CA8jetPt[i]<30 || fabs(CA8jetEta[i]>2.4)) continue;
-    if(jetIDcut==false) continue; 
-    if(pjetcut==false) continue;
+    break;
 
-    accepted.push_back(i);
-
-  } // loop jet                                     
+  } // overlape
 
 
 
 
-}// void
+
+  if(overlape==false){
+  
+
+    // push back leading-jet index
+    float leadjetTau21=-999;
+
+    for(MapIter it_part=sortJetPt.begin(); it_part!=sortJetPt.end(); ++it_part){
+      sortJetIndex=it_part->second;
+
+      leadjetTau21=CA8jetTau2[sortJetIndex]/CA8jetTau1[sortJetIndex];
+      accepted=sortJetIndex;
+
+      break;
+
+    }
+
+  
+    // Jet selections                                                                               
+    bool basicCuts=true;
+    bool IDcut=false;
+    bool prunedJetCuts=false;
+
+
+    for(MapIter it_part=sortJetPt.begin(); it_part!=sortJetPt.end(); ++it_part){
+      sortJetIndex=it_part->second;
+
+      if(CA8jetPt[sortJetIndex]<30 || fabs(CA8jetEta[sortJetIndex])>2.4) basicCuts=false;
+      if(CA8jetID[sortJetIndex]>0) IDcut=true;
+      if(CA8jetPrunedPt[sortJetIndex]>80 || CA8jetPrunedM[sortJetIndex]>40) prunedJetCuts=true;
+
+    }
+  
+    
+    if(basicCuts==true && IDcut==true && prunedJetCuts==true) return true;
+    else return false;
+
+
+  } // overlape==false
+
+
+
+
+  // overlape==true
+  else {
+
+    return false;
+    accepted=-1;
+
+  }
+
+
+
+
+} // function brace
