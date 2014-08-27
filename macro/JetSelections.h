@@ -81,12 +81,6 @@ Bool_t PassJet(TreeReader &data, Int_t &accepted){
 
 
 
-  for(Int_t i=0; i<sortEleIndex.size(); i++){
-    
-    cout<<"size:"<<sortEleIndex.size()<<endl;
-    cout<<"elePt["<<i<<"]:"<<elePt[sortEleIndex[i]]<<endl;
-  }
-
 
 
   // determine which channel                                                                                        
