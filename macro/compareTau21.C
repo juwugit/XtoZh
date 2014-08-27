@@ -5,10 +5,10 @@
 void run()
 {
 
-  TFile* root1  = new TFile("results/norm_delpanj_diboson_signal_ZPrime_hZ_qqll_LHC8_M2000.root");
-  TFile* root2  = new TFile("results/norm_delpanj_diboson_signal_ZPrime_ZH_llZZ_M1900.root");
-  TFile* root3  = new TFile("results/norm_delpanj_background_M2000.root");
-  TFile* root4  = new TFile("results/norm_delpanj_diboson_signal_ZPrime_ZH_llWW_M1900.root");
+  TFile* root1  = new TFile("results/norm_delpanj_v2_ZPrime_hZ_qqll_LHC8_M2000.root");
+  TFile* root2  = new TFile("results/norm_delpanj_v2_ZPrime_ZH_llZZ_M1900.root");
+  TFile* root3  = new TFile("results/norm_delpanj_v2_background_M2000.root");
+  TFile* root4  = new TFile("results/norm_delpanj_v2_ZPrime_ZH_llWW_M1900.root");
 
 
   TH1F* root1_tau21 = (TH1F*)root1->Get("h_CA8jetTau21cut");

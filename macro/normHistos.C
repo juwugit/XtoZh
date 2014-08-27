@@ -14,6 +14,8 @@ void run()
    TH1F* h_CA8jetTau31cut = (TH1F*)root->Get("h_CA8jetTau31cut");
    TH1F* h_CA8jetTau41    = (TH1F*)root->Get("h_CA8jetTau41");
    TH1F* h_CA8jetTau41cut = (TH1F*)root->Get("h_CA8jetTau41cut");
+   TH1F* h_CA8jetTau42    = (TH1F*)root->Get("h_CA8jetTau42");
+   TH1F* h_CA8jetTau42cut = (TH1F*)root->Get("h_CA8jetTau42cut");
 
 
 
@@ -42,6 +44,16 @@ void run()
    h_CA8jetTau41cut->Sumw2();
    h_CA8jetTau41cut->Scale(temp6);
 
+   float temp7 = 1/(h_CA8jetTau42->Integral());
+   h_CA8jetTau42->Sumw2();
+   h_CA8jetTau42->Scale(temp7);
+
+   float temp8 = 1/(h_CA8jetTau42cut->Integral());
+   h_CA8jetTau42cut->Sumw2();
+   h_CA8jetTau42cut->Scale(temp8);
+
+
+
 
 
 
@@ -53,6 +65,8 @@ void run()
    h_CA8jetTau31cut->Write();
    h_CA8jetTau41->Write();
    h_CA8jetTau41cut->Write();
+   h_CA8jetTau42->Write();
+   h_CA8jetTau42cut->Write();
 
 
 
