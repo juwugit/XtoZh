@@ -5,7 +5,7 @@
 void run()
 {
 
-   TFile* root = new TFile("delpanj_background_M1500.root");
+   TFile* root = new TFile("delpanj_v2_background.root");
 
 
    TH1F* h_CA8jetTau21    = (TH1F*)root->Get("h_CA8jetTau21");
@@ -45,7 +45,7 @@ void run()
 
 
 
-   TFile* outFile = new TFile("norm_delpanj_background_M1500.root","recreate");
+   TFile* outFile = new TFile("norm_delpanj_v2_background.root","recreate");
 
    h_CA8jetTau21->Write();
    h_CA8jetTau21cut->Write();

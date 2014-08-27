@@ -1,6 +1,8 @@
 //root -q -b -l juwu.C++\(\"inputFile\"\,\"outputFile\"\)
 
-
+#include <map>
+#include <vector>
+#include <string>
 #include <vector>
 #include <iostream>
 #include <algorithm>
@@ -9,6 +11,9 @@
 #include <TLorentzVector.h>
 #include <TFile.h>
 #include "macro/untuplizer.h"
+#include "macro/passElectronID.h"
+#include "macro/passMuonID.h"
+#include "macro/JetSelections.h"
 
 
 using namespace std;
@@ -29,7 +34,7 @@ void juwu_tau21(std::string inputFile, std::string outputFile){
   TH1F* h_CA8jetTau42    = (TH1F*)h_CA8jetTau21->Clone("h_CA8jetTau42");
   TH1F* h_CA8jetTau42cut = (TH1F*)h_CA8jetTau21->Clone("h_CA8jetTau42cut");
 
-
+    int counter=0;
 
 
   //Event loop
@@ -42,283 +47,65 @@ void juwu_tau21(std::string inputFile, std::string outputFile){
     Float_t* CA8jetEta   = data.GetPtrFloat("CA8jetEta");
     Float_t* CA8jetPhi   = data.GetPtrFloat("CA8jetPhi");
     Float_t* CA8jetM     = data.GetPtrFloat("CA8jetMass");
-    Int_t*   CA8jetID    = data.GetPtrInt("CA8jetPassID");
     Float_t* CA8jetTau1  = data.GetPtrFloat("CA8jetTau1");
     Float_t* CA8jetTau2  = data.GetPtrFloat("CA8jetTau2");
     Float_t* CA8jetTau3  = data.GetPtrFloat("CA8jetTau3");
     Float_t* CA8jetTau4  = data.GetPtrFloat("CA8jetTau4");
-    Float_t* CA8jetPrunedPt = data.GetPtrFloat("CA8jetPrunedPt");
-    Float_t* CA8jetPrunedM  = data.GetPtrFloat("CA8jetPrunedMass");
     
     Int_t    nEle        = data.GetInt("nEle");
     Float_t* elePt       = data.GetPtrFloat("elePt");
     Float_t* eleEta      = data.GetPtrFloat("eleEta");
     Float_t* elePhi      = data.GetPtrFloat("elePhi");
     Float_t* eleM        = data.GetPtrFloat("eleM");
-    Int_t*   eleID       = data.GetPtrInt("elePassID");
+   
 
     Int_t    nMu         = data.GetInt("nMu");
     Float_t* muPt        = data.GetPtrFloat("muPt");
     Float_t* muEta       = data.GetPtrFloat("muEta");
     Float_t* muPhi       = data.GetPtrFloat("muPhi");
     Float_t* muM         = data.GetPtrFloat("muM");
-    Int_t*   muID        = data.GetPtrInt("muPassID");
+   
 
 
 
-    // Ordering lepton array by Pt
-    for(int i=0; i<nEle; i++){
-      for(int j=0; j<i; j++){
-        if(elePt[i] > elePt[j]){
-          swap(elePt[i], elePt[j]);
-          swap(eleEta[i], eleEta[j]);
-          swap(elePhi[i], elePhi[j]);
-          swap(eleM[i], eleM[j]);
-        }
-      }
-    } // ele                                                                                                              
-    for(int i=0; i<nMu; i++){
-      for(int j=0; j<i; j++){
-        if(muPt[i] > muPt[j]){
-          swap(muPt[i], muPt[j]);
-          swap(muEta[i], muEta[j]);
-          swap(muPhi[i], muPhi[j]);
-          swap(muM[i], muM[j]);
-        }
-      }
-    } // mu                        
+    Int_t leadjet;
+    PassJet(data, leadjet);
+    
+    Int_t leadEle, secEle;
+    passElectronID(data, &leadEle, &secEle);
+
+    Int_t leadMu, secMu;
+    passMuonID(data, &leadMu, &secMu);
 
 
 
-    // determine which channel                                                                                             
+
+
+    
     bool ee=false;
     bool mm=false;
     if(nEle>0 && nMu==0) ee=true;
     if(nEle==0 && nMu>0) mm=true;
-    if(nEle>0 && nMu>0 && elePt[0]>muPt[0]) ee=true;
-    if(nEle>0 && nMu>0 && elePt[0]<muPt[0]) mm=true;
+    if(nEle>0 && nMu>0 && elePt[leadEle]>muPt[leadMu]) ee=true;
+    if(nEle>0 && nMu>0 && elePt[leadEle]<muPt[leadMu]) mm=true;
+    
+
+    if(ee==true && !passElectronID(data, &leadEle, &secEle)) continue;
+    if(mm==true && !passMuonID(data, &leadMu, &secMu)) continue;
 
 
+    //counter++;
+    //cout<<counter<<endl;
 
+    if(CA8nJet>0 && leadjet>=0){
 
-
-    // remove jet-lepton overlape                                                                                          
-    vector<int> GoodjetIndex;
-
-    for(int i=0; i<CA8nJet; i++){
-   
-      TLorentzVector lep(0,0,0,0);
-      TLorentzVector alljets(0,0,0,0);
-
-      if(ee==true) lep.SetPtEtaPhiM(elePt[0],eleEta[0],elePhi[0],eleM[0]);
-      if(mm==true) lep.SetPtEtaPhiM(muPt[0],muEta[0],muPhi[0],muM[0]);
-
-      alljets.SetPtEtaPhiM(CA8jetPt[i],
-			   CA8jetEta[i],
-			   CA8jetPhi[i],
-			   CA8jetM[i]);
-
-      float dRjl=-999;
-      dRjl=lep.DeltaR(alljets);
-
-      if(dRjl<0.5 && dRjl!=-999) continue;
-      GoodjetIndex.push_back(i);
-  
-    } // loop jet                          
-
-
-
-
-
-    // Put GoodjetIndex into new Jet variables
-    Int_t GoodnJet=GoodjetIndex.size();
-    vector<float> GoodjetPt;
-    vector<float> GoodjetEta;
-    vector<float> GoodjetPhi;
-    vector<float> GoodjetM;
-    vector<int> GoodjetID;
-    vector<float> GoodjetTau1;
-    vector<float> GoodjetTau2;
-    vector<float> GoodjetTau3;
-    vector<float> GoodjetTau4;
-    vector<float> GoodjetPrunedPt;
-    vector<float> GoodjetPrunedM;
-
-    for(int i=0; i<GoodnJet; i++){
-
-      int index=GoodjetIndex[i];
-      
-      GoodjetPt.push_back(CA8jetPt[index]);
-      GoodjetEta.push_back(CA8jetEta[index]);
-      GoodjetPhi.push_back(CA8jetPhi[index]);
-      GoodjetM.push_back(CA8jetM[index]);
-      GoodjetID.push_back(CA8jetID[index]);
-      GoodjetTau1.push_back(CA8jetTau1[index]);
-      GoodjetTau2.push_back(CA8jetTau2[index]);
-      GoodjetTau3.push_back(CA8jetTau3[index]);
-      GoodjetTau4.push_back(CA8jetTau4[index]);
-      GoodjetPrunedPt.push_back(CA8jetPrunedPt[index]);
-      GoodjetPrunedM.push_back(CA8jetPrunedM[index]);
+      h_CA8jetTau21->Fill(CA8jetTau2[leadjet]/CA8jetTau1[leadjet]);
+      h_CA8jetTau31->Fill(CA8jetTau3[leadjet]/CA8jetTau1[leadjet]);
+      h_CA8jetTau41->Fill(CA8jetTau4[leadjet]/CA8jetTau1[leadjet]);
+      h_CA8jetTau42->Fill(CA8jetTau4[leadjet]/CA8jetTau2[leadjet]);
 
     }
-
-
-
- 
-    // Ordering jet array by Pt
-    for(int i=0; i<GoodnJet; i++){
-      for(int j=0; j<i; j++){
-        if(GoodjetPt[i] > GoodjetPt[j]){
-          swap(GoodjetPt[i], GoodjetPt[j]);
-          swap(GoodjetEta[i], GoodjetEta[j]);
-	  swap(GoodjetPhi[i], GoodjetPhi[j]);
-	  swap(GoodjetM[i], GoodjetM[j]);
-	  swap(GoodjetTau1[i], GoodjetTau1[j]);
-	  swap(GoodjetTau2[i], GoodjetTau2[j]);
-	  swap(GoodjetTau3[i], GoodjetTau3[j]);
-	  swap(GoodjetTau4[i], GoodjetTau4[j]);
-	  swap(GoodjetPrunedPt[i], GoodjetPrunedPt[j]);
-	  swap(GoodjetPrunedM[i], GoodjetPrunedM[j]);
-        }
-      } 
-    } 
-
-
-
-
-
-
-    // basic ele cut                                                                                                      
-    bool eleBasicCut=false;
-
-    for(int i=0; i<nEle; i++){
-      if(elePt[i]>35 || fabs(eleEta[i])<2.5) eleBasicCut=true;
-    }
-    if(eleBasicCut==false && ee==true)continue;
-
-
-
-    // basic mu cut                                                                                                        
-    bool muBasicCut=false;
-
-    for(int i=0; i<nMu; i++){
-      if(muPt[i]>20 || fabs(muEta[i])<2.4) muBasicCut=true;
-     }
-    if(muBasicCut==false && mm==true)continue;
-      
     
-
-    // basic jet cut                                                                                                       
-    bool jetBasicCut=false;
-    for(int i=0; i<GoodnJet; i++){
-      if(GoodjetPt[i]<30 || fabs(GoodjetEta[i])>2.4) jetBasicCut=true;
-    }
-    if(jetBasicCut==true)continue;
-
-
-
-
-
-
-    
-    // plot tau21 tau31 tau41 with only basic cuts
-    for(int i=0; i<GoodnJet; i++){
-
-      h_CA8jetTau21->Fill(GoodjetTau2[i]/GoodjetTau1[i]);
-      h_CA8jetTau31->Fill(GoodjetTau3[i]/GoodjetTau1[i]);
-      h_CA8jetTau41->Fill(GoodjetTau4[i]/GoodjetTau1[i]);
-      h_CA8jetTau42->Fill(GoodjetTau4[i]/GoodjetTau2[i]);
-
-
-    }
-        
-
-
-    
-    
-    // ee channel cuts 
-    bool eleIDcut=false;
-    bool eeCut=false;
-
-    for(int i=0; i<nEle; i++){
-      for(int j=0; j<i; j++){
-	
-	if(eleID[i]>0)eleIDcut=true;
-
-	TLorentzVector e1(0,0,0,0);
-	TLorentzVector e2(0,0,0,0);
-	  
-	e1.SetPtEtaPhiM(elePt[i],eleEta[i],elePhi[i],eleM[i]);
-	e2.SetPtEtaPhiM(elePt[j],eleEta[j],elePhi[j],eleM[j]);
-
-	float eePt=-999;
-	float eeM=-999;
-	eePt=(e1+e2).Pt();
-	eeM=(e1+e2).M();
-	
-	if(eePt>80 || (eeM>70 && eeM<110) )eeCut=true;
-	  
-      }
-    }
-    if(ee==true && eleIDcut==false)continue;
-    if(ee==true && eeCut==false)continue;
-    if(ee==true && nEle>0 && elePt[0]<40)continue;
-    if(ee==true && nEle>1 && elePt[1]<40)continue;
-
-
-    
-    
-    // mumu channel cuts
-    bool muIDcut=false;
-    bool mumuCut=false;
-
-    for(int i=0; i<nMu; i++){
-      for(int j=0; j<i; j++){
-
-	if(muID[i]&4 || muID[i]&2)muIDcut=true;
-	
-	TLorentzVector mu1(0,0,0,0);
-	TLorentzVector mu2(0,0,0,0);
-
-	mu1.SetPtEtaPhiM(muPt[i],muEta[i],muPhi[i],muM[i]);
-	mu2.SetPtEtaPhiM(muPt[j],muEta[j],muPhi[j],muM[j]);
-
-        float mumuPt=-999;
-	float mumuM=-999;
-	mumuPt=(mu1+mu2).Pt();
-	mumuM=(mu1+mu2).M();
-	
-	if(mumuPt>80 || (mumuM>70 && mumuM<110) )mumuCut=true;
-
-
-      } 
-    }
-    if(mm==true && muIDcut==false)continue;
-    if(mm==true && mumuCut==false)continue;
-    if(mm==true && nMu>0 && muPt[0]<40)continue;
-    if(mm==true && nMu>1 && muPt[1]<20)continue;
-    
-
-    
- 
-
-    
-    // jetID
-    bool jetIDcut=false;
-    for(int i=0; i<GoodnJet; i++){
-      if(GoodjetID[i]>0)jetIDcut=true;
-    }
-    if(jetIDcut==false)continue;
-    
-
-
-
-    // prunedjet cut
-    bool pjetcut=false;
-    for(int i=0; i<GoodnJet; i++){
-      if(GoodjetPrunedM[i]>40 || GoodjetPrunedPt[i]>80)pjetcut=true;
-    }
-    if(pjetcut==false)continue;
 
 
 
@@ -332,60 +119,60 @@ void juwu_tau21(std::string inputFile, std::string outputFile){
     TLorentzVector recoZ(0,0,0,0);
     TLorentzVector recoJet(0,0,0,0);
     
-    for(int k=0; k<GoodnJet; k++){
-      recoJet.SetPtEtaPhiM(GoodjetPt[k],GoodjetEta[k],GoodjetPhi[k],GoodjetM[k]);
+    if(CA8nJet>0 && leadjet>=0){
+      recoJet.SetPtEtaPhiM(CA8jetPt[leadjet],CA8jetEta[leadjet],CA8jetPhi[leadjet],CA8jetM[leadjet]);
 
-      if(ee==true){
+      if(ee==true && nEle>1){
 
-	for(int i=0; i<nEle; i++){
-	  for(int j=0; j<i; j++){
 
-	    e1.SetPtEtaPhiM(elePt[i],eleEta[i],elePhi[i],eleM[i]);
-	    e2.SetPtEtaPhiM(elePt[j],eleEta[j],elePhi[j],eleM[j]);
-	    recoZ=(e1+e2);
-
-	  } // e2                                                                                                         
-	} // e1                                                                                                            
-
+	e1.SetPtEtaPhiM(elePt[leadEle],eleEta[leadEle],elePhi[leadEle],eleM[leadEle]);
+	e2.SetPtEtaPhiM(elePt[secEle],eleEta[secEle],elePhi[secEle],eleM[secEle]);
+	recoZ=(e1+e2);
+       
+      
       } // ee channel             
 
 
-      if(mm==true){
+      if(mm==true && nMu>1){
 
-	for(int i=0; i<nMu; i++){
-	  for(int j=0; j<i; j++){
-
-	    mu1.SetPtEtaPhiM(muPt[i],muEta[i],muPhi[i],muM[i]);
-	    mu2.SetPtEtaPhiM(muPt[j],muEta[j],muPhi[j],muM[j]);
-	    recoZ=(mu1+mu2);
-
-	  } // mu2                                                                                                        
-	} // mu1                                                                                                          
+	mu1.SetPtEtaPhiM(muPt[leadMu],muEta[leadMu],muPhi[leadMu],muM[leadMu]);
+	mu2.SetPtEtaPhiM(muPt[secMu],muEta[secMu],muPhi[secMu],muM[secMu]);
+	recoZ=(mu1+mu2);
 
       } // mumu channel                  
+
 
     Xmass=(recoJet+recoZ).M();
 
     } // jet
 
-    if( (Xmass>2300 || Xmass<1700) && Xmass!=-999 )continue;
+    if( (Xmass>1150 || Xmass<850) && Xmass!=-999 )continue;
     
+    //counter++;
+    //cout<<counter<<endl;
+
+
+
+    if(!PassJet(data, leadjet)) continue;
+
+
+    counter++;
+    cout<<counter<<endl;
 
 
 
 
     // plot tau21 tau31 tau41 with all cuts
-    for(int i=0; i<GoodnJet; i++){
+    if(CA8nJet>0 && leadjet>=0){
 
-      h_CA8jetTau21cut->Fill(GoodjetTau2[i]/GoodjetTau1[i]);
-      h_CA8jetTau31cut->Fill(GoodjetTau3[i]/GoodjetTau1[i]);
-      h_CA8jetTau41cut->Fill(GoodjetTau4[i]/GoodjetTau1[i]);
-      h_CA8jetTau42cut->Fill(GoodjetTau4[i]/GoodjetTau2[i]);
-
+      h_CA8jetTau21cut->Fill(CA8jetTau2[leadjet]/CA8jetTau1[leadjet]);
+      h_CA8jetTau31cut->Fill(CA8jetTau3[leadjet]/CA8jetTau1[leadjet]);
+      h_CA8jetTau41cut->Fill(CA8jetTau4[leadjet]/CA8jetTau1[leadjet]);
+      h_CA8jetTau42cut->Fill(CA8jetTau4[leadjet]/CA8jetTau2[leadjet]);
+      
     }
 
-
-
+    
 
 
   } //entries 
