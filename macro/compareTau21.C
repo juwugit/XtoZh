@@ -5,10 +5,10 @@
 void run()
 {
 
-  TFile* root1  = new TFile("results/norm_delpanj_v2_ZPrime_hZ_qqll_LHC8_M2000.root");
-  TFile* root2  = new TFile("results/norm_delpanj_v2_ZPrime_ZH_llZZ_M1900.root");
-  TFile* root3  = new TFile("results/norm_delpanj_v2_background_M2000.root");
-  TFile* root4  = new TFile("results/norm_delpanj_v2_ZPrime_ZH_llWW_M1900.root");
+  TFile* root1  = new TFile("results/norm_delpanj_v2_ZPrime_hZ_qqll_LHC8_M1000.root");
+  TFile* root2  = new TFile("results/norm_delpanj_v2_ZPrime_ZH_llZZ_M1000.root");
+  TFile* root3  = new TFile("results/norm_delpanj_v2_background_M1000.root");
+  TFile* root4  = new TFile("results/norm_delpanj_v2_ZPrime_ZH_llWW_M900.root");
 
 
   TH1F* root1_tau21 = (TH1F*)root1->Get("h_CA8jetTau21cut");
@@ -124,10 +124,10 @@ void run()
   leg = new TLegend(0.15,0.78,0.35,0.88);
   leg->SetBorderSize(0);
   leg->SetFillColor(0);
-  leg->AddEntry(root1_tau21,"llqq_M2000","F");
-  leg->AddEntry(root2_tau21,"llZZ_M1900","F");
+  leg->AddEntry(root1_tau21,"llqq_M1000","F");
+  leg->AddEntry(root2_tau21,"llZZ_M1000","F");
   leg->AddEntry(root3_tau21,"background","lep");
-  leg->AddEntry(root4_tau21,"llWW_M1900","F");
+  leg->AddEntry(root4_tau21,"llWW_M900","F");
   leg->Draw("same");
 
 
@@ -158,7 +158,7 @@ void run()
   gSystem->ProcessEvents();
   TImage *img1 = TImage::Create();
   img1->FromPad(c1);
-  img1->WriteImage("h_compareNsubj_M2000.png");
+  img1->WriteImage("h_compareNsubj_M1000.png");
   delete c1;
   delete img1;
 

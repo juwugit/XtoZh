@@ -6,56 +6,96 @@
 void run()
 {
   
-  TFile * SIG  = new TFile("results/norm_delpanj_diboson_signal_ZPrime_hZ_qqll_LHC8_M2000.root");   
-  TFile * BKD  = new TFile("results/norm_delpanj_background_M2000.root");  
 
-  TH1F * DENOM_BKD  = (TH1F*)BKD->Get("h_CA8jetTau41cut"); 
-  TH1F * DENOM_SIG  = (TH1F*)SIG->Get("h_CA8jetTau41cut"); 
-  TH1F * NUMER_BKD  = (TH1F*)BKD->Get("h_CA8jetTau41cut");
-  TH1F * NUMER_SIG  = (TH1F*)SIG->Get("h_CA8jetTau41cut");
+  TFile* BKD  = new TFile("results/norm_delpanj_v2_background_M900.root");  
+  TFile* SIG  = new TFile("results/norm_delpanj_v2_ZPrime_ZH_llWW_M900.root");   
 
-  TGraphErrors * ROC1 = SigIntegrateUp(NUMER_BKD, DENOM_BKD, NUMER_SIG, DENOM_SIG);
-  TGraphErrors * ROC2 = BkdIntegrateUp(NUMER_BKD, DENOM_BKD, NUMER_SIG, DENOM_SIG);
+  TH1F* DENOM_BKD1  = (TH1F*)BKD->Get("h_CA8jetTau21cut"); 
+  TH1F* NUMER_BKD1  = (TH1F*)BKD->Get("h_CA8jetTau21cut");
+  TH1F* DENOM_BKD2  = (TH1F*)BKD->Get("h_CA8jetTau31cut");
+  TH1F* NUMER_BKD2  = (TH1F*)BKD->Get("h_CA8jetTau31cut");
+  TH1F* DENOM_BKD3  = (TH1F*)BKD->Get("h_CA8jetTau41cut");
+  TH1F* NUMER_BKD3  = (TH1F*)BKD->Get("h_CA8jetTau41cut");
+
+  TH1F* NUMER_SIG1  = (TH1F*)SIG->Get("h_CA8jetTau21cut");
+  TH1F* DENOM_SIG1  = (TH1F*)SIG->Get("h_CA8jetTau21cut"); 
+  TH1F* NUMER_SIG2  = (TH1F*)SIG->Get("h_CA8jetTau31cut");
+  TH1F* DENOM_SIG2  = (TH1F*)SIG->Get("h_CA8jetTau31cut");
+  TH1F* NUMER_SIG3  = (TH1F*)SIG->Get("h_CA8jetTau41cut");
+  TH1F* DENOM_SIG3  = (TH1F*)SIG->Get("h_CA8jetTau41cut");
 
 
-  ROC1->SetTitle("");
-  ROC2->SetTitle("");
-  //ROC1->GetYaxis()->SetTitle("Efficiency");
+
+
+
+  TGraphErrors* ROC1 = SigIntegrateUp(NUMER_BKD1, DENOM_BKD1, NUMER_SIG1, DENOM_SIG1);
+  TGraphErrors* ROC2 = SigIntegrateUp(NUMER_BKD2, DENOM_BKD2, NUMER_SIG2, DENOM_SIG2);
+  TGraphErrors* ROC3 = SigIntegrateUp(NUMER_BKD3, DENOM_BKD3, NUMER_SIG3, DENOM_SIG3);
+
+
+
+  ROC1->SetTitle("#tau_{21} Optimization cut-llWW_M900");
+  ROC1->GetXaxis()->SetTitle("#tau_{21} upper threshold");
   ROC1->GetYaxis()->SetTitle("eff_sig/1+sqrt(B)");
   ROC1->GetYaxis()->SetTitleOffset(1.5);
-  ROC1->SetLineColor(2);
-  ROC2->SetLineColor(4);
-  ROC1->SetMarkerStyle(20);
-  ROC2->SetMarkerStyle(20);
+  ROC1->SetLineColor(4);
   ROC1->SetLineWidth(2);
+  ROC1->SetMarkerStyle(20);
+  ROC1->SetMarkerSize(2);
+  ROC1->SetMarkerColor(4);
+
+
+  ROC2->SetTitle("#tau_{31} Optimization cut-llWW_M900");
+  ROC2->GetXaxis()->SetTitle("#tau_{31} upper threshold");
+  ROC2->GetYaxis()->SetTitle("eff_sig/1+sqrt(B)");
+  ROC2->GetYaxis()->SetTitleOffset(1.5);
+  ROC2->SetLineColor(4);
   ROC2->SetLineWidth(2);
-  //ROC1->GetXaxis()->SetTitle("#tau_{21} upper threshold");
-  //ROC1->GetXaxis()->SetTitle("#tau_{31} upper threshold");
-  ROC1->GetXaxis()->SetTitle("#tau_{41} upper threshold");
+  ROC2->SetMarkerStyle(20);
+  ROC2->SetMarkerSize(2);
+  ROC2->SetMarkerColor(4);
+
+
+  ROC3->SetTitle("#tau_{41} Optimization cut-llWW_M900");
+  ROC3->GetXaxis()->SetTitle("#tau_{41} upper threshold");
+  ROC3->GetYaxis()->SetTitle("eff_sig/1+sqrt(B)");
+  ROC3->GetYaxis()->SetTitleOffset(1.5);
+  ROC3->SetLineColor(4);
+  ROC3->SetLineWidth(2);
+  ROC3->SetMarkerStyle(20);
+  ROC3->SetMarkerSize(2);
+  ROC3->SetMarkerColor(4);
+
+
+
+
 
 
   gROOT->SetStyle("Plain");
   gStyle->SetPadGridY(kTRUE);
   gStyle->SetPadGridX(kTRUE);
 
-  TCanvas *c1= new TCanvas("c1","",200,10,800,800);
+  TCanvas *c1= new TCanvas("c1","",200,10,1600,500);
+  c1->Divide(3,1);
 
-  ROC1->SetMarkerSize(2);
-  ROC1->SetMarkerColor(2);
-  ROC2->SetMarkerSize(2);
-  ROC2->SetMarkerColor(4);
+  c1->cd(1);
   ROC1->Draw("apc");
-  //ROC2->Draw("pc");
-
   
-  /*
-  leg = new TLegend(0.15,0.67,0.4,0.85);
-  leg->SetBorderSize(0);
-  leg->SetFillColor(0);
-  leg->AddEntry(ROC1,"Zprime_M1500","L");
-  leg->AddEntry(ROC2,"Drell-Yan","L");
-  leg->Draw("same");
-  */
+  c1->cd(2);
+  ROC2->Draw("apc");
+
+  c1->cd(3);
+  ROC3->Draw("apc");
+
+
+  gSystem->ProcessEvents();
+  TImage *img1 = TImage::Create();
+  img1->FromPad(c1);
+  img1->WriteImage("h_Optimization_llWW_M900.png");
+  delete c1;
+  delete img1;
+
+
 
 
 
