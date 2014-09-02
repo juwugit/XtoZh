@@ -17,7 +17,7 @@ return leading jet index
 
 Bool_t PassJet(TreeReader &data, Int_t &accepted){
 
-  accepted=0;
+  accepted=-1;
 
   Int_t    CA8nJet     = data.GetInt("CA8nJet");
   Float_t* CA8jetPt    = data.GetPtrFloat("CA8jetPt");
@@ -35,18 +35,20 @@ Bool_t PassJet(TreeReader &data, Int_t &accepted){
   Float_t* eleEta      = data.GetPtrFloat("eleEta");
   Float_t* elePhi      = data.GetPtrFloat("elePhi");
   Float_t* eleM        = data.GetPtrFloat("eleM");
+  Int_t*   eleID       = data.GetPtrInt("elePassID");
 
   Int_t    nMu         = data.GetInt("nMu");
   Float_t* muPt        = data.GetPtrFloat("muPt");
   Float_t* muEta       = data.GetPtrFloat("muEta");
   Float_t* muPhi       = data.GetPtrFloat("muPhi");
   Float_t* muM         = data.GetPtrFloat("muM");
+  Int_t*   muID        = data.GetPtrInt("muPassID");
 
 
 
 
   // define Map and MapIter
-  typedef map<double, int, std::greater<double> > Map;
+  typedef map<Float_t, Int_t, std::greater<Float_t> > Map;
   typedef Map::iterator MapIter;
 
 
@@ -95,103 +97,125 @@ Bool_t PassJet(TreeReader &data, Int_t &accepted){
 
   // declare Map for jets and do sorting
   Map sortJetPt;
-  Int_t sortJetIndex;
-
+  vector<Int_t> sortJetIndex;
+  sortJetIndex.clear();
+  
   for(Int_t i=0; i<CA8nJet; i++){
     sortJetPt.insert(std::pair<Float_t, Int_t>(CA8jetPt[i], i));
   }
 
-
-
-  // remove overlape for ee channel
-  bool overlape=false;
-
   for(MapIter it_part=sortJetPt.begin(); it_part!=sortJetPt.end(); ++it_part){
-    sortJetIndex=it_part->second;
-
-    TLorentzVector lep(0,0,0,0);
-    TLorentzVector alljets(0,0,0,0);
-
-    if(ee==true) lep.SetPtEtaPhiM(elePt[sortEleIndex[0]],
-				  eleEta[sortEleIndex[0]],
-				  elePhi[sortEleIndex[0]],
-				  eleM[sortEleIndex[0]]);
-
-    if(mm==true) lep.SetPtEtaPhiM(muPt[sortMuIndex[0]],
-				  muEta[sortMuIndex[0]],
-				  muPhi[sortMuIndex[0]],
-				  muM[sortMuIndex[0]]);
-	
-    alljets.SetPtEtaPhiM(CA8jetPt[sortJetIndex],
-			 CA8jetEta[sortJetIndex],
-			 CA8jetPhi[sortJetIndex],
-			 CA8jetM[sortJetIndex]);
-
-
-    float dRjl=-999;
-    dRjl=lep.DeltaR(alljets);
-
-    if(dRjl<0.5 && dRjl!=-999) overlape=true;
-
-    break;
-
-  } // overlape
-
-
-
-
-
-  if(overlape==false){
-  
-
-    // push back leading-jet index
-    float leadjetTau21=-999;
-
-    for(MapIter it_part=sortJetPt.begin(); it_part!=sortJetPt.end(); ++it_part){
-      sortJetIndex=it_part->second;
-
-      leadjetTau21=CA8jetTau2[sortJetIndex]/CA8jetTau1[sortJetIndex];
-      accepted=sortJetIndex;
-
-      break;
-
-    }
-
-  
-    // Jet selections                                                                               
-    bool basicCuts=true;
-    bool IDcut=false;
-    bool prunedJetCuts=false;
-
-
-    for(MapIter it_part=sortJetPt.begin(); it_part!=sortJetPt.end(); ++it_part){
-      sortJetIndex=it_part->second;
-
-      if(CA8jetPt[sortJetIndex]<30 || fabs(CA8jetEta[sortJetIndex])>2.4) basicCuts=false;
-      if(CA8jetID[sortJetIndex]>0) IDcut=true;
-      if(CA8jetPrunedPt[sortJetIndex]>80 || CA8jetPrunedM[sortJetIndex]>40) prunedJetCuts=true;
-
-    }
-  
-    
-    if(basicCuts==true && IDcut==true && prunedJetCuts==true) return true;
-    else return false;
-
-
-  } // overlape==false
-
-
-
-
-  // overlape==true
-  else {
-
-    return false;
-    accepted=-1;
-
+    sortJetIndex.push_back(it_part->second);
   }
 
 
+  
+  // remove overlape for ee channel
+  vector<Int_t> goodJetIndex;
+  goodJetIndex.clear();
 
+  TLorentzVector lep(0,0,0,0);
+  TLorentzVector alljets(0,0,0,0);
+  Float_t dRjl=-999;
+
+  Int_t nSortJet=sortJetIndex.size();
+  Int_t nSortEle=sortEleIndex.size();
+  Int_t nSortMu=sortMuIndex.size();
+
+
+  for(Int_t k=0; k<nSortJet; k++){
+
+
+    alljets.SetPtEtaPhiM(CA8jetPt[sortJetIndex[k]],
+                         CA8jetEta[sortJetIndex[k]],
+			 CA8jetPhi[sortJetIndex[k]],
+			 CA8jetM[sortJetIndex[k]]);
+
+
+    if(ee==true){
+
+      for(Int_t i=0; i<nSortEle; i++){
+
+
+	if(eleID[sortEleIndex[i]]){
+	 
+	  lep.SetPtEtaPhiM(elePt[sortEleIndex[i]],
+			   eleEta[sortEleIndex[i]],
+			   elePhi[sortEleIndex[i]],
+			   eleM[sortEleIndex[i]]);
+	  
+	  dRjl=alljets.DeltaR(lep);
+	  if(dRjl<0.5 && dRjl!=-999) continue;
+
+	  goodJetIndex.push_back(sortJetIndex[k]);
+
+	} // eleID
+      } // loop ele
+    } // ee
+
+
+
+    if(mm==true){
+
+      for(Int_t i=0; i<nSortMu; i++){
+
+
+        if(muID[sortMuIndex[i]]){
+
+          lep.SetPtEtaPhiM(muPt[sortMuIndex[i]],
+                           muEta[sortMuIndex[i]],
+                           muPhi[sortMuIndex[i]],
+                           muM[sortMuIndex[i]]);
+
+          dRjl=alljets.DeltaR(lep);
+          if(dRjl<0.5 && dRjl!=-999) continue;
+
+          goodJetIndex.push_back(sortJetIndex[k]);
+
+	} // muID                                                                       
+      } // loop muon                                                                             
+    } // mm                               
+
+    
+
+  } // overlape
+  
+
+  
+  
+  
+  // push back leading-jet index
+  Int_t nGoodJet=goodJetIndex.size();
+  if(nGoodJet>0) accepted=goodJetIndex[0];
+
+
+
+  
+  
+  // Jet selections                                                                               
+  bool basicCuts=true;
+  bool IDcut=false;
+  bool prunedJetCuts=false;
+
+  
+  for(Int_t i=0; i<nGoodJet; i++){
+    
+    if(CA8jetPt[goodJetIndex[i]]<30 || fabs(CA8jetEta[goodJetIndex[i]])>2.4) basicCuts=false;
+    if(CA8jetID[goodJetIndex[i]]>0) IDcut=true;
+    if(CA8jetPrunedPt[goodJetIndex[i]]>80 || CA8jetPrunedM[goodJetIndex[i]]>40) prunedJetCuts=true;
+
+  }
+  
+  
+  if(basicCuts==true && IDcut==true && prunedJetCuts==true) return true;
+  else return false;
+  
+  
+  
+  
+
+  
+
+  
 
 } // function brace

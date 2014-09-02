@@ -146,7 +146,7 @@ void juwu_tau21(std::string inputFile, std::string outputFile){
 
     } // jet
 
-    if( (Xmass>1150 || Xmass<850) && Xmass!=-999 )continue;
+    if( (Xmass>1725 || Xmass<1275) && Xmass!=-999 )continue;
     
     //counter++;
     //cout<<counter<<endl;
