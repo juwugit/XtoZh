@@ -121,9 +121,6 @@ Bool_t PassJet(TreeReader &data, Int_t &accepted){
   Int_t nSortEle=sortEleIndex.size();
   Int_t nSortMu=sortMuIndex.size();
 
-  vector<Int_t> checkbool;
-  checkbool.clear();
-
 
   for(Int_t k=0; k<nSortJet; k++){
 
@@ -199,17 +196,20 @@ Bool_t PassJet(TreeReader &data, Int_t &accepted){
     if(!prunedJetCuts) continue;
 
     goodJetIndex.push_back(jIndex);    
-    checkbool.push_back(jIndex);
-    accepted=goodJetIndex[0];
     
-
-
+    
 
   } // overlap
 
 
-  if(checkbool.size()>0) return true;
+  if(goodJetIndex.size()>0){
+    accepted=goodJetIndex[0];
+    return true;
+  }
+  
   else return false;
+
+
 
 
 
