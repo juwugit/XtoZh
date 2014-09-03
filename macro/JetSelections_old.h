@@ -122,8 +122,6 @@ Bool_t PassJet(TreeReader &data, Int_t &accepted){
   Int_t nSortEle=sortEleIndex.size();
   Int_t nSortMu=sortMuIndex.size();
 
-  bool overlape=false;
-
 
   for(Int_t k=0; k<nSortJet; k++){
 
@@ -147,11 +145,9 @@ Bool_t PassJet(TreeReader &data, Int_t &accepted){
 			   eleM[sortEleIndex[i]]);
 	  
 	  dRjl=alljets.DeltaR(lep);
-	  
-	  if(dRjl<0.5 && dRjl!=-999){
-	    overlape=true;
-	    break;
-	  }
+	  if(dRjl<0.5 && dRjl!=-999) continue;
+
+	  goodJetIndex.push_back(sortJetIndex[k]);
 
 	} // eleID
       } // loop ele
@@ -172,19 +168,14 @@ Bool_t PassJet(TreeReader &data, Int_t &accepted){
                            muM[sortMuIndex[i]]);
 
           dRjl=alljets.DeltaR(lep);
+          if(dRjl<0.5 && dRjl!=-999) continue;
 
-          if(dRjl<0.5 && dRjl!=-999){
-	    overlape=true;
-	    break;
-	  }
+          goodJetIndex.push_back(sortJetIndex[k]);
 
 	} // muID                                                                       
       } // loop muon                                                                             
     } // mm                               
 
-
-    if(overlape==true) continue;
-    goodJetIndex.push_back(sortJetIndex[k]);    
     
 
   } // overlape
@@ -192,31 +183,39 @@ Bool_t PassJet(TreeReader &data, Int_t &accepted){
 
   
   
-  // Jet selections                                                                               
+  
+  // push back leading-jet index
   Int_t nGoodJet=goodJetIndex.size();
+  if(nGoodJet>0) accepted=goodJetIndex[0];
 
-  bool basicCuts=false;
+
+
+  
+  
+  // Jet selections                                                                               
+  bool basicCuts=true;
   bool IDcut=false;
   bool prunedJetCuts=false;
 
   
   for(Int_t i=0; i<nGoodJet; i++){
     
-    if(CA8jetPt[goodJetIndex[i]]>30 || fabs(CA8jetEta[goodJetIndex[i]])<2.4) basicCuts=true;
+    if(CA8jetPt[goodJetIndex[i]]<30 || fabs(CA8jetEta[goodJetIndex[i]])>2.4) basicCuts=false;
     if(CA8jetID[goodJetIndex[i]]>0) IDcut=true;
     if(CA8jetPrunedPt[goodJetIndex[i]]>80 || CA8jetPrunedM[goodJetIndex[i]]>40) prunedJetCuts=true;
 
   }
   
   
-  if(basicCuts==true && IDcut==true && prunedJetCuts==true){
-    accepted=goodJetIndex[0];
-    return true;
-  }
-
+  if(basicCuts==true && IDcut==true && prunedJetCuts==true) return true;
   else return false;
   
   
+  
+  
+
+  
+
   
 
 } // function brace
