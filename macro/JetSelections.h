@@ -27,7 +27,6 @@ Bool_t PassJet(TreeReader &data, Int_t &accepted){
   Int_t*   CA8jetID    = data.GetPtrInt("CA8jetPassID");
   Float_t* CA8jetTau1  = data.GetPtrFloat("CA8jetTau1");
   Float_t* CA8jetTau2  = data.GetPtrFloat("CA8jetTau2");
-  Float_t* CA8jetPrunedPt = data.GetPtrFloat("CA8jetPrunedPt");
   Float_t* CA8jetPrunedM  = data.GetPtrFloat("CA8jetPrunedMass");
 
   Int_t    nEle        = data.GetInt("nEle");
@@ -122,16 +121,25 @@ Bool_t PassJet(TreeReader &data, Int_t &accepted){
   Int_t nSortEle=sortEleIndex.size();
   Int_t nSortMu=sortMuIndex.size();
 
-  bool overlape=false;
+  vector<Int_t> checkbool;
+  checkbool.clear();
 
 
   for(Int_t k=0; k<nSortJet; k++){
 
+    Int_t jIndex=sortJetIndex[k];
 
-    alljets.SetPtEtaPhiM(CA8jetPt[sortJetIndex[k]],
-                         CA8jetEta[sortJetIndex[k]],
-			 CA8jetPhi[sortJetIndex[k]],
-			 CA8jetM[sortJetIndex[k]]);
+    bool overlap=false;
+    bool basicCuts=(CA8jetPt[jIndex]>30)&&(fabs(CA8jetEta[jIndex])<2.4);
+    bool IDcut=(CA8jetID[jIndex]>0);
+    bool prunedJetCuts=(CA8jetPt[jIndex]>80)&&(CA8jetPrunedM[jIndex]>40);
+
+
+
+    alljets.SetPtEtaPhiM(CA8jetPt[jIndex],
+                         CA8jetEta[jIndex],
+			 CA8jetPhi[jIndex],
+			 CA8jetM[jIndex]);
 
 
     if(ee==true){
@@ -149,7 +157,7 @@ Bool_t PassJet(TreeReader &data, Int_t &accepted){
 	  dRjl=alljets.DeltaR(lep);
 	  
 	  if(dRjl<0.5 && dRjl!=-999){
-	    overlape=true;
+	    overlap=true;
 	    break;
 	  }
 
@@ -174,7 +182,7 @@ Bool_t PassJet(TreeReader &data, Int_t &accepted){
           dRjl=alljets.DeltaR(lep);
 
           if(dRjl<0.5 && dRjl!=-999){
-	    overlape=true;
+	    overlap=true;
 	    break;
 	  }
 
@@ -183,40 +191,26 @@ Bool_t PassJet(TreeReader &data, Int_t &accepted){
     } // mm                               
 
 
-    if(overlape==true) continue;
-    goodJetIndex.push_back(sortJetIndex[k]);    
-    
 
-  } // overlape
-  
 
-  
-  
-  // Jet selections                                                                               
-  Int_t nGoodJet=goodJetIndex.size();
+    if(overlap==true) continue;
+    if(!basicCuts) continue;
+    if(!IDcut) continue;
+    if(!prunedJetCuts) continue;
 
-  bool basicCuts=false;
-  bool IDcut=false;
-  bool prunedJetCuts=false;
-
-  
-  for(Int_t i=0; i<nGoodJet; i++){
-    
-    if(CA8jetPt[goodJetIndex[i]]>30 || fabs(CA8jetEta[goodJetIndex[i]])<2.4) basicCuts=true;
-    if(CA8jetID[goodJetIndex[i]]>0) IDcut=true;
-    if(CA8jetPrunedPt[goodJetIndex[i]]>80 || CA8jetPrunedM[goodJetIndex[i]]>40) prunedJetCuts=true;
-
-  }
-  
-  
-  if(basicCuts==true && IDcut==true && prunedJetCuts==true){
+    goodJetIndex.push_back(jIndex);    
+    checkbool.push_back(jIndex);
     accepted=goodJetIndex[0];
-    return true;
-  }
+    
 
+
+
+  } // overlap
+
+
+  if(checkbool.size()>0) return true;
   else return false;
-  
-  
-  
+
+
 
 } // function brace
