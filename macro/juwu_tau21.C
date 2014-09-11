@@ -1,4 +1,4 @@
-//root -q -b -l juwu.C++\(\"inputFile\"\,\"outputFile\"\)
+//root -q -b -l juwu_tau21.C++\(masspoint\,\"inputFile\"\,\"outputFile\"\)
 
 #include <map>
 #include <vector>
@@ -17,7 +17,7 @@
 
 
 using namespace std;
-void juwu_tau21(std::string inputFile, std::string outputFile){
+void juwu_tau21(float masspoint, std::string inputFile, std::string outputFile){
 
 
   //get TTree from file ...
@@ -118,7 +118,10 @@ void juwu_tau21(std::string inputFile, std::string outputFile){
     TLorentzVector mu2(0,0,0,0);
     TLorentzVector recoZ(0,0,0,0);
     TLorentzVector recoJet(0,0,0,0);
-    
+    float upper_limit=masspoint*1.15;
+    float lower_limit=masspoint*0.85;
+
+
     if(CA8nJet>0 && leadjet>=0){
       recoJet.SetPtEtaPhiM(CA8jetPt[leadjet],CA8jetEta[leadjet],CA8jetPhi[leadjet],CA8jetM[leadjet]);
 
@@ -146,7 +149,7 @@ void juwu_tau21(std::string inputFile, std::string outputFile){
 
     } // jet
 
-    if( (Xmass>1725 || Xmass<1275) && Xmass!=-999 )continue;
+    if( (Xmass>upper_limit || Xmass<lower_limit) && Xmass!=-999 )continue;
     
     //counter++;
     //cout<<counter<<endl;
