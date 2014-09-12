@@ -1,4 +1,4 @@
-/* Reader of ggNtuplizer's TTrees.
+/* Reader of tree's TTrees.
  *
  * Works both with old as well as with new ntuples. In particular, for tree
  * branches containing vector<...> objects of elementary data types as well as
@@ -85,6 +85,8 @@ class TreeReader {
       kArrULong64,      // array of 8-byte unsigned integers (vector<unsigned long>)
       kArrVectInt,      // array of vector<int> (vector<vector<int> >)
       kArrVectFloat,    // array of vector<float> (vector<vector<float> >)
+      kArrString,       // array of string 
+      kArrStringVector, // array of string (vector<string>)
       kVoidPtr          // all other data types
    };
 
@@ -116,6 +118,8 @@ class TreeReader {
    Float_t*   GetPtrFloat(const char* bname) { return (Float_t*) GetPtr(bname, kArrFloat); }
    Long64_t*  GetPtrLong64(const char* bname) { return (Long64_t*) GetPtr(bname, kArrLong64); }
    ULong64_t* GetPtrULong64(const char* bname) { return (ULong64_t*) GetPtr(bname, kArrULong64); }
+   std::string* GetPtrString(const char* bname) { return (std::string*) GetPtr(bname, kArrString); }
+   Int_t GetPtrStringSize(){return fStringVectorSize;}
 
    // NOTE: this works only for old ntuples
    Bool_t*    GetPtrBool(const char* bname) { return (Bool_t*) GetPtr(bname, kArrBool); }
@@ -152,6 +156,8 @@ class TreeReader {
    Bool_t   fkMC;      // if kTRUE, MC truth info is available
    Long64_t fEntry;    // fTree entry number to read with Get*() methods
 
+   Int_t     fStringVectorSize; 
+
    // caching
    std::map<std::string,int> fLeafIdx; // leaf name => index in arrays below
    std::vector<TLeaf*>  fLeafAddr;     // cached leaf address
@@ -165,7 +171,8 @@ TreeReader::TreeReader(TTree* tree) :
    fTree(0),
    fTreeNum(-1),
    fkMC(kFALSE),
-   fEntry(-1)
+   fEntry(-1),
+   fStringVectorSize(0)
 {
    /* Associates an external TTree or TChain with this class.
     *
@@ -284,12 +291,12 @@ void TreeReader::Print()
          // NOTE: force showing data types of well-defined sizes
          const char* types[] = {
             "float", "int", "unsigned int", "long", "unsigned long",
-            "vector<float> ", "vector<int> "};
+            "vector<float> ", "vector<int> ", "vector<std::string> "};
          const char* type_descr[] = {
             "Float_t", "Int_t", "UInt_t", "Long64_t", "ULong64_t",
-            "vector<Float_t>", "vector<Int_t>"};
+            "vector<Float_t>", "vector<Int_t>", "vector<std::string>"};
 
-         for (int c = 0; c < 7; c++)
+         for (int c = 0; c < 8; c++)
             if (descr.compare(Form("vector<%s>", types[c])) == 0) {
                descr = Form("%s*", type_descr[c]);
                break;
@@ -334,31 +341,29 @@ void TreeReader::Print()
 //______________________________________________________________________________
 void TreeReader::GetEntry(Long64_t entry)
 {
-   /* Sets event number to retrieve next time TreeReader::Get*() called.
-    */
+  if (fTree->IsA() != TChain::Class())
+    fEntry = entry;
+  // TChain requires special treatment
+  else {
+    fEntry = ((TChain*)fTree)->LoadTree(entry);
+    
+    // reset caches on switching to new TTree
+    if (fTreeNum != ((TChain*)fTree)->GetTreeNumber()) {
+      fLeafIdx.clear();
+      fLeafType.clear();
+      fLeafAddr.clear();
+      fLeafValue.clear();
+      
+      fTreeNum = ((TChain*)fTree)->GetTreeNumber();
+    }
+  }
 
-   if (fTree->IsA() != TChain::Class())
-      fEntry = entry;
-
-   // TChain requires special treatment
-   else {
-      fEntry = ((TChain*)fTree)->LoadTree(entry);
-
-      // reset caches on switching to new TTree
-      if (fTreeNum != ((TChain*)fTree)->GetTreeNumber()) {
-         fLeafIdx.clear();
-         fLeafType.clear();
-         fLeafAddr.clear();
-         fLeafValue.clear();
-
-         fTreeNum = ((TChain*)fTree)->GetTreeNumber();
-      }
-   }
-
-   // reset cache of addresses to leaf payloads
-   for (size_t i = 0; i < fLeafValue.size(); i++)
-      fLeafValue[i] = NULL;
+  // reset cache of addresses to leaf payloads
+  for (size_t i = 0; i < fLeafValue.size(); i++)
+    fLeafValue[i] = NULL;
 }
+
+
 
 //______________________________________________________________________________
 void* TreeReader::GetPtr(const char* branch_name, ETypes cktype, Int_t* nsize)
@@ -402,8 +407,12 @@ void* TreeReader::GetPtr(const char* branch_name, ETypes cktype, Int_t* nsize)
       } else if (cktype == kArrLong64) {
          if (fLeafType[i] != kArrLong64TLeaf && fLeafType[i] != kArrLong64Vector)
             FATAL(Form("branch is not of type Long64_t*: %s", branch_name));
-      } else
-         if (cktype != fLeafType[i])
+      } 
+      else if (cktype == kArrString) {
+	if (fLeafType[i] != kArrStringVector)
+	   FATAL(Form("branch is not of type string*: %s", branch_name));
+      }
+      else if (cktype != fLeafType[i])
             FATAL(Form("invalid branch type requested: %s", branch_name));
    }
 
@@ -425,9 +434,14 @@ void* TreeReader::GetPtr(const char* branch_name, ETypes cktype, Int_t* nsize)
       else if (fLeafType[i] == kArrIntVector)
          fLeafValue[i] = &((std::vector<int>*)ptr)->front();
       else if (fLeafType[i] == kArrLong64Vector)
-         fLeafValue[i] = &((std::vector<long>*)ptr)->front();
+         fLeafValue[i] = &((std::vector<long>*)ptr)->front(); 
       else if (fLeafType[i] == kArrULong64)
          fLeafValue[i] = &((std::vector<unsigned long>*)ptr)->front();
+      else if (fLeafType[i] == kArrStringVector)
+	{
+	  fLeafValue[i] = &((std::vector<std::string>*)ptr)->front();
+	  fStringVectorSize = ((std::vector<std::string>*)ptr)->size();
+	}
       else
          fLeafValue[i] = ptr;
    }
@@ -469,7 +483,7 @@ void TreeReader::InitSingleTTree(const char* path)
    if (wd) wd->cd();
    else gDirectory = 0;
 
-   // get ggNtuplizer's tree
+   // get tree's tree
    fTree = dynamic_cast<TTree*>(fFile->Get("tree/tree"));
    if (!fTree)
       FATAL("TTree not found");
@@ -540,6 +554,8 @@ void TreeReader::FindLeaf(const char* bname)
          type = kArrVectFloat;
       else if (descr.compare("vector<vector<int> >") == 0)
          type = kArrVectInt;
+      else if (descr.compare("vector<string>") == 0)
+         type = kArrStringVector;
       else
          type = kVoidPtr;
    }
