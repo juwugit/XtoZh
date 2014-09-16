@@ -5,9 +5,12 @@
 #include <TPad.h>
 #include <TH1D.h>
 #include <TH1F.h>
+#include <TSystem.h>
 #include <TMath.h>
 #include <TFile.h>
 #include <TList.h>
+#include <TImage.h>
+#include <TLine.h>
 #include <TAxis.h>
 #include <TGraph.h>
 #include <TStyle.h>
@@ -37,8 +40,8 @@ Double_t scale2 = 876.225 / (totalNEvent2 / crossSection2); // DYJetsToLL_PtZ100
 Double_t scale3 = 876.225 / (totalNEvent3 / crossSection3); // TTbar
 
 
-void myPlot(TH1D*, TH1D*, TH1D*, TH1D*);
-void myRatio(TH1D*, TH1D*, TH1D*, TH1D* , Int_t , Int_t );
+void myPlot(TH1D*, TH1D*, TH1D*, TH1D* , Double_t , Double_t);
+void myRatio(TH1D*, TH1D*, TH1D*, TH1D* , Double_t , Double_t );
 
 
 void stackJetVariables(){
@@ -61,36 +64,55 @@ void stackJetVariables(){
 
 
   gStyle->SetOptStat(0);
+  gStyle->SetPadGridY(kTRUE);
+  gStyle->SetPadGridX(kTRUE);
 
 
-  TCanvas* c1 = new TCanvas("c1", "", 0, 0, 1920, 1080);
-  c1->Divide(2,2);
 
+  TCanvas* c1 = new TCanvas("c1", "", 0, 0, 1500, 750);
+
+  c1->Divide(2,2,0,0);
+
+  //-------------------------------------------//
 
   c1->cd(1);
   myPlot( ((TH1D*)(f1e->Get("h_mLL"))), 
 	  ((TH1D*)(f2e->Get("h_mLL"))), 
 	  ((TH1D*)(f3e->Get("h_mLL"))), 
-	  ((TH1D*)(f4->Get("h_mLL")))
-	  );
+	  ((TH1D*)(f4->Get("h_mLL"))),
+	  60,120);
 
+  gPad->SetRightMargin(0.02);
 
+  //-------------------------------------------//
+  
   c1->cd(2);
   myPlot( ((TH1D*)(f1m->Get("h_mLL"))),
           ((TH1D*)(f2m->Get("h_mLL"))),
           ((TH1D*)(f3m->Get("h_mLL"))),
-          ((TH1D*)(f5->Get("h_mLL")))
-          );
-
+          ((TH1D*)(f5->Get("h_mLL"))),
+          60,120);
+  
+  gPad->SetRightMargin(0.02);
+  gPad->SetLeftMargin(0.07);
 
   
+  //-------------------------------------------//
+
   c1->cd(3);
   myRatio( ((TH1D*)(f1e->Get("h_mLL"))),
 	   ((TH1D*)(f2e->Get("h_mLL"))),
 	   ((TH1D*)(f3e->Get("h_mLL"))),
 	   ((TH1D*)(f4->Get("h_mLL"))),
 	   60,120);
+
   
+  gPad->SetTickx();
+  gPad->SetRightMargin(0.02);
+
+
+
+  //-------------------------------------------//
   
   c1->cd(4);
   myRatio( ((TH1D*)(f1m->Get("h_mLL"))),
@@ -99,42 +121,95 @@ void stackJetVariables(){
            ((TH1D*)(f5->Get("h_mLL"))),
 	   60,120);
   
-  
+  gPad->SetTickx();
+  gPad->SetRightMargin(0.02);
+  gPad->SetLeftMargin(0.07);
+
+
+  // c1->Print("mLL.gif");
+  gSystem->ProcessEvents();
+  TImage *img1 = TImage::Create();
+  img1->FromPad(c1);
+  img1->WriteImage("h_mLL.png");
+  delete c1;
+  delete img1;
+
+
+  //-------------------------------------------//
 
 
 
 
-  /*
-  c->cd(3);
+
+  TCanvas* c2 = new TCanvas("c2", "", 0, 0, 1500, 750);
+
+  c2->Divide(2,2,0,0);
+
+
+  c2->cd(1);
   myPlot( ((TH1D*)(f1e->Get("h_CA8jetTau21"))),
           ((TH1D*)(f2e->Get("h_CA8jetTau21"))),
           ((TH1D*)(f3e->Get("h_CA8jetTau21"))),
-          ((TH1D*)(f4->Get("h_CA8jetTau21")))
-          );
+          ((TH1D*)(f4->Get("h_CA8jetTau21"))),
+          0,1);
+
+  gPad->SetRightMargin(0.02);
 
 
+  //-------------------------------------------//
 
-  c->cd(4);
+  c2->cd(2);
   myPlot( ((TH1D*)(f1m->Get("h_CA8jetTau21"))),
           ((TH1D*)(f2m->Get("h_CA8jetTau21"))),
           ((TH1D*)(f3m->Get("h_CA8jetTau21"))),
-          ((TH1D*)(f5->Get("h_CA8jetTau21")))
-          );
-  */
+          ((TH1D*)(f5->Get("h_CA8jetTau21"))),
+          0,1);
 
+  gPad->SetRightMargin(0.02);
+  gPad->SetLeftMargin(0.07);
+
+  //-------------------------------------------//
   
-  c1->Print("mLL.gif");
+  c2->cd(3);
+  myRatio( ((TH1D*)(f1e->Get("h_CA8jetTau21"))),
+           ((TH1D*)(f2e->Get("h_CA8jetTau21"))),
+           ((TH1D*)(f3e->Get("h_CA8jetTau21"))),
+           ((TH1D*)(f4->Get("h_CA8jetTau21"))),
+           0,1);
+
+
+  gPad->SetTickx();
+  gPad->SetRightMargin(0.02);
+
+  //--------------------------------------------//
+
+  c2->cd(4);
+  myRatio( ((TH1D*)(f1m->Get("h_CA8jetTau21"))),
+           ((TH1D*)(f2m->Get("h_CA8jetTau21"))),
+           ((TH1D*)(f3m->Get("h_CA8jetTau21"))),
+           ((TH1D*)(f5->Get("h_CA8jetTau21"))),
+           0,1);
+
+  gPad->SetTickx();
+  gPad->SetRightMargin(0.02);
+  gPad->SetLeftMargin(0.07);
 
 
 
-
+  //c1->Print("CA8jetTau21.gif");
+  gSystem->ProcessEvents();
+  TImage *img2 = TImage::Create();
+  img2->FromPad(c2);
+  img2->WriteImage("h_CA8jetTau21.png");
+  delete c2;
+  delete img2;
 
 
 }
 
 
 
-void myPlot(TH1D* h_dy70, TH1D* h_dy100, TH1D* h_ttbar, TH1D* h_data){
+void myPlot(TH1D* h_dy70, TH1D* h_dy100, TH1D* h_ttbar, TH1D* h_data , Double_t min , Double_t max){
 
   //h_data->Sumw2();
   
@@ -160,14 +235,23 @@ void myPlot(TH1D* h_dy70, TH1D* h_dy100, TH1D* h_ttbar, TH1D* h_data){
 
   h_data->SetLineColor(1);
   h_data->SetMarkerStyle(8);
-  h_data->SetMarkerSize(0.5);
+  h_data->SetMarkerSize(1);
+
+  Double_t ymin = -0.05*(h_data->GetMaximum());
+
+  h_data->SetMinimum(ymin);
+  h_data->GetXaxis()->SetRangeUser(min,max);
+  h_data->SetLabelSize(0);
+  h_data->SetXTitle("");
+
+
   h_data->Draw("e1"); 
   h_stack->Draw("histsame");
   h_data->Draw("e1same");
 
 
 
-  TLegend *leg = new TLegend(0.65, 0.75, 0.9, 0.9);
+  TLegend *leg = new TLegend(0.73, 0.78, 0.98, 0.98);
 
   leg->SetFillStyle(1001);
   leg->SetFillColor(10);
@@ -183,22 +267,22 @@ void myPlot(TH1D* h_dy70, TH1D* h_dy100, TH1D* h_ttbar, TH1D* h_data){
 
 
 
-void myRatio(TH1D* h_dy70, TH1D* h_dy100, TH1D* h_ttbar, TH1D* h_data , Int_t min , Int_t max){
+void myRatio(TH1D* h_dy70, TH1D* h_dy100, TH1D* h_ttbar, TH1D* h_data , Double_t min , Double_t max){
 
 
-  //h_data->Sumw2();
-
-  //h_dy70->Scale(scale1);
-  //h_dy100->Scale(scale2);
-  //h_ttbar->Scale(scale3);
+  
   TH1D* h_bkg = (TH1D*)h_dy100->Clone("h_bkg");
+  h_bkg->Reset();
+  //h_bkg->Sumw2();
   h_bkg->Add(h_dy70,1);
   h_bkg->Add(h_dy100,1);
   h_bkg->Add(h_ttbar,1);
 
 
 
-  TH1D* h_ratio = (TH1D*)h_data->Clone("h_ratio");
+  TH1D* h_ratio = (TH1D*)h_dy100->Clone("h_ratio");
+  h_ratio->Reset();
+  //h_ratio->Sumw2();
 
 
   Int_t nbin=h_ratio->GetNbinsX();
@@ -235,12 +319,19 @@ void myRatio(TH1D* h_dy70, TH1D* h_dy100, TH1D* h_ttbar, TH1D* h_data , Int_t mi
   
  
   //h_ratio->SetLineColor(1);
-  //h_ratio->SetMarkerStyle(8);
-  //h_ratio->SetMarkerSize(0.5);
+  h_ratio->SetMarkerStyle(8);
+  h_ratio->SetMarkerSize(1);
 
-  h_ratio->GetXaxis()->SetRange(min,max);
+  h_ratio->GetXaxis()->SetRangeUser(min,max);
+  h_ratio->GetYaxis()->SetRangeUser(0.5,1.55);
+  h_ratio->SetYTitle("data/MC");
   h_ratio->Draw();
 
+
+  TLine* l2 = new TLine(min,1.,max,1.);
+  l2->SetLineColor(4);
+  l2->SetLineStyle(3);
+  l2->Draw("same");
 
 
 }
