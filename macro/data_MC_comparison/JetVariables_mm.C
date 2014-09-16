@@ -10,10 +10,10 @@
 #include <TRandom.h>
 #include <TLorentzVector.h>
 #include <TFile.h>
-#include "/home/mattwu/CMS_Corp/XtoZh/macro/headfile/untuplizer.h"
-#include "/home/mattwu/CMS_Corp/XtoZh/macro/headfile/passElectronID.h"
-#include "/home/mattwu/CMS_Corp/XtoZh/macro/headfile/passMuonID.h"
-#include "/home/mattwu/CMS_Corp/XtoZh/macro/headfile/JetSelections.h"
+#include "/home/mattwu/CMS_Corp/XtoZh/macro/untuplizer.h"
+#include "/home/mattwu/CMS_Corp/XtoZh/macro/passElectronID.h"
+#include "/home/mattwu/CMS_Corp/XtoZh/macro/passMuonID.h"
+#include "/home/mattwu/CMS_Corp/XtoZh/macro/JetSelections.h"
 
 
 using namespace std;
@@ -31,7 +31,7 @@ void JetVariables_mm(std::string inputFile, std::string outputFile){
 
 
   //histogram anoucement
-  TH1F* h_mLL         = new TH1F("h_mLL","",50,0,200);
+  TH1F* h_mLL         = new TH1F("h_mLL","",100,0,200);
   TH1F* h_CA8jetTau21 = new TH1F("h_CA8jetTau21","",20,0,1);
 
   h_mLL->Sumw2();
