@@ -76,22 +76,22 @@ void stackJetVariables(){
   //-------------------------------------------//
 
   c1->cd(1);
-  myPlot( ((TH1D*)(f1e->Get("h_mLL"))), 
-	  ((TH1D*)(f2e->Get("h_mLL"))), 
-	  ((TH1D*)(f3e->Get("h_mLL"))), 
-	  ((TH1D*)(f4->Get("h_mLL"))),
-	  60,120);
+  myPlot( ((TH1D*)(f1e->Get("h_HPt"))), 
+	  ((TH1D*)(f2e->Get("h_HPt"))), 
+	  ((TH1D*)(f3e->Get("h_HPt"))), 
+	  ((TH1D*)(f4->Get("h_HPt"))),
+	  0,400);
 
   gPad->SetRightMargin(0.02);
 
   //-------------------------------------------//
   
   c1->cd(2);
-  myPlot( ((TH1D*)(f1m->Get("h_mLL"))),
-          ((TH1D*)(f2m->Get("h_mLL"))),
-          ((TH1D*)(f3m->Get("h_mLL"))),
-          ((TH1D*)(f5->Get("h_mLL"))),
-          60,120);
+  myPlot( ((TH1D*)(f1m->Get("h_HPt"))),
+          ((TH1D*)(f2m->Get("h_HPt"))),
+          ((TH1D*)(f3m->Get("h_HPt"))),
+          ((TH1D*)(f5->Get("h_HPt"))),
+          0,400);
   
   gPad->SetRightMargin(0.02);
   gPad->SetLeftMargin(0.07);
@@ -100,11 +100,11 @@ void stackJetVariables(){
   //-------------------------------------------//
 
   c1->cd(3);
-  myRatio( ((TH1D*)(f1e->Get("h_mLL"))),
-	   ((TH1D*)(f2e->Get("h_mLL"))),
-	   ((TH1D*)(f3e->Get("h_mLL"))),
-	   ((TH1D*)(f4->Get("h_mLL"))),
-	   60,120);
+  myRatio( ((TH1D*)(f1e->Get("h_HPt"))),
+	   ((TH1D*)(f2e->Get("h_HPt"))),
+	   ((TH1D*)(f3e->Get("h_HPt"))),
+	   ((TH1D*)(f4->Get("h_HPt"))),
+	   0,400);
 
   
   gPad->SetTickx();
@@ -115,11 +115,11 @@ void stackJetVariables(){
   //-------------------------------------------//
   
   c1->cd(4);
-  myRatio( ((TH1D*)(f1m->Get("h_mLL"))),
-           ((TH1D*)(f2m->Get("h_mLL"))),
-           ((TH1D*)(f3m->Get("h_mLL"))),
-           ((TH1D*)(f5->Get("h_mLL"))),
-	   60,120);
+  myRatio( ((TH1D*)(f1m->Get("h_HPt"))),
+           ((TH1D*)(f2m->Get("h_HPt"))),
+           ((TH1D*)(f3m->Get("h_HPt"))),
+           ((TH1D*)(f5->Get("h_HPt"))),
+	   0,400);
   
   gPad->SetTickx();
   gPad->SetRightMargin(0.02);
@@ -130,7 +130,7 @@ void stackJetVariables(){
   gSystem->ProcessEvents();
   TImage *img1 = TImage::Create();
   img1->FromPad(c1);
-  img1->WriteImage("h_mLL.png");
+  img1->WriteImage("h_HPt.png");
   delete c1;
   delete img1;
 
@@ -139,6 +139,8 @@ void stackJetVariables(){
 
 
 
+  cout<<"----------------------Tau21-----------------------------"<<endl;
+
 
 
   TCanvas* c2 = new TCanvas("c2", "", 0, 0, 1500, 750);
@@ -146,12 +148,13 @@ void stackJetVariables(){
   c2->Divide(2,2,0,0);
 
 
+
   c2->cd(1);
-  myPlot( ((TH1D*)(f1e->Get("h_CA8jetTau21"))),
-          ((TH1D*)(f2e->Get("h_CA8jetTau21"))),
-          ((TH1D*)(f3e->Get("h_CA8jetTau21"))),
-          ((TH1D*)(f4->Get("h_CA8jetTau21"))),
-          0,1);
+  myPlot( ((TH1D*)(f1e->Get("h_PrunedjetM"))),
+          ((TH1D*)(f2e->Get("h_PrunedjetM"))),
+          ((TH1D*)(f3e->Get("h_PrunedjetM"))),
+          ((TH1D*)(f4->Get("h_PrunedjetM"))),
+          0,150);
 
   gPad->SetRightMargin(0.02);
 
@@ -159,11 +162,11 @@ void stackJetVariables(){
   //-------------------------------------------//
 
   c2->cd(2);
-  myPlot( ((TH1D*)(f1m->Get("h_CA8jetTau21"))),
-          ((TH1D*)(f2m->Get("h_CA8jetTau21"))),
-          ((TH1D*)(f3m->Get("h_CA8jetTau21"))),
-          ((TH1D*)(f5->Get("h_CA8jetTau21"))),
-          0,1);
+  myPlot( ((TH1D*)(f1m->Get("h_PrunedjetM"))),
+          ((TH1D*)(f2m->Get("h_PrunedjetM"))),
+          ((TH1D*)(f3m->Get("h_PrunedjetM"))),
+          ((TH1D*)(f5->Get("h_PrunedjetM"))),
+          0,150);
 
   gPad->SetRightMargin(0.02);
   gPad->SetLeftMargin(0.07);
@@ -171,11 +174,11 @@ void stackJetVariables(){
   //-------------------------------------------//
   
   c2->cd(3);
-  myRatio( ((TH1D*)(f1e->Get("h_CA8jetTau21"))),
-           ((TH1D*)(f2e->Get("h_CA8jetTau21"))),
-           ((TH1D*)(f3e->Get("h_CA8jetTau21"))),
-           ((TH1D*)(f4->Get("h_CA8jetTau21"))),
-           0,1);
+  myRatio( ((TH1D*)(f1e->Get("h_PrunedjetM"))),
+           ((TH1D*)(f2e->Get("h_PrunedjetM"))),
+           ((TH1D*)(f3e->Get("h_PrunedjetM"))),
+           ((TH1D*)(f4->Get("h_PrunedjetM"))),
+           0,150);
 
 
   gPad->SetTickx();
@@ -184,11 +187,11 @@ void stackJetVariables(){
   //--------------------------------------------//
 
   c2->cd(4);
-  myRatio( ((TH1D*)(f1m->Get("h_CA8jetTau21"))),
-           ((TH1D*)(f2m->Get("h_CA8jetTau21"))),
-           ((TH1D*)(f3m->Get("h_CA8jetTau21"))),
-           ((TH1D*)(f5->Get("h_CA8jetTau21"))),
-           0,1);
+  myRatio( ((TH1D*)(f1m->Get("h_PrunedjetM"))),
+           ((TH1D*)(f2m->Get("h_PrunedjetM"))),
+           ((TH1D*)(f3m->Get("h_PrunedjetM"))),
+           ((TH1D*)(f5->Get("h_PrunedjetM"))),
+           0,150);
 
   gPad->SetTickx();
   gPad->SetRightMargin(0.02);
@@ -200,7 +203,7 @@ void stackJetVariables(){
   gSystem->ProcessEvents();
   TImage *img2 = TImage::Create();
   img2->FromPad(c2);
-  img2->WriteImage("h_CA8jetTau21.png");
+  img2->WriteImage("h_PrunedjetM.png");
   delete c2;
   delete img2;
 
@@ -273,10 +276,10 @@ void myRatio(TH1D* h_dy70, TH1D* h_dy100, TH1D* h_ttbar, TH1D* h_data , Double_t
   
   TH1D* h_bkg = (TH1D*)h_dy100->Clone("h_bkg");
   h_bkg->Reset();
-  //h_bkg->Sumw2();
-  h_bkg->Add(h_dy70,1);
+  h_bkg->Sumw2();
+  //h_bkg->Add(h_dy70,1);
   h_bkg->Add(h_dy100,1);
-  h_bkg->Add(h_ttbar,1);
+  //h_bkg->Add(h_ttbar,1);
 
 
 
@@ -313,6 +316,9 @@ void myRatio(TH1D* h_dy70, TH1D* h_dy100, TH1D* h_ttbar, TH1D* h_data , Double_t
 
     h_ratio->SetBinContent(i,ratio[i]);
     h_ratio->SetBinError(i,error[i]);
+
+
+    cout<<"MC_CenterValue["<<i<<"]:"<<(h_data->GetBinContent(i))<<"  MC_Error["<<i<<"]:"<<numer_binerror[i]<<endl;
 
 
   }

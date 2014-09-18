@@ -13,7 +13,7 @@
 #include "/home/mattwu/CMS_Corp/XtoZh/macro/untuplizer.h"
 #include "/home/mattwu/CMS_Corp/XtoZh/macro/passElectronID.h"
 #include "/home/mattwu/CMS_Corp/XtoZh/macro/passMuonID.h"
-#include "/home/mattwu/CMS_Corp/XtoZh/macro/JetSelections.h"
+#include "/home/mattwu/CMS_Corp/XtoZh/macro/JetSelections_cd.h"
 
 
 using namespace std;
@@ -33,9 +33,19 @@ void JetVariables_mm(std::string inputFile, std::string outputFile){
   //histogram anoucement
   TH1F* h_mLL         = new TH1F("h_mLL","",100,0,200);
   TH1F* h_CA8jetTau21 = new TH1F("h_CA8jetTau21","",20,0,1);
+  TH1F* h_HPt         = new TH1F("h_HPt","",100,0,400);
+  TH1F* h_PrunedjetM  = new TH1F("h_PrunedjetM","",50,0,150);
+
+
+
 
   h_mLL->Sumw2();
   h_CA8jetTau21->Sumw2();
+  h_HPt->Sumw2();
+  h_PrunedjetM->Sumw2();
+
+  h_HPt->GetXaxis()->SetTitle("Higgs P_{T} electron channel");
+  h_PrunedjetM->GetXaxis()->SetTitle("Prunedjet Mass electron channel");
   h_mLL->GetXaxis()->SetTitle("mLL muon channel");
   h_CA8jetTau21->GetXaxis()->SetTitle("#tau_{21} muon channel");
 
@@ -58,6 +68,8 @@ void JetVariables_mm(std::string inputFile, std::string outputFile){
     Float_t* CA8jetTau2  = data.GetPtrFloat("CA8jetTau2");
     Float_t* CA8jetTau3  = data.GetPtrFloat("CA8jetTau3");
     Float_t* CA8jetTau4  = data.GetPtrFloat("CA8jetTau4");
+    Float_t* CA8jetPrunedM = data.GetPtrFloat("CA8jetPrunedMass");
+
     
     Int_t    nEle        = data.GetInt("nEle");
     Float_t* elePt       = data.GetPtrFloat("elePt");
@@ -146,10 +158,13 @@ void JetVariables_mm(std::string inputFile, std::string outputFile){
 
 
     // plot tau21
-    if(CA8nJet>0 && leadjet>=0)
-      h_CA8jetTau21->Fill(CA8jetTau2[leadjet]/CA8jetTau1[leadjet]);
-   
-    
+      if(CA8nJet>0 && leadjet>=0){
+	h_CA8jetTau21->Fill(CA8jetTau2[leadjet]/CA8jetTau1[leadjet]);
+	h_HPt->Fill(CA8jetPt[leadjet]);
+	h_PrunedjetM->Fill(CA8jetPrunedM[leadjet]);
+
+
+      }
 
 
   } //entries 
@@ -165,6 +180,8 @@ void JetVariables_mm(std::string inputFile, std::string outputFile){
 
   h_mLL->Write();
   h_CA8jetTau21->Write();
+  h_HPt->Write();
+  h_PrunedjetM->Write();
 
 
 
