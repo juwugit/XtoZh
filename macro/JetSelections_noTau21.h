@@ -132,6 +132,7 @@ Bool_t PassJet(TreeReader &data, Int_t &accepted){
     bool prunedJetCuts=(CA8jetPt[jIndex]>80)&&(CA8jetPrunedM[jIndex]>40);
 
 
+
     alljets.SetPtEtaPhiM(CA8jetPt[jIndex],
                          CA8jetEta[jIndex],
 			 CA8jetPhi[jIndex],
@@ -194,7 +195,6 @@ Bool_t PassJet(TreeReader &data, Int_t &accepted){
     if(!IDcut) continue;
     if(!prunedJetCuts) continue;
 
-
     goodJetIndex.push_back(jIndex);    
     
     
@@ -202,7 +202,7 @@ Bool_t PassJet(TreeReader &data, Int_t &accepted){
   } // overlap
 
 
-  if(goodJetIndex.size()>0 && (CA8jetTau2[goodJetIndex[0]]/CA8jetTau1[goodJetIndex[0]])<0.5){
+  if(goodJetIndex.size()>0){
     accepted=goodJetIndex[0];
     return true;
   }
