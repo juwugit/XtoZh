@@ -117,7 +117,8 @@ void getAlpha(){
 
 
 
-  //-------------------------------------------//                                                                     
+  //-------------------------------------------//                                                                    
+
 
   c1->cd(5);
   myPlot( ((TH1D*)(f1m->Get("h_sigXMass"))),
@@ -221,10 +222,6 @@ void alpha(TH1D* h_dy70, TH1D* h_dy100, TH1D* h_ttbar, TH1D* h_dy70sb, TH1D* h_d
   h_alpha->SetMarkerStyle(8);
   h_alpha->SetMarkerSize(1);
   h_alpha->Draw();
-
-
-  cout<<"9:"<<(h_alpha->GetBinError(9))/(h_alpha->GetBinContent(9))<<" 10:"<<(h_alpha->GetBinError(10))/(h_alpha->GetBinContent(10))<<endl;
-
 
 
 
