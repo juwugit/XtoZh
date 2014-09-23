@@ -17,7 +17,7 @@
 
 
 using namespace std;
-void bkgEstimate_ee(std::string inputFile, std::string outputFile){
+void recoXmass_mm(std::string inputFile, std::string outputFile){
 
 
   bool isData=false;
@@ -60,11 +60,11 @@ void bkgEstimate_ee(std::string inputFile, std::string outputFile){
     Float_t* CA8jetM     = data.GetPtrFloat("CA8jetMass");
     Float_t* CA8jetPrunedM = data.GetPtrFloat("CA8jetPrunedMass");
 
-    Int_t    nEle        = data.GetInt("nEle");
-    Float_t* elePt       = data.GetPtrFloat("elePt");
-    Float_t* eleEta      = data.GetPtrFloat("eleEta");
-    Float_t* elePhi      = data.GetPtrFloat("elePhi");
-    Float_t* eleM        = data.GetPtrFloat("eleM");   
+    Int_t    nMu        = data.GetInt("nMu");
+    Float_t* muPt       = data.GetPtrFloat("muPt");
+    Float_t* muEta      = data.GetPtrFloat("muEta");
+    Float_t* muPhi      = data.GetPtrFloat("muPhi");
+    Float_t* muM        = data.GetPtrFloat("muM");   
 
 
 
@@ -72,8 +72,8 @@ void bkgEstimate_ee(std::string inputFile, std::string outputFile){
     Int_t leadjet;
     PassJet(data, leadjet);
     
-    Int_t leadEle, secEle;
-    passElectronID(data, &leadEle, &secEle);
+    Int_t leadMu, secMu;
+    passMuonID(data, &leadMu, &secMu);
 
 
 
@@ -89,36 +89,36 @@ void bkgEstimate_ee(std::string inputFile, std::string outputFile){
       {
 	std::string thisTrig= trigName[it];
 	int results = trigResult[it];
-     
+	/*
 	if(thisTrig.find("HLT_DoubleEle33")!= std::string::npos && results==1)
 	  {
 	    passTrigger=true;
 	    break;
 	  }
+	*/
 	
-	/*
 	if(thisTrig.find("HLT_Mu22_TkMu8")!= std::string::npos && results==1)
 	  {
 	    passTrigger=true;
 	    break;
 	  }
-	*/
+	
       }
    
     if(isData && !passTrigger)continue;
-    if(!passElectronID(data, &leadEle, &secEle)) continue;
-    if(nEle<=1) continue;
+    if(!passMuonID(data, &leadMu, &secMu)) continue;
+    if(nMu<=1) continue;
 
 
       
     // Reco mLL
-    TLorentzVector e1(0,0,0,0);
-    TLorentzVector e2(0,0,0,0);
+    TLorentzVector m1(0,0,0,0);
+    TLorentzVector m2(0,0,0,0);
     TLorentzVector recoZ(0,0,0,0);
 
-    e1.SetPtEtaPhiM(elePt[leadEle],eleEta[leadEle],elePhi[leadEle],eleM[leadEle]);
-    e2.SetPtEtaPhiM(elePt[secEle],eleEta[secEle],elePhi[secEle],eleM[secEle]);
-    recoZ=(e1+e2);
+    m1.SetPtEtaPhiM(muPt[leadMu],muEta[leadMu],muPhi[leadMu],muM[leadMu]);
+    m2.SetPtEtaPhiM(muPt[secMu],muEta[secMu],muPhi[secMu],muM[secMu]);
+    recoZ=(m1+m2);
     
 
 
