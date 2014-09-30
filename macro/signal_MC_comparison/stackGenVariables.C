@@ -28,17 +28,18 @@
 
 
 
-void myPlotL(TH1D*, TH1D*);
-void myPlotR(TH1D*, TH1D*);
-void myPlotN(TH1D*, TH1D*);
-void myRatio(TH1D*, TH1D*, Double_t , Double_t );
+void myPlotL(TH1D*, TH1D*, TH1D*);
+void myPlotR(TH1D*, TH1D*, TH1D*);
+void myPlotN(TH1D*, TH1D*, TH1D*);
+void myRatio(TH1D*, TH1D*, TH1D*, Double_t , Double_t );
 
 
 void stackGenVariables(){
 
 
-  TFile *f1 = TFile::Open("rootfile/delpanj_my_xzh_LO_M1000.root");
-  TFile *f2 = TFile::Open("rootfile/delpanj_v2_ZPrime_hZ_qqll_LHC8_M1000.root");
+  TFile *f1 = TFile::Open("rootfile/delpanj_v2_ZPrime_hZ_qqll_LHC8_M1000.root");
+  TFile *f2 = TFile::Open("rootfile/delpanj_my_xzh_LO_M1000.root");
+  TFile *f3 = TFile::Open("rootfile/delpanj_MZp_LO_M1000.root");
 
 
   gStyle->SetOptStat(0);
@@ -55,7 +56,8 @@ void stackGenVariables(){
 
   c1->cd(1);
   myPlotL( ((TH1D*)(f1->Get("h_genHPt"))), 
-	  ((TH1D*)(f2->Get("h_genHPt")))
+	   ((TH1D*)(f2->Get("h_genHPt"))),
+	   ((TH1D*)(f3->Get("h_genHPt")))
 	  );
   
   gPad->SetRightMargin(0.02);
@@ -64,7 +66,8 @@ void stackGenVariables(){
   
   c1->cd(2);
   myPlotN( ((TH1D*)(f1->Get("h_genZPt"))),
-          ((TH1D*)(f2->Get("h_genZPt")))
+	   ((TH1D*)(f2->Get("h_genZPt"))),
+	   ((TH1D*)(f3->Get("h_genZPt")))
           );
   
   gPad->SetRightMargin(0.02);
@@ -76,6 +79,7 @@ void stackGenVariables(){
   c1->cd(3);
   myRatio( ((TH1D*)(f1->Get("h_genHPt"))),
 	   ((TH1D*)(f2->Get("h_genHPt"))),
+	   ((TH1D*)(f3->Get("h_genHPt"))),
 	   0,1200);
   
   
@@ -89,6 +93,7 @@ void stackGenVariables(){
   c1->cd(4);
   myRatio( ((TH1D*)(f1->Get("h_genZPt"))),
            ((TH1D*)(f2->Get("h_genZPt"))),
+	   ((TH1D*)(f3->Get("h_genZPt"))),
 	   0,1200);
   
   gPad->SetTickx();
@@ -119,8 +124,9 @@ void stackGenVariables(){
 
   c2->cd(1);
   myPlotL( ((TH1D*)(f1->Get("h_genHEta"))),
-          ((TH1D*)(f2->Get("h_genHEta")))
-          );
+	   ((TH1D*)(f2->Get("h_genHEta"))),
+	   ((TH1D*)(f3->Get("h_genHEta")))
+	   );
 
   gPad->SetRightMargin(0.02);
 
@@ -129,8 +135,9 @@ void stackGenVariables(){
 
   c2->cd(2);
   myPlotN( ((TH1D*)(f1->Get("h_genZEta"))),
-          ((TH1D*)(f2->Get("h_genZEta")))
-          );
+	   ((TH1D*)(f2->Get("h_genZEta"))),
+	   ((TH1D*)(f3->Get("h_genZEta")))
+	   );
 
   gPad->SetRightMargin(0.02);
   gPad->SetLeftMargin(0.07);
@@ -140,8 +147,9 @@ void stackGenVariables(){
   c2->cd(3);
   myRatio( ((TH1D*)(f1->Get("h_genHEta"))),
            ((TH1D*)(f2->Get("h_genHEta"))),
-           -3,3);
-
+	   ((TH1D*)(f3->Get("h_genHEta"))),
+	   -3,3);
+  
 
   gPad->SetTickx();
   gPad->SetRightMargin(0.02);
@@ -151,6 +159,7 @@ void stackGenVariables(){
   c2->cd(4);
   myRatio( ((TH1D*)(f1->Get("h_genZEta"))),
            ((TH1D*)(f2->Get("h_genZEta"))),
+	   ((TH1D*)(f3->Get("h_genZEta"))),
            -3,3);
 
   gPad->SetTickx();
@@ -178,8 +187,9 @@ void stackGenVariables(){
 
   c3->cd(1);
   myPlotR( ((TH1D*)(f1->Get("h_genDeltaRqq"))),
-          ((TH1D*)(f2->Get("h_genDeltaRqq")))
-          );
+	   ((TH1D*)(f2->Get("h_genDeltaRqq"))),
+	   ((TH1D*)(f3->Get("h_genDeltaRqq")))
+	   );
 
   gPad->SetRightMargin(0.02);
 
@@ -187,9 +197,10 @@ void stackGenVariables(){
 
   c3->cd(2);
   myPlotN( ((TH1D*)(f1->Get("h_genDeltaRll"))),
-	   ((TH1D*)(f2->Get("h_genDeltaRll")))
+	   ((TH1D*)(f2->Get("h_genDeltaRll"))),
+	   ((TH1D*)(f3->Get("h_genDeltaRll")))
 	   );
-
+  
   gPad->SetRightMargin(0.02);
   gPad->SetLeftMargin(0.07);
 
@@ -198,7 +209,8 @@ void stackGenVariables(){
   c3->cd(3);
   myRatio( ((TH1D*)(f1->Get("h_genDeltaRqq"))),
            ((TH1D*)(f2->Get("h_genDeltaRqq"))),
-           0,1.5);
+	   ((TH1D*)(f3->Get("h_genDeltaRqq"))),
+	   0,1.5);
 
 
   gPad->SetTickx();
@@ -209,7 +221,8 @@ void stackGenVariables(){
   c3->cd(4);
   myRatio( ((TH1D*)(f1->Get("h_genDeltaRll"))),
            ((TH1D*)(f2->Get("h_genDeltaRll"))),
-           0,1.5);
+	   ((TH1D*)(f3->Get("h_genDeltaRll"))),
+	   0,1.5);
 
   gPad->SetTickx();
   gPad->SetRightMargin(0.02);
@@ -234,8 +247,9 @@ void stackGenVariables(){
 
   c4->cd(1);
   myPlotR( ((TH1D*)(f1->Get("h_genXPt"))), 
-	  ((TH1D*)(f2->Get("h_genXPt")))
-	  );
+	   ((TH1D*)(f2->Get("h_genXPt"))),
+	   ((TH1D*)(f3->Get("h_genXPt")))
+	   );
   
   gPad->SetRightMargin(0.02);
   
@@ -243,8 +257,9 @@ void stackGenVariables(){
   
   c4->cd(2);
   myPlotN( ((TH1D*)(f1->Get("h_genXY"))),
-          ((TH1D*)(f2->Get("h_genXY")))
-          );
+	   ((TH1D*)(f2->Get("h_genXY"))),
+	   ((TH1D*)(f3->Get("h_genXY")))
+	   );
   
   gPad->SetRightMargin(0.02);
   gPad->SetLeftMargin(0.07);
@@ -255,6 +270,7 @@ void stackGenVariables(){
   c4->cd(3);
   myRatio( ((TH1D*)(f1->Get("h_genXPt"))),
 	   ((TH1D*)(f2->Get("h_genXPt"))),
+	   ((TH1D*)(f3->Get("h_genXPt"))),
 	   0,600);
   
   
@@ -268,6 +284,7 @@ void stackGenVariables(){
   c4->cd(4);
   myRatio( ((TH1D*)(f1->Get("h_genXY"))),
            ((TH1D*)(f2->Get("h_genXY"))),
+	   ((TH1D*)(f3->Get("h_genXY"))),
 	   3,-3);
   
   gPad->SetTickx();
@@ -291,30 +308,32 @@ void stackGenVariables(){
 
 
 
-void myPlotL(TH1D* h_sig, TH1D* h_sigold){
+void myPlotL(TH1D* h_sigold, TH1D* h_sig , TH1D* h_signew){
 
 
-  h_sigold->SetFillColor(kCyan-4);
-  h_sigold->SetLineColor(kBlack);
+  h_sigold->SetLineColor(1);
+  h_sigold->SetLineWidth(2);
+  h_sigold->SetMarkerColor(1);
+  h_sigold->SetMarkerStyle(20);
+  h_sigold->SetMarkerSize(1);
 
+  h_sig->SetLineColor(kCyan-4);
+  h_sig->SetFillColor(kCyan-4);
 
-  h_sig->SetLineColor(1);
-  h_sig->SetMarkerStyle(8);
-  h_sig->SetMarkerSize(1);
+  h_signew->SetFillColor(2);
+  h_signew->SetLineColor(2);
+  h_signew->SetFillStyle(3444);
 
 
   Double_t ymin = -0.03*(h_sigold->GetMaximum());
 
   h_sigold->SetMinimum(ymin);
-  //h_sig->GetXaxis()->SetRangeUser(min,max);
-  //h_sigold->SetLabelSize(0);
-  //h_sigold->SetXTitle("");
 
 
-  //h_sig->Draw("e1"); 
-  h_sigold->Draw("histe");
-  h_sig->Draw("e1same");
-
+  h_sigold->Draw("e1");
+  h_sig->Draw("histesame");
+  h_signew->Draw("histesame");
+  h_sigold->Draw("e1same");
 
 
   TLegend *leg = new TLegend(0.15, 0.8, 0.4, 1);
@@ -322,8 +341,9 @@ void myPlotL(TH1D* h_sig, TH1D* h_sigold){
   leg->SetFillStyle(1001);
   leg->SetFillColor(10);
   leg->SetBorderSize(1);
-  leg->AddEntry(h_sigold,"signal MC", "f"); 
-  leg->AddEntry(h_sig, "new signal MC", "lp");
+  leg->AddEntry(h_sig,"new LHE+pythia8", "f"); 
+  leg->AddEntry(h_signew,"old LHE+pythia8", "f"); 
+  leg->AddEntry(h_sigold,"old LHE+pythia6", "lp");
   leg->Draw();
 
 }
@@ -331,17 +351,23 @@ void myPlotL(TH1D* h_sig, TH1D* h_sigold){
 
 
 
-void myRatio(TH1D* h_sig, TH1D* h_sigold, Double_t min , Double_t max){
+void myRatio(TH1D* h_sigold, TH1D* h_sig, TH1D* h_signew, Double_t min , Double_t max){
   
   
 
-  TH1D* h_ratio = (TH1D*)h_sigold->Clone("h_ratio");
-  h_ratio->Reset();
-  //h_ratio->Sumw2();
+  TH1D* h_ratio1 = (TH1D*)h_sig->Clone("h_ratio1");
+  h_ratio1->Reset();
 
-  //h_ratio->Divide(h_sig,h_sigold,1,1);
-  
-  Int_t nbin=h_ratio->GetNbinsX();
+
+  TH1D* h_ratio2 = (TH1D*)h_sig->Clone("h_ratio2");
+  h_ratio2->Reset();
+  h_ratio2->Divide(h_signew,h_sigold,1,1);
+  h_ratio2->SetFillColor(2);
+  h_ratio2->SetFillStyle(3444);
+
+
+
+  Int_t nbin=h_ratio1->GetNbinsX();
   Double_t ratio[nbin];
   Double_t error[nbin];
   Double_t numer_nbincontent[nbin];
@@ -366,25 +392,20 @@ void myRatio(TH1D* h_sig, TH1D* h_sigold, Double_t min , Double_t max){
     error[i] = (ratio[i])*sqrt(pow(numer_binerror[i]/numer_nbincontent[i],2)+pow(denom_binerror[i]/denom_nbincontent[i],2));
 
 
-    h_ratio->SetBinContent(i,ratio[i]);
-    h_ratio->SetBinError(i,error[i]);
+    h_ratio1->SetBinContent(i,ratio[i]);
+    h_ratio1->SetBinError(i,error[i]);
    
 
 
   }
 
 
-
-
- 
-  //h_ratio->SetLineColor(1);
-  h_ratio->SetMarkerStyle(8);
-  h_ratio->SetMarkerSize(1);
-
-  h_ratio->GetXaxis()->SetRangeUser(min,max);
-  h_ratio->GetYaxis()->SetRangeUser(0.2,1.7);
-  h_ratio->SetYTitle("new MC/MC");
-  h_ratio->Draw();
+  h_ratio1->SetFillColor(kCyan-4);
+  h_ratio1->GetXaxis()->SetRangeUser(min,max);
+  h_ratio1->GetYaxis()->SetRangeUser(0.2,1.7);
+  h_ratio1->SetYTitle("new MC/MC");
+  h_ratio1->Draw("9e3");
+  h_ratio2->Draw("e3same");
 
 
   TLine* l2 = new TLine(min,1.,max,1.);
@@ -397,48 +418,64 @@ void myRatio(TH1D* h_sig, TH1D* h_sigold, Double_t min , Double_t max){
 
 
 
-void myPlotN(TH1D* h_sig, TH1D* h_sigold){
+void myPlotN(TH1D* h_sigold, TH1D* h_sig, TH1D* h_signew){
 
 
-  h_sigold->SetFillColor(kCyan-4);
-  h_sigold->SetLineColor(kBlack);
+  h_sigold->SetLineColor(1);
+  h_sigold->SetLineWidth(2);
+  h_sigold->SetMarkerColor(1);
+  h_sigold->SetMarkerStyle(20);
+  h_sigold->SetMarkerSize(1);
 
+  h_sig->SetLineColor(kCyan-4);
+  h_sig->SetFillColor(kCyan-4);
 
-  h_sig->SetLineColor(1);
-  h_sig->SetMarkerStyle(8);
-  h_sig->SetMarkerSize(1);
+  h_signew->SetFillColor(2);
+  h_signew->SetLineColor(2);
+  h_signew->SetFillStyle(3444);
+
 
 
   Double_t ymin = -0.03*(h_sigold->GetMaximum());
 
   h_sigold->SetMinimum(ymin);
 
-  //h_sig->Draw("e1");                                                                                              
-  h_sigold->Draw("histe");
-  h_sig->Draw("e1same");
+  h_sigold->Draw("e1");
+  h_sig->Draw("histesame");
+  h_signew->Draw("histesame");
+  h_sigold->Draw("e1same");
+
+
 
 }
 
 
-void myPlotR(TH1D* h_sig, TH1D* h_sigold){
+void myPlotR(TH1D* h_sigold, TH1D* h_sig, TH1D* h_signew){
 
 
-  h_sigold->SetFillColor(kCyan-4);
-  h_sigold->SetLineColor(kBlack);
+  h_sigold->SetLineColor(1);
+  h_sigold->SetLineWidth(2);
+  h_sigold->SetMarkerColor(1);
+  h_sigold->SetMarkerStyle(20);
+  h_sigold->SetMarkerSize(1);
 
+  h_sig->SetLineColor(kCyan-4);
+  h_sig->SetFillColor(kCyan-4);
 
-  h_sig->SetLineColor(1);
-  h_sig->SetMarkerStyle(8);
-  h_sig->SetMarkerSize(1);
+  h_signew->SetFillColor(2);
+  h_signew->SetLineColor(2);
+  h_signew->SetFillStyle(3444);
 
 
   Double_t ymin = -0.03*(h_sigold->GetMaximum());
 
   h_sigold->SetMinimum(ymin);
 
-  //h_sig->Draw("e1");                                                                                             
-  h_sigold->Draw("histe");
-  h_sig->Draw("e1same");
+  h_sigold->Draw("e1");
+  h_sig->Draw("histesame");
+  h_signew->Draw("histesame");
+  h_sigold->Draw("e1same");
+
 
 
   
@@ -447,8 +484,9 @@ void myPlotR(TH1D* h_sig, TH1D* h_sigold){
   leg->SetFillStyle(1001);
   leg->SetFillColor(10);
   leg->SetBorderSize(1);
-  leg->AddEntry(h_sigold,"signal MC", "f");
-  leg->AddEntry(h_sig, "new signal MC", "lp");
+  leg->AddEntry(h_sig,"new LHE+pythia8", "f"); 
+  leg->AddEntry(h_signew,"old LHE+pythia8", "f"); 
+  leg->AddEntry(h_sigold,"old LHE+pythia6", "lp");
   leg->Draw();
 
 

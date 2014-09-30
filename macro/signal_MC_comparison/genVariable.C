@@ -106,7 +106,7 @@ void genVariable(std::string inputFile, std::string outputFile){
     for(int i=0; i<nGenPar; i++){
        for(int j=0; j<i; j++){
 
-        if(genParId[i]==9000001 && genParSt[i]==62){ 
+        if(genParId[i]==1023 && genParSt[i]==62){ 
 
 
 	  cout<<"XPt"<<genParPt[i]<<endl;
@@ -119,13 +119,13 @@ void genVariable(std::string inputFile, std::string outputFile){
           h_genXY->Fill(XY);
         }
 
-        if(genParId[i]==25 && genMomParId[i]==9000001){
+        if(genParId[i]==25 && genMomParId[i]==1023){
           h_genHPt->Fill(genParPt[i]);
           h_genHEta->Fill(genParEta[i]);
 	  h_genHMass->Fill(genParM[i]);
         }
 
-        if(genParId[i]==23 && genMomParId[i]==9000001){
+        if(genParId[i]==23 && genMomParId[i]==1023){
           h_genZPt->Fill(genParPt[i]);
           h_genZEta->Fill(genParEta[i]);
 	  h_genZMass->Fill(genParM[i]);
