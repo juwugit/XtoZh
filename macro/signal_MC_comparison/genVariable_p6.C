@@ -12,7 +12,7 @@
 
 
 using namespace std;
-void genVariable(std::string inputFile, std::string outputFile){
+void genVariable_p6(std::string inputFile, std::string outputFile){
 
 
   //get TTree from file ...
@@ -24,7 +24,7 @@ void genVariable(std::string inputFile, std::string outputFile){
   h_genXPt->Sumw2();
   h_genXPt->GetXaxis()->SetTitle("X P_{T} [GeV]");
 
-  TH1F* h_genXY         = new TH1F("h_genXY","",30,-3,3);
+  TH1F* h_genXY         = new TH1F("h_genXY","",30,-3,3); 
   h_genXY->Sumw2();
   h_genXY->GetXaxis()->SetTitle("X Rapidity");
 
@@ -36,7 +36,7 @@ void genVariable(std::string inputFile, std::string outputFile){
   h_genHMass->Sumw2();
   h_genHMass->GetXaxis()->SetTitle("Higgs Mass [GeV]");
 
-  TH1F* h_genHPt        = new TH1F("h_genHPt","",60,0,1200);
+  TH1F* h_genHPt        = new TH1F("h_genHPt","",60,0,1200); 
   h_genHPt->Sumw2();
   h_genHPt->GetXaxis()->SetTitle("Higgs P_{T} [GeV]");
 
@@ -63,11 +63,6 @@ void genVariable(std::string inputFile, std::string outputFile){
   TH1F* h_genDeltaRll  = new TH1F("h_genDeltaRll","",15,0,1.5);
   h_genDeltaRll->Sumw2();
   h_genDeltaRll->GetXaxis()->SetTitle("#DeltaR_{ll}");
-
-
-
-
-
 
 
 
@@ -102,11 +97,12 @@ void genVariable(std::string inputFile, std::string outputFile){
     TLorentzVector q1(0,0,0,0);
     TLorentzVector q2(0,0,0,0);
 
-
+    //9000001
+    //1023
     for(int i=0; i<nGenPar; i++){
        for(int j=0; j<i; j++){
 
-        if(genParId[i]==1023 && genParSt[i]==62){ 
+        if(genParId[i]==9000001 && genParSt[i]==3){ 
 
 
 	  cout<<"XPt"<<genParPt[i]<<endl;
@@ -119,13 +115,13 @@ void genVariable(std::string inputFile, std::string outputFile){
           h_genXY->Fill(XY);
         }
 
-        if(genParId[i]==25 && genMomParId[i]==1023){
+        if(genParId[i]==25 && genMomParId[i]==9000001 && genParSt[i]==3){
           h_genHPt->Fill(genParPt[i]);
           h_genHEta->Fill(genParEta[i]);
 	  h_genHMass->Fill(genParM[i]);
         }
 
-        if(genParId[i]==23 && genMomParId[i]==1023){
+        if(genParId[i]==23 && genMomParId[i]==9000001 && genParSt[i]==3){
           h_genZPt->Fill(genParPt[i]);
           h_genZEta->Fill(genParEta[i]);
 	  h_genZMass->Fill(genParM[i]);
@@ -147,11 +143,11 @@ void genVariable(std::string inputFile, std::string outputFile){
 
 
        // H-> qq 
-        if( (genParId[i]>=1 && genParId[i]<=5) && genMomParId[i]==25 ) 
+        if( (genParId[i]>=1 && genParId[i]<=5) && genMomParId[i]==25) 
           q1.SetPtEtaPhiM(genParPt[i],genParEta[i],genParPhi[i],genParM[i]);
    
 
-        else if( (genParId[i]<=-1 && genParId[i]>=-5) && genMomParId[i]==25 ){
+        else if( (genParId[i]<=-1 && genParId[i]>=-5) && genMomParId[i]==25){
           q2.SetPtEtaPhiM(genParPt[i],genParEta[i],genParPhi[i],genParM[i]);
           double dRqq=0;
           dRqq=q2.DeltaR(q1);
@@ -208,7 +204,7 @@ void genVariable(std::string inputFile, std::string outputFile){
   float temp9=0;
   temp9=h_genXMass->Integral();
   h_genXMass->Scale(1/temp9);
-  
+
   float temp10=0;
   temp10=h_genHMass->Integral();
   h_genHMass->Scale(1/temp10);
@@ -216,6 +212,8 @@ void genVariable(std::string inputFile, std::string outputFile){
   float temp11=0;
   temp11=h_genZMass->Integral();
   h_genZMass->Scale(1/temp11);
+
+  
 
 
 
