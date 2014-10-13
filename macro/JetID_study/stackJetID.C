@@ -37,10 +37,10 @@ const Double_t crossSection4 = 56.0;
 
 
 // data El
-Double_t scale1e = (876.225+4412) / (totalNEvent1 / crossSection1); // DYJetsToLL_PtZ-70To100
-Double_t scale2e = (876.225+4412) / (totalNEvent2 / crossSection2); // DYJetsToLL_PtZ100
-Double_t scale3e = (876.225+4412) / (totalNEvent3 / crossSection3); // TTbar
-Double_t scale4e = (876.225+4412) / (totalNEvent4 / crossSection4); // WW
+Double_t scale1e = (876.225+4412.0) / (totalNEvent1 / crossSection1); // DYJetsToLL_PtZ-70To100
+Double_t scale2e = (876.225+4412.0) / (totalNEvent2 / crossSection2); // DYJetsToLL_PtZ100
+Double_t scale3e = (876.225+4412.0) / (totalNEvent3 / crossSection3); // TTbar
+Double_t scale4e = (876.225+4412.0) / (totalNEvent4 / crossSection4); // WW
 
 // data Mu
 Double_t scale1m = 876.225 / (totalNEvent1 / crossSection1); // DYJetsToLL_PtZ-70To100                       
@@ -70,7 +70,7 @@ void stackJetID(){
   //TFile *b4m = TFile::Open("rootfile/delpanj_v3_WW_pythia_mm.root");
 
   TFile *Ae = TFile::Open("rootfile/delpanj_v3_data_DoubleEl_A.root");
-  TFile *Be = TFile::Open("rootfile/delpanj_v3_data_DoubleEl_A.root");
+  TFile *Be = TFile::Open("rootfile/delpanj_v3_data_DoubleEl_B.root");
 
   TFile *Am = TFile::Open("rootfile/delpanj_v3_data_DoubleMu_A.root");
 

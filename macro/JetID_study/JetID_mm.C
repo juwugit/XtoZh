@@ -14,6 +14,7 @@
 #include "/home/mattwu/CMS_Corp/XtoZh/macro/passElectronID.h"
 #include "/home/mattwu/CMS_Corp/XtoZh/macro/passMuonID.h"
 #include "/home/mattwu/CMS_Corp/XtoZh/macro/JetSelections_onlyBasic.h"
+#include "/home/mattwu/CMS_Corp/XtoZh/macro/JetSelections_onlyID.h"
 
 
 using namespace std;
@@ -43,6 +44,7 @@ void JetID_mm(std::string inputFile, std::string outputFile){
   TH1F* h_PrunedjetM  = new TH1F("h_PrunedjetM","",50,0,150);
   TH1F* h_CA8jetCSV   = new TH1F("h_CA8jetCSV","",20,0,1);
   TH1F* h_CA8nSubPrunedJet = new TH1F("h_CA8nSubPrunedJet","",5,0,5);
+  TH1F* h_CA8nJet     = new TH1F("h_CA8nJet","",10,0,10);
   TH1F* h_CA8subjetPrunedCSV = new TH1F("h_CA8subjetPrunedCSV","",20,0,1);
 
 
@@ -57,6 +59,7 @@ void JetID_mm(std::string inputFile, std::string outputFile){
   h_PrunedjetM->Sumw2();
   h_CA8jetCSV->Sumw2();
   h_CA8nSubPrunedJet->Sumw2();
+  h_CA8nJet->Sumw2();
   h_CA8subjetPrunedCSV->Sumw2();
 
 
@@ -72,6 +75,7 @@ void JetID_mm(std::string inputFile, std::string outputFile){
   h_PrunedjetM->GetXaxis()->SetTitle("Prunedjet Mass muon channel");
   h_CA8jetCSV->GetXaxis()->SetTitle("CA8jetCSV-muon channel");
   h_CA8nSubPrunedJet->GetXaxis()->SetTitle("CA8nSubPrunedJet-muon channel");
+  h_CA8nJet->GetXaxis()->SetTitle("CA8nJet-muon channel");
   h_CA8subjetPrunedCSV->GetXaxis()->SetTitle("CA8subjetPrunedCSV-muon channel");
 
   
@@ -131,7 +135,9 @@ void JetID_mm(std::string inputFile, std::string outputFile){
 
     // get lep and jet index from header
     vector<Int_t> goodjet;
-    PassJet(data, goodjet);
+    PassJetBasic(data, goodjet);
+    Int_t leadjet;
+    PassJet(data, leadjet);
     Int_t leadEle, secEle;
     passElectronID(data, &leadEle, &secEle);
     Int_t leadMu, secMu;
@@ -178,22 +184,20 @@ void JetID_mm(std::string inputFile, std::string outputFile){
     TLorentzVector recoZ(0,0,0,0);
     
     if(nEle<2) continue;
-    l1.SetPtEtaPhiM(muPt[leadMu],muEta[leadMu],muPhi[leadMu],muM[leadMu]);
-    l2.SetPtEtaPhiM(muPt[secMu],muEta[secMu],muPhi[secMu],muM[secMu]);
+    l1.SetPtEtaPhiM(elePt[leadEle],eleEta[leadEle],elePhi[leadEle],eleM[leadEle]);
+    l2.SetPtEtaPhiM(elePt[secEle],eleEta[secEle],elePhi[secEle],eleM[secEle]);
     recoZ=(l1+l2);
     float zpt=recoZ.Pt();
     float zmass=recoZ.M();
 
     if(zpt<80) continue;
     if(zmass<70 || zmass>110) continue;
-    if(!PassJet(data, goodjet)) continue; // pass basic jet selection and get hardest jet index
+    if(!PassJetBasic(data, goodjet)) continue;
 
     
 
 
     // plot n-1 cut     
-    Int_t counter[6]={0};
-
     for(Int_t i=0; i<goodjet.size(); i++){
       for(Int_t flag=0; flag<=6; flag++){
 
@@ -210,59 +214,14 @@ void JetID_mm(std::string inputFile, std::string outputFile){
 
         switch(flag){
 
-        case 0: 
+        case 0: h_CA8jetMuEF->Fill(CA8jetMuEF[index]);
+	case 1: h_CA8jetPhoEF->Fill(CA8jetPhoEF[index]);
+	case 2: h_CA8jetCEmEF->Fill(CA8jetCEmEF[index]);
+        case 3: h_CA8jetCHadEF->Fill(CA8jetCHadEF[index]);
+        case 4: h_CA8jetNEmEF->Fill(CA8jetNEmEF[index]);
+        case 5: h_CA8jetNHadEF->Fill(CA8jetCHadEF[index]);
+	case 6: h_CA8jetCMulti->Fill(CA8jetCMulti[index]);
 
-	  if(counter[0]==0){
-	    h_CA8jetMuEF->Fill(CA8jetMuEF[index]);
-	    counter[0]++;
-	  }
-
-	  
-        case 1: 
-	  
-	  if(counter[1]==0){
-	    h_CA8jetPhoEF->Fill(CA8jetPhoEF[index]);
-	    counter[1]++;
-	  }      
-
-	  
-	case 2: 
-
-	  if(counter[2]==0){
-	    h_CA8jetCEmEF->Fill(CA8jetCEmEF[index]);
-	    counter[2]++;
-	  }
-	  
-   
-        case 3: 
-
-	  if(counter[3]==0){
-	    h_CA8jetCHadEF->Fill(CA8jetCHadEF[index]);
-	    counter[3]++;
-	  }
-
-        case 4: 
-
-	  if(counter[4]==0){
-	    h_CA8jetNEmEF->Fill(CA8jetNEmEF[index]);
-	    counter[4]++;
-	  }
-
-
-        case 5: 
-
-	  if(counter[5]==0){
-	    h_CA8jetNHadEF->Fill(CA8jetCHadEF[index]);
-	    counter[5]++;
-	  }
-
-        case 6: 
-
-	  if(counter[6]==0){
-	    h_CA8jetCMulti->Fill(CA8jetCMulti[index]);
-	    counter[6]++;
-	  }
-	  
 
 	} // switch
       } // flag
@@ -270,59 +229,56 @@ void JetID_mm(std::string inputFile, std::string outputFile){
 
 
 
-    // pass all ID 
-    bool IDcut=false;
-    for(Int_t i=0; i<goodjet.size(); i++){
-
-      Int_t index=goodjet[i];      
-      if(CA8jetID[index]>0)IDcut=true;
-
-    }
-    if(IDcut==false) continue;
+    
+    
+    if(!PassJet(data, leadjet)) continue;
+    if(leadjet<0) continue;
+    h_CA8nSubPrunedJet->Fill(nSubjet);    
+    h_CA8nJet->Fill(CA8nJet);
 
 
 
-
-    // Fill prunedjetMass and Tau21
-    if(goodjet.size()<=0) continue;
-    Int_t index=goodjet[0];
-    Float_t tau21=CA8jetTau2[index]/CA8jetTau1[index];
-    Float_t prunedmass=CA8jetPrunedM[index];
+    // tau21 & prunedmass
+    Float_t tau21=CA8jetTau2[leadjet]/CA8jetTau1[leadjet];
+    Float_t prunedmass=CA8jetPrunedM[leadjet];
     
     h_CA8jetTau21->Fill(tau21);
     h_PrunedjetM->Fill(prunedmass);
     
 
 
+
     
-
-    // fill nsubjets and b-tag variables
-    h_CA8nSubPrunedJet->Fill(nSubjet);
-
-    if(CA8nJet==0 || goodjet.size()==0) continue;
+    // b-tagging 
     if(nSubjet==2){
-
+      
       TLorentzVector subjet1(0,0,0,0);
       TLorentzVector subjet2(0,0,0,0);
-
+      
       subjet1.SetPtEtaPhiM(SubjetPt[0],SubjetEta[0],SubjetPhi[0],SubjetM[0]);
       subjet2.SetPtEtaPhiM(SubjetPt[1],SubjetEta[1],SubjetPhi[1],SubjetM[1]);
-
+      
       Float_t dRjj=subjet1.DeltaR(subjet2);
-
+      
       if(dRjj>0.3){
 	h_CA8subjetPrunedCSV->Fill(SubjetCSV[0]);
 	h_CA8subjetPrunedCSV->Fill(SubjetCSV[1]);
       }
       
-      else h_CA8jetCSV->Fill(CA8jetCSV[0]);
-      
+      else h_CA8jetCSV->Fill(CA8jetCSV[leadjet]);
+  
     } // nSubjet
     
-    else h_CA8jetCSV->Fill(CA8jetCSV[0]);
+    
+    else h_CA8jetCSV->Fill(CA8jetCSV[leadjet]);
     
     
     
+
+
+
+
+
   } //entries 
   
   
@@ -342,6 +298,7 @@ void JetID_mm(std::string inputFile, std::string outputFile){
   h_PrunedjetM->Write();
   h_CA8jetCSV->Write();
   h_CA8nSubPrunedJet->Write();
+  h_CA8nJet->Write();
   h_CA8subjetPrunedCSV->Write();
 
 

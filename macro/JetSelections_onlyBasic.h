@@ -15,7 +15,7 @@ return leading jet index
 
 
 
-Bool_t PassJet(TreeReader &data, vector<Int_t> &accepted){
+Bool_t PassJetBasic(TreeReader &data, vector<Int_t> &accepted){
 
   accepted.clear();
 
