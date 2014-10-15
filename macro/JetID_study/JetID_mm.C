@@ -183,9 +183,9 @@ void JetID_mm(std::string inputFile, std::string outputFile){
     TLorentzVector l2(0,0,0,0);
     TLorentzVector recoZ(0,0,0,0);
     
-    if(nEle<2) continue;
-    l1.SetPtEtaPhiM(elePt[leadEle],eleEta[leadEle],elePhi[leadEle],eleM[leadEle]);
-    l2.SetPtEtaPhiM(elePt[secEle],eleEta[secEle],elePhi[secEle],eleM[secEle]);
+    if(nMu<2) continue;
+    l1.SetPtEtaPhiM(muPt[leadMu],muEta[leadMu],muPhi[leadMu],muM[leadMu]);
+    l2.SetPtEtaPhiM(muPt[secMu],muEta[secMu],muPhi[secMu],muM[secMu]);
     recoZ=(l1+l2);
     float zpt=recoZ.Pt();
     float zmass=recoZ.M();
