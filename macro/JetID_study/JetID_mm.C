@@ -219,7 +219,7 @@ void JetID_mm(std::string inputFile, std::string outputFile){
 	case 2: h_CA8jetCEmEF->Fill(CA8jetCEmEF[index]);
         case 3: h_CA8jetCHadEF->Fill(CA8jetCHadEF[index]);
         case 4: h_CA8jetNEmEF->Fill(CA8jetNEmEF[index]);
-        case 5: h_CA8jetNHadEF->Fill(CA8jetCHadEF[index]);
+        case 5: h_CA8jetNHadEF->Fill(CA8jetNHadEF[index]);
 	case 6: h_CA8jetCMulti->Fill(CA8jetCMulti[index]);
 
 
