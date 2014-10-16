@@ -165,16 +165,13 @@ void JetID_ee(std::string inputFile, std::string outputFile){
 
         Int_t index=goodjet[i];
 
-        if(CA8jetMuEF[index]   >0.99 && flag!=0) continue;
-        if(CA8jetPhoEF[index]  >0.99 && flag!=1) continue;
-        if(CA8jetCEmEF[index]  >0.99 && flag!=2) continue;
-        if(CA8jetCHadEF[index] <0.0  && flag!=3) continue;
-        if(CA8jetNHadEF[index] >0.99 && flag!=4) continue;
+        //if(CA8jetMuEF[index]   >0.99 && flag!=0) continue;
+        if(CA8jetPhoEF[index]  >0.99 ) continue;
+        if(CA8jetCEmEF[index]  >0.99 ) continue;
+        if(CA8jetCHadEF[index] <0.0  ) continue;
+        if(CA8jetNHadEF[index] >0.99 ) continue;
 
 
-        switch(flag){
-
-        case 0: 
 
 	  
 	    h_CA8jetMuEF->Fill(CA8jetMuEF[index]);
@@ -182,7 +179,7 @@ void JetID_ee(std::string inputFile, std::string outputFile){
 	    cout<<"MuEF:"<<counter[0]<<endl;
 	  
 
-	    
+	    /*	    
 	case 1: 
 
 	  
@@ -219,7 +216,7 @@ void JetID_ee(std::string inputFile, std::string outputFile){
 
 
 	} // switch
-	    
+	    */
 
       } // flag
     } // loop jets
