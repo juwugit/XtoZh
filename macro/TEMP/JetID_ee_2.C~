@@ -160,10 +160,9 @@ void JetID_ee(std::string inputFile, std::string outputFile){
 
 
     // plot n-1 cut     
-    for(Int_t flag=0; flag<=4; flag++){
-      for(Int_t i=0; i<goodjet.size(); i++){
-	
-	
+    for(Int_t i=0; i<goodjet.size(); i++){
+      for(Int_t flag=0; flag<=4; flag++){
+
         Int_t index=goodjet[i];
 
         if(CA8jetMuEF[index]   >0.99 && flag!=0) continue;
@@ -222,8 +221,8 @@ void JetID_ee(std::string inputFile, std::string outputFile){
 	} // switch
 	    
 
-      } // loop jets
-    } // flag
+      } // flag
+    } // loop jets
 
 
 
