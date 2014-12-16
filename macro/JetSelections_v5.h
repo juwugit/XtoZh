@@ -1,15 +1,19 @@
 /*
-v5: vector sorting
+
+v5: vector sorting version
 
 This macro does following selections:
 
-tau21<0.5 for leading jet
-jetPt>30 , fabs(Eta)<2.4
-PrunedJetMass>40 , PrunedJetPt>80 (at least one jet passes this selection)
-jetID>0 (at least one jet passes ID cut)
+1. tau21<0.5 for leading jet (optional)
+2. b-tagging CSVL cut on subjet or CA8jet (optional)
 
-return leading jet index
+3.
+   remove overlap between jet and leptons
+   jetPt>30 , fabs(Eta)<2.4
+   PrunedJetMass>40 , PrunedJetPt>80 (at least one jet passes this selection)
+   jetID>0 (at least one jet passes ID cut)
 
+4. return leading jet index
 
 */
 
@@ -35,6 +39,15 @@ Bool_t PassJet(TreeReader &data, Int_t &accepted){
   Float_t* CA8jetTau2  = data.GetPtrFloat("CA8jetTau2");
   Float_t* CA8jetPrunedM  = data.GetPtrFloat("CA8jetPrunedMass");
 
+  // b-tagging
+  Float_t* CA8jetCSV   = data.GetPtrFloat("CA8jetCSV");
+  Int_t*   nSubjet = data.GetPtrInt("CA8nSubPrunedJet");
+  vector<Float_t>* SubjetCSV = data.GetPtrVectorFloat("CA8subjetPrunedCSV");
+  vector<Float_t>* SubjetPt  = data.GetPtrVectorFloat("CA8subjetPrunedPt");
+  vector<Float_t>* SubjetEta = data.GetPtrVectorFloat("CA8subjetPrunedEta");
+  vector<Float_t>* SubjetPhi = data.GetPtrVectorFloat("CA8subjetPrunedPhi");
+  vector<Float_t>* SubjetM   = data.GetPtrVectorFloat("CA8subjetPrunedMass");
+
   Int_t    nEle        = data.GetInt("nEle");
   Float_t* elePt       = data.GetPtrFloat("elePt");
   Float_t* eleEta      = data.GetPtrFloat("eleEta");
@@ -50,93 +63,70 @@ Bool_t PassJet(TreeReader &data, Int_t &accepted){
   Int_t*   muID        = data.GetPtrInt("muPassID");
 
 
-  // Vector Sorting
+  // Sorting Electron
   vector<myMap> sortElePt;
   for(Int_t i=0; i<nEle; i++){
+
     myMap temp;
     temp.index = i;
     temp.pt = elePt[i];
     sortElePt.push_back(temp);
-    //cout<<"index:"<<temp.index<<" pt:"<<temp.pt<<endl;
-    //cout<<"size"<<sortElePt.size()<<endl;
-    //cout<<"index:"<<sortElePt[i];
+
   }
   std::sort(sortElePt.begin(),sortElePt.end(),PtGreater);
 
   std::vector<Int_t> sortEleIndex;
-  for(sortElePt.begin(); !=sortElePt.end(); ++){
-    
-  }
-
-  // define Map and MapIter
-  //typedef map<Float_t, Int_t, std::greater<Float_t> > Map;
-  //typedef Map::iterator MapIter;
-
-
-  /*
-  // Sorting electron
-  Map sortElePt;
-  vector<Int_t> sortEleIndex;
-  sortEleIndex.clear();
-
   for(Int_t i=0; i<nEle; i++){
-    sortElePt.insert(std::pair<Float_t, Int_t>(elePt[i], i));
+    sortEleIndex.push_back(sortElePt[i].index);
   }
 
-  for(MapIter it_part=sortElePt.begin(); it_part!=sortElePt.end(); ++it_part){
-    sortEleIndex.push_back(it_part->second);
-  }
-  */
-
-  /*
-  // Sorting muon
-  Map sortMuPt;
-  vector<Int_t> sortMuIndex;
-  sortMuIndex.clear();
-
+  
+  // Sorting Muon
+  vector<myMap> sortMuPt;
   for(Int_t i=0; i<nMu; i++){
-    sortMuPt.insert(std::pair<Float_t, Int_t>(muPt[i], i));
+
+    myMap temp;
+    temp.index = i;
+    temp.pt = muPt[i];
+    sortMuPt.push_back(temp);
+
+  }
+  std::sort(sortMuPt.begin(),sortMuPt.end(),PtGreater);
+
+  std::vector<Int_t> sortMuIndex;
+  for(Int_t i=0; i<nMu; i++){
+    sortMuIndex.push_back(sortMuPt[i].index);
   }
 
-  for(MapIter it_part=sortMuPt.begin(); it_part!=sortMuPt.end(); ++it_part){
-    sortMuIndex.push_back(it_part->second);
-  }
-  
-
-  //if(sortEleIndex.size()>0 && sortEleIndex[0]!=0) cout<<"Electron fail"<<endl;
-  //if(sortMuIndex.size()>0 && sortMuIndex[0]!=0) cout<<"Muon fail"<<endl;
-
-
-
-  
+   
   // determine which channel                                                                                        
   bool El=false;
   bool Mu=false;
   if(nEle>0 && nMu==0) El=true;
   if(nEle==0 && nMu>0) Mu=true;
-  //if(sortEleIndex.size()>0 && sortMuIndex.size()>0 && elePt[sortEleIndex[0]]>muPt[sortMuIndex[0]]) El=true;
-  //if(sortEleIndex.size()>0 && sortMuIndex.size()>0 && elePt[sortEleIndex[0]]<muPt[sortMuIndex[0]]) Mu=true;
-  if(nEle>0 && nMu>0 && elePt[0]>muPt[0]) El=true;
-  if(nEle>0 && nMu>0 && elePt[0]<muPt[0]) Mu=true;
+  if(sortEleIndex.size()>0 && sortMuIndex.size()>0 && elePt[sortEleIndex[0]]>muPt[sortMuIndex[0]]) El=true;
+  if(sortEleIndex.size()>0 && sortMuIndex.size()>0 && elePt[sortEleIndex[0]]<muPt[sortMuIndex[0]]) Mu=true;
   
 
-
-  // declare Map for jets and do sorting
-  Map sortJetPt;
-  vector<Int_t> sortJetIndex;
-  sortJetIndex.clear();
-  
+  // Sorting Jet
+  vector<myMap> sortJetPt;
   for(Int_t i=0; i<CA8nJet; i++){
-    sortJetPt.insert(std::pair<Float_t, Int_t>(CA8jetPt[i], i));
+
+    myMap temp;
+    temp.index = i;
+    temp.pt = CA8jetPt[i];
+    sortJetPt.push_back(temp);
+
+  }
+  std::sort(sortJetPt.begin(),sortJetPt.end(),PtGreater);
+
+  std::vector<Int_t> sortJetIndex;
+  for(Int_t i=0; i<CA8nJet; i++){
+    sortJetIndex.push_back(sortJetPt[i].index);
   }
 
-  for(MapIter it_part=sortJetPt.begin(); it_part!=sortJetPt.end(); ++it_part){
-    sortJetIndex.push_back(it_part->second);
-  }
 
-
-
-  // remove overlape for ee channel
+  // remove overlap
   vector<Int_t> goodJetIndex;
   goodJetIndex.clear();
 
@@ -148,7 +138,7 @@ Bool_t PassJet(TreeReader &data, Int_t &accepted){
   Int_t nSortEle=sortEleIndex.size();
   Int_t nSortMu=sortMuIndex.size();
 
-
+  
   for(Int_t k=0; k<nSortJet; k++){
 
     Int_t jIndex=sortJetIndex[k];
@@ -158,6 +148,7 @@ Bool_t PassJet(TreeReader &data, Int_t &accepted){
     bool IDcut=(CA8jetID[jIndex]>0);
     bool prunedJetCuts=(CA8jetPt[jIndex]>80)&&(CA8jetPrunedM[jIndex]>40);
     bool Tau21Cut=((CA8jetTau2[jIndex]/CA8jetTau1[jIndex])<0.5);
+    bool fatjetCSV=(CA8jetCSV[jIndex]>0.244);
 
 
     alljets.SetPtEtaPhiM(CA8jetPt[jIndex],
@@ -170,8 +161,7 @@ Bool_t PassJet(TreeReader &data, Int_t &accepted){
 
       for(Int_t i=0; i<nSortEle; i++){
 
-
-	if(eleID[sortEleIndex[i]]){
+	if(eleID[sortEleIndex[i]]>0){
 	 
 	  lep.SetPtEtaPhiM(elePt[sortEleIndex[i]],
 			   eleEta[sortEleIndex[i]],
@@ -190,13 +180,11 @@ Bool_t PassJet(TreeReader &data, Int_t &accepted){
     } // ee
 
 
-
     if(Mu==true){
 
       for(Int_t i=0; i<nSortMu; i++){
 
-
-        if(muID[sortMuIndex[i]]){
+        if(muID[sortMuIndex[i]]>0){
 
           lep.SetPtEtaPhiM(muPt[sortMuIndex[i]],
                            muEta[sortMuIndex[i]],
@@ -223,14 +211,35 @@ Bool_t PassJet(TreeReader &data, Int_t &accepted){
     if(!prunedJetCuts) continue;
     //if(!Tau21Cut) continue;
 
+    
+    // b-tagging CSVL cut
+    TLorentzVector subjet1(0,0,0,0);
+    TLorentzVector subjet2(0,0,0,0);
+    Float_t dRjj=-999;
+    bool subjetbtag=false;
+
+    if(nSubjet[jIndex]==2){
+
+      subjet1.SetPtEtaPhiM(SubjetPt[jIndex][0],SubjetEta[jIndex][0],SubjetPhi[jIndex][0],SubjetM[jIndex][0]);
+      subjet2.SetPtEtaPhiM(SubjetPt[jIndex][1],SubjetEta[jIndex][1],SubjetPhi[jIndex][1],SubjetM[jIndex][1]);
+      Float_t dRjj=subjet1.DeltaR(subjet2);
+
+      if(SubjetCSV[jIndex][0]>0.244 && SubjetCSV[jIndex][1]>0.244) subjetbtag=true;
+
+    }
+
+    if(dRjj<0.3 && !fatjetCSV) continue;
+    if(dRjj>0.3 && subjetbtag==false) continue;
+
+    
+
     goodJetIndex.push_back(jIndex);    
     
     
 
-  } // overlap
+  } // loop jets
  
-  */
-  vector<Int_t> sortJetIndex;
+
   if(sortJetIndex.size()>0){
     accepted=sortJetIndex[0];
     return true;
