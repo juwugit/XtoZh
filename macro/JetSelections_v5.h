@@ -240,8 +240,8 @@ Bool_t PassJet(TreeReader &data, Int_t &accepted){
   } // loop jets
  
 
-  if(sortJetIndex.size()>0){
-    accepted=sortJetIndex[0];
+  if(goodJetIndex.size()>0){
+    accepted=goodJetIndex[0];
     return true;
   }
   
