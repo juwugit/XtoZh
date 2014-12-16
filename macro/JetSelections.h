@@ -81,17 +81,22 @@ Bool_t PassJet(TreeReader &data, Int_t &accepted){
   }
 
 
+  if(sortEleIndex.size()>0 && sortEleIndex[0]!=0) cout<<"Electron fail"<<endl;
+  if(sortMuIndex.size()>0 && sortMuIndex[0]!=0) cout<<"Muon fail"<<endl;
 
 
 
+  /*
   // determine which channel                                                                                        
   bool ee=false;
   bool mm=false;
   if(nEle>0 && nMu==0) ee=true;
   if(nEle==0 && nMu>0) mm=true;
-  if(sortEleIndex.size()>0 && sortMuIndex.size()>0 && elePt[sortEleIndex[0]]>muPt[sortMuIndex[0]]) ee=true;
-  if(sortEleIndex.size()>0 && sortMuIndex.size()>0 && elePt[sortEleIndex[0]]<muPt[sortMuIndex[0]]) mm=true;
-  
+  //if(sortEleIndex.size()>0 && sortMuIndex.size()>0 && elePt[sortEleIndex[0]]>muPt[sortMuIndex[0]]) ee=true;
+  //if(sortEleIndex.size()>0 && sortMuIndex.size()>0 && elePt[sortEleIndex[0]]<muPt[sortMuIndex[0]]) mm=true;
+  if(nEle>0 && nMu>0 && elePt[0]>muPt[0]) ee=true;
+  if(nEle>0 && nMu>0 && elePt[0]<muPt[0]) mm=true;
+  */
 
 
   // declare Map for jets and do sorting
@@ -108,7 +113,7 @@ Bool_t PassJet(TreeReader &data, Int_t &accepted){
   }
 
 
-  
+  /*
   // remove overlape for ee channel
   vector<Int_t> goodJetIndex;
   goodJetIndex.clear();
@@ -152,7 +157,7 @@ Bool_t PassJet(TreeReader &data, Int_t &accepted){
 	  
 	  dRjl=alljets.DeltaR(lep);
 	  
-	  if(dRjl<0.5 && dRjl!=-999){
+	  if(dRjl<1.0 && dRjl!=-999){
 	    overlap=true;
 	    break;
 	  }
@@ -177,7 +182,7 @@ Bool_t PassJet(TreeReader &data, Int_t &accepted){
 
           dRjl=alljets.DeltaR(lep);
 
-          if(dRjl<0.5 && dRjl!=-999){
+          if(dRjl<1.0 && dRjl!=-999){
 	    overlap=true;
 	    break;
 	  }
@@ -189,10 +194,10 @@ Bool_t PassJet(TreeReader &data, Int_t &accepted){
 
 
 
-    if(overlap==true) continue;
-    if(!basicCuts) continue;
-    if(!IDcut) continue;
-    if(!prunedJetCuts) continue;
+    //if(overlap==true) continue;
+    //if(!basicCuts) continue;
+    //if(!IDcut) continue;
+    //if(!prunedJetCuts) continue;
 
 
     goodJetIndex.push_back(jIndex);    
@@ -200,10 +205,10 @@ Bool_t PassJet(TreeReader &data, Int_t &accepted){
     
 
   } // overlap
+  */
 
-
-  if(goodJetIndex.size()>0 && (CA8jetTau2[goodJetIndex[0]]/CA8jetTau1[goodJetIndex[0]])<0.5){
-    accepted=goodJetIndex[0];
+  if(sortJetIndex.size()>0 /*&& (CA8jetTau2[goodJetIndex[0]]/CA8jetTau1[goodJetIndex[0]])<0.5*/){
+    accepted=sortJetIndex[0];
     return true;
   }
   
