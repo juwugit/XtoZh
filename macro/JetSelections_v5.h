@@ -75,11 +75,6 @@ Bool_t PassJet(int mode, TreeReader &data, Int_t &accepted){
   }
   std::sort(sortElePt.begin(),sortElePt.end(),PtGreater);
 
-  std::vector<Int_t> sortEleIndex;
-  for(Int_t i=0; i<nEle; i++){
-    sortEleIndex.push_back(sortElePt[i].index);
-  }
-
   
   // Sorting Muon
   vector<myMap> sortMuPt;
@@ -93,19 +88,14 @@ Bool_t PassJet(int mode, TreeReader &data, Int_t &accepted){
   }
   std::sort(sortMuPt.begin(),sortMuPt.end(),PtGreater);
 
-  std::vector<Int_t> sortMuIndex;
-  for(Int_t i=0; i<nMu; i++){
-    sortMuIndex.push_back(sortMuPt[i].index);
-  }
-
    
   // determine which channel                                                                                        
   bool El=false;
   bool Mu=false;
   if(nEle>0 && nMu==0) El=true;
   if(nEle==0 && nMu>0) Mu=true;
-  if(sortEleIndex.size()>0 && sortMuIndex.size()>0 && elePt[sortEleIndex[0]]>muPt[sortMuIndex[0]]) El=true;
-  if(sortEleIndex.size()>0 && sortMuIndex.size()>0 && elePt[sortEleIndex[0]]<muPt[sortMuIndex[0]]) Mu=true;
+  if(sortElePt.size()>0 && sortMuPt.size()>0 && elePt[sortElePt[0].index]>muPt[sortMuPt[0].index]) El=true;
+  if(sortElePt.size()>0 && sortMuPt.size()>0 && elePt[sortElePt[0].index]<muPt[sortMuPt[0].index]) Mu=true;
   
 
   // Sorting Jet
@@ -120,11 +110,6 @@ Bool_t PassJet(int mode, TreeReader &data, Int_t &accepted){
   }
   std::sort(sortJetPt.begin(),sortJetPt.end(),PtGreater);
 
-  std::vector<Int_t> sortJetIndex;
-  for(Int_t i=0; i<CA8nJet; i++){
-    sortJetIndex.push_back(sortJetPt[i].index);
-  }
-
 
   // remove overlap
   vector<Int_t> goodJetIndex;
@@ -134,14 +119,14 @@ Bool_t PassJet(int mode, TreeReader &data, Int_t &accepted){
   TLorentzVector alljets(0,0,0,0);
   Float_t dRjl=-999;
 
-  Int_t nSortJet=sortJetIndex.size();
-  Int_t nSortEle=sortEleIndex.size();
-  Int_t nSortMu=sortMuIndex.size();
+  Int_t nSortJet=sortJetPt.size();
+  Int_t nSortEle=sortElePt.size();
+  Int_t nSortMu=sortMuPt.size();
 
   
   for(Int_t k=0; k<nSortJet; k++){
 
-    Int_t jIndex=sortJetIndex[k];
+    Int_t jIndex=sortJetIndex[k].index;
 
     bool overlap=false;
     bool basicCuts=(CA8jetPt[jIndex]>30)&&(fabs(CA8jetEta[jIndex])<2.4);
@@ -165,13 +150,11 @@ Bool_t PassJet(int mode, TreeReader &data, Int_t &accepted){
 
       for(Int_t i=0; i<nSortEle; i++){
 
-	if(eleID[sortEleIndex[i]]>0){
+	Int_t eIndex=sortElePt[i].index;
+
+	if(eleID[eIndex]>0){
 	 
-	  lep.SetPtEtaPhiM(elePt[sortEleIndex[i]],
-			   eleEta[sortEleIndex[i]],
-			   elePhi[sortEleIndex[i]],
-			   eleM[sortEleIndex[i]]);
-	  
+	  lep.SetPtEtaPhiM(elePt[eIndex],eleEta[eIndex],elePhi[eIndex],eleM[eIndex);
 	  dRjl=alljets.DeltaR(lep);
 	  
 	  if(dRjl<1.0 && dRjl!=-999){
@@ -188,13 +171,11 @@ Bool_t PassJet(int mode, TreeReader &data, Int_t &accepted){
 
       for(Int_t i=0; i<nSortMu; i++){
 
-        if(muID[sortMuIndex[i]]>0){
+	Int_t muIndex=sortMuPt[i].index;
 
-          lep.SetPtEtaPhiM(muPt[sortMuIndex[i]],
-                           muEta[sortMuIndex[i]],
-                           muPhi[sortMuIndex[i]],
-                           muM[sortMuIndex[i]]);
+        if(muID[muIndex]>0){
 
+          lep.SetPtEtaPhiM(muPt[muIndex],muEta[muIndex],muPhi[muIndex],muM[muIndex]);
           dRjl=alljets.DeltaR(lep);
 
           if(dRjl<1.0 && dRjl!=-999){
