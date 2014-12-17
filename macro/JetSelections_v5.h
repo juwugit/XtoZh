@@ -4,14 +4,14 @@ v5: vector sorting version
 
 This macro does following selections:
 
-1. tau21<0.5 for leading jet (optional)
-2. b-tagging CSVL cut on subjet or CA8jet (optional)
+1. b-tagging CSVL cut on subjet or CA8jet (optional, insert mode==1)
 
-3.
-   remove overlap between jet and leptons
+2. tau21<0.5 for leading jet (optional, insert mode==2)
+
+3. remove overlap between jet and leptons if deltaR<1.0
    jetPt>30 , fabs(Eta)<2.4
-   PrunedJetMass>40 , PrunedJetPt>80 (at least one jet passes this selection)
-   jetID>0 (at least one jet passes ID cut)
+   PrunedJetMass>40 , PrunedJetPt>80
+   jetID>0 
 
 4. return leading jet index
 
@@ -25,7 +25,7 @@ struct myMap
 };
 
 Bool_t PtGreater (myMap i,myMap j) { return (i.pt>j.pt); }
-Bool_t PassJet(TreeReader &data, Int_t &accepted){
+Bool_t PassJet(int mode, TreeReader &data, Int_t &accepted){
 
   accepted=-1;
 
@@ -148,13 +148,17 @@ Bool_t PassJet(TreeReader &data, Int_t &accepted){
     bool IDcut=(CA8jetID[jIndex]>0);
     bool prunedJetCuts=(CA8jetPt[jIndex]>80)&&(CA8jetPrunedM[jIndex]>40);
     bool Tau21Cut=((CA8jetTau2[jIndex]/CA8jetTau1[jIndex])<0.5);
-    bool fatjetCSV=(CA8jetCSV[jIndex]>0.244);
 
 
     alljets.SetPtEtaPhiM(CA8jetPt[jIndex],
                          CA8jetEta[jIndex],
 			 CA8jetPhi[jIndex],
 			 CA8jetM[jIndex]);
+
+    if(!basicCuts) continue;
+    if(!IDcut) continue;
+    if(!prunedJetCuts) continue;
+    if( (mode==0 || mode==2) && !Tau21Cut) continue;
 
 
     if(El==true){
@@ -170,7 +174,7 @@ Bool_t PassJet(TreeReader &data, Int_t &accepted){
 	  
 	  dRjl=alljets.DeltaR(lep);
 	  
-	  if(dRjl<0.5 && dRjl!=-999){
+	  if(dRjl<1.0 && dRjl!=-999){
 	    overlap=true;
 	    break;
 	  }
@@ -193,7 +197,7 @@ Bool_t PassJet(TreeReader &data, Int_t &accepted){
 
           dRjl=alljets.DeltaR(lep);
 
-          if(dRjl<0.5 && dRjl!=-999){
+          if(dRjl<1.0 && dRjl!=-999){
 	    overlap=true;
 	    break;
 	  }
@@ -204,19 +208,13 @@ Bool_t PassJet(TreeReader &data, Int_t &accepted){
 
 
 
-
-    if(overlap==true) continue;
-    if(!basicCuts) continue;
-    if(!IDcut) continue;
-    if(!prunedJetCuts) continue;
-    //if(!Tau21Cut) continue;
-
     
     // b-tagging CSVL cut
     TLorentzVector subjet1(0,0,0,0);
     TLorentzVector subjet2(0,0,0,0);
     Float_t dRjj=-999;
     bool subjetbtag=false;
+    bool fatjetCSV=(CA8jetCSV[jIndex]>0.244);
 
     if(nSubjet[jIndex]==2){
 
@@ -228,8 +226,9 @@ Bool_t PassJet(TreeReader &data, Int_t &accepted){
 
     }
 
-    if(dRjj<0.3 && !fatjetCSV) continue;
-    if(dRjj>0.3 && subjetbtag==false) continue;
+
+    if(mode>0 && dRjj<0.3 && !fatjetCSV) continue;
+    if(mode>0 && dRjj>0.3 && subjetbtag==false) continue;
 
     
 
