@@ -126,7 +126,7 @@ Bool_t PassJet(int mode, TreeReader &data, Int_t &accepted){
   
   for(Int_t k=0; k<nSortJet; k++){
 
-    Int_t jIndex=sortJetIndex[k].index;
+    Int_t jIndex=sortJetPt[k].index;
 
     bool overlap=false;
     bool basicCuts=(CA8jetPt[jIndex]>30)&&(fabs(CA8jetEta[jIndex])<2.4);
@@ -154,7 +154,7 @@ Bool_t PassJet(int mode, TreeReader &data, Int_t &accepted){
 
 	if(eleID[eIndex]>0){
 	 
-	  lep.SetPtEtaPhiM(elePt[eIndex],eleEta[eIndex],elePhi[eIndex],eleM[eIndex);
+	  lep.SetPtEtaPhiM(elePt[eIndex],eleEta[eIndex],elePhi[eIndex],eleM[eIndex]);
 	  dRjl=alljets.DeltaR(lep);
 	  
 	  if(dRjl<1.0 && dRjl!=-999){
@@ -187,6 +187,7 @@ Bool_t PassJet(int mode, TreeReader &data, Int_t &accepted){
       } // loop muon                                                                             
     } // mm                               
 
+    if(overlap) continue;
 
 
     
@@ -201,7 +202,7 @@ Bool_t PassJet(int mode, TreeReader &data, Int_t &accepted){
 
       subjet1.SetPtEtaPhiM(SubjetPt[jIndex][0],SubjetEta[jIndex][0],SubjetPhi[jIndex][0],SubjetM[jIndex][0]);
       subjet2.SetPtEtaPhiM(SubjetPt[jIndex][1],SubjetEta[jIndex][1],SubjetPhi[jIndex][1],SubjetM[jIndex][1]);
-      Float_t dRjj=subjet1.DeltaR(subjet2);
+      dRjj=subjet1.DeltaR(subjet2);
 
       if(SubjetCSV[jIndex][0]>0.244 && SubjetCSV[jIndex][1]>0.244) subjetbtag=true;
 
@@ -210,7 +211,7 @@ Bool_t PassJet(int mode, TreeReader &data, Int_t &accepted){
 
     if(mode>0 && dRjj<0.3 && !fatjetCSV) continue;
     if(mode>0 && dRjj>0.3 && subjetbtag==false) continue;
-
+    
     
 
     goodJetIndex.push_back(jIndex);    
