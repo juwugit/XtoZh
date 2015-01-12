@@ -8,14 +8,17 @@ This macro does following selections:
 
 2. tau21<0.5 for leading jet (optional, insert mode==2)
 
-3. remove overlap between jet and leptons if deltaR<1.0
+3. insert other number will only cut on basic selection
+
+4. remove overlap between jet and leptons if deltaR<1.0
    jetPt>30 , fabs(Eta)<2.4
    PrunedJetMass>40 , PrunedJetPt>80
    jetID>0 
 
-4. return leading jet index
+5. return leading jet index
 
 */
+
 
 
 struct myMap
@@ -143,7 +146,7 @@ Bool_t PassJet(int mode, TreeReader &data, Int_t &accepted){
     if(!basicCuts) continue;
     if(!IDcut) continue;
     if(!prunedJetCuts) continue;
-    if( (mode==0 || mode==2) && !Tau21Cut) continue;
+    if(mode==2 && !Tau21Cut) continue;
 
 
     if(El==true){
@@ -164,7 +167,7 @@ Bool_t PassJet(int mode, TreeReader &data, Int_t &accepted){
 
 	} // eleID
       } // loop ele
-    } // ee
+    } // El
 
 
     if(Mu==true){
@@ -185,7 +188,7 @@ Bool_t PassJet(int mode, TreeReader &data, Int_t &accepted){
 
 	} // muID                                                                       
       } // loop muon                                                                             
-    } // mm                               
+    } // Mu                               
 
     if(overlap) continue;
 
@@ -209,8 +212,8 @@ Bool_t PassJet(int mode, TreeReader &data, Int_t &accepted){
     }
 
 
-    if(mode>0 && dRjj<0.3 && !fatjetCSV) continue;
-    if(mode>0 && dRjj>0.3 && subjetbtag==false) continue;
+    if(mode==1 && dRjj<0.3 && !fatjetCSV) continue;
+    if(mode==1 && dRjj>0.3 && subjetbtag==false) continue;
     
     
 

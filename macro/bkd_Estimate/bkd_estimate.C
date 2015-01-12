@@ -45,7 +45,7 @@ Double_t scale3 = (876.225+4409) / (totalNEvent3 / crossSection3); // TTbar
 //void myPlot(TH1D*, TH1D*, TH1D*,TH1D*, TH1D*, TH1D*);
 
 
-void bkg_estimate(){
+void bkd_estimate(){
 
 
   TFile *f1de = TFile::Open("rootfile/delpanj_v2_data_DoubleEl_A.root");

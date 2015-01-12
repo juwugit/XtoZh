@@ -1,4 +1,4 @@
-//root -q -b -l bkgEstimate.C++\(\"inputFile\"\,\"outputFile\"\)
+//root -q -b -l recoXmass_El.C++\(\"inputFile\"\,\"outputFile\"\)
 
 #include <map>
 #include <vector>
@@ -10,14 +10,14 @@
 #include <TRandom.h>
 #include <TLorentzVector.h>
 #include <TFile.h>
-#include "/home/mattwu/CMS_Corp/XtoZh/macro/untuplizer.h"
-#include "/home/mattwu/CMS_Corp/XtoZh/macro/passElectronID.h"
-#include "/home/mattwu/CMS_Corp/XtoZh/macro/passMuonID.h"
-#include "/home/mattwu/CMS_Corp/XtoZh/macro/JetSelections.h"
+#include "/home/juwu/XtoZh/macro/untuplizer.h"
+#include "/home/juwu/XtoZh/macro/passElectronID.h"
+#include "/home/juwu/XtoZh/macro/passMuonID.h"
+#include "/home/juwu/XtoZh/macro/JetSelections_v5.h"
 
 
 using namespace std;
-void recoXmass_mm(std::string inputFile, std::string outputFile){
+void recoXmass_El(std::string inputFile, std::string outputFile){
 
 
   bool isData=false;
@@ -31,21 +31,20 @@ void recoXmass_mm(std::string inputFile, std::string outputFile){
 
 
   // declare histogram
-  const Float_t varBins[] = {840,920,1000,1100,1250,1400,1600,1800,2000,2200,2400};
+  const Float_t varBins[] = {680,720,760,800,840,920,1000,1100,1250,1400,1600,1800,2000,2400};
   
   Int_t nvarBins = sizeof(varBins)/sizeof(varBins[0])-1;
 
 
   TH1F* h_sbXMass = new TH1F("h_sbXMass","sideband region X mass", nvarBins, varBins);
-  TH1F* h_sigXMass = new TH1F("h_sigXMass","signal resion X mass", nvarBins, varBins);
-  TH1F* h_sbTest =  new TH1F("h_sbTest","",1000,680,2400);
-  TH1F* h_sigTest =  new TH1F("h_sigTest","",1000,680,2400);
+  TH1F* h_sigXMass = new TH1F("h_sigXMass","signal region X mass", nvarBins, varBins);
+  
   
   h_sbXMass->Sumw2();
   h_sigXMass->Sumw2();
-  h_sbTest->Sumw2();
-  h_sigTest->Sumw2();
 
+
+  int counter=0;
 
   //Event loop
   for(long jEntry=0; jEntry<data.GetEntriesFast() ;jEntry++){
@@ -60,20 +59,20 @@ void recoXmass_mm(std::string inputFile, std::string outputFile){
     Float_t* CA8jetM     = data.GetPtrFloat("CA8jetMass");
     Float_t* CA8jetPrunedM = data.GetPtrFloat("CA8jetPrunedMass");
 
-    Int_t    nMu        = data.GetInt("nMu");
-    Float_t* muPt       = data.GetPtrFloat("muPt");
-    Float_t* muEta      = data.GetPtrFloat("muEta");
-    Float_t* muPhi      = data.GetPtrFloat("muPhi");
-    Float_t* muM        = data.GetPtrFloat("muM");   
+    Int_t    nEle        = data.GetInt("nEle");
+    Float_t* elePt       = data.GetPtrFloat("elePt");
+    Float_t* eleEta      = data.GetPtrFloat("eleEta");
+    Float_t* elePhi      = data.GetPtrFloat("elePhi");
+    Float_t* eleM        = data.GetPtrFloat("eleM");   
 
 
 
 
     Int_t leadjet;
-    PassJet(data, leadjet);
+    PassJet(1, data, leadjet);
     
-    Int_t leadMu, secMu;
-    passMuonID(data, &leadMu, &secMu);
+    Int_t leadEle, secEle;
+    passElectronID(data, &leadEle, &secEle);
 
 
 
@@ -89,41 +88,41 @@ void recoXmass_mm(std::string inputFile, std::string outputFile){
       {
 	std::string thisTrig= trigName[it];
 	int results = trigResult[it];
-	/*
+     
 	if(thisTrig.find("HLT_DoubleEle33")!= std::string::npos && results==1)
 	  {
 	    passTrigger=true;
 	    break;
 	  }
-	*/
 	
+	/*
 	if(thisTrig.find("HLT_Mu22_TkMu8")!= std::string::npos && results==1)
 	  {
 	    passTrigger=true;
 	    break;
 	  }
-	
+	*/
       }
    
     if(isData && !passTrigger)continue;
-    if(!passMuonID(data, &leadMu, &secMu)) continue;
-    if(nMu<=1) continue;
+    if(!passElectronID(data, &leadEle, &secEle)) continue;
+    if(nEle<=1) continue;
 
 
       
     // Reco mLL
-    TLorentzVector m1(0,0,0,0);
-    TLorentzVector m2(0,0,0,0);
+    TLorentzVector l1(0,0,0,0);
+    TLorentzVector l2(0,0,0,0);
     TLorentzVector recoZ(0,0,0,0);
 
-    m1.SetPtEtaPhiM(muPt[leadMu],muEta[leadMu],muPhi[leadMu],muM[leadMu]);
-    m2.SetPtEtaPhiM(muPt[secMu],muEta[secMu],muPhi[secMu],muM[secMu]);
-    recoZ=(m1+m2);
+    l1.SetPtEtaPhiM(elePt[leadEle],eleEta[leadEle],elePhi[leadEle],eleM[leadEle]);
+    l2.SetPtEtaPhiM(elePt[secEle],eleEta[secEle],elePhi[secEle],eleM[secEle]);
+    recoZ=(l1+l2);
     
 
 
 
-    if(!PassJet(data, leadjet)) continue;
+    if(!PassJet(1, data, leadjet)) continue;
 
 
     // reco XMass
@@ -142,21 +141,16 @@ void recoXmass_mm(std::string inputFile, std::string outputFile){
 
       if(ZMass<70 || ZMass>110) continue;
       if(ZPt<80) continue;
+
+      counter++;
+      cout<<counter<<endl;
       
-      if(prunedmass>50 && prunedmass<110){
-	h_sbXMass->Fill(XMass);
-	h_sbTest->Fill(XMass);
-      }
-
-
-      if(prunedmass>110 && prunedmass<140){
-	h_sigXMass->Fill(XMass);
-	h_sigTest->Fill(XMass);
-      }
-
+      if(prunedmass>50 && prunedmass<110) h_sbXMass->Fill(XMass);
+      if(prunedmass>110 && prunedmass<140) h_sigXMass->Fill(XMass);
       
     }
       
+
 
   } //entries 
 
@@ -170,8 +164,6 @@ void recoXmass_mm(std::string inputFile, std::string outputFile){
 
   h_sbXMass->Write();
   h_sigXMass->Write();
-  h_sbTest->Write();
-  h_sigTest->Write();
 
 
   outFile->Close();
