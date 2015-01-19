@@ -28,8 +28,20 @@ void MuonIDeff(std::string inputFile){
 
 
 
+  //TEST
+  double ptX[]={20,40,100};
+  const int nPtBins = sizeof(ptX)/sizeof(ptX[0])-1;
+
+  double etaX[]={0,0.8,2.1,2.4};
+  const int nEtaBins = sizeof(etaX)/sizeof(etaX[0])-1;
+
+  TH1F* h_pt  = new TH1F("h_pt","",nPtBins,ptX);
+  TH1F* h_eta = new TH1F("h_eta","",nEtaBins,etaX);
+
+
+
   // declare histogram
-  TH1F* h_muPt = new TH1F("h_muPt","",40,0,1200);
+  TH1F* h_muPt = new TH1F("h_muPt","",40,0,1200);  
   TH1F* h_muPtID[2][3];
   TH1F* h_muPtID_cor[2][3];
 
@@ -73,39 +85,20 @@ void MuonIDeff(std::string inputFile){
 
     for(int i=0; i<nMu; i++){
 
-      
-      if(muPt[i]<20) continue;
-      h_muPt->Fill(muPt[i]);
-
-
+      if(muPt[i]>20) h_muPt->Fill(muPt[i]);
       if(muID[i]<=0) continue;
 
-      if(muPt[i]<40){
+      int ptBinIndex = h_pt->FindBin(muPt[i])-1;      
+      if(ptBinIndex <0) continue; // remove muonPt < 20 GeV
+      if(ptBinIndex == nPtBins) ptBinIndex -= 1; // overflow bin, use the same scale factor as 40-100 GeV
 
-	if(fabs(muEta[i])<0.8) h_muPtID[0][0]->Fill(muPt[i], Sf[0][0]);
-	if(0.8<fabs(muEta[i]) && fabs(muEta[i])<2.1) h_muPtID[0][1]->Fill(muPt[i], Sf[0][1]);
-   	if(2.1<fabs(muEta[i]) && fabs(muEta[i])<2.4) h_muPtID[0][2]->Fill(muPt[i], Sf[0][2]);
+      
+      int etaBinIndex = h_eta->FindBin(fabs(muEta[i]))-1;
+      if(etaBinIndex<0 || etaBinIndex >= nEtaBins) continue;
+      
+      h_muPtID[ptBinIndex][etaBinIndex]->Fill(muPt[i], Sf[ptBinIndex][etaBinIndex]);
+      h_muPtID_cor[ptBinIndex][etaBinIndex]->Fill(muPt[i], Sf_sigma[ptBinIndex][etaBinIndex]);
 
-	// 100% correlated
-	if(fabs(muEta[i])<0.8) h_muPtID_cor[0][0]->Fill(muPt[i], Sf_sigma[0][0]);
-	if(0.8<fabs(muEta[i]) && fabs(muEta[i])<2.1) h_muPtID_cor[0][1]->Fill(muPt[i], Sf_sigma[0][1]);
-   	if(2.1<fabs(muEta[i]) && fabs(muEta[i])<2.4) h_muPtID_cor[0][2]->Fill(muPt[i], Sf_sigma[0][2]);
-	
-      } //pt 20~40
-
-
-      if(muPt[i]>40){
-
-	if(fabs(muEta[i])<0.8) h_muPtID[1][0]->Fill(muPt[i], Sf[1][0]);
-	if(0.8<fabs(muEta[i]) && fabs(muEta[i])<2.1) h_muPtID[1][1]->Fill(muPt[i], Sf[1][1]);
-   	if(2.1<fabs(muEta[i]) && fabs(muEta[i])<2.4) h_muPtID[1][2]->Fill(muPt[i], Sf[1][2]);
-	
-	// 100% correlated
-	if(fabs(muEta[i])<0.8) h_muPtID_cor[1][0]->Fill(muPt[i], Sf_sigma[1][0]);
-	if(0.8<fabs(muEta[i]) && fabs(muEta[i])<2.1) h_muPtID_cor[1][1]->Fill(muPt[i], Sf_sigma[1][1]);
-   	if(2.1<fabs(muEta[i]) && fabs(muEta[i])<2.4) h_muPtID_cor[1][2]->Fill(muPt[i], Sf_sigma[1][2]);
-	
-      } //pt 40~100+
      
     } //loop muon
 
@@ -119,21 +112,37 @@ void MuonIDeff(std::string inputFile){
   float denom = h_muPt->Integral();
   float numer = 0.0;
   float numer_sigma = 0.0;
+  float diff[2][3];
 
   for(int i=0; i<2; i++){
     for(int j=0; j<3; j++){
       
       numer = numer + h_muPtID[i][j]->Integral();
       numer_sigma = numer_sigma + h_muPtID_cor[i][j]->Integral();
+      diff[i][j] = numer_sigma-numer;
 
     } // index j
   } // index i
   
-  
   float eff = numer/denom;
   float eff_sigma = numer_sigma/denom;
   float sys_cor = fabs(eff_sigma - eff);
-  
+
+
+
+  // 100% uncorrelated
+  float sys_uncor=0.0;
+
+  for(int i=0; i<2; i++){
+    for(int j=0; j<3; j++){
+ 
+      sys_uncor = sys_uncor + pow(((numer+diff[i][j])/denom - numer/denom),2); // uncor_eff-eff
+
+    }
+  }
+
+  sys_uncor = sqrt(sys_uncor);
+
 
 
   // Clear histo
@@ -150,7 +159,7 @@ void MuonIDeff(std::string inputFile){
 
 
 
-  
+  /*  
   // 100% uncorrelated efficiency
   float uncor_eff=0.0;
   float sys_uncor=0.0;
@@ -165,7 +174,7 @@ void MuonIDeff(std::string inputFile){
   }
 
   sys_uncor = sqrt(sys_uncor);
-
+  */
 
   
   cout<<"Muon ID efficiency is ["<<eff<<"],"<<endl;
