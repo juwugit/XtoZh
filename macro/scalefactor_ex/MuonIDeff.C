@@ -119,7 +119,7 @@ void MuonIDeff(std::string inputFile){
       
       numer = numer + h_muPtID[i][j]->Integral();
       numer_sigma = numer_sigma + h_muPtID_cor[i][j]->Integral();
-      diff[i][j] = numer_sigma-numer;
+      diff[i][j] = (h_muPtID_cor[i][j]->Integral()) - (h_muPtID[i][j]->Integral());
 
     } // index j
   } // index i
@@ -135,8 +135,8 @@ void MuonIDeff(std::string inputFile){
 
   for(int i=0; i<2; i++){
     for(int j=0; j<3; j++){
- 
-      sys_uncor = sys_uncor + pow(((numer+diff[i][j])/denom - numer/denom),2); // uncor_eff-eff
+      
+      sys_uncor = sys_uncor + pow((diff[i][j]/denom),2); // uncor_eff-eff
 
     }
   }
@@ -159,22 +159,6 @@ void MuonIDeff(std::string inputFile){
 
 
 
-  /*  
-  // 100% uncorrelated efficiency
-  float uncor_eff=0.0;
-  float sys_uncor=0.0;
-
-  for(int i=0; i<2; i++){
-    for(int j=0; j<3; j++){
-
-      Uncor_eff(data, uncor_eff, i, j);
-      sys_uncor = sys_uncor + pow((uncor_eff-eff),2);
-
-    }
-  }
-
-  sys_uncor = sqrt(sys_uncor);
-  */
 
   
   cout<<"Muon ID efficiency is ["<<eff<<"],"<<endl;
