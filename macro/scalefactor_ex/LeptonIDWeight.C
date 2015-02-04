@@ -31,7 +31,7 @@ $root -l LeptonIDWeight.C++\(pt\,eta\,scale\)
 
 using namespace std;
 
-float LeptonIDWeight(/*int lepton,*/ float pt, float eta, int scale){
+float LeptonIDWeight(/*int lepton,*/ float pt, float eta, int scale=0){
 
 
 
@@ -49,19 +49,6 @@ float LeptonIDWeight(/*int lepton,*/ float pt, float eta, int scale){
   TH1F* h_eta = new TH1F("h_eta","",nEtaBins,etaX);
 
 
-
-  // Sf+1sigma
-  if(scale==1){    
-    for(int i=0; i<2; i++){
-      for(int j=0; j<3; j++){
-	
-	Sf[i][j] = Sf[i][j]+sigma[i][j];
-	
-      }
-    }
-  }
-  
-
   // choose scalefactor
   int ptBinIndex = h_pt->FindBin(pt)-1;      
   if(ptBinIndex <0) return 1.0; // remove muonPt < 20 GeV
@@ -71,7 +58,7 @@ float LeptonIDWeight(/*int lepton,*/ float pt, float eta, int scale){
   if(etaBinIndex<0 || etaBinIndex >= nEtaBins) return 1.0;
   
   
-  return Sf[ptBinIndex][etaBinIndex];
+  return (Sf[ptBinIndex][etaBinIndex]+scale*sigma[ptBinIndex][etaBinIndex]);
  
 
 
