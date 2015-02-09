@@ -1,0 +1,214 @@
+//root -q -b -l recoXmass_El.C++\(\"inputFile\"\,\"outputFile\"\)
+
+#include <map>
+#include <vector>
+#include <string>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+#include <TH1D.h>
+#include <TH2F.h>
+#include <TRandom.h>
+#include <TLorentzVector.h>
+#include <TFile.h>
+#include "/home/juwu/XtoZh/macro/untuplizer.h"
+#include "/home/juwu/XtoZh/macro/passElectronID.h"
+#include "/home/juwu/XtoZh/macro/passMuonID.h"
+#include "/home/juwu/XtoZh/macro/JetSelections_v5.h"
+
+
+const float scale1=0.00472913; //DY70To100
+const float scale2=0.00275936; //DY100
+
+
+using namespace std;
+void correlated_MC_El(){
+
+
+  //get TTree from file ...
+  TreeReader data1("/home/juwu/XtoZh/delpanjTuple/delpanj_v4_DYJetsToLL_PtZ-70To100.root");
+  TreeReader data2("/home/juwu/XtoZh/delpanjTuple/delpanj_v4_DYJetsToLL_PtZ-100.root");
+
+
+  // declare histogram
+  TH2F* pruned_tau21 = new TH2F("pruned_tau21","", 50,0,150,20,0,1);
+  TH2F* pruned_CSV = new TH2F("pruned_CSV","", 50,0,150,20,0,1);
+  TH2F* tau21_CSV = new TH2F("tau21_CSV","", 20,0,1,20,0,1);
+
+  TH1F* CSV = new TH1F("CSV","",20,0,1);
+
+  CSV->Sumw2();
+  pruned_tau21->Sumw2();
+  pruned_CSV->Sumw2();
+  tau21_CSV->Sumw2();
+
+
+
+  //Event loop data1
+  for(long jEntry=0; jEntry<data1.GetEntriesFast() ;jEntry++){
+
+    data1.GetEntry(jEntry);
+
+
+    Int_t    CA8nJet     = data1.GetInt("CA8nJet");
+    Float_t* CA8jetPrunedM = data1.GetPtrFloat("CA8jetPrunedMass");
+    Float_t* CA8jetTau1 = data1.GetPtrFloat("CA8jetTau1");
+    Float_t* CA8jetTau2 = data1.GetPtrFloat("CA8jetTau2");
+    Float_t* CA8jetCSV = data1.GetPtrFloat("CA8jetCSV");
+
+
+    Int_t    nEle        = data1.GetInt("nEle");
+    Float_t* elePt       = data1.GetPtrFloat("elePt");
+    Float_t* eleEta      = data1.GetPtrFloat("eleEta");
+    Float_t* elePhi      = data1.GetPtrFloat("elePhi");
+    Float_t* eleM        = data1.GetPtrFloat("eleM");   
+
+
+
+
+    Int_t leadjet;
+    PassJet(5, data1, leadjet);
+    
+    Int_t leadEle, secEle;
+    passElectronID(data1, &leadEle, &secEle);
+
+
+
+    if(!passElectronID(data1, &leadEle, &secEle)) continue;
+    if(nEle<=1) continue;
+
+
+
+      
+    // Reco mLL
+    TLorentzVector l1(0,0,0,0);
+    TLorentzVector l2(0,0,0,0);
+    TLorentzVector recoZ(0,0,0,0);
+
+    l1.SetPtEtaPhiM(elePt[leadEle],eleEta[leadEle],elePhi[leadEle],eleM[leadEle]);
+    l2.SetPtEtaPhiM(elePt[secEle],eleEta[secEle],elePhi[secEle],eleM[secEle]);
+    recoZ=(l1+l2);
+    
+    Float_t ZMass=recoZ.M();
+    Float_t ZPt=recoZ.Pt();
+    
+    if(ZMass<70 || ZMass>110) continue;
+    if(ZPt<80) continue;
+    if(!PassJet(5, data1, leadjet)) continue;
+
+
+
+    // jet loop
+    for(int i=0; i<CA8nJet; i++){
+
+      float tau21=CA8jetTau2[i]/CA8jetTau1[i];
+
+      pruned_tau21->Fill(CA8jetPrunedM[i],tau21,scale1);
+      pruned_CSV->Fill(CA8jetPrunedM[i],CA8jetCSV[i],scale1);
+      tau21_CSV->Fill(tau21,CA8jetCSV[i],scale1);
+
+    }
+      
+
+
+
+  } //entries 
+
+    
+
+
+
+  //Event loop data2
+  for(long jEntry=0; jEntry<data2.GetEntriesFast() ;jEntry++){
+
+    data2.GetEntry(jEntry);
+
+
+    Int_t    CA8nJet     = data2.GetInt("CA8nJet");
+    Float_t* CA8jetPrunedM = data2.GetPtrFloat("CA8jetPrunedMass");
+    Float_t* CA8jetTau1 = data2.GetPtrFloat("CA8jetTau1");
+    Float_t* CA8jetTau2 = data2.GetPtrFloat("CA8jetTau2");
+    Float_t* CA8jetCSV = data2.GetPtrFloat("CA8jetCSV");
+
+
+    Int_t    nEle        = data2.GetInt("nEle");
+    Float_t* elePt       = data2.GetPtrFloat("elePt");
+    Float_t* eleEta      = data2.GetPtrFloat("eleEta");
+    Float_t* elePhi      = data2.GetPtrFloat("elePhi");
+    Float_t* eleM        = data2.GetPtrFloat("eleM");   
+
+
+
+
+    Int_t leadjet;
+    PassJet(5, data2, leadjet);
+    
+    Int_t leadEle, secEle;
+    passElectronID(data2, &leadEle, &secEle);
+
+
+
+    if(!passElectronID(data2, &leadEle, &secEle)) continue;
+    if(nEle<=1) continue;
+
+
+
+      
+    // Reco mLL
+    TLorentzVector l1(0,0,0,0);
+    TLorentzVector l2(0,0,0,0);
+    TLorentzVector recoZ(0,0,0,0);
+
+    l1.SetPtEtaPhiM(elePt[leadEle],eleEta[leadEle],elePhi[leadEle],eleM[leadEle]);
+    l2.SetPtEtaPhiM(elePt[secEle],eleEta[secEle],elePhi[secEle],eleM[secEle]);
+    recoZ=(l1+l2);
+    
+    Float_t ZMass=recoZ.M();
+    Float_t ZPt=recoZ.Pt();
+    
+    if(ZMass<70 || ZMass>110) continue;
+    if(ZPt<80) continue;
+    if(!PassJet(5, data2, leadjet)) continue;
+
+
+
+    // jet loop
+    for(int i=0; i<CA8nJet; i++){
+
+      float tau21=CA8jetTau2[i]/CA8jetTau1[i];
+
+      pruned_tau21->Fill(CA8jetPrunedM[i],tau21,scale2);
+      pruned_CSV->Fill(CA8jetPrunedM[i],CA8jetCSV[i],scale2);
+      tau21_CSV->Fill(tau21,CA8jetCSV[i],scale2);
+
+      CSV->Fill(CA8jetCSV[i]);
+
+
+    }
+      
+
+
+
+  } //entries 
+
+
+
+
+
+  
+
+
+
+  //save output
+  TFile* outFile = new TFile("MC_El.root","recreate");
+
+  pruned_tau21->Write();
+  pruned_CSV->Write();
+  tau21_CSV->Write();
+  CSV->Write();
+
+
+  outFile->Close();
+
+
+}

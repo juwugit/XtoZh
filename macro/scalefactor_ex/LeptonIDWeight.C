@@ -59,7 +59,6 @@ float LeptonIDWeight(/*int lepton,*/ float pt, float eta, int scale=0){
   
   
   return (Sf[ptBinIndex][etaBinIndex]+scale*sigma[ptBinIndex][etaBinIndex]);
- 
 
 
 } //function brace
