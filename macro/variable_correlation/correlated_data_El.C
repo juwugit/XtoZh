@@ -6,15 +6,15 @@
 #include <vector>
 #include <iostream>
 #include <algorithm>
-#include <TH1D.h>
+#include <TH1F.h>
 #include <TH2F.h>
 #include <TRandom.h>
 #include <TLorentzVector.h>
 #include <TFile.h>
-#include "/home/juwu/XtoZh/macro/untuplizer.h"
-#include "/home/juwu/XtoZh/macro/passElectronID.h"
-#include "/home/juwu/XtoZh/macro/passMuonID.h"
-#include "/home/juwu/XtoZh/macro/JetSelections_v5.h"
+#include "../macro/untuplizer.h"
+#include "../macro/passElectronID.h"
+#include "../macro/passMuonID.h"
+#include "../macro/JetSelections_v5.h"
 
 
 using namespace std;
@@ -23,17 +23,30 @@ void correlated_data_El(){
 
 
   //get TTree from file ...
-  TreeReader data("/home/juwu/XtoZh/delpanjTuple/delpanj_v4_data_DoubleEl.root");
+  TreeReader data("../delpanjTuple/delpanj_v4_data_DoubleEl.root");
 
 
   // declare histogram
   TH2F* pruned_tau21 = new TH2F("pruned_tau21","", 50,0,150,20,0,1);
   TH2F* pruned_CSV = new TH2F("pruned_CSV","", 50,0,150,20,0,1);
   TH2F* tau21_CSV = new TH2F("tau21_CSV","", 20,0,1,20,0,1);
+  TH2F* tau21_CSV_sb = new TH2F("tau21_CSV_sb","", 20,0,1,20,0,1);
+
+  TH1F* tau21_sig = new TH1F("tau21_sig","",20,0,1);
+  TH1F* tau21_sb = new TH1F("tau21_sb","",20,0,1);
+  TH1F* CSV_sig = new TH1F("CSV_sig","",20,0,1);
+  TH1F* CSV_sb = new TH1F("CSV_sb","",20,0,1);
+
 
   pruned_tau21->Sumw2();
   pruned_CSV->Sumw2();
   tau21_CSV->Sumw2();
+  tau21_CSV_sb->Sumw2();
+
+  tau21_sig->Sumw2();
+  tau21_sb->Sumw2();
+  CSV_sig->Sumw2();
+  CSV_sb->Sumw2();
 
 
 
@@ -131,7 +144,22 @@ void correlated_data_El(){
       pruned_CSV->Fill(CA8jetPrunedM[i],CA8jetCSV[i]);
       tau21_CSV->Fill(tau21,CA8jetCSV[i]);
 
-    }
+      if(CA8jetPrunedM[i]>50 && CA8jetPrunedM[i]<110){
+
+	tau21_CSV_sb->Fill(tau21,CA8jetCSV[i]);
+	tau21_sb->Fill(tau21);
+	CSV_sb->Fill(CA8jetCSV[i]);
+
+      } // sideband
+
+      if(CA8jetPrunedM[i]>110 && CA8jetPrunedM[i]<140){
+
+	tau21_sig->Fill(tau21);
+	CSV_sig->Fill(CA8jetCSV[i]);
+
+      } // sideband
+
+    } // jet loop
       
 
 
@@ -149,6 +177,12 @@ void correlated_data_El(){
   pruned_tau21->Write();
   pruned_CSV->Write();
   tau21_CSV->Write();
+  tau21_CSV_sb->Write();
+
+  tau21_sig->Write();
+  tau21_sb->Write();
+  CSV_sig->Write();
+  CSV_sb->Write();
 
 
   outFile->Close();

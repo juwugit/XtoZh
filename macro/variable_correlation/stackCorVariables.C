@@ -29,7 +29,7 @@
 
 
 
-void stackCorVariables(std::string inputFile1, std::string inputFile2, std::string outputFile){
+void stackCorVariables(std::string inputFile1, std::string inputFile2, std::string outputFile1, std::string outputFile2){
 
 
   TFile *data = TFile::Open(inputFile1.data());
@@ -40,9 +40,9 @@ void stackCorVariables(std::string inputFile1, std::string inputFile2, std::stri
 
 
 
-  TCanvas* c1 = new TCanvas("c1", "", 0, 0, 750, 1500);
+  TCanvas* c1 = new TCanvas("c1", "", 0, 0, 800, 1800);
 
-  c1->Divide(2,3);
+  c1->Divide(2,4);
 
 
   c1->cd(1);
@@ -106,13 +106,129 @@ void stackCorVariables(std::string inputFile1, std::string inputFile2, std::stri
 
   cout<<"tau21_CSV_data:"<<(tau21_CSV_data->GetCorrelationFactor())<<endl;
 
+
+
+  c1->cd(7);
+
+  TH2F* tau21_CSV_MC_sb = (TH2F*)MC->Get("tau21_CSV_sb");
+  tau21_CSV_MC_sb->SetTitle("MC tau21 vs CSV (sideband)");
+  tau21_CSV_MC_sb->GetYaxis()->SetTitle("CSV");
+  tau21_CSV_MC_sb->GetXaxis()->SetTitle("tau21");
+  tau21_CSV_MC_sb->Draw();
+  
+  cout<<"tau21_CSV_MC_sb:"<<(tau21_CSV_MC_sb->GetCorrelationFactor())<<endl;
+
+
+  c1->cd(8);
+
+  TH2F* tau21_CSV_data_sb = (TH2F*)data->Get("tau21_CSV_sb");
+  tau21_CSV_data_sb->SetTitle("DATA tau21 vs CSV (sideband)");
+  tau21_CSV_data_sb->GetYaxis()->SetTitle("CSV");
+  tau21_CSV_data_sb->GetXaxis()->SetTitle("tau21");
+  tau21_CSV_data_sb->Draw();
+
+  cout<<"tau21_CSV_data_sb:"<<(tau21_CSV_data_sb->GetCorrelationFactor())<<endl;
+
   
   gSystem->ProcessEvents();
   TImage *img1 = TImage::Create();
   img1->FromPad(c1);
-  img1->WriteImage(outputFile.data());
+  img1->WriteImage(outputFile1.data());
   delete c1;
   delete img1;
+
+
+  //--------------------------------------------------------------------
+
+
+  TCanvas* c2 = new TCanvas("c2", "", 0, 0, 800, 800);
+
+  c2->Divide(2,2);
+
+  c2->cd(1);
+
+  TH1F* tau21_MC_sig = (TH1F*)MC->Get("tau21_sig");
+  TH1F* tau21_MC_sb = (TH1F*)MC->Get("tau21_sb");
+
+  tau21_MC_sig->Scale(1/(tau21_MC_sig->Integral()));
+  tau21_MC_sb->Scale(1/(tau21_MC_sb->Integral()));
+
+  tau21_MC_sig->SetTitle("MC tau21: signal(red) vs sideband");
+  tau21_MC_sig->GetXaxis()->SetTitle("tau21");
+  tau21_MC_sig->SetFillColor(2);
+  tau21_MC_sig->SetLineColor(2);
+  tau21_MC_sig->SetFillStyle(3004);
+
+  tau21_MC_sig->Draw("histe");
+  tau21_MC_sb->Draw("histesame");
+
+
+  c2->cd(2);
+
+  TH1F* tau21_data_sig = (TH1F*)data->Get("tau21_sig");
+  TH1F* tau21_data_sb = (TH1F*)data->Get("tau21_sb");
+
+  tau21_data_sig->Scale(1/(tau21_data_sig->Integral()));
+  tau21_data_sb->Scale(1/(tau21_data_sb->Integral()));
+
+  tau21_data_sig->SetTitle("DATA tau21: signal(red) vs sideband");
+  tau21_data_sig->GetXaxis()->SetTitle("tau21");
+  tau21_data_sig->SetFillColor(2);
+  tau21_data_sig->SetLineColor(2);
+  tau21_data_sig->SetFillStyle(3004);
+
+  tau21_data_sig->Draw("histe");
+  tau21_data_sb->Draw("histesame");
+
+
+  c2->cd(3);
+
+  TH1F* CSV_MC_sig = (TH1F*)MC->Get("CSV_sig");
+  TH1F* CSV_MC_sb = (TH1F*)MC->Get("CSV_sb");
+
+  CSV_MC_sig->Scale(1/(CSV_MC_sig->Integral()));
+  CSV_MC_sb->Scale(1/(CSV_MC_sb->Integral()));
+
+  CSV_MC_sig->SetTitle("MC CSV: signal(red) vs sideband");
+  CSV_MC_sig->GetXaxis()->SetTitle("CSV");
+  CSV_MC_sig->SetFillColor(2);
+  CSV_MC_sig->SetLineColor(2);
+  CSV_MC_sig->SetFillStyle(3004);
+
+  CSV_MC_sig->Draw("histe");
+  CSV_MC_sb->Draw("histesame");
+
+
+
+  c2->cd(4);
+
+  TH1F* CSV_data_sig = (TH1F*)data->Get("CSV_sig");
+  TH1F* CSV_data_sb = (TH1F*)data->Get("CSV_sb");
+
+  CSV_data_sig->Scale(1/(CSV_data_sig->Integral()));
+  CSV_data_sb->Scale(1/(CSV_data_sb->Integral()));
+
+  CSV_data_sig->SetTitle("DATA CSV: signal(red) vs sideband");
+  CSV_data_sig->GetXaxis()->SetTitle("CSV");
+  CSV_data_sig->SetFillColor(2);
+  CSV_data_sig->SetLineColor(2);
+  CSV_data_sig->SetFillStyle(3004);
+
+  CSV_data_sig->Draw("histe");
+  CSV_data_sb->Draw("histesame");
+
+
+
+
+
+
+
+  gSystem->ProcessEvents();
+  TImage *img2 = TImage::Create();
+  img2->FromPad(c2);
+  img2->WriteImage(outputFile2.data());
+  delete c2;
+  delete img2;
 
 
 
