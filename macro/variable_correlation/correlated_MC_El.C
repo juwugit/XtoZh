@@ -41,6 +41,15 @@ void correlated_MC_El(){
   TH1F* CSV_sig = new TH1F("CSV_sig","",20,0,1);
   TH1F* CSV_sb = new TH1F("CSV_sb","",20,0,1);
 
+  TH1F* CSV_sig_sub = new TH1F("CSV_sig_sub","",20,0,1);
+  TH1F* CSV_sb_sub = new TH1F("CSV_sb_sub","",20,0,1);
+  TH1F* alpha = new TH1F("alpha","",20,0,1);
+  TH1F* alpha_sub = new TH1F("alpha_sub","",20,0,1);
+
+  TH1F* CSV_sig_test = new TH1F("CSV_sig_test","",20,0,1);
+  TH1F* CSV_sb_test = new TH1F("CSV_sb_test","",20,0,1);
+
+
 
 
   pruned_tau21->Sumw2();
@@ -52,6 +61,17 @@ void correlated_MC_El(){
   tau21_sb->Sumw2();
   CSV_sig->Sumw2();
   CSV_sb->Sumw2();
+
+  CSV_sig_sub->Sumw2();
+  CSV_sb_sub->Sumw2();
+
+  alpha->Sumw2();
+  alpha_sub->Sumw2();
+
+
+  CSV_sig_test->Sumw2();
+  CSV_sb_test->Sumw2();
+
 
 
 
@@ -67,6 +87,13 @@ void correlated_MC_El(){
     Float_t* CA8jetTau1 = data1.GetPtrFloat("CA8jetTau1");
     Float_t* CA8jetTau2 = data1.GetPtrFloat("CA8jetTau2");
     Float_t* CA8jetCSV = data1.GetPtrFloat("CA8jetCSV");
+
+    Int_t*   nSubjet = data1.GetPtrInt("CA8nSubPrunedJet");
+    vector<Float_t>* SubjetCSV = data1.GetPtrVectorFloat("CA8subjetPrunedCSV");
+    vector<Float_t>* SubjetPt  = data1.GetPtrVectorFloat("CA8subjetPrunedPt");
+    vector<Float_t>* SubjetEta = data1.GetPtrVectorFloat("CA8subjetPrunedEta");
+    vector<Float_t>* SubjetPhi = data1.GetPtrVectorFloat("CA8subjetPrunedPhi");
+    vector<Float_t>* SubjetM   = data1.GetPtrVectorFloat("CA8subjetPrunedMass");
 
 
     Int_t    nEle        = data1.GetInt("nEle");
@@ -111,6 +138,11 @@ void correlated_MC_El(){
 
 
     // jet loop
+    TLorentzVector subjet1(0,0,0,0);
+    TLorentzVector subjet2(0,0,0,0);
+    Float_t dRjj=-999;
+
+
     for(int i=0; i<CA8nJet; i++){
 
       float tau21=CA8jetTau2[i]/CA8jetTau1[i];
@@ -119,20 +151,57 @@ void correlated_MC_El(){
       pruned_CSV->Fill(CA8jetPrunedM[i],CA8jetCSV[i],scale1);
       tau21_CSV->Fill(tau21,CA8jetCSV[i],scale1);
 
+      if(nSubjet[i]>=2){
+
+	subjet1.SetPtEtaPhiM(SubjetPt[i][0],SubjetEta[i][0],SubjetPhi[i][0],SubjetM[i][0]);
+	subjet2.SetPtEtaPhiM(SubjetPt[i][1],SubjetEta[i][1],SubjetPhi[i][1],SubjetM[i][1]);
+	dRjj=subjet1.DeltaR(subjet2);
+
+      }
+      
+      
       if(CA8jetPrunedM[i]>50 && CA8jetPrunedM[i]<110){
+	
+	tau21_CSV_sb->Fill(tau21,CA8jetCSV[i], scale1);
+	tau21_sb->Fill(tau21, scale1);
+    
+	if(dRjj>0.3){
 
-	tau21_CSV_sb->Fill(tau21,CA8jetCSV[i]);
-	tau21_sb->Fill(tau21);
-        CSV_sb->Fill(CA8jetCSV[i]);
+          CSV_sb_sub->Fill(SubjetCSV[i][0], scale1);
+          CSV_sb_sub->Fill(SubjetCSV[i][1], scale1);
 
+          CSV_sb_test->Fill(CA8jetCSV[i], scale1);
+
+        }
+
+
+        if(dRjj<0.3 && dRjj!=-999) CSV_sb->Fill(CA8jetCSV[i], scale1);
+
+	
       } // sideband                                   
 
       if(CA8jetPrunedM[i]>110 && CA8jetPrunedM[i]<140){
 
-	tau21_sig->Fill(tau21);
-        CSV_sig->Fill(CA8jetCSV[i]);
+	tau21_sig->Fill(tau21, scale1);
 
-      } // sideband                                      
+
+
+        if(dRjj>0.3){
+
+          CSV_sig_sub->Fill(SubjetCSV[i][0], scale1);
+          CSV_sig_sub->Fill(SubjetCSV[i][1], scale1);
+
+
+          CSV_sig_test->Fill(CA8jetCSV[i], scale1);
+
+
+        }
+
+
+	if(dRjj<0.3 && dRjj!=-999) CSV_sig->Fill(CA8jetCSV[i], scale1);
+
+
+      } // signal
 
 
 
@@ -158,6 +227,13 @@ void correlated_MC_El(){
     Float_t* CA8jetTau1 = data2.GetPtrFloat("CA8jetTau1");
     Float_t* CA8jetTau2 = data2.GetPtrFloat("CA8jetTau2");
     Float_t* CA8jetCSV = data2.GetPtrFloat("CA8jetCSV");
+
+    Int_t*   nSubjet = data2.GetPtrInt("CA8nSubPrunedJet");
+    vector<Float_t>* SubjetCSV = data2.GetPtrVectorFloat("CA8subjetPrunedCSV");
+    vector<Float_t>* SubjetPt  = data2.GetPtrVectorFloat("CA8subjetPrunedPt");
+    vector<Float_t>* SubjetEta = data2.GetPtrVectorFloat("CA8subjetPrunedEta");
+    vector<Float_t>* SubjetPhi = data2.GetPtrVectorFloat("CA8subjetPrunedPhi");
+    vector<Float_t>* SubjetM   = data2.GetPtrVectorFloat("CA8subjetPrunedMass");
 
 
     Int_t    nEle        = data2.GetInt("nEle");
@@ -202,6 +278,10 @@ void correlated_MC_El(){
 
 
     // jet loop
+    TLorentzVector subjet1(0,0,0,0);
+    TLorentzVector subjet2(0,0,0,0);
+    Float_t dRjj=-999;
+
     for(int i=0; i<CA8nJet; i++){
 
       float tau21=CA8jetTau2[i]/CA8jetTau1[i];
@@ -211,22 +291,58 @@ void correlated_MC_El(){
       tau21_CSV->Fill(tau21,CA8jetCSV[i],scale2);
 
 
+      if(nSubjet[i]>=2){
+
+	subjet1.SetPtEtaPhiM(SubjetPt[i][0],SubjetEta[i][0],SubjetPhi[i][0],SubjetM[i][0]);
+        subjet2.SetPtEtaPhiM(SubjetPt[i][1],SubjetEta[i][1],SubjetPhi[i][1],SubjetM[i][1]);
+        dRjj=subjet1.DeltaR(subjet2);
+
+      }
+
+
+
       if(CA8jetPrunedM[i]>50 && CA8jetPrunedM[i]<110){
 
-	tau21_CSV_sb->Fill(tau21,CA8jetCSV[i]);
-	tau21_sb->Fill(tau21);
-        CSV_sb->Fill(CA8jetCSV[i]);
+	tau21_CSV_sb->Fill(tau21,CA8jetCSV[i], scale2);
+	tau21_sb->Fill(tau21, scale2);
+
+        if(dRjj>0.3){
+
+          CSV_sb_sub->Fill(SubjetCSV[i][0], scale1);
+          CSV_sb_sub->Fill(SubjetCSV[i][1], scale1);
+
+          CSV_sb_test->Fill(CA8jetCSV[i], scale1);
+
+	}
+
+
+        if(dRjj<0.3 && dRjj!=-999) CSV_sb->Fill(CA8jetCSV[i], scale1);
+
 
       } // sideband                                   
 
+
+
       if(CA8jetPrunedM[i]>110 && CA8jetPrunedM[i]<140){
 
-	tau21_sig->Fill(tau21);
-        CSV_sig->Fill(CA8jetCSV[i]);
+	tau21_sig->Fill(tau21, scale2);
 
-      } // sideband                                      
+        if(dRjj>0.3){
+
+          CSV_sig_sub->Fill(SubjetCSV[i][0], scale2);
+          CSV_sig_sub->Fill(SubjetCSV[i][1], scale2);
 
 
+          CSV_sig_test->Fill(CA8jetCSV[i], scale2);
+
+
+	}
+
+
+        if(dRjj<0.3 && dRjj!=-999) CSV_sig->Fill(CA8jetCSV[i], scale2);
+
+
+      } // signal                                     
 
     }
       
@@ -237,6 +353,8 @@ void correlated_MC_El(){
 
 
 
+  alpha->Divide(CSV_sig, CSV_sb);
+  alpha_sub->Divide(CSV_sig_sub, CSV_sb_sub);
 
 
   
@@ -255,6 +373,19 @@ void correlated_MC_El(){
   tau21_sb->Write();
   CSV_sig->Write();
   CSV_sb->Write();
+
+
+  CSV_sig_sub->Write();
+  CSV_sb_sub->Write();
+
+
+  alpha->Write();
+  alpha_sub->Write();
+
+
+  CSV_sig_test->Write();
+  CSV_sb_test->Write();
+
 
 
 
