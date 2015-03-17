@@ -1,21 +1,34 @@
 /*
 
+v5: vector sorting version
+
 This macro does following selections:
 
-tau21<0.5 for leading jet
-jetPt>30 , fabs(Eta)<2.4
-PrunedJetMass>40 , PrunedJetPt>80 (at least one jet passes this selection)
-jetID>0 (at least one jet passes ID cut)
+1. b-tagging CSVL cut on subjet or CA8jet (optional, insert mode==1)
 
-return leading jet index
+2. tau21<0.5 for leading jet (optional, insert mode==2)
 
+3. insert other number will only cut on basic selection
+
+4. remove overlap between jet and leptons if deltaR<1.0
+   jetPt>30 , fabs(Eta)<2.4
+   PrunedJetMass>40 , PrunedJetPt>80
+   jetID>0 
+
+5. return leading jet index
 
 */
 
 
 
+struct myMap
+{
+  Int_t index;
+  Float_t pt;
+};
 
-Bool_t PassJet(TreeReader &data, Int_t &accepted){
+Bool_t PtGreater (myMap i,myMap j) { return (i.pt>j.pt); }
+Bool_t PassJet(int mode, TreeReader &data, Int_t &accepted){
 
   accepted=-1;
 
@@ -28,6 +41,15 @@ Bool_t PassJet(TreeReader &data, Int_t &accepted){
   Float_t* CA8jetTau1  = data.GetPtrFloat("CA8jetTau1");
   Float_t* CA8jetTau2  = data.GetPtrFloat("CA8jetTau2");
   Float_t* CA8jetPrunedM  = data.GetPtrFloat("CA8jetPrunedMass");
+
+  // b-tagging
+  Float_t* CA8jetCSV   = data.GetPtrFloat("CA8jetCSV");
+  Int_t*   nSubjet = data.GetPtrInt("CA8nSubPrunedJet");
+  vector<Float_t>* SubjetCSV = data.GetPtrVectorFloat("CA8subjetPrunedCSV");
+  vector<Float_t>* SubjetPt  = data.GetPtrVectorFloat("CA8subjetPrunedPt");
+  vector<Float_t>* SubjetEta = data.GetPtrVectorFloat("CA8subjetPrunedEta");
+  vector<Float_t>* SubjetPhi = data.GetPtrVectorFloat("CA8subjetPrunedPhi");
+  vector<Float_t>* SubjetM   = data.GetPtrVectorFloat("CA8subjetPrunedMass");
 
   Int_t    nEle        = data.GetInt("nEle");
   Float_t* elePt       = data.GetPtrFloat("elePt");
@@ -44,77 +66,55 @@ Bool_t PassJet(TreeReader &data, Int_t &accepted){
   Int_t*   muID        = data.GetPtrInt("muPassID");
 
 
-
-
-  // define Map and MapIter
-  typedef map<Float_t, Int_t, std::greater<Float_t> > Map;
-  typedef Map::iterator MapIter;
-
-
-
-  // Sorting electron
-  Map sortElePt;
-  vector<Int_t> sortEleIndex;
-  sortEleIndex.clear();
-
+  // Sorting Electron
+  vector<myMap> sortElePt;
   for(Int_t i=0; i<nEle; i++){
-    sortElePt.insert(std::pair<Float_t, Int_t>(elePt[i], i));
+
+    myMap temp;
+    temp.index = i;
+    temp.pt = elePt[i];
+    sortElePt.push_back(temp);
+
   }
+  std::sort(sortElePt.begin(),sortElePt.end(),PtGreater);
 
-  for(MapIter it_part=sortElePt.begin(); it_part!=sortElePt.end(); ++it_part){
-    sortEleIndex.push_back(it_part->second);
-  }
-
-
-
-  // Sorting muon
-  Map sortMuPt;
-  vector<Int_t> sortMuIndex;
-  sortMuIndex.clear();
-
-  for(Int_t i=0; i<nMu; i++){
-    sortMuPt.insert(std::pair<Float_t, Int_t>(muPt[i], i));
-  }
-
-  for(MapIter it_part=sortMuPt.begin(); it_part!=sortMuPt.end(); ++it_part){
-    sortMuIndex.push_back(it_part->second);
-  }
-
-
-  if(sortEleIndex.size()>0 && sortEleIndex[0]!=0) cout<<"Electron fail"<<endl;
-  if(sortMuIndex.size()>0 && sortMuIndex[0]!=0) cout<<"Muon fail"<<endl;
-
-
-
-  /*
-  // determine which channel                                                                                        
-  bool ee=false;
-  bool mm=false;
-  if(nEle>0 && nMu==0) ee=true;
-  if(nEle==0 && nMu>0) mm=true;
-  //if(sortEleIndex.size()>0 && sortMuIndex.size()>0 && elePt[sortEleIndex[0]]>muPt[sortMuIndex[0]]) ee=true;
-  //if(sortEleIndex.size()>0 && sortMuIndex.size()>0 && elePt[sortEleIndex[0]]<muPt[sortMuIndex[0]]) mm=true;
-  if(nEle>0 && nMu>0 && elePt[0]>muPt[0]) ee=true;
-  if(nEle>0 && nMu>0 && elePt[0]<muPt[0]) mm=true;
-  */
-
-
-  // declare Map for jets and do sorting
-  Map sortJetPt;
-  vector<Int_t> sortJetIndex;
-  sortJetIndex.clear();
   
+  // Sorting Muon
+  vector<myMap> sortMuPt;
+  for(Int_t i=0; i<nMu; i++){
+
+    myMap temp;
+    temp.index = i;
+    temp.pt = muPt[i];
+    sortMuPt.push_back(temp);
+
+  }
+  std::sort(sortMuPt.begin(),sortMuPt.end(),PtGreater);
+
+   
+  // determine which channel                                                                                        
+  bool El=false;
+  bool Mu=false;
+  if(nEle>0 && nMu==0) El=true;
+  if(nEle==0 && nMu>0) Mu=true;
+  if(sortElePt.size()>0 && sortMuPt.size()>0 && elePt[sortElePt[0].index]>muPt[sortMuPt[0].index]) El=true;
+  if(sortElePt.size()>0 && sortMuPt.size()>0 && elePt[sortElePt[0].index]<muPt[sortMuPt[0].index]) Mu=true;
+  
+
+  // Sorting Jet
+  vector<myMap> sortJetPt;
   for(Int_t i=0; i<CA8nJet; i++){
-    sortJetPt.insert(std::pair<Float_t, Int_t>(CA8jetPt[i], i));
+
+    myMap temp;
+    temp.index = i;
+    temp.pt = CA8jetPt[i];
+    sortJetPt.push_back(temp);
+
   }
-
-  for(MapIter it_part=sortJetPt.begin(); it_part!=sortJetPt.end(); ++it_part){
-    sortJetIndex.push_back(it_part->second);
-  }
+  std::sort(sortJetPt.begin(),sortJetPt.end(),PtGreater);
 
 
-  /*
-  // remove overlape for ee channel
+  // remove overlap
   vector<Int_t> goodJetIndex;
   goodJetIndex.clear();
 
@@ -122,19 +122,20 @@ Bool_t PassJet(TreeReader &data, Int_t &accepted){
   TLorentzVector alljets(0,0,0,0);
   Float_t dRjl=-999;
 
-  Int_t nSortJet=sortJetIndex.size();
-  Int_t nSortEle=sortEleIndex.size();
-  Int_t nSortMu=sortMuIndex.size();
+  Int_t nSortJet=sortJetPt.size();
+  Int_t nSortEle=sortElePt.size();
+  Int_t nSortMu=sortMuPt.size();
 
-
+  
   for(Int_t k=0; k<nSortJet; k++){
 
-    Int_t jIndex=sortJetIndex[k];
+    Int_t jIndex=sortJetPt[k].index;
 
     bool overlap=false;
     bool basicCuts=(CA8jetPt[jIndex]>30)&&(fabs(CA8jetEta[jIndex])<2.4);
     bool IDcut=(CA8jetID[jIndex]>0);
-    bool prunedJetCuts=(CA8jetPt[jIndex]>80)&&(CA8jetPrunedM[jIndex]>40);
+    bool prunedJetCuts=(CA8jetPt[jIndex]>80)/*&&(CA8jetPrunedM[jIndex]>40)*/;
+    bool Tau21Cut=((CA8jetTau2[jIndex]/CA8jetTau1[jIndex])<0.5);
 
 
     alljets.SetPtEtaPhiM(CA8jetPt[jIndex],
@@ -142,19 +143,21 @@ Bool_t PassJet(TreeReader &data, Int_t &accepted){
 			 CA8jetPhi[jIndex],
 			 CA8jetM[jIndex]);
 
+    if(!basicCuts) continue;
+    if(!IDcut) continue;
+    if(!prunedJetCuts) continue;
+    if(mode==2 && !Tau21Cut) continue;
 
-    if(ee==true){
+
+    if(El==true){
 
       for(Int_t i=0; i<nSortEle; i++){
 
+	Int_t eIndex=sortElePt[i].index;
 
-	if(eleID[sortEleIndex[i]]){
+	if(eleID[eIndex]>0){
 	 
-	  lep.SetPtEtaPhiM(elePt[sortEleIndex[i]],
-			   eleEta[sortEleIndex[i]],
-			   elePhi[sortEleIndex[i]],
-			   eleM[sortEleIndex[i]]);
-	  
+	  lep.SetPtEtaPhiM(elePt[eIndex],eleEta[eIndex],elePhi[eIndex],eleM[eIndex]);
 	  dRjl=alljets.DeltaR(lep);
 	  
 	  if(dRjl<1.0 && dRjl!=-999){
@@ -164,22 +167,18 @@ Bool_t PassJet(TreeReader &data, Int_t &accepted){
 
 	} // eleID
       } // loop ele
-    } // ee
+    } // El
 
 
-
-    if(mm==true){
+    if(Mu==true){
 
       for(Int_t i=0; i<nSortMu; i++){
 
+	Int_t muIndex=sortMuPt[i].index;
 
-        if(muID[sortMuIndex[i]]){
+        if(muID[muIndex]>0){
 
-          lep.SetPtEtaPhiM(muPt[sortMuIndex[i]],
-                           muEta[sortMuIndex[i]],
-                           muPhi[sortMuIndex[i]],
-                           muM[sortMuIndex[i]]);
-
+          lep.SetPtEtaPhiM(muPt[muIndex],muEta[muIndex],muPhi[muIndex],muM[muIndex]);
           dRjl=alljets.DeltaR(lep);
 
           if(dRjl<1.0 && dRjl!=-999){
@@ -189,26 +188,44 @@ Bool_t PassJet(TreeReader &data, Int_t &accepted){
 
 	} // muID                                                                       
       } // loop muon                                                                             
-    } // mm                               
+    } // Mu                               
+
+    if(overlap) continue;
 
 
+    
+    // b-tagging CSVL cut
+    TLorentzVector subjet1(0,0,0,0);
+    TLorentzVector subjet2(0,0,0,0);
+    Float_t dRjj=-999;
+    bool subjetbtag=false;
+    bool fatjetCSV=(CA8jetCSV[jIndex]>0.244);
+
+    if(nSubjet[jIndex]==2){
+
+      subjet1.SetPtEtaPhiM(SubjetPt[jIndex][0],SubjetEta[jIndex][0],SubjetPhi[jIndex][0],SubjetM[jIndex][0]);
+      subjet2.SetPtEtaPhiM(SubjetPt[jIndex][1],SubjetEta[jIndex][1],SubjetPhi[jIndex][1],SubjetM[jIndex][1]);
+      dRjj=subjet1.DeltaR(subjet2);
+
+      if(SubjetCSV[jIndex][0]>0.244 && SubjetCSV[jIndex][1]>0.244) subjetbtag=true;
+
+    }
 
 
-    //if(overlap==true) continue;
-    //if(!basicCuts) continue;
-    //if(!IDcut) continue;
-    //if(!prunedJetCuts) continue;
-
+    if(mode==1 && dRjj<0.3 && !fatjetCSV) continue;
+    if(mode==1 && dRjj>0.3 && subjetbtag==false) continue;
+    
+    
 
     goodJetIndex.push_back(jIndex);    
     
     
 
-  } // overlap
-  */
+  } // loop jets
+ 
 
-  if(sortJetIndex.size()>0 /*&& (CA8jetTau2[goodJetIndex[0]]/CA8jetTau1[goodJetIndex[0]])<0.5*/){
-    accepted=sortJetIndex[0];
+  if(goodJetIndex.size()>0){
+    accepted=goodJetIndex[0];
     return true;
   }
   
@@ -219,3 +236,4 @@ Bool_t PassJet(TreeReader &data, Int_t &accepted){
 
 
 } // function brace
+

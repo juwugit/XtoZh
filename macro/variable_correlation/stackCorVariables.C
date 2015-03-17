@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <TPad.h>
 #include <TH1D.h>
+#include <TF1.h>
 #include <TH1F.h>
 #include <TH2F.h>
 #include <TSystem.h>
@@ -35,12 +36,12 @@ void stackCorVariables(std::string inputFile1, std::string inputFile2, std::stri
   TFile *data = TFile::Open(inputFile1.data());
   TFile *MC = TFile::Open(inputFile2.data());
 
-  gStyle->SetOptStat(0);
+  //gStyle->SetOptStat(0);
 
 
 
 
-  TCanvas* c1 = new TCanvas("c1", "", 0, 0, 800, 1800);
+  TCanvas* c1 = new TCanvas("c1", "", 0, 0, 800, 2000);
 
   c1->Divide(2,4);
 
@@ -141,47 +142,13 @@ void stackCorVariables(std::string inputFile1, std::string inputFile2, std::stri
   //--------------------------------------------------------------------
 
 
-  TCanvas* c2 = new TCanvas("c2", "", 0, 0, 800, 800);
 
-  c2->Divide(2,2);
+
+  TCanvas* c2 = new TCanvas("c2", "", 0, 0, 800, 2000);
+
+  c2->Divide(2,4);
 
   c2->cd(1);
-
-  TH1F* tau21_MC_sig = (TH1F*)MC->Get("tau21_sig");
-  TH1F* tau21_MC_sb = (TH1F*)MC->Get("tau21_sb");
-
-  tau21_MC_sig->Scale(1/(tau21_MC_sig->Integral()));
-  tau21_MC_sb->Scale(1/(tau21_MC_sb->Integral()));
-
-  tau21_MC_sig->SetTitle("MC tau21: signal(red) vs sideband");
-  tau21_MC_sig->GetXaxis()->SetTitle("tau21");
-  tau21_MC_sig->SetFillColor(2);
-  tau21_MC_sig->SetLineColor(2);
-  tau21_MC_sig->SetFillStyle(3004);
-
-  tau21_MC_sig->Draw("histe");
-  tau21_MC_sb->Draw("histesame");
-
-
-  c2->cd(2);
-
-  TH1F* tau21_data_sig = (TH1F*)data->Get("tau21_sig");
-  TH1F* tau21_data_sb = (TH1F*)data->Get("tau21_sb");
-
-  tau21_data_sig->Scale(1/(tau21_data_sig->Integral()));
-  tau21_data_sb->Scale(1/(tau21_data_sb->Integral()));
-
-  tau21_data_sig->SetTitle("DATA tau21: signal(red) vs sideband");
-  tau21_data_sig->GetXaxis()->SetTitle("tau21");
-  tau21_data_sig->SetFillColor(2);
-  tau21_data_sig->SetLineColor(2);
-  tau21_data_sig->SetFillStyle(3004);
-
-  tau21_data_sig->Draw("histe");
-  tau21_data_sb->Draw("histesame");
-
-
-  c2->cd(3);
 
   TH1F* CSV_MC_sig = (TH1F*)MC->Get("CSV_sig");
   TH1F* CSV_MC_sb = (TH1F*)MC->Get("CSV_sb");
@@ -189,18 +156,18 @@ void stackCorVariables(std::string inputFile1, std::string inputFile2, std::stri
   CSV_MC_sig->Scale(1/(CSV_MC_sig->Integral()));
   CSV_MC_sb->Scale(1/(CSV_MC_sb->Integral()));
 
-  CSV_MC_sig->SetTitle("MC CSV: signal(red) vs sideband");
+  CSV_MC_sig->SetTitle("MC fatjet CSV: signal(red) vs sideband");
   CSV_MC_sig->GetXaxis()->SetTitle("CSV");
   CSV_MC_sig->SetFillColor(2);
   CSV_MC_sig->SetLineColor(2);
   CSV_MC_sig->SetFillStyle(3004);
 
-  CSV_MC_sig->Draw("histe");
-  CSV_MC_sb->Draw("histesame");
+  CSV_MC_sb->Draw("histe");
+  CSV_MC_sig->Draw("histesame");
 
 
 
-  c2->cd(4);
+  c2->cd(2);
 
   TH1F* CSV_data_sig = (TH1F*)data->Get("CSV_sig");
   TH1F* CSV_data_sb = (TH1F*)data->Get("CSV_sb");
@@ -208,7 +175,7 @@ void stackCorVariables(std::string inputFile1, std::string inputFile2, std::stri
   CSV_data_sig->Scale(1/(CSV_data_sig->Integral()));
   CSV_data_sb->Scale(1/(CSV_data_sb->Integral()));
 
-  CSV_data_sig->SetTitle("DATA CSV: signal(red) vs sideband");
+  CSV_data_sig->SetTitle("DATA fatjet CSV: signal(red) vs sideband");
   CSV_data_sig->GetXaxis()->SetTitle("CSV");
   CSV_data_sig->SetFillColor(2);
   CSV_data_sig->SetLineColor(2);
@@ -216,6 +183,89 @@ void stackCorVariables(std::string inputFile1, std::string inputFile2, std::stri
 
   CSV_data_sig->Draw("histe");
   CSV_data_sb->Draw("histesame");
+
+
+  c2->cd(3);
+
+  TH1F* alpha_MC = (TH1F*)MC->Get("alpha");
+  
+  alpha_MC->SetTitle("MC alpha ratio: fatjet");
+  alpha_MC->GetXaxis()->SetTitle("CSV");
+  
+  alpha_MC->Draw();
+
+
+
+  c2->cd(4);
+
+  TH1F* alpha_data = (TH1F*)data->Get("alpha");
+  
+  alpha_data->SetTitle("DATA alpha ratio: fatjet");
+  alpha_data->GetXaxis()->SetTitle("CSV");
+  
+  alpha_data->Draw();
+
+
+
+
+  c2->cd(5);
+
+  TH1F* CSV_MC_sig_sub = (TH1F*)MC->Get("CSV_sig_sub");
+  TH1F* CSV_MC_sb_sub = (TH1F*)MC->Get("CSV_sb_sub");
+
+  CSV_MC_sig_sub->Scale(1/(CSV_MC_sig_sub->Integral()));
+  CSV_MC_sb_sub->Scale(1/(CSV_MC_sb_sub->Integral()));
+
+  CSV_MC_sig_sub->SetTitle("MC subjet CSV: signal(red) vs sideband");
+  CSV_MC_sig_sub->GetXaxis()->SetTitle("CSV");
+  CSV_MC_sig_sub->SetFillColor(2);
+  CSV_MC_sig_sub->SetLineColor(2);
+  CSV_MC_sig_sub->SetFillStyle(3004);
+
+  CSV_MC_sb_sub->Draw("histe");
+  CSV_MC_sig_sub->Draw("histesame");
+
+
+
+  c2->cd(6);
+
+  TH1F* CSV_data_sig_sub = (TH1F*)data->Get("CSV_sig_sub");
+  TH1F* CSV_data_sb_sub = (TH1F*)data->Get("CSV_sb_sub");
+
+  CSV_data_sig_sub->Scale(1/(CSV_data_sig_sub->Integral()));
+  CSV_data_sb_sub->Scale(1/(CSV_data_sb_sub->Integral()));
+
+  CSV_data_sig_sub->SetTitle("DATA subjet CSV: signal(red) vs sideband");
+  CSV_data_sig_sub->GetXaxis()->SetTitle("CSV");
+  CSV_data_sig_sub->SetFillColor(2);
+  CSV_data_sig_sub->SetLineColor(2);
+  CSV_data_sig_sub->SetFillStyle(3004);
+
+  CSV_data_sb_sub->Draw("histe");
+  CSV_data_sig_sub->Draw("histesame");
+
+
+
+  c2->cd(7);
+
+  TH1F* alpha_MC_sub = (TH1F*)MC->Get("alpha_sub");
+  
+  alpha_MC_sub->SetTitle("MC alpha ratio: subjet");
+  alpha_MC_sub->GetXaxis()->SetTitle("CSV");
+  
+  alpha_MC_sub->Draw();
+
+
+
+  c2->cd(8);
+
+  TH1F* alpha_data_sub = (TH1F*)data->Get("alpha_sub");
+  
+  alpha_data_sub->SetTitle("DATA alpha ratio: subjet");
+  alpha_data_sub->GetXaxis()->SetTitle("CSV");
+  
+  alpha_data_sub->Draw();
+
 
 
 
