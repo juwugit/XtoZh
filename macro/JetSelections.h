@@ -1,6 +1,6 @@
 /*
 
-v5: vector sorting version
+v6: vector sorting version
 
 This macro does following selections:
 
@@ -12,7 +12,7 @@ This macro does following selections:
 
 4. remove overlap between jet and leptons if deltaR<1.0
    jetPt>30 , fabs(Eta)<2.4
-   PrunedJetMass>40 , PrunedJetPt>80
+   PrunedJetMass>40 , PrunedJetPt>200
    jetID>0 
 
 5. return leading jet index
@@ -134,7 +134,7 @@ Bool_t PassJet(int mode, TreeReader &data, Int_t &accepted){
     bool overlap=false;
     bool basicCuts=(CA8jetPt[jIndex]>30)&&(fabs(CA8jetEta[jIndex])<2.4);
     bool IDcut=(CA8jetID[jIndex]>0);
-    bool prunedJetCuts=(CA8jetPt[jIndex]>80)/*&&(CA8jetPrunedM[jIndex]>40)*/;
+    bool prunedJetCuts=(CA8jetPt[jIndex]>200)/*&&(CA8jetPrunedM[jIndex]>40)*/;
     bool Tau21Cut=((CA8jetTau2[jIndex]/CA8jetTau1[jIndex])<0.5);
 
 
