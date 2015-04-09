@@ -42,23 +42,23 @@ void bkd_estimate_TH2(std::string inputFile1, std::string inputFile2, std::strin
   h_data_Nbkg->Reset();
   h_data_Nbkg->SetTitle("number of estimated background in data signal region");
 
-
+  
   // get value of alpha ratio each bin
   Int_t nbinsx = h_alpha->GetNbinsX();
   Int_t nbinsy = h_alpha->GetNbinsY();
   Double_t alpha_center[nbinsx][nbinsy];
-  Double_t alpha_error[nbinsx][nbinsy];
-
-
-  for(Int_t i=1; i<=nbinsx; i++){
-    for(Int_t j=1; j<=nbinsy; j++){
-    
-      alpha_center[i][j] = h_alpha->GetBinContent(i,j);
-      alpha_error[i][j] = h_alpha->GetBinError(i,j);
+  Double_t alpha_error[nbinsx][nbinsy];  
   
+  
+  for(Int_t i=0; i<nbinsx; i++){
+    for(Int_t j=0; j<nbinsy; j++){
+      
+      alpha_center[i][j] = h_alpha->GetBinContent(i+1,j+1);
+      alpha_error[i][j] = h_alpha->GetBinError(i+1,j+1);
+      
     }
   }
-
+  
 
     
   // calculate estimated background number in data signal region
@@ -66,41 +66,41 @@ void bkd_estimate_TH2(std::string inputFile1, std::string inputFile2, std::strin
   Double_t data_error[nbinsx][nbinsy];
   Double_t data_Nbkg[nbinsx][nbinsy];
   Double_t data_NbkgError[nbinsx][nbinsy];
+ 
 
+  for(Int_t i=0; i<nbinsx; i++){
+    for(Int_t j=0; j<nbinsy; j++){
 
-  for(Int_t i=1; i<=nbinsx; i++){
-    for(Int_t j=1; j<=nbinsy; j++){
-
-      data_content[i][j] = h_sbdata->GetBinContent(i,j);
-      data_error[i][j] = h_sbdata->GetBinError(i,j);
-    data_Nbkg[i][j] = data_content[i][j] * alpha_center[i][j];
-
-    h_data_Nbkg->SetBinContent(i,j,data_Nbkg[i][j]);    
-    data_NbkgError[i][j]=0;
-    
-
-    if(alpha_center[i][j]==0 || data_content[i][j]==0) continue;
-    
-    data_NbkgError[i][j] = (data_Nbkg[i][j])*sqrt(pow(alpha_error[i][j]/alpha_center[i][j],2)+pow(data_error[i][j]/data_content[i][j],2));
-    h_data_Nbkg->SetBinError(i,j,data_NbkgError[i][j]);
-    
-    
-
-    //cout<<"bin:"<<i<<" | alpha:"<<alpha_center[i]<<" | number of data:"<<data_content[i]<<" | number of etimated bkg:"<<data_Nbkg[i]<<" | error:"<<data_NbkgError[i]<<endl;
-    
-
+      data_content[i][j] = h_sbdata->GetBinContent(i+1,j+1);
+      data_error[i][j] = h_sbdata->GetBinError(i+1,j+1);
+      data_Nbkg[i][j] = data_content[i][j] * alpha_center[i][j];
+      
+      h_data_Nbkg->SetBinContent(i+1,j+1,data_Nbkg[i][j]);    
+      data_NbkgError[i][j]=0;
+      
+      
+      if(alpha_center[i][j]==0 || data_content[i][j]==0) continue;
+      
+      data_NbkgError[i][j] = (data_Nbkg[i][j])*sqrt(pow(alpha_error[i][j]/alpha_center[i][j],2)+pow(data_error[i][j]/data_content[i][j],2));
+      h_data_Nbkg->SetBinError(i+1,j+1,data_NbkgError[i][j]);
+      
+      
+      
+      cout<<"binX:"<<i+1<<" |binY:"<<j+1<<" |alpha:"<<alpha_center[i][j]<<" |number of data:"<<data_content[i][j]<<" |number of etimated bkg:"<<data_Nbkg[i][j]<<" |error:"<<data_NbkgError[i][j]<<endl;
+      
+      
     } //j
   } //i
   
   
 
-  TFile *test = new TFile(inputFile1.data(), "update");
-  test->cd();
+  TFile *temp = new TFile(inputFile1.data(), "update");
+  temp->cd();
 
-  TH1F* h_NbkgSubCSV = (TH1F*)h_data_Nbkg->Clone("h_NbkgSubCSV");
+  TH1F* h_NbkgXMsCSV = (TH1F*)h_data_Nbkg->Clone("h_NbkgXMsCSV");
   
-  h_NbkgSubCSV->Write();
-  test->Close();
+  h_NbkgXMsCSV->Write();
+  temp->Close();
 
 
 }
