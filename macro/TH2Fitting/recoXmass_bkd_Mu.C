@@ -129,8 +129,8 @@ void recoXmass_bkd_Mu(){
 
 
     // reco XMass
-    PassJet(1, data1, leadjet);
-    if(!PassJet(1, data1, leadjet)) continue;
+    PassJet(3, data1, leadjet);
+    if(!PassJet(3, data1, leadjet)) continue;
 
     TLorentzVector recoH(0,0,0,0);
     TLorentzVector recoX(0,0,0,0);
@@ -275,8 +275,8 @@ void recoXmass_bkd_Mu(){
 
       
     // reco XMass
-    PassJet(1, data2, leadjet);
-    if(!PassJet(1, data2, leadjet)) continue;
+    PassJet(3, data2, leadjet);
+    if(!PassJet(3, data2, leadjet)) continue;
 
     TLorentzVector recoH(0,0,0,0);
     TLorentzVector recoX(0,0,0,0);

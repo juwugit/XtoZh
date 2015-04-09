@@ -145,8 +145,8 @@ void recoXmass_Mu(std::string inputFile, std::string outputFile){
 
 
     // reco XMass
-    PassJet(1, data, leadjet);
-    if(!PassJet(1, data, leadjet)) continue;
+    PassJet(3, data, leadjet);
+    if(!PassJet(3, data, leadjet)) continue;
 
     TLorentzVector recoH(0,0,0,0);
     TLorentzVector recoX(0,0,0,0);
