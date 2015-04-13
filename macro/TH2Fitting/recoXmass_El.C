@@ -11,10 +11,10 @@
 #include <TRandom.h>
 #include <TLorentzVector.h>
 #include <TFile.h>
-#include "/home/juwu/XtoZh/macro/untuplizer.h"
-#include "/home/juwu/XtoZh/macro/passElectronID.h"
-#include "/home/juwu/XtoZh/macro/passMuonID.h"
-#include "/home/juwu/XtoZh/macro/JetSelections.h"
+#include "../macro/untuplizer.h"
+#include "../macro/passElectronID.h"
+#include "../macro/passMuonID.h"
+#include "../macro/JetSelections.h"
 
 
 using namespace std;
@@ -166,7 +166,7 @@ void recoXmass_El(std::string inputFile, std::string outputFile){
       
     }
 
-    if(XMass<0) continue;
+    //if(XMass<0) continue;
 
 
 
@@ -188,6 +188,8 @@ void recoXmass_El(std::string inputFile, std::string outputFile){
 
       }
 
+      if(dRjj==-999) continue;
+
 
       // sideband region
       if(CA8jetPrunedM[leadjet]>70 && CA8jetPrunedM[leadjet]<110){
@@ -200,6 +202,10 @@ void recoXmass_El(std::string inputFile, std::string outputFile){
 	  h_sbXMsCSV->Fill(XMass, SubjetCSV[i][0]); //TH2
 	  h_sbXMsCSV->Fill(XMass, SubjetCSV[i][1]); //TH2
 
+	  cout<<"Nsubjet:"<<nSubjet[i]<<endl;
+	  cout<<"subjetCSV[0]:"<<SubjetCSV[i][0]<<endl;
+	  cout<<"subjetCSV[1]:"<<SubjetCSV[i][1]<<endl;
+	  
 	} // subjet
 
 	if(dRjj<0.3){
@@ -222,6 +228,8 @@ void recoXmass_El(std::string inputFile, std::string outputFile){
 	  h_sigXMsCSV->Fill(XMass, SubjetCSV[i][0]); //TH2
 	  h_sigXMsCSV->Fill(XMass, SubjetCSV[i][1]); //TH2
 
+
+
 	} // subjet
 
 	if(dRjj<0.3){
@@ -236,6 +244,8 @@ void recoXmass_El(std::string inputFile, std::string outputFile){
     } // jet loop                                                                    
 
 
+
+    cout<<"end of entries"<<endl;
   } //entries 
   
   
