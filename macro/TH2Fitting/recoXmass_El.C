@@ -75,7 +75,7 @@ void recoXmass_El(std::string inputFile, std::string outputFile){
     Float_t* CA8jetPt    = data.GetPtrFloat("CA8jetPt");
     Float_t* CA8jetEta   = data.GetPtrFloat("CA8jetEta");
     Float_t* CA8jetPhi   = data.GetPtrFloat("CA8jetPhi");
-    Float_t* CA8jetM     = data.GetPtrFloat("CA8jetMass");
+    Float_t* CA8jetEn     = data.GetPtrFloat("CA8jetEn");
     Float_t* CA8jetPrunedM = data.GetPtrFloat("CA8jetPrunedMass");
     Float_t* CA8jetCSV   = data.GetPtrFloat("CA8jetCSV");
 
@@ -84,7 +84,7 @@ void recoXmass_El(std::string inputFile, std::string outputFile){
     vector<Float_t>* SubjetPt  = data.GetPtrVectorFloat("CA8subjetPrunedPt");
     vector<Float_t>* SubjetEta = data.GetPtrVectorFloat("CA8subjetPrunedEta");
     vector<Float_t>* SubjetPhi = data.GetPtrVectorFloat("CA8subjetPrunedPhi");
-    vector<Float_t>* SubjetM   = data.GetPtrVectorFloat("CA8subjetPrunedMass");
+    vector<Float_t>* SubjetEn   = data.GetPtrVectorFloat("CA8subjetPrunedEn");
 
     Int_t    nEle        = data.GetInt("nEle");
     Float_t* elePt       = data.GetPtrFloat("elePt");
@@ -155,7 +155,7 @@ void recoXmass_El(std::string inputFile, std::string outputFile){
 
     if(CA8nJet>0 && leadjet>=0){
       
-      recoH.SetPtEtaPhiM(CA8jetPt[leadjet],CA8jetEta[leadjet],CA8jetPhi[leadjet],CA8jetM[leadjet]);
+      recoH.SetPtEtaPhiE(CA8jetPt[leadjet],CA8jetEta[leadjet],CA8jetPhi[leadjet],CA8jetEn[leadjet]);
       recoX = recoZ+recoH;
       
       XMass=recoX.M();
@@ -166,8 +166,6 @@ void recoXmass_El(std::string inputFile, std::string outputFile){
       
     }
 
-    //if(XMass<0) continue;
-
 
 
     // reco CSV
@@ -175,15 +173,13 @@ void recoXmass_El(std::string inputFile, std::string outputFile){
     TLorentzVector subjet2(0,0,0,0);
     Float_t dRjj=-999;
 
-
     for(int i=0; i<CA8nJet; i++){
-
 
       //check subjet deltaR
       if(nSubjet[i]>=2){
 
-	subjet1.SetPtEtaPhiM(SubjetPt[i][0],SubjetEta[i][0],SubjetPhi[i][0],SubjetM[i][0]);
-	subjet2.SetPtEtaPhiM(SubjetPt[i][1],SubjetEta[i][1],SubjetPhi[i][1],SubjetM[i][1]);
+	subjet1.SetPtEtaPhiE(SubjetPt[i][0],SubjetEta[i][0],SubjetPhi[i][0],SubjetEn[i][0]);
+	subjet2.SetPtEtaPhiE(SubjetPt[i][1],SubjetEta[i][1],SubjetPhi[i][1],SubjetEn[i][1]);
 	dRjj=subjet1.DeltaR(subjet2);
 
       }
@@ -196,15 +192,11 @@ void recoXmass_El(std::string inputFile, std::string outputFile){
 
 	if(dRjj>0.3){
 
-          h_sbSubCSV->Fill(SubjetCSV[i][0]);
-	  h_sbSubCSV->Fill(SubjetCSV[i][1]);
+	  if(SubjetCSV[i][0]>0) h_sbSubCSV->Fill(SubjetCSV[i][0]);
+	  if(SubjetCSV[i][1]>0) h_sbSubCSV->Fill(SubjetCSV[i][1]);
+	  if(SubjetCSV[i][0]>0) h_sbXMsCSV->Fill(XMass, SubjetCSV[i][0]); //TH2
+	  if(SubjetCSV[i][1]>0) h_sbXMsCSV->Fill(XMass, SubjetCSV[i][1]); //TH2
 
-	  h_sbXMsCSV->Fill(XMass, SubjetCSV[i][0]); //TH2
-	  h_sbXMsCSV->Fill(XMass, SubjetCSV[i][1]); //TH2
-
-	  cout<<"Nsubjet:"<<nSubjet[i]<<endl;
-	  cout<<"subjetCSV[0]:"<<SubjetCSV[i][0]<<endl;
-	  cout<<"subjetCSV[1]:"<<SubjetCSV[i][1]<<endl;
 	  
 	} // subjet
 
@@ -222,11 +214,10 @@ void recoXmass_El(std::string inputFile, std::string outputFile){
 
         if(dRjj>0.3){
 
-          h_sigSubCSV->Fill(SubjetCSV[i][0]);
-          h_sigSubCSV->Fill(SubjetCSV[i][1]);
-
-	  h_sigXMsCSV->Fill(XMass, SubjetCSV[i][0]); //TH2
-	  h_sigXMsCSV->Fill(XMass, SubjetCSV[i][1]); //TH2
+	  if(SubjetCSV[i][0]>0) h_sigSubCSV->Fill(SubjetCSV[i][0]);
+	  if(SubjetCSV[i][1]>0) h_sigSubCSV->Fill(SubjetCSV[i][1]);
+	  if(SubjetCSV[i][0]>0) h_sigXMsCSV->Fill(XMass, SubjetCSV[i][0]); //TH2
+	  if(SubjetCSV[i][1]>0) h_sigXMsCSV->Fill(XMass, SubjetCSV[i][1]); //TH2
 
 
 
@@ -242,10 +233,6 @@ void recoXmass_El(std::string inputFile, std::string outputFile){
       
 
     } // jet loop                                                                    
-
-
-
-    cout<<"end of entries"<<endl;
   } //entries 
   
   

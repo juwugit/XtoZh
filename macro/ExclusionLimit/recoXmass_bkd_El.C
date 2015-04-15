@@ -69,7 +69,7 @@ void recoXmass_bkd_El(){
     Float_t* CA8jetPt    = data1.GetPtrFloat("CA8jetPt");
     Float_t* CA8jetEta   = data1.GetPtrFloat("CA8jetEta");
     Float_t* CA8jetPhi   = data1.GetPtrFloat("CA8jetPhi");
-    Float_t* CA8jetM     = data1.GetPtrFloat("CA8jetMass");
+    Float_t* CA8jetEn    = data1.GetPtrFloat("CA8jetEn");
     Float_t* CA8jetPrunedM = data1.GetPtrFloat("CA8jetPrunedMass");
     Float_t* CA8jetCSV   = data1.GetPtrFloat("CA8jetCSV");
 
@@ -78,7 +78,7 @@ void recoXmass_bkd_El(){
     vector<Float_t>* SubjetPt  = data1.GetPtrVectorFloat("CA8subjetPrunedPt");
     vector<Float_t>* SubjetEta = data1.GetPtrVectorFloat("CA8subjetPrunedEta");
     vector<Float_t>* SubjetPhi = data1.GetPtrVectorFloat("CA8subjetPrunedPhi");
-    vector<Float_t>* SubjetM   = data1.GetPtrVectorFloat("CA8subjetPrunedMass");
+    vector<Float_t>* SubjetEn  = data1.GetPtrVectorFloat("CA8subjetPrunedEn");
 
     Int_t    nEle        = data1.GetInt("nEle");
     Float_t* elePt       = data1.GetPtrFloat("elePt");
@@ -113,10 +113,30 @@ void recoXmass_bkd_El(){
 
 
 
-    // reco CSV
+    // reco XMass
     PassJet(3, data1, leadjet);
     if(!PassJet(3, data1, leadjet)) continue;
+
+    TLorentzVector recoH(0,0,0,0);
+    TLorentzVector recoX(0,0,0,0);
     
+    if(CA8nJet>0 && leadjet>=0){
+      
+      recoH.SetPtEtaPhiE(CA8jetPt[leadjet],CA8jetEta[leadjet],CA8jetPhi[leadjet],CA8jetEn[leadjet]);
+      recoX = recoZ+recoH;
+      
+      Float_t XMass=recoX.M();
+      Float_t prunedmass=CA8jetPrunedM[leadjet];
+      
+      if(prunedmass>70 && prunedmass<110) h_sbXMass->Fill(XMass, scale1);
+      if(prunedmass>110 && prunedmass<140) h_sigXMass->Fill(XMass, scale1);
+      
+    }
+
+
+
+
+    // reco CSV
     TLorentzVector subjet1(0,0,0,0);
     TLorentzVector subjet2(0,0,0,0);
     Float_t dRjj=-999;
@@ -128,8 +148,8 @@ void recoXmass_bkd_El(){
       //check subjet deltaR
       if(nSubjet[i]>=2){
 
-	subjet1.SetPtEtaPhiM(SubjetPt[i][0],SubjetEta[i][0],SubjetPhi[i][0],SubjetM[i][0]);
-	subjet2.SetPtEtaPhiM(SubjetPt[i][1],SubjetEta[i][1],SubjetPhi[i][1],SubjetM[i][1]);
+	subjet1.SetPtEtaPhiE(SubjetPt[i][0],SubjetEta[i][0],SubjetPhi[i][0],SubjetEn[i][0]);
+	subjet2.SetPtEtaPhiE(SubjetPt[i][1],SubjetEta[i][1],SubjetPhi[i][1],SubjetEn[i][1]);
 	dRjj=subjet1.DeltaR(subjet2);
 
       }
@@ -140,8 +160,8 @@ void recoXmass_bkd_El(){
 
 	if(dRjj>0.3){
 
-          h_sbSubCSV->Fill(SubjetCSV[i][0], scale1);
-	  h_sbSubCSV->Fill(SubjetCSV[i][1], scale1);
+          if(SubjetCSV[i][0]>0) h_sbSubCSV->Fill(SubjetCSV[i][0], scale1);
+	  if(SubjetCSV[i][1]>0) h_sbSubCSV->Fill(SubjetCSV[i][1], scale1);
 
 	}
 
@@ -154,8 +174,8 @@ void recoXmass_bkd_El(){
 
         if(dRjj>0.3){
 
-          h_sigSubCSV->Fill(SubjetCSV[i][0], scale1);
-          h_sigSubCSV->Fill(SubjetCSV[i][1], scale1);
+	  if(SubjetCSV[i][0]>0) h_sigSubCSV->Fill(SubjetCSV[i][0], scale1);
+	  if(SubjetCSV[i][1]>0) h_sigSubCSV->Fill(SubjetCSV[i][1], scale1);
 
 	}
 
@@ -164,30 +184,6 @@ void recoXmass_bkd_El(){
       }
       
     } // jet loop                                                                    
-
-
-
-
-    // reco XMass
-    PassJet(1, data1, leadjet);
-    if(!PassJet(1, data1, leadjet)) continue;
-
-    TLorentzVector recoH(0,0,0,0);
-    TLorentzVector recoX(0,0,0,0);
-    
-    if(CA8nJet>0 && leadjet>=0){
-      
-      recoH.SetPtEtaPhiM(CA8jetPt[leadjet],CA8jetEta[leadjet],CA8jetPhi[leadjet],CA8jetM[leadjet]);
-      recoX = recoZ+recoH;
-      
-      Float_t XMass=recoX.M();
-      Float_t prunedmass=CA8jetPrunedM[leadjet];
-      
-      if(prunedmass>70 && prunedmass<110) h_sbXMass->Fill(XMass, scale1);
-      if(prunedmass>110 && prunedmass<140) h_sigXMass->Fill(XMass, scale1);
-      
-    }
-    
 
   } //entries data1
   
@@ -203,7 +199,7 @@ void recoXmass_bkd_El(){
     Float_t* CA8jetPt    = data2.GetPtrFloat("CA8jetPt");
     Float_t* CA8jetEta   = data2.GetPtrFloat("CA8jetEta");
     Float_t* CA8jetPhi   = data2.GetPtrFloat("CA8jetPhi");
-    Float_t* CA8jetM     = data2.GetPtrFloat("CA8jetMass");
+    Float_t* CA8jetEn    = data2.GetPtrFloat("CA8jetEn");
     Float_t* CA8jetPrunedM = data2.GetPtrFloat("CA8jetPrunedMass");
     Float_t* CA8jetCSV   = data2.GetPtrFloat("CA8jetCSV");
 
@@ -212,7 +208,7 @@ void recoXmass_bkd_El(){
     vector<Float_t>* SubjetPt  = data2.GetPtrVectorFloat("CA8subjetPrunedPt");
     vector<Float_t>* SubjetEta = data2.GetPtrVectorFloat("CA8subjetPrunedEta");
     vector<Float_t>* SubjetPhi = data2.GetPtrVectorFloat("CA8subjetPrunedPhi");
-    vector<Float_t>* SubjetM   = data2.GetPtrVectorFloat("CA8subjetPrunedMass");
+    vector<Float_t>* SubjetEn  = data2.GetPtrVectorFloat("CA8subjetPrunedEn");
 
     Int_t    nEle        = data2.GetInt("nEle");
     Float_t* elePt       = data2.GetPtrFloat("elePt");
@@ -243,14 +239,34 @@ void recoXmass_bkd_El(){
     
     if(ZMass<70 || ZMass>110) continue;
     if(ZPt<80) continue;
+
+
+
+
+    // reco XMass
+    PassJet(3, data2, leadjet);
+    if(!PassJet(3, data2, leadjet)) continue;
+
+    TLorentzVector recoH(0,0,0,0);
+    TLorentzVector recoX(0,0,0,0);
+    
+    if(CA8nJet>0 && leadjet>=0){
+      
+      recoH.SetPtEtaPhiE(CA8jetPt[leadjet],CA8jetEta[leadjet],CA8jetPhi[leadjet],CA8jetEn[leadjet]);
+      recoX = recoZ+recoH;
+      
+      Float_t XMass=recoX.M();
+      Float_t prunedmass=CA8jetPrunedM[leadjet];
+      
+      if(prunedmass>70 && prunedmass<110) h_sbXMass->Fill(XMass, scale2);
+      if(prunedmass>110 && prunedmass<140) h_sigXMass->Fill(XMass, scale2);
+      
+    }
       
 
 
 
     // reco CSV
-    PassJet(3, data2, leadjet);
-    if(!PassJet(3, data2, leadjet)) continue;
-    
     TLorentzVector subjet1(0,0,0,0);
     TLorentzVector subjet2(0,0,0,0);
     Float_t dRjj=-999;
@@ -262,8 +278,8 @@ void recoXmass_bkd_El(){
       //check subjet deltaR
       if(nSubjet[i]>=2){
 
-	subjet1.SetPtEtaPhiM(SubjetPt[i][0],SubjetEta[i][0],SubjetPhi[i][0],SubjetM[i][0]);
-	subjet2.SetPtEtaPhiM(SubjetPt[i][1],SubjetEta[i][1],SubjetPhi[i][1],SubjetM[i][1]);
+	subjet1.SetPtEtaPhiE(SubjetPt[i][0],SubjetEta[i][0],SubjetPhi[i][0],SubjetEn[i][0]);
+	subjet2.SetPtEtaPhiE(SubjetPt[i][1],SubjetEta[i][1],SubjetPhi[i][1],SubjetEn[i][1]);
 	dRjj=subjet1.DeltaR(subjet2);
 
       }
@@ -274,8 +290,8 @@ void recoXmass_bkd_El(){
 
 	if(dRjj>0.3){
 
-          h_sbSubCSV->Fill(SubjetCSV[i][0], scale2);
-	  h_sbSubCSV->Fill(SubjetCSV[i][1], scale2);
+	  if(SubjetCSV[i][0]>0) h_sbSubCSV->Fill(SubjetCSV[i][0], scale2);
+	  if(SubjetCSV[i][1]>0) h_sbSubCSV->Fill(SubjetCSV[i][1], scale2);
 
 	}
 
@@ -288,8 +304,8 @@ void recoXmass_bkd_El(){
 
         if(dRjj>0.3){
 
-          h_sigSubCSV->Fill(SubjetCSV[i][0], scale2);
-          h_sigSubCSV->Fill(SubjetCSV[i][1], scale2);
+	  if(SubjetCSV[i][0]>0) h_sigSubCSV->Fill(SubjetCSV[i][0], scale2);
+	  if(SubjetCSV[i][1]>0) h_sigSubCSV->Fill(SubjetCSV[i][1], scale2);          
 
 	}
 
@@ -302,25 +318,6 @@ void recoXmass_bkd_El(){
 
 
 
-    // reco XMass
-    PassJet(1, data2, leadjet);
-    if(!PassJet(1, data2, leadjet)) continue;
-
-    TLorentzVector recoH(0,0,0,0);
-    TLorentzVector recoX(0,0,0,0);
-    
-    if(CA8nJet>0 && leadjet>=0){
-      
-      recoH.SetPtEtaPhiM(CA8jetPt[leadjet],CA8jetEta[leadjet],CA8jetPhi[leadjet],CA8jetM[leadjet]);
-      recoX = recoZ+recoH;
-      
-      Float_t XMass=recoX.M();
-      Float_t prunedmass=CA8jetPrunedM[leadjet];
-      
-      if(prunedmass>70 && prunedmass<110) h_sbXMass->Fill(XMass, scale2);
-      if(prunedmass>110 && prunedmass<140) h_sigXMass->Fill(XMass, scale2);
-      
-    }
     
 
   } //entries data2
