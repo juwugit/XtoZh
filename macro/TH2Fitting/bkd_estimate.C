@@ -47,10 +47,10 @@ void bkd_estimate(std::string inputFile1, std::string inputFile2, std::string hi
   Double_t alpha_center[alpha_nbin];
   Double_t alpha_error[alpha_nbin];
 
-  for(Int_t i=1; i<=alpha_nbin; i++){
+  for(Int_t i=0; i<alpha_nbin; i++){
 
-    alpha_center[i] = h_alpha->GetBinContent(i);
-    alpha_error[i] = h_alpha->GetBinError(i);
+    alpha_center[i] = h_alpha->GetBinContent(i+1);
+    alpha_error[i] = h_alpha->GetBinError(i+1);
 
   }
 
@@ -62,10 +62,10 @@ void bkd_estimate(std::string inputFile1, std::string inputFile2, std::string hi
   Double_t data_NbkgError[alpha_nbin];
 
 
-  for(Int_t i=1; i<=alpha_nbin; i++){
+  for(Int_t i=0; i<alpha_nbin; i++){
 
-    data_content[i] = h_sbdata->GetBinContent(i);
-    data_error[i] = h_sbdata->GetBinError(i);
+    data_content[i] = h_sbdata->GetBinContent(i+1);
+    data_error[i] = h_sbdata->GetBinError(i+1);
     data_Nbkg[i] = data_content[i] * alpha_center[i];
 
     h_data_Nbkg->SetBinContent(i,data_Nbkg[i]);    
@@ -75,24 +75,24 @@ void bkd_estimate(std::string inputFile1, std::string inputFile2, std::string hi
     if(alpha_center[i]==0 || data_content[i]==0) continue;
     
     data_NbkgError[i] = (data_Nbkg[i])*sqrt(pow(alpha_error[i]/alpha_center[i],2)+pow(data_error[i]/data_content[i],2));
-    h_data_Nbkg->SetBinError(i,data_NbkgError[i]);
+    h_data_Nbkg->SetBinError(i+1,data_NbkgError[i]);
     
     
 
-    cout<<"bin:"<<i<<" | alpha:"<<alpha_center[i]<<" | number of data:"<<data_content[i]<<" | number of etimated bkg:"<<data_Nbkg[i]<<" | error:"<<data_NbkgError[i]<<endl;
+    cout<<"bin:"<<i+1<<" | alpha:"<<alpha_center[i]<<" | number of data:"<<data_content[i]<<" | number of etimated bkg:"<<data_Nbkg[i]<<" | error:"<<data_NbkgError[i]<<endl;
     
 
   }
 
   
 
-  TFile *test = new TFile(inputFile1.data(), "update");
-  test->cd();
+  TFile *temp = new TFile(inputFile1.data(), "update");
+  temp->cd();
 
   TH1F* h_NbkgSubCSV = (TH1F*)h_data_Nbkg->Clone("h_NbkgSubCSV");
   
   h_NbkgSubCSV->Write();
-  test->Close();
+  temp->Close();
 
 
 }
