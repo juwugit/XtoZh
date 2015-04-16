@@ -16,8 +16,11 @@
 #include "/home/juwu/XtoZh/macro/passMuonID.h"
 #include "/home/juwu/XtoZh/macro/JetSelections.h"
 
-const float scale1=0.00472913; //DY70To100                                                     
-const float scale2=0.00275936; //DY100     
+// (integrated luminosity) = (number of events)/(cross-section)
+// (data lumi)/(MC lumi) = scale
+
+const float scale1=(19712.225)/(11764538/63.5); //DY70To100                                                     
+const float scale2=(19712.225)/(12511326/39.4); //DY100     
 
 
 using namespace std;
@@ -140,7 +143,7 @@ void recoXmass_bkd_El(){
     
     if(CA8nJet>0 && leadjet>=0){
       
-      recoH.SetPtEtaPhiM(CA8jetPt[leadjet],CA8jetEta[leadjet],CA8jetPhi[leadjet],CA8jetM[leadjet]);
+      recoH.SetPtEtaPhiE(CA8jetPt[leadjet],CA8jetEta[leadjet],CA8jetPhi[leadjet],CA8jetEn[leadjet]);
       recoX = recoZ+recoH;
       
       XMass=recoX.M();
