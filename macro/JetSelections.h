@@ -36,7 +36,7 @@ Bool_t PassJet(int mode, TreeReader &data, Int_t &accepted){
   Float_t* CA8jetPt    = data.GetPtrFloat("CA8jetPt");
   Float_t* CA8jetEta   = data.GetPtrFloat("CA8jetEta");
   Float_t* CA8jetPhi   = data.GetPtrFloat("CA8jetPhi");
-  Float_t* CA8jetM     = data.GetPtrFloat("CA8jetMass");
+  Float_t* CA8jetEn    = data.GetPtrFloat("CA8jetEn");
   Int_t*   CA8jetID    = data.GetPtrInt("CA8jetPassID");
   Float_t* CA8jetTau1  = data.GetPtrFloat("CA8jetTau1");
   Float_t* CA8jetTau2  = data.GetPtrFloat("CA8jetTau2");
@@ -48,7 +48,7 @@ Bool_t PassJet(int mode, TreeReader &data, Int_t &accepted){
   vector<Float_t>* SubjetPt  = data.GetPtrVectorFloat("CA8subjetPrunedPt");
   vector<Float_t>* SubjetEta = data.GetPtrVectorFloat("CA8subjetPrunedEta");
   vector<Float_t>* SubjetPhi = data.GetPtrVectorFloat("CA8subjetPrunedPhi");
-  vector<Float_t>* SubjetM   = data.GetPtrVectorFloat("CA8subjetPrunedMass");
+  vector<Float_t>* SubjetEn  = data.GetPtrVectorFloat("CA8subjetPrunedEn");
 
   Int_t    nEle        = data.GetInt("nEle");
   Float_t* elePt       = data.GetPtrFloat("elePt");
@@ -137,10 +137,10 @@ Bool_t PassJet(int mode, TreeReader &data, Int_t &accepted){
     bool Tau21Cut=((CA8jetTau2[jIndex]/CA8jetTau1[jIndex])<0.5);
 
 
-    alljets.SetPtEtaPhiM(CA8jetPt[jIndex],
+    alljets.SetPtEtaPhiE(CA8jetPt[jIndex],
                          CA8jetEta[jIndex],
 			 CA8jetPhi[jIndex],
-			 CA8jetM[jIndex]);
+			 CA8jetEn[jIndex]);
 
     if(!basicCuts) continue;
     if(!IDcut) continue;
@@ -202,8 +202,8 @@ Bool_t PassJet(int mode, TreeReader &data, Int_t &accepted){
 
     if(nSubjet[jIndex]==2){
 
-      subjet1.SetPtEtaPhiM(SubjetPt[jIndex][0],SubjetEta[jIndex][0],SubjetPhi[jIndex][0],SubjetM[jIndex][0]);
-      subjet2.SetPtEtaPhiM(SubjetPt[jIndex][1],SubjetEta[jIndex][1],SubjetPhi[jIndex][1],SubjetM[jIndex][1]);
+      subjet1.SetPtEtaPhiE(SubjetPt[jIndex][0],SubjetEta[jIndex][0],SubjetPhi[jIndex][0],SubjetEn[jIndex][0]);
+      subjet2.SetPtEtaPhiE(SubjetPt[jIndex][1],SubjetEta[jIndex][1],SubjetPhi[jIndex][1],SubjetEn[jIndex][1]);
       dRjj=subjet1.DeltaR(subjet2);
 
       if(SubjetCSV[jIndex][0]>0.244 && SubjetCSV[jIndex][1]>0.244) subjetbtag=true;
