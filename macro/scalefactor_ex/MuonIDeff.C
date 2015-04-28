@@ -11,7 +11,7 @@
 #include <TLorentzVector.h>
 #include <TFile.h>
 #include "/home/juwu/XtoZh/macro/untuplizer.h"
-#include "Uncor_eff.h"
+//#include "Uncor_eff.h"
 
 
 const float Sf[2][3] = {1.0043, 1.0074, 1.022, 1.0012, 1.0043, 1.014};

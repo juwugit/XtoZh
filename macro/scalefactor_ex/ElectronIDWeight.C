@@ -2,16 +2,15 @@
 
 Input arguments
 
-lepton: 0=Electron, 1=Muon
- scale: 0=return central value of scalefactor
-        1=return central value of scalefactor +1 sigma
+scale: 0=return central value of scalefactor
+       1=return central value of scalefactor +1 sigma
 
 
 ####  THIS IS A TEST VERSION  ####
 ####  TRY THE COMMAND BELOW   ####
 ####  FILL ARGUMENTS YOU WANT ####
 
-$root -l LeptonIDWeight.C++\(pt\,eta\,scale\)
+$root -l ElectronIDWeight.C++\(pt\,eta\,scale\)
 
   
 */
@@ -31,18 +30,18 @@ $root -l LeptonIDWeight.C++\(pt\,eta\,scale\)
 
 using namespace std;
 
-float LeptonIDWeight(/*int lepton,*/ float pt, float eta, int scale=0){
+float ElectronIDWeight(float pt, float eta, int scale=0){
 
 
 
-  float Sf[2][3] = {1.0043, 1.0074, 1.022, 1.0012, 1.0043, 1.014};
-  float sigma[2][3] = {0.0004, 0.0005, 0.001, 0.0004, 0.0004, 0.001};
+  float Sf[4][5] = {1.005, 0.981, 1.0, 0.980, 1.017, 1.004, 0.991, 1.0, 0.992, 1.019, 1.008, 0.994, 1.0, 1.004, 1.005, 1.008, 0.999, 1.0, 1.006, 1.009};
+  float sigma[4][5] = {0.003, 0.003, 0.0, 0.005, 0.006, 0.001, 0.001, 0.0, 0.002, 0.003, 0.001, 0.001, 0.0, 0.002, 0.001, 0.001, 0.001, 0.0, 0.003, 0.002};
 
   // pt and eta section
-  double ptX[]={20,40,100};
+  double ptX[]={20,30,40,50,200};
   const int nPtBins = sizeof(ptX)/sizeof(ptX[0])-1;
 
-  double etaX[]={0,0.8,2.1,2.4};
+  double etaX[]={0,0.8,1.442,1.556,2.0,2.5};
   const int nEtaBins = sizeof(etaX)/sizeof(etaX[0])-1;
 
   TH1F* h_pt  = new TH1F("h_pt","",nPtBins,ptX);
@@ -52,7 +51,7 @@ float LeptonIDWeight(/*int lepton,*/ float pt, float eta, int scale=0){
   // choose scalefactor
   int ptBinIndex = h_pt->FindBin(pt)-1;      
   if(ptBinIndex <0) return 1.0; // remove muonPt < 20 GeV
-  if(ptBinIndex == nPtBins) ptBinIndex -= 1; // overflow bin, use the same scale factor as 40-100 GeV
+  if(ptBinIndex == nPtBins) ptBinIndex -= 1; // overflow bin, use the same scale factor as 50-200 GeV
   
   int etaBinIndex = h_eta->FindBin(fabs(eta))-1;
   if(etaBinIndex<0 || etaBinIndex >= nEtaBins) return 1.0;
