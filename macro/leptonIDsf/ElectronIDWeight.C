@@ -50,10 +50,14 @@ float ElectronIDWeight(float pt, float eta, int scale=0){
 
   // choose scalefactor
   int ptBinIndex = h_pt->FindBin(pt)-1;      
+  h_pt->Clear();
+
   if(ptBinIndex <0) return 1.0; // remove muonPt < 20 GeV
   if(ptBinIndex == nPtBins) ptBinIndex -= 1; // overflow bin, use the same scale factor as 50-200 GeV
   
   int etaBinIndex = h_eta->FindBin(fabs(eta))-1;
+  h_eta->Clear();
+
   if(etaBinIndex<0 || etaBinIndex >= nEtaBins) return 1.0;
   
   

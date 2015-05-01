@@ -14,12 +14,12 @@
 #include "/home/juwu/XtoZh/macro/passElectronID.h"
 #include "/home/juwu/XtoZh/macro/passMuonID.h"
 #include "/home/juwu/XtoZh/macro/JetSelections.h"
-#include "MuonIDWeight.C"
+#include "ElectronIDWeight.C"
 
 
 
 using namespace std;
-void recoXmass_Mu(std::string inputFile, std::string outputFile){
+void recoXmass_El(std::string inputFile, std::string outputFile){
 
 
   // check if the file is data or not
@@ -65,15 +65,15 @@ void recoXmass_Mu(std::string inputFile, std::string outputFile){
     Float_t* CA8jetEn    = data.GetPtrFloat("CA8jetEn");
     Float_t* CA8jetPrunedM = data.GetPtrFloat("CA8jetPrunedMass");
 
-    Int_t    nMu        = data.GetInt("nMu");
-    Float_t* muPt       = data.GetPtrFloat("muPt");
-    Float_t* muEta      = data.GetPtrFloat("muEta");
-    Float_t* muPhi      = data.GetPtrFloat("muPhi");
-    Float_t* muM        = data.GetPtrFloat("muM");   
+    Int_t    nMu        = data.GetInt("nEle");
+    Float_t* muPt       = data.GetPtrFloat("elePt");
+    Float_t* muEta      = data.GetPtrFloat("eleEta");
+    Float_t* muPhi      = data.GetPtrFloat("elePhi");
+    Float_t* muM        = data.GetPtrFloat("eleM");   
 
     Int_t leadjet;    
     Int_t leadMu, secMu;
-    passMuonID(data, &leadMu, &secMu);
+    passElectronID(data, &leadMu, &secMu);
 
 
     // trigger
@@ -86,24 +86,24 @@ void recoXmass_Mu(std::string inputFile, std::string outputFile){
       {
 	std::string thisTrig= trigName[it];
 	int results = trigResult[it];
-	/*
+	
 	if(thisTrig.find("HLT_DoubleEle33")!= std::string::npos && results==1)
 	  {
 	    passTrigger=true;
 	    break;
 	  }
-	*/
 	
+	/*
 	if(thisTrig.find("HLT_Mu22_TkMu8")!= std::string::npos && results==1)
 	  {
 	    passTrigger=true;
 	    break;
 	  }
-	
+	*/
       }
    
     if(isData && !passTrigger)continue;
-    if(!passMuonID(data, &leadMu, &secMu)) continue;
+    if(!passElectronID(data, &leadMu, &secMu)) continue;
     if(nMu<=1) continue;
 
       
@@ -140,8 +140,8 @@ void recoXmass_Mu(std::string inputFile, std::string outputFile){
       Float_t XMass=recoX.M();
       Float_t prunedmass=CA8jetPrunedM[leadjet];
 
-      Float_t weight = MuonIDWeight(muPt[leadMu],muEta[leadMu])*MuonIDWeight(muPt[secMu],muEta[secMu]);
-      Float_t weightPlus = MuonIDWeight(muPt[leadMu],muEta[leadMu],1)*MuonIDWeight(muPt[secMu],muEta[secMu],1);
+      Float_t weight = ElectronIDWeight(muPt[leadMu],muEta[leadMu])*ElectronIDWeight(muPt[secMu],muEta[secMu]);
+      Float_t weightPlus = ElectronIDWeight(muPt[leadMu],muEta[leadMu],1)*ElectronIDWeight(muPt[secMu],muEta[secMu],1);
 
       
       if(prunedmass>70 && prunedmass<110){
