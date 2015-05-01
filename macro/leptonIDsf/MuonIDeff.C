@@ -87,6 +87,7 @@ void MuonIDeff(std::string inputFile){
 
       if(muPt[i]>20) h_muPt->Fill(muPt[i]);
       if(muID[i]<=0) continue;
+      if(muEta[i]>2.4) continue;
 
       int ptBinIndex = h_pt->FindBin(muPt[i])-1;      
       if(ptBinIndex <0) continue; // remove muonPt < 20 GeV

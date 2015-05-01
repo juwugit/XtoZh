@@ -34,14 +34,14 @@ void recoXmass_Mu(std::string inputFile, std::string outputFile){
 
 
   // declare histogram
-  const Float_t varBins[] = {680,720,760,800,840,920,1000,1100,1250,1400,1600,1800,2000,2400};
-  Int_t nvarBins = sizeof(varBins)/sizeof(varBins[0])-1;
+  //const Float_t varBins[] = {680,720,760,800,840,920,1000,1100,1250,1400,1600,1800,2000,2400};
+  //Int_t nvarBins = sizeof(varBins)/sizeof(varBins[0])-1;
 
-  TH1F* h_sigXMass = new TH1F("h_sigXMass","", nvarBins, varBins);
-  TH1F* h_sigXMassPlus = new TH1F("h_sigXMassPlus","", nvarBins, varBins);
+  TH1F* h_sigXMass = new TH1F("h_sigXMass","",100,680,2400);
+  TH1F* h_sigXMassPlus = new TH1F("h_sigXMassPlus","",100,680,2400);
 
-  TH1F* h_sbXMass = new TH1F("h_sbXMass","", nvarBins, varBins);
-  TH1F* h_sbXMassPlus = new TH1F("h_sbXMassPlus","", nvarBins, varBins);
+  TH1F* h_sbXMass = new TH1F("h_sbXMass","",100,680,2400);
+  TH1F* h_sbXMassPlus = new TH1F("h_sbXMassPlus","",100,680,2400);
 
   
   h_sigXMass->Sumw2();

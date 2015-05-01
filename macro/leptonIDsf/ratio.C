@@ -29,7 +29,7 @@
 
 void ratio(){
 
-  TFile *f = TFile::Open("test_El.root");
+  TFile *f = TFile::Open("test_Mu.root");
 
   gStyle->SetOptStat(0);
 
