@@ -28,30 +28,41 @@
 
 
 using namespace std;
-void sliceTH2(std::string inputFile, std::string outputFile, std::string histo){
-
-
-  TFile *data = TFile::Open(inputFile.data());
+void sliceTH2(std::string inputFile, /*std::string outputFile,*/ std::string histo){
 
   
+  // load rootfile
+  TFile *data = TFile::Open(inputFile.data());
+
+
+  // load certain TH2 in that rootfile
   TH2* h2 = (TH2F*)data->Get(histo.data());
   
 
+  // create a new rootfile
+  //TFile *temp = new TFile(outputFile.data(), "recreate");
 
-  TFile *temp = new TFile(outputFile.data(), "recreate");
 
+  TCanvas *c[20];
 
 
   TH1 *hbins[20];
   for(int i=0; i<20; i++){
 
     hbins[i] = h2->ProjectionX(Form("bin%d",i+1), i+1, i+2);
-    hbins[i]->Write();
+    //hbins[i]->Write();
+    c[i] = new TCanvas(Form("bin%d",i+1));
+    c[i]->cd();
+    hbins[i]->Draw();
+    c[i]->Print(Form("bin%d.png",i+1));
+
 
   }
 
 
-  temp->Close();
+
+
+  //temp->Close();
 
 
 }

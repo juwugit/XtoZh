@@ -69,9 +69,11 @@ void errorband(){
     ey[i] = h_sig->GetBinError(i+1);
 
 
+    if(NoE[i]==0) continue;
 
-    cout<<"nbin:"<<i<<"| stat-err:"<<ey[i]<<"| sys-err-Up:"<<eyh[i]<<"| sys-err-Down:"<<eyl[i]<<endl;
+    cout<<"nbin:"<<i+1<<"| center:"/*"| stat-err:"<<ey[i]*/<<NoE[i]<<"| sys-err-Up:"<<eyh[i]<<"| sys-err-Down:"<<eyl[i]<<"| percentage:"<<max(eyh[i]/NoE[i],eyl[i]/NoE[i])<<endl;
 
+    
 
   }
 

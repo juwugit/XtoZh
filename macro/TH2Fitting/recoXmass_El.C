@@ -14,11 +14,13 @@
 #include "../macro/untuplizer.h"
 #include "../macro/passElectronID.h"
 #include "../macro/passMuonID.h"
-#include "../macro/JetSelections.h"
+#include "../macro/passJetID_mod.h"
+
+std::string unctext = "/home/juwu/XtoZh/macro/START53_V23_Uncertainty_AK7PFchs.txt";
 
 
 using namespace std;
-void recoXmass_El(std::string inputFile, std::string outputFile){
+void recoXmass_El(Int_t scaleMode, std::string inputFile, std::string outputFile){
 
 
   // check if the file is data or not
@@ -36,33 +38,19 @@ void recoXmass_El(std::string inputFile, std::string outputFile){
   const Double_t varBins[] = {680,720,760,800,840,920,1000,1100,1250,1400,1600,1800,2000,2400};
   Int_t nvarBins = sizeof(varBins)/sizeof(varBins[0])-1;
 
-  TH1F* h_sbXMass = new TH1F("h_sbXMass","sideband region X mass", nvarBins, varBins);
-  TH1F* h_sigXMass = new TH1F("h_sigXMass","signal region X mass", nvarBins, varBins);
-  TH1F* h_sbCA8CSV = new TH1F("h_sbCA8CSV","sideband region CA8jet CSV",20,0,1);
-  TH1F* h_sigCA8CSV = new TH1F("h_sigCA8CSV","signal region CA8jet CSV",20,0,1);
-  TH1F* h_sbSubCSV = new TH1F("h_sbSubCSV","sideband region subjet CSV",20,0,1);
-  TH1F* h_sigSubCSV = new TH1F("h_sigSubCSV","signal region subjet CSV",20,0,1);
 
-  TH2F* h_sigXMCSV = new TH2F("h_sigXMCSV","signal region XMass vs CA8jet CSV",nvarBins,varBins,20,0,1);
-  TH2F* h_sbXMCSV = new TH2F("h_sbXMCSV","sideband region XMass vs CA8jet CSV",nvarBins,varBins,20,0,1);
-  TH2F* h_sigXMsCSV = new TH2F("h_sigXMsCSV","signal region XMass vs subjet CSV",nvarBins,varBins,20,0,1);
-  TH2F* h_sbXMsCSV = new TH2F("h_sbXMsCSV","sideband region XMass vs subjet CSV",nvarBins,varBins,20,0,1);
+  TH2F* h_sigXMCSV = new TH2F("h_sigXMCSV","signal region XMass vs CA8jet CSV",nvarBins,varBins,5,0,1);
+  TH2F* h_sbXMCSV = new TH2F("h_sbXMCSV","sideband region XMass vs CA8jet CSV",nvarBins,varBins,5,0,1);
+  TH2F* h_sigXMsCSV = new TH2F("h_sigXMsCSV","signal region XMass vs subjet CSV",nvarBins,varBins,5,0,1);
+  TH2F* h_sbXMsCSV = new TH2F("h_sbXMsCSV","sideband region XMass vs subjet CSV",nvarBins,varBins,5,0,1);
 
-
-  
-  h_sbXMass->Sumw2();
-  h_sigXMass->Sumw2();
-  h_sbCA8CSV->Sumw2();
-  h_sigCA8CSV->Sumw2();
-  h_sbSubCSV->Sumw2();
-  h_sigSubCSV->Sumw2();
 
   h_sigXMCSV->Sumw2();
   h_sbXMCSV->Sumw2();
   h_sigXMsCSV->Sumw2();
   h_sbXMsCSV->Sumw2();
 
-
+  corrJetV corrJet(unctext);
 
 
   //Event loop
@@ -92,7 +80,7 @@ void recoXmass_El(std::string inputFile, std::string outputFile){
     Float_t* elePhi      = data.GetPtrFloat("elePhi");
     Float_t* eleM        = data.GetPtrFloat("eleM");   
 
-    Int_t leadjet;    
+
     Int_t leadEle, secEle;
     passElectronID(data, &leadEle, &secEle);
 
@@ -146,24 +134,23 @@ void recoXmass_El(std::string inputFile, std::string outputFile){
 
 
     // reco XMass
-    PassJet(3, data, leadjet);
-    if(!PassJet(3, data, leadjet)) continue;
+    Int_t leadjet;
+    Int_t csvlMode = 0;
+    TLorentzVector tempVector(0,0,0,0);
 
-    TLorentzVector recoH(0,0,0,0);
+    if(!passJetID(data, corrJet, csvlMode, scaleMode, &leadjet, &tempVector)) continue;
+
+    TLorentzVector recoH = tempVector;
     TLorentzVector recoX(0,0,0,0);
     Float_t XMass=-999;
 
     if(CA8nJet>0 && leadjet>=0){
       
-      recoH.SetPtEtaPhiE(CA8jetPt[leadjet],CA8jetEta[leadjet],CA8jetPhi[leadjet],CA8jetEn[leadjet]);
+      //recoH.SetPtEtaPhiE(CA8jetPt[leadjet],CA8jetEta[leadjet],CA8jetPhi[leadjet],CA8jetEn[leadjet]);
       recoX = recoZ+recoH;
       
       XMass=recoX.M();
-      Float_t prunedmass=CA8jetPrunedM[leadjet];
-      
-      if(prunedmass>70 && prunedmass<110) h_sbXMass->Fill(XMass);
-      if(prunedmass>110 && prunedmass<140) h_sigXMass->Fill(XMass);
-      
+            
     }
 
 
@@ -192,20 +179,13 @@ void recoXmass_El(std::string inputFile, std::string outputFile){
 
 	if(dRjj>0.3){
 
-	  if(SubjetCSV[i][0]>0) h_sbSubCSV->Fill(SubjetCSV[i][0]);
-	  if(SubjetCSV[i][1]>0) h_sbSubCSV->Fill(SubjetCSV[i][1]);
 	  if(SubjetCSV[i][0]>0) h_sbXMsCSV->Fill(XMass, SubjetCSV[i][0]); //TH2
 	  if(SubjetCSV[i][1]>0) h_sbXMsCSV->Fill(XMass, SubjetCSV[i][1]); //TH2
 
-	  
 	} // subjet
 
-	if(dRjj<0.3){
-	  
-	  h_sbCA8CSV->Fill(CA8jetCSV[i]);
-	  h_sbXMCSV->Fill(XMass, CA8jetCSV[i]); //TH2
+	if(dRjj<0.3) h_sbXMCSV->Fill(XMass, CA8jetCSV[i]); //TH2
 
-	} // fatjet
       }
 
 
@@ -214,21 +194,13 @@ void recoXmass_El(std::string inputFile, std::string outputFile){
 
         if(dRjj>0.3){
 
-	  if(SubjetCSV[i][0]>0) h_sigSubCSV->Fill(SubjetCSV[i][0]);
-	  if(SubjetCSV[i][1]>0) h_sigSubCSV->Fill(SubjetCSV[i][1]);
 	  if(SubjetCSV[i][0]>0) h_sigXMsCSV->Fill(XMass, SubjetCSV[i][0]); //TH2
 	  if(SubjetCSV[i][1]>0) h_sigXMsCSV->Fill(XMass, SubjetCSV[i][1]); //TH2
 
-
-
 	} // subjet
 
-	if(dRjj<0.3){
-   
-	  h_sigCA8CSV->Fill(CA8jetCSV[i]);
-	  h_sigXMCSV->Fill(XMass, CA8jetCSV[i]); //TH2
+	if(dRjj<0.3) h_sigXMCSV->Fill(XMass, CA8jetCSV[i]); //TH2
 
-	} // fatjet
       }
       
 
@@ -240,12 +212,6 @@ void recoXmass_El(std::string inputFile, std::string outputFile){
   //save output
   TFile* outFile = new TFile(outputFile.data(),"recreate");
 
-  h_sbXMass->Write();
-  h_sigXMass->Write();
-  h_sbCA8CSV->Write();
-  h_sigCA8CSV->Write();
-  h_sbSubCSV->Write();
-  h_sigSubCSV->Write();
 
   h_sigXMCSV->Write();
   h_sbXMCSV->Write();

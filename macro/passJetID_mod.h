@@ -205,7 +205,7 @@ Bool_t passJetID(TreeReader &data,
 
   } // loop jets
 
- std:sort(goodJets.begin(),goodJets.end(),jetPtGreater);
+  std::sort(goodJets.begin(),goodJets.end(),jetPtGreater);
 
   if( goodJetIndex.size() > 0 ){
     
