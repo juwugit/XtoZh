@@ -17,7 +17,14 @@
 #include "../macro/passJetID_mod.h"
 
 std::string unctext = "/home/juwu/XtoZh/macro/START53_V23_Uncertainty_AK7PFchs.txt";
-std::string unctext_data = "/home/juwu/XtoZh/macro/FT_53_V21_AN4_Uncertainty_AK7PFchs.txt";
+//std::string unctext_data = "/home/juwu/XtoZh/macro/FT_53_V21_AN4_Uncertainty_AK7PFchs.txt";
+
+
+//const float weight=(19671.225)/(10783509/25.8); //ttbar
+//const float weight=(19671.225)/(9959752/56.0); //WW
+//const float weight=(19671.225)/(9910267/22.4); //WZ
+const float weight=(19671.225)/(9769891/7.6); //ZZ
+
 
 
 using namespace std;
@@ -29,7 +36,7 @@ void recoXmass_El(Int_t scaleMode, std::string inputFile, std::string outputFile
   if(inputFile.find("data")!= std::string::npos)
     isData=true;
 
-  corrJetV corrJet(unctext_data);
+  corrJetV corrJet(unctext);
 
 
   // get TTree from file ...
@@ -182,12 +189,12 @@ void recoXmass_El(Int_t scaleMode, std::string inputFile, std::string outputFile
 
 	if(dRjj>0.3){
 
-	  if(SubjetCSV[i][0]>0) h_sbXMsCSV->Fill(XMass, SubjetCSV[i][0]); //TH2
-	  if(SubjetCSV[i][1]>0) h_sbXMsCSV->Fill(XMass, SubjetCSV[i][1]); //TH2
+	  if(SubjetCSV[i][0]>0) h_sbXMsCSV->Fill(XMass, SubjetCSV[i][0], weight); //TH2
+	  if(SubjetCSV[i][1]>0) h_sbXMsCSV->Fill(XMass, SubjetCSV[i][1], weight); //TH2
 
 	} // subjet
 
-	if(dRjj<0.3) h_sbXMCSV->Fill(XMass, CA8jetCSV[i]); //TH2
+	if(dRjj<0.3) h_sbXMCSV->Fill(XMass, CA8jetCSV[i], weight); //TH2
 
       }
 
@@ -197,12 +204,12 @@ void recoXmass_El(Int_t scaleMode, std::string inputFile, std::string outputFile
 
         if(dRjj>0.3){
 
-	  if(SubjetCSV[i][0]>0) h_sigXMsCSV->Fill(XMass, SubjetCSV[i][0]); //TH2
-	  if(SubjetCSV[i][1]>0) h_sigXMsCSV->Fill(XMass, SubjetCSV[i][1]); //TH2
+	  if(SubjetCSV[i][0]>0) h_sigXMsCSV->Fill(XMass, SubjetCSV[i][0], weight); //TH2
+	  if(SubjetCSV[i][1]>0) h_sigXMsCSV->Fill(XMass, SubjetCSV[i][1], weight); //TH2
 
 	} // subjet
 
-	if(dRjj<0.3) h_sigXMCSV->Fill(XMass, CA8jetCSV[i]); //TH2
+	if(dRjj<0.3) h_sigXMCSV->Fill(XMass, CA8jetCSV[i], weight); //TH2
 
       }
       

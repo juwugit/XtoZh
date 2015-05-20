@@ -1,4 +1,4 @@
-//root -q -b -l recoXmass_El.C++\(\"inputFile\"\,\"outputFile\"\)
+//root -q -b -l recoXmass_Mu.C++\(\"inputFile\"\,\"outputFile\"\)
 
 #include <map>
 #include <vector>
@@ -11,17 +11,26 @@
 #include <TRandom.h>
 #include <TLorentzVector.h>
 #include <TFile.h>
-#include "../macro/untuplizer.h"
-#include "../macro/passElectronID.h"
-#include "../macro/passMuonID.h"
-#include "../macro/passJetID_mod.h"
+#include "/home/juwu/XtoZh/macro/untuplizer.h"
+#include "/home/juwu/XtoZh/macro/passElectronID.h"
+#include "/home/juwu/XtoZh/macro/passMuonID.h"
+#include "/home/juwu/XtoZh/macro/passJetID_mod.h"
+
 
 std::string unctext = "/home/juwu/XtoZh/macro/START53_V23_Uncertainty_AK7PFchs.txt";
-std::string unctext_data = "/home/juwu/XtoZh/macro/FT_53_V21_AN4_Uncertainty_AK7PFchs.txt";
+//std::string unctext_data = "/home/juwu/XtoZh/macro/FT_53_V21_AN4_Uncertainty_AK7PFchs.txt";
+
+
+//const float weight=(19671.225)/(10783509/25.8); //ttbar
+//const float weight=(19671.225)/(9959752/56.0); //WW 
+//const float weight=(19671.225)/(9910267/22.4); //WZ
+const float weight=(19671.225)/(9769891/7.6); //ZZ
+
+
 
 
 using namespace std;
-void recoXmass_El(Int_t scaleMode, std::string inputFile, std::string outputFile){
+void recoXmass_Mu(Int_t scaleMode, std::string inputFile, std::string outputFile){
 
 
   // check if the file is data or not
@@ -29,7 +38,7 @@ void recoXmass_El(Int_t scaleMode, std::string inputFile, std::string outputFile
   if(inputFile.find("data")!= std::string::npos)
     isData=true;
 
-  corrJetV corrJet(unctext_data);
+  corrJetV corrJet(unctext);
 
 
   // get TTree from file ...
@@ -41,12 +50,10 @@ void recoXmass_El(Int_t scaleMode, std::string inputFile, std::string outputFile
   const Double_t varBins[] = {680,720,760,800,840,920,1000,1100,1250,1400,1600,1800,2000,2400};
   Int_t nvarBins = sizeof(varBins)/sizeof(varBins[0])-1;
 
-
   TH2F* h_sigXMCSV = new TH2F("h_sigXMCSV","signal region XMass vs CA8jet CSV",nvarBins,varBins,5,0,1);
   TH2F* h_sbXMCSV = new TH2F("h_sbXMCSV","sideband region XMass vs CA8jet CSV",nvarBins,varBins,5,0,1);
   TH2F* h_sigXMsCSV = new TH2F("h_sigXMsCSV","signal region XMass vs subjet CSV",nvarBins,varBins,5,0,1);
   TH2F* h_sbXMsCSV = new TH2F("h_sbXMsCSV","sideband region XMass vs subjet CSV",nvarBins,varBins,5,0,1);
-
 
   h_sigXMCSV->Sumw2();
   h_sbXMCSV->Sumw2();
@@ -75,17 +82,16 @@ void recoXmass_El(Int_t scaleMode, std::string inputFile, std::string outputFile
     vector<Float_t>* SubjetPt  = data.GetPtrVectorFloat("CA8subjetPrunedPt");
     vector<Float_t>* SubjetEta = data.GetPtrVectorFloat("CA8subjetPrunedEta");
     vector<Float_t>* SubjetPhi = data.GetPtrVectorFloat("CA8subjetPrunedPhi");
-    vector<Float_t>* SubjetEn   = data.GetPtrVectorFloat("CA8subjetPrunedEn");
+    vector<Float_t>* SubjetEn  = data.GetPtrVectorFloat("CA8subjetPrunedEn");
 
-    Int_t    nEle        = data.GetInt("nEle");
-    Float_t* elePt       = data.GetPtrFloat("elePt");
-    Float_t* eleEta      = data.GetPtrFloat("eleEta");
-    Float_t* elePhi      = data.GetPtrFloat("elePhi");
-    Float_t* eleM        = data.GetPtrFloat("eleM");   
+    Int_t    nMu        = data.GetInt("nMu");
+    Float_t* muPt       = data.GetPtrFloat("muPt");
+    Float_t* muEta      = data.GetPtrFloat("muEta");
+    Float_t* muPhi      = data.GetPtrFloat("muPhi");
+    Float_t* muM        = data.GetPtrFloat("muM");   
 
-
-    Int_t leadEle, secEle;
-    passElectronID(data, &leadEle, &secEle);
+    Int_t leadMu, secMu;
+    passMuonID(data, &leadMu, &secMu);
 
 
     // trigger
@@ -98,25 +104,25 @@ void recoXmass_El(Int_t scaleMode, std::string inputFile, std::string outputFile
       {
 	std::string thisTrig= trigName[it];
 	int results = trigResult[it];
-     
+	/*
 	if(thisTrig.find("HLT_DoubleEle33")!= std::string::npos && results==1)
 	  {
 	    passTrigger=true;
 	    break;
 	  }
+	*/
 	
-	/*
 	if(thisTrig.find("HLT_Mu22_TkMu8")!= std::string::npos && results==1)
 	  {
 	    passTrigger=true;
 	    break;
 	  }
-	*/
+	
       }
    
     if(isData && !passTrigger)continue;
-    if(!passElectronID(data, &leadEle, &secEle)) continue;
-    if(nEle<=1) continue;
+    if(!passMuonID(data, &leadMu, &secMu)) continue;
+    if(nMu<=1) continue;
 
       
     // Reco mLL & mLL cuts
@@ -124,8 +130,8 @@ void recoXmass_El(Int_t scaleMode, std::string inputFile, std::string outputFile
     TLorentzVector l2(0,0,0,0);
     TLorentzVector recoZ(0,0,0,0);
     
-    l1.SetPtEtaPhiM(elePt[leadEle],eleEta[leadEle],elePhi[leadEle],eleM[leadEle]);
-    l2.SetPtEtaPhiM(elePt[secEle],eleEta[secEle],elePhi[secEle],eleM[secEle]);
+    l1.SetPtEtaPhiM(muPt[leadMu],muEta[leadMu],muPhi[leadMu],muM[leadMu]);
+    l2.SetPtEtaPhiM(muPt[secMu],muEta[secMu],muPhi[secMu],muM[secMu]);
     recoZ=(l1+l2);
 
     Float_t ZMass=recoZ.M();
@@ -133,6 +139,7 @@ void recoXmass_El(Int_t scaleMode, std::string inputFile, std::string outputFile
     
     if(ZMass<70 || ZMass>110) continue;
     if(ZPt<80) continue;
+
 
 
 
@@ -153,7 +160,7 @@ void recoXmass_El(Int_t scaleMode, std::string inputFile, std::string outputFile
       recoX = recoZ+recoH;
       
       XMass=recoX.M();
-            
+      
     }
 
 
@@ -174,43 +181,41 @@ void recoXmass_El(Int_t scaleMode, std::string inputFile, std::string outputFile
 
       }
 
-      if(dRjj==-999) continue;
 
-
-      // sideband region
+      // sideband region    
       if(CA8jetPrunedM[leadjet]>70 && CA8jetPrunedM[leadjet]<110){
 
-	if(dRjj>0.3){
+        if(dRjj>0.3){
 
-	  if(SubjetCSV[i][0]>0) h_sbXMsCSV->Fill(XMass, SubjetCSV[i][0]); //TH2
-	  if(SubjetCSV[i][1]>0) h_sbXMsCSV->Fill(XMass, SubjetCSV[i][1]); //TH2
+	  if(SubjetCSV[i][0]>0) h_sbXMsCSV->Fill(XMass, SubjetCSV[i][0], weight); //TH2
+	  if(SubjetCSV[i][1]>0) h_sbXMsCSV->Fill(XMass, SubjetCSV[i][1], weight); //TH2              
+       
+        } // subjet                                                    
 
-	} // subjet
-
-	if(dRjj<0.3) h_sbXMCSV->Fill(XMass, CA8jetCSV[i]); //TH2
+        if(dRjj<0.3) h_sbXMCSV->Fill(XMass, CA8jetCSV[i], weight); //TH2                   
 
       }
 
-
-      // signal region                                           
+      // signal region                                          
       if(CA8jetPrunedM[leadjet]>110 && CA8jetPrunedM[leadjet]<140){
 
         if(dRjj>0.3){
 
-	  if(SubjetCSV[i][0]>0) h_sigXMsCSV->Fill(XMass, SubjetCSV[i][0]); //TH2
-	  if(SubjetCSV[i][1]>0) h_sigXMsCSV->Fill(XMass, SubjetCSV[i][1]); //TH2
+	  if(SubjetCSV[i][0]>0) h_sigXMsCSV->Fill(XMass, SubjetCSV[i][0], weight); //TH2   
+	  if(SubjetCSV[i][1]>0) h_sigXMsCSV->Fill(XMass, SubjetCSV[i][1], weight); //TH2   
+ 
+        } // subjet                           
 
-	} // subjet
-
-	if(dRjj<0.3) h_sigXMCSV->Fill(XMass, CA8jetCSV[i]); //TH2
+        if(dRjj<0.3) h_sigXMCSV->Fill(XMass, CA8jetCSV[i], weight); //TH2 
 
       }
-      
 
+      
     } // jet loop                                                                    
+
   } //entries 
   
-  
+
 
   //save output
   TFile* outFile = new TFile(outputFile.data(),"recreate");
@@ -220,7 +225,6 @@ void recoXmass_El(Int_t scaleMode, std::string inputFile, std::string outputFile
   h_sbXMCSV->Write();
   h_sigXMsCSV->Write();
   h_sbXMsCSV->Write();
-
 
   outFile->Close();
 

@@ -18,7 +18,7 @@
 
 
 std::string unctext = "/home/juwu/XtoZh/macro/START53_V23_Uncertainty_AK7PFchs.txt";
-
+std::string unctext_data = "/home/juwu/XtoZh/macro/FT_53_V21_AN4_Uncertainty_AK7PFchs.txt";
 
 using namespace std;
 void recoXmass_Mu(Int_t scaleMode, std::string inputFile, std::string outputFile){
@@ -29,8 +29,7 @@ void recoXmass_Mu(Int_t scaleMode, std::string inputFile, std::string outputFile
   if(inputFile.find("data")!= std::string::npos)
     isData=true;
 
-  corrJetV corrJet(unctext);
-
+  corrJetV corrJet(unctext_data);
 
 
   // get TTree from file ...

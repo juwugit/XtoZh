@@ -97,9 +97,9 @@ void bkd_estimate_TH2(std::string inputFile1, std::string inputFile2, std::strin
   TFile *temp = new TFile(inputFile1.data(), "update");
   temp->cd();
 
-  TH1F* h_NbkgXMsCSV = (TH1F*)h_data_Nbkg->Clone("h_NbkgXMsCSV");
+  TH1F* h_NbkgXMsCSV_DY = (TH1F*)h_data_Nbkg->Clone("h_NbkgXMsCSV_DY");
   
-  h_NbkgXMsCSV->Write();
+  h_NbkgXMsCSV_DY->Write();
   temp->Close();
 
 
