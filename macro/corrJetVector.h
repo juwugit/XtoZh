@@ -10,17 +10,17 @@ public:
   corrJetV(std::string);
   ~corrJetV(){};
   
-  Float_t scaleUnc(Int_t, Float_t, Float_t);
+  Double_t scaleUnc(Int_t, Double_t, Double_t);
   
 protected:
 
   Int_t nPtBins;
   Int_t nEtaBins;
-  Float_t dummy;
-  Float_t etaDw[999];
-  Float_t etaUp[999];
-  Float_t ptDw[999];
-  Float_t unc[999][999];
+  Double_t dummy;
+  Double_t etaDw[999];
+  Double_t etaUp[999];
+  Double_t ptDw[999];
+  Double_t unc[999][999];
   
 };
 
@@ -56,7 +56,7 @@ corrJetV::corrJetV(std::string textFile){
 
 }
 
-Float_t corrJetV::scaleUnc(Int_t mode, Float_t myPt, Float_t myEta){
+Double_t corrJetV::scaleUnc(Int_t mode, Double_t myPt, Double_t myEta){
 
   TH1F* hPt = new TH1F("hPt", "", nPtBins-1, ptDw);
   TH1F* hEta = new TH1F("hEta", "", nEtaBins-1, etaDw);
@@ -72,10 +72,9 @@ Float_t corrJetV::scaleUnc(Int_t mode, Float_t myPt, Float_t myEta){
 
   // Doing interpolation
   
-  Float_t a = (unc[myEtaId][myPtId+1]-unc[myEtaId][myPtId])/(ptDw[myPtId+1]-ptDw[myPtId]);
-  Float_t b = (unc[myEtaId][myPtId]*ptDw[myPtId+1]-unc[myEtaId][myPtId+1]*ptDw[myPtId])/(ptDw[myPtId+1]-ptDw[myPtId]);
-  Float_t myUnc = a*myPt+b;
-  Float_t corrUnc = (1 + mode*fabs(myUnc));
+  Double_t a = (unc[myEtaId][myPtId+1]-unc[myEtaId][myPtId])/(ptDw[myPtId+1]-ptDw[myPtId]);
+  Double_t b = (unc[myEtaId][myPtId]*ptDw[myPtId+1]-unc[myEtaId][myPtId+1]*ptDw[myPtId])/(ptDw[myPtId+1]-ptDw[myPtId]);
+  Double_t corrUnc = (1+mode*fabs(a*myPt+b));
 
   if( mode > 1 || mode < -1 ) return 0;
   else return corrUnc;
