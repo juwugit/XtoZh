@@ -59,18 +59,14 @@ void packformat_TH2(){
 
 
   // data
-  TH2F *data_sig = (TH2F*)data->Get("h_sigXMCSV");
-  TH2F *data_obs = (TH2F*)data->Get("h_sbXMCSV");
-  data_obs->Add(data_sig);
+  TH2F *data_obs = (TH2F*)data->Get("h_sigXMsCSV");
   data_obs->SetNameTitle("data_obs","");
-  data_sig->SetNameTitle("data_sig","");
-
 
 
   // DY
-  TH2F *background_DY = (TH2F*)data->Get("h_NbkgXMCSV_DY");
-  TH2F *background_DY_alphaUp = (TH2F*)DY_Up->Get("h_NbkgXMCSV_DY");
-  TH2F *background_DY_alphaDown = (TH2F*)DY_Down->Get("h_NbkgXMCSV_DY");
+  TH2F *background_DY = (TH2F*)data->Get("h_NbkgXMsCSV_DY");
+  TH2F *background_DY_alphaUp = (TH2F*)DY_Up->Get("h_NbkgXMsCSV_DY");
+  TH2F *background_DY_alphaDown = (TH2F*)DY_Down->Get("h_NbkgXMsCSV_DY");
   background_DY->SetNameTitle("background_DY","");
   background_DY_alphaUp->SetNameTitle("background_DY_alphaUp","");
   background_DY_alphaDown->SetNameTitle("background_DY_alphaDown","");
@@ -78,9 +74,9 @@ void packformat_TH2(){
 
 
   // TTbar
-  TH2F *background_TT = (TH2F*)TTbar->Get("h_sigXMCSV");
-  TH2F *background_TT_sigmaUp = (TH2F*)TTbar_Up->Get("h_sigXMCSV");
-  TH2F *background_TT_sigmaDown = (TH2F*)TTbar_Down->Get("h_sigXMCSV");
+  TH2F *background_TT = (TH2F*)TTbar->Get("h_sigXMsCSV");
+  TH2F *background_TT_sigmaUp = (TH2F*)TTbar_Up->Get("h_sigXMsCSV");
+  TH2F *background_TT_sigmaDown = (TH2F*)TTbar_Down->Get("h_sigXMsCSV");
   background_TT->SetNameTitle("background_TT","");
   background_TT_sigmaUp->SetNameTitle("background_TT_sigmaUp","");
   background_TT_sigmaDown->SetNameTitle("background_TT_sigmaDown","");
@@ -88,9 +84,9 @@ void packformat_TH2(){
 
 
   // WW
-  TH2F *background_WW = (TH2F*)WW->Get("h_sigXMCSV");
-  TH2F *background_WW_sigmaUp = (TH2F*)WW_Up->Get("h_sigXMCSV");
-  TH2F *background_WW_sigmaDown = (TH2F*)WW_Down->Get("h_sigXMCSV");
+  TH2F *background_WW = (TH2F*)WW->Get("h_sigXMsCSV");
+  TH2F *background_WW_sigmaUp = (TH2F*)WW_Up->Get("h_sigXMsCSV");
+  TH2F *background_WW_sigmaDown = (TH2F*)WW_Down->Get("h_sigXMsCSV");
   background_WW->SetNameTitle("background_WW","");
   background_WW_sigmaUp->SetNameTitle("background_WW_sigmaUp","");
   background_WW_sigmaDown->SetNameTitle("background_WW_sigmaDown","");
@@ -98,9 +94,9 @@ void packformat_TH2(){
 
 
   // WZ
-  TH2F *background_WZ = (TH2F*)WZ->Get("h_sigXMCSV");
-  TH2F *background_WZ_sigmaUp = (TH2F*)WZ_Up->Get("h_sigXMCSV");
-  TH2F *background_WZ_sigmaDown = (TH2F*)WZ_Down->Get("h_sigXMCSV");
+  TH2F *background_WZ = (TH2F*)WZ->Get("h_sigXMsCSV");
+  TH2F *background_WZ_sigmaUp = (TH2F*)WZ_Up->Get("h_sigXMsCSV");
+  TH2F *background_WZ_sigmaDown = (TH2F*)WZ_Down->Get("h_sigXMsCSV");
   background_WZ->SetNameTitle("background_WZ","");
   background_WZ_sigmaUp->SetNameTitle("background_WZ_sigmaUp","");
   background_WZ_sigmaDown->SetNameTitle("background_WZ_sigmaDown","");
@@ -108,9 +104,9 @@ void packformat_TH2(){
 
 
   // ZZ
-  TH2F *background_ZZ = (TH2F*)ZZ->Get("h_sigXMCSV");
-  TH2F *background_ZZ_sigmaUp = (TH2F*)ZZ_Up->Get("h_sigXMCSV");
-  TH2F *background_ZZ_sigmaDown = (TH2F*)ZZ_Down->Get("h_sigXMCSV");
+  TH2F *background_ZZ = (TH2F*)ZZ->Get("h_sigXMsCSV");
+  TH2F *background_ZZ_sigmaUp = (TH2F*)ZZ_Up->Get("h_sigXMsCSV");
+  TH2F *background_ZZ_sigmaDown = (TH2F*)ZZ_Down->Get("h_sigXMsCSV");
   background_ZZ->SetNameTitle("background_ZZ","");
   background_ZZ_sigmaUp->SetNameTitle("background_ZZ_sigmaUp","");
   background_ZZ_sigmaDown->SetNameTitle("background_ZZ_sigmaDown","");
@@ -133,7 +129,7 @@ void packformat_TH2(){
 
 
 
-  TFile *temp = new TFile("XMassVsCA8jetCSV_TH2_M1000_El.root", "recreate");
+  TFile *temp = new TFile("XMassVsSubjetCSV_TH2_M1000_El.root", "recreate");
 
   
   signal->Write();
@@ -161,8 +157,6 @@ void packformat_TH2(){
   background_ZZ_sigmaDown->Write();
 
   data_obs->Write();
-  data_sig->Write();
-
 
   temp->Close();
 
