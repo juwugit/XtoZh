@@ -75,13 +75,13 @@ Bool_t passJetID(TreeReader &data,
   Float_t* CA8jetPrunedEn = data.GetPtrFloat("CA8jetPrunedEn");
 
   // b-tagging
-  Int_t*   nSubjet   = data.GetPtrInt("CA8nSubPrunedJet");
+  Int_t    nSubjet   = data.GetInt("CA8nSubPrunedJet");
   Float_t* CA8jetCSV = data.GetPtrFloat("CA8jetCSV");
-  vector<Float_t>* SubjetCSV = data.GetPtrVectorFloat("CA8subjetPrunedCSV");
-  vector<Float_t>* SubjetPt  = data.GetPtrVectorFloat("CA8subjetPrunedPt");
-  vector<Float_t>* SubjetEta = data.GetPtrVectorFloat("CA8subjetPrunedEta");
-  vector<Float_t>* SubjetPhi = data.GetPtrVectorFloat("CA8subjetPrunedPhi");
-  vector<Float_t>* SubjetEn  = data.GetPtrVectorFloat("CA8subjetPrunedEn");
+  Float_t* SubjetCSV = data.GetPtrFloat("CA8subjetPrunedCSV");
+  Float_t* SubjetPt  = data.GetPtrFloat("CA8subjetPrunedPt");
+  Float_t* SubjetEta = data.GetPtrFloat("CA8subjetPrunedEta");
+  Float_t* SubjetPhi = data.GetPtrFloat("CA8subjetPrunedPhi");
+  Float_t* SubjetEn  = data.GetPtrFloat("CA8subjetPrunedEn");
 
   // sorting electron
   vector<gMap> sortElePt;
@@ -188,6 +188,7 @@ Bool_t passJetID(TreeReader &data,
     Bool_t subjetbtag = false;
     Bool_t fatjetCSV = (CA8jetCSV[jIndex]>0.244);
 
+    /*
     if( nSubjet[jIndex] == 2 ){
 
       subjet1.SetPtEtaPhiE(SubjetPt[jIndex][0],SubjetEta[jIndex][0],SubjetPhi[jIndex][0],SubjetEn[jIndex][0]);
@@ -197,6 +198,7 @@ Bool_t passJetID(TreeReader &data,
       if(SubjetCSV[jIndex][0]>0.244 && SubjetCSV[jIndex][1]>0.244) subjetbtag = true;
 
     }
+    */
 
     if(csvlMode==1 && dRjj<0.3 && !fatjetCSV) continue;
     if(csvlMode==1 && dRjj>0.3 && !subjetbtag) continue;
@@ -208,7 +210,7 @@ Bool_t passJetID(TreeReader &data,
 
   } // loop jets
 
- std:sort(goodJets.begin(),goodJets.end(),jetPtGreater);
+  std::sort(goodJets.begin(),goodJets.end(),jetPtGreater);
 
   if( goodJets.size() > 0 ){
     
