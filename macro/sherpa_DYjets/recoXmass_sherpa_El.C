@@ -16,16 +16,16 @@
 #include "/home/juwu/XtoZh/macro/passJetID_sherpa.h"
 
 
-std::string unctext_data = "/home/juwu/XtoZh/macro/FT_53_V21_AN4_Uncertainty_AK7PFchs.txt";
+std::string unctext = "/home/juwu/XtoZh/macro/START53_V23_Uncertainty_AK7PFchs.txt";
 
 
 using namespace std;
-void recoXmass_Mu(Int_t scaleMode=0){
+void recoXmass_sherpa_El(Int_t scaleMode=0){
 
 
   // get TTree from file ...
-  TreeReader data("../delpanjTuple/delpanj_v4_data_DoubleMu.root");
-  corrJetV corrJet(unctext_data);
+  TreeReader data("../delpanjTuple/delpanj_v4_DYJetsToLL_sherpa.root");
+  corrJetV corrJet(unctext);
 
 
   // declare histogram
@@ -55,6 +55,7 @@ void recoXmass_Mu(Int_t scaleMode=0){
 
     data.GetEntry(jEntry);
 
+    Float_t  mcWeight    = data.GetFloat("mcWeight");
     Int_t    CA8nJet     = data.GetInt("CA8nJet");
     Float_t* CA8jetPt    = data.GetPtrFloat("CA8jetPt");
     Float_t* CA8jetEta   = data.GetPtrFloat("CA8jetEta");
@@ -70,46 +71,18 @@ void recoXmass_Mu(Int_t scaleMode=0){
     Float_t* SubjetPhi = data.GetPtrFloat("CA8subjetPrunedPhi");
     Float_t* SubjetEn  = data.GetPtrFloat("CA8subjetPrunedEn");
 
-    Int_t    nEle        = data.GetInt("nMu");
-    Float_t* elePt       = data.GetPtrFloat("muPt");
-    Float_t* eleEta      = data.GetPtrFloat("muEta");
-    Float_t* elePhi      = data.GetPtrFloat("muPhi");
-    Float_t* eleM        = data.GetPtrFloat("muM");   
-
+    Int_t    nEle        = data.GetInt("nEle");
+    Float_t* elePt       = data.GetPtrFloat("elePt");
+    Float_t* eleEta      = data.GetPtrFloat("eleEta");
+    Float_t* elePhi      = data.GetPtrFloat("elePhi");
+    Float_t* eleM        = data.GetPtrFloat("eleM");   
 
     //Int_t leadjet;    
     Int_t leadEle, secEle;
-    passMuonID(data, &leadEle, &secEle);
+    passElectronID(data, &leadEle, &secEle);
 
 
-
-    // trigger                                                   
-    std::string* trigName = data.GetPtrString("hlt_trigName");
-    Int_t* trigResult = data.GetPtrInt("hlt_trigResult");
-    const Int_t nsize = data.GetPtrStringSize();
-
-    bool passTrigger=false;
-    for(int it=0; it< nsize; it++)
-      {
-	std::string thisTrig= trigName[it];
-        int results = trigResult[it];
-	/*
-        if(thisTrig.find("HLT_DoubleEle33")!= std::string::npos && results==1)
-          {
-            passTrigger=true;
-            break;
-          }
-	*/
-        if(thisTrig.find("HLT_Mu22_TkMu8")!= std::string::npos && results==1)      
-          {                       
-            passTrigger=true;                                                    
-            break;                                              
-          }                  
-      }
-
-
-    if(!passTrigger) continue;
-    if(!passMuonID(data, &leadEle, &secEle)) continue;
+    if(!passElectronID(data, &leadEle, &secEle)) continue;
     if(nEle<=1) continue;
 
       
@@ -149,8 +122,8 @@ void recoXmass_Mu(Int_t scaleMode=0){
       XMass=recoX.M();
       Float_t prunedmass=CA8jetPrunedM[leadjet];
       
-      if(prunedmass>70 && prunedmass<110) h_sbXMass->Fill(XMass);
-      if(prunedmass>110 && prunedmass<140) h_sigXMass->Fill(XMass);
+      if(prunedmass>70 && prunedmass<110) h_sbXMass->Fill(XMass, mcWeight);
+      if(prunedmass>110 && prunedmass<140) h_sigXMass->Fill(XMass, mcWeight);
       
     }      
 
@@ -160,33 +133,32 @@ void recoXmass_Mu(Int_t scaleMode=0){
     TLorentzVector subjet1(0,0,0,0);
     TLorentzVector subjet2(0,0,0,0);
     Float_t dRjj=-999;
-    
-    for(Int_t i=0; i<CA8nJet; i++){
+    Int_t maxjet = CA8nJet*nSubjet;
 
+    for(Int_t i=0; i<maxjet; i=i+2){
+
+      if( (i+1)>maxjet ) continue;
 
       //check subjet deltaR
-      if(nSubjet[i]>=2){
+      if(nSubjet>=2){
 
-	subjet1.SetPtEtaPhiE(SubjetPt[i][0],SubjetEta[i][0],SubjetPhi[i][0],SubjetEn[i][0]);
-	subjet2.SetPtEtaPhiE(SubjetPt[i][1],SubjetEta[i][1],SubjetPhi[i][1],SubjetEn[i][1]);
+	subjet1.SetPtEtaPhiE(SubjetPt[i],SubjetEta[i],SubjetPhi[i],SubjetEn[i]);
+	subjet2.SetPtEtaPhiE(SubjetPt[i+1],SubjetEta[i+1],SubjetPhi[i+1],SubjetEn[i+1]);
 	dRjj=subjet1.DeltaR(subjet2);
 
       }
-
-      if(dRjj==-999) continue;
-
 
       // sideband region
       if(CA8jetPrunedM[leadjet]>70 && CA8jetPrunedM[leadjet]<110){
 
 	if(dRjj>0.3){
 
-	  if(SubjetCSV[i][0]>0) h_sbSubCSV->Fill(SubjetCSV[i][0]);
-	  if(SubjetCSV[i][1]>0) h_sbSubCSV->Fill(SubjetCSV[i][1]);
+	  if(SubjetCSV[i]>0) h_sbSubCSV->Fill(SubjetCSV[i], mcWeight);
+	  if(SubjetCSV[i+1]>0) h_sbSubCSV->Fill(SubjetCSV[i+1], mcWeight);
 
 	}
 
-	if(dRjj<0.3 && CA8jetCSV[i]>0) h_sbCA8CSV->Fill(CA8jetCSV[i]);
+	if(dRjj<0.3 && CA8jetCSV[i]>0) h_sbCA8CSV->Fill(CA8jetCSV[i], mcWeight);
 		
       }
 
@@ -195,12 +167,12 @@ void recoXmass_Mu(Int_t scaleMode=0){
 
         if(dRjj>0.3){
 
-	  if(SubjetCSV[i][0]>0) h_sigSubCSV->Fill(SubjetCSV[i][0]);
-	  if(SubjetCSV[i][1]>0) h_sigSubCSV->Fill(SubjetCSV[i][1]);
+	  if(SubjetCSV[i]>0) h_sigSubCSV->Fill(SubjetCSV[i], mcWeight);
+	  if(SubjetCSV[i+1]>0) h_sigSubCSV->Fill(SubjetCSV[i+1], mcWeight);
 
 	}
 
-	if(dRjj<0.3 && CA8jetCSV[i]>0) h_sigCA8CSV->Fill(CA8jetCSV[i]);
+	if(dRjj<0.3 && CA8jetCSV[i]>0) h_sigCA8CSV->Fill(CA8jetCSV[i], mcWeight);
 	
       }
       
@@ -215,7 +187,7 @@ void recoXmass_Mu(Int_t scaleMode=0){
 
 
   //save output
-  TFile* outFile = new TFile("data_Mu.root","recreate");
+  TFile* outFile = new TFile("sherpa_El.root","recreate");
 
   h_sbXMass->Write();
   h_sigXMass->Write();

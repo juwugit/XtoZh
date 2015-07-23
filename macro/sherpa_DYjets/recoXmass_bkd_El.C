@@ -26,7 +26,7 @@ const float scale2=(19712.225)/(12511326/39.4); //DY100
 
 
 using namespace std;
-void recoXmass_bkd_El(Int_t scaleMode){
+void recoXmass_bkd_El(Int_t scaleMode=0){
 
 
   // get TTree from file ...
@@ -35,11 +35,11 @@ void recoXmass_bkd_El(Int_t scaleMode){
 
 
   // declare histogram
-  const Float_t varBins[] = {680,720,760,800,840,920,1000,1100,1250,1400,1600,1800,2000,2400};
-  Int_t nvarBins = sizeof(varBins)/sizeof(varBins[0])-1;
+  //const Float_t varBins[] = {680,720,760,800,840,920,1000,1100,1250,1400,1600,1800,2000,2400};
+  //Int_t nvarBins = sizeof(varBins)/sizeof(varBins[0])-1;
 
-  TH1F* h_sbXMass = new TH1F("h_sbXMass","sideband region X mass", nvarBins, varBins);
-  TH1F* h_sigXMass = new TH1F("h_sigXMass","signal region X mass", nvarBins, varBins);
+  TH1F* h_sbXMass = new TH1F("h_sbXMass","sideband region X mass", 60,0,2400);
+  TH1F* h_sigXMass = new TH1F("h_sigXMass","signal region X mass", 60,0,2400);
   //TH1F* h_alphaXMass = new TH1F("h_alphaXMass","alpha ratio of X mass", nvarBins, varBins);
 
   TH1F* h_sbCA8CSV = new TH1F("h_sbCA8CSV","sideband region CA8jet CSV",20,0,1);
