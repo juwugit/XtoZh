@@ -13,7 +13,7 @@
 #include "/home/juwu/XtoZh/macro/untuplizer.h"
 #include "/home/juwu/XtoZh/macro/passElectronID.h"
 #include "/home/juwu/XtoZh/macro/passMuonID.h"
-#include "/home/juwu/XtoZh/macro/passJetID_sherpa.h"
+#include "/home/juwu/XtoZh/macro/passJetID.h"
 
 
 std::string unctext_data = "/home/juwu/XtoZh/macro/FT_53_V21_AN4_Uncertainty_AK7PFchs.txt";
@@ -63,12 +63,12 @@ void recoXmass_El(Int_t scaleMode=0){
     Float_t* CA8jetPrunedM = data.GetPtrFloat("CA8jetPrunedMass");
     Float_t* CA8jetCSV   = data.GetPtrFloat("CA8jetCSV");
 
-    Int_t    nSubjet = data.GetInt("CA8nSubPrunedJet");
-    Float_t* SubjetCSV = data.GetPtrFloat("CA8subjetPrunedCSV");
-    Float_t* SubjetPt  = data.GetPtrFloat("CA8subjetPrunedPt");
-    Float_t* SubjetEta = data.GetPtrFloat("CA8subjetPrunedEta");
-    Float_t* SubjetPhi = data.GetPtrFloat("CA8subjetPrunedPhi");
-    Float_t* SubjetEn  = data.GetPtrFloat("CA8subjetPrunedEn");
+    Int_t*    nSubjet = data.GetPtrInt("CA8nSubPrunedJet");
+    vector<Float_t>* SubjetCSV = data.GetPtrVectorFloat("CA8subjetPrunedCSV");
+    vector<Float_t>* SubjetPt  = data.GetPtrVectorFloat("CA8subjetPrunedPt");
+    vector<Float_t>* SubjetEta = data.GetPtrVectorFloat("CA8subjetPrunedEta");
+    vector<Float_t>* SubjetPhi = data.GetPtrVectorFloat("CA8subjetPrunedPhi");
+    vector<Float_t>* SubjetEn  = data.GetPtrVectorFloat("CA8subjetPrunedEn");
 
     Int_t    nEle        = data.GetInt("nEle");
     Float_t* elePt       = data.GetPtrFloat("elePt");
