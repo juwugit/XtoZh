@@ -29,23 +29,27 @@ void recoXmass_sherpa_Mu(Int_t scaleMode=0){
 
 
   // declare histogram
-  //const Float_t varBins[] = {680,720,760,800,840,920,1000,1100,1250,1400,1600,1800,2000,2400};
-  //Int_t nvarBins = sizeof(varBins)/sizeof(varBins[0])-1;
+  const Float_t varBins[] = {680,720,760,800,840,920,1000,1100,1250,1400,1600,1800,2000,2400};
+  Int_t nvarBins = sizeof(varBins)/sizeof(varBins[0])-1;
 
-  TH1F* h_sbXMass = new TH1F("h_sbXMass","sideband region X mass", 60,0,2400);
-  TH1F* h_sigXMass = new TH1F("h_sigXMass","signal region X mass", 60,0,2400);
-  TH1F* h_sbCA8CSV = new TH1F("h_sbCA8CSV","sideband region CA8jet CSV",20,0,1);
-  TH1F* h_sigCA8CSV = new TH1F("h_sigCA8CSV","signal region CA8jet CSV",20,0,1);
-  TH1F* h_sbSubCSV = new TH1F("h_sbSubCSV","sideband region subjet CSV",20,0,1);
-  TH1F* h_sigSubCSV = new TH1F("h_sigSubCSV","signal region subjet CSV",20,0,1);
+  TH1F* h_sbXMass[5];
+  TH1F* h_sigXMass[5];
+  TH1F* h_sbXMassCA8jet[5];
+  TH1F* h_sigXMassCA8jet[5];
 
-  
-  h_sbXMass->Sumw2();
-  h_sigXMass->Sumw2();
-  h_sbCA8CSV->Sumw2();
-  h_sigCA8CSV->Sumw2();
-  h_sbSubCSV->Sumw2();
-  h_sigSubCSV->Sumw2();
+  for(int i=0; i<5; i++){
+
+    h_sbXMass[i] = new TH1F(Form("h_sbXMass%d",i),"",nvarBins, varBins);
+    h_sigXMass[i] = new TH1F(Form("h_sigXMass%d",i),"",nvarBins, varBins);
+    h_sbXMassCA8jet[i] = new TH1F(Form("h_sbXMassCA8jet%d",i),"",nvarBins, varBins);
+    h_sigXMassCA8jet[i] = new TH1F(Form("h_sigXMassCA8jet%d",i),"",nvarBins, varBins);
+
+    h_sbXMass[i]->Sumw2();
+    h_sigXMass[i]->Sumw2();
+    h_sbXMassCA8jet[i]->Sumw2();
+    h_sigXMassCA8jet[i]->Sumw2();    
+
+  }
 
   int counter = 0;
 
@@ -113,18 +117,14 @@ void recoXmass_sherpa_Mu(Int_t scaleMode=0){
     TLorentzVector recoH = tempVector;
     TLorentzVector recoX(0,0,0,0);
     Float_t XMass=-999;
+    Float_t prunedmass=CA8jetPrunedM[leadjet];
 
     if(CA8nJet>0 && leadjet>=0){
       
       //recoH.SetPtEtaPhiE(CA8jetPt[leadjet],CA8jetEta[leadjet],CA8jetPhi[leadjet],CA8jetEn[leadjet]);
       recoX = recoZ+recoH;
-      
       XMass=recoX.M();
-      Float_t prunedmass=CA8jetPrunedM[leadjet];
-      
-      if(prunedmass>70 && prunedmass<110) h_sbXMass->Fill(XMass, mcWeight);
-      if(prunedmass>110 && prunedmass<140) h_sigXMass->Fill(XMass, mcWeight);
-      
+
     }      
 
 
@@ -148,55 +148,91 @@ void recoXmass_sherpa_Mu(Int_t scaleMode=0){
 
       }
 
-      // sideband region
-      if(CA8jetPrunedM[leadjet]>70 && CA8jetPrunedM[leadjet]<110){
+      // sideband region  
+      if(prunedmass>70 && prunedmass<110){
 
 	if(dRjj>0.3){
 
-	  if(SubjetCSV[i]>0) h_sbSubCSV->Fill(SubjetCSV[i], mcWeight);
-	  if(SubjetCSV[i+1]>0) h_sbSubCSV->Fill(SubjetCSV[i+1], mcWeight);
+	  if(SubjetCSV[i]>0   && SubjetCSV[i]<0.2) h_sbXMass[0]->Fill(XMass, mcWeight);
+	  if(SubjetCSV[i]>0.2 && SubjetCSV[i]<0.4) h_sbXMass[1]->Fill(XMass, mcWeight);
+	  if(SubjetCSV[i]>0.4 && SubjetCSV[i]<0.6) h_sbXMass[2]->Fill(XMass, mcWeight);
+	  if(SubjetCSV[i]>0.6 && SubjetCSV[i]<0.8) h_sbXMass[3]->Fill(XMass, mcWeight);
+	  if(SubjetCSV[i]>0.8 && SubjetCSV[i]<1.0) h_sbXMass[4]->Fill(XMass, mcWeight);
 
-	}
+	  if(SubjetCSV[i+1]>0   && SubjetCSV[i+1]<0.2) h_sbXMass[0]->Fill(XMass, mcWeight);
+	  if(SubjetCSV[i+1]>0.2 && SubjetCSV[i+1]<0.4) h_sbXMass[1]->Fill(XMass, mcWeight);
+	  if(SubjetCSV[i+1]>0.4 && SubjetCSV[i+1]<0.6) h_sbXMass[2]->Fill(XMass, mcWeight);
+	  if(SubjetCSV[i+1]>0.6 && SubjetCSV[i+1]<0.8) h_sbXMass[3]->Fill(XMass, mcWeight);
+	  if(SubjetCSV[i+1]>0.8 && SubjetCSV[i+1]<1.0) h_sbXMass[4]->Fill(XMass, mcWeight);
+	    
+	} // if
 
-	if(dRjj<0.3 && CA8jetCSV[i]>0) h_sbCA8CSV->Fill(CA8jetCSV[i], mcWeight);
-		
+	if(dRjj<0.3 && CA8jetCSV[i]>0){
+
+	  if(CA8jetCSV[i]>0   && CA8jetCSV[i]<0.2) h_sbXMassCA8jet[0]->Fill(XMass, mcWeight);
+	  if(CA8jetCSV[i]>0.2 && CA8jetCSV[i]<0.4) h_sbXMassCA8jet[1]->Fill(XMass, mcWeight);
+	  if(CA8jetCSV[i]>0.4 && CA8jetCSV[i]<0.6) h_sbXMassCA8jet[2]->Fill(XMass, mcWeight);
+	  if(CA8jetCSV[i]>0.6 && CA8jetCSV[i]<0.8) h_sbXMassCA8jet[3]->Fill(XMass, mcWeight);
+	  if(CA8jetCSV[i]>0.8 && CA8jetCSV[i]<1.0) h_sbXMassCA8jet[4]->Fill(XMass, mcWeight);
+
+	} // if
       }
 
       // signal region                                           
-      if(CA8jetPrunedM[leadjet]>110 && CA8jetPrunedM[leadjet]<140){
-
+      if(prunedmass>110 && prunedmass<140){
+	
         if(dRjj>0.3){
 
-	  if(SubjetCSV[i]>0) h_sigSubCSV->Fill(SubjetCSV[i], mcWeight);
-	  if(SubjetCSV[i+1]>0) h_sigSubCSV->Fill(SubjetCSV[i+1], mcWeight);
+	  if(SubjetCSV[i]>0   && SubjetCSV[i]<0.2) h_sigXMass[0]->Fill(XMass, mcWeight);
+	  if(SubjetCSV[i]>0.2 && SubjetCSV[i]<0.4) h_sigXMass[1]->Fill(XMass, mcWeight);
+	  if(SubjetCSV[i]>0.4 && SubjetCSV[i]<0.6) h_sigXMass[2]->Fill(XMass, mcWeight);
+	  if(SubjetCSV[i]>0.6 && SubjetCSV[i]<0.8) h_sigXMass[3]->Fill(XMass, mcWeight);
+	  if(SubjetCSV[i]>0.8 && SubjetCSV[i]<1.0) h_sigXMass[4]->Fill(XMass, mcWeight);
 
+	  if(SubjetCSV[i+1]>0   && SubjetCSV[i+1]<0.2) h_sigXMass[0]->Fill(XMass, mcWeight);
+	  if(SubjetCSV[i+1]>0.2 && SubjetCSV[i+1]<0.4) h_sigXMass[1]->Fill(XMass, mcWeight);
+	  if(SubjetCSV[i+1]>0.4 && SubjetCSV[i+1]<0.6) h_sigXMass[2]->Fill(XMass, mcWeight);
+	  if(SubjetCSV[i+1]>0.6 && SubjetCSV[i+1]<0.8) h_sigXMass[3]->Fill(XMass, mcWeight);
+	  if(SubjetCSV[i+1]>0.8 && SubjetCSV[i+1]<1.0) h_sigXMass[4]->Fill(XMass, mcWeight);
+	  
 	}
-
-	if(dRjj<0.3 && CA8jetCSV[i]>0) h_sigCA8CSV->Fill(CA8jetCSV[i], mcWeight);
 	
-      }
-      
+	if(dRjj<0.3 && CA8jetCSV[i]>0){
+	  
+	  if(CA8jetCSV[i]>0   && CA8jetCSV[i]<0.2) h_sigXMassCA8jet[0]->Fill(XMass, mcWeight);
+	  if(CA8jetCSV[i]>0.2 && CA8jetCSV[i]<0.4) h_sigXMassCA8jet[1]->Fill(XMass, mcWeight);
+	  if(CA8jetCSV[i]>0.4 && CA8jetCSV[i]<0.6) h_sigXMassCA8jet[2]->Fill(XMass, mcWeight);
+	  if(CA8jetCSV[i]>0.6 && CA8jetCSV[i]<0.8) h_sigXMassCA8jet[3]->Fill(XMass, mcWeight);
+	  if(CA8jetCSV[i]>0.8 && CA8jetCSV[i]<1.0) h_sigXMassCA8jet[4]->Fill(XMass, mcWeight);
+	  
+	}// if
+      }	
     } // jet loop                                                                    
-
+    
     counter++;
     cout<<counter<<endl;
     
-
+    
   } //entries 
   
-
-
+  
+  
   //save output
   TFile* outFile = new TFile("sherpa_Mu.root","recreate");
 
-  h_sbXMass->Write();
-  h_sigXMass->Write();
-  h_sbCA8CSV->Write();
-  h_sigCA8CSV->Write();
-  h_sbSubCSV->Write();
-  h_sigSubCSV->Write();
+  for(int i=0; i<5; i++){
 
+    h_sbXMass[i]->Scale(1/h_sbXMass[i]->Integral());
+    h_sigXMass[i]->Scale(1/h_sigXMass[i]->Integral());
+    h_sbXMassCA8jet[i]->Scale(1/h_sbXMassCA8jet[i]->Integral());
+    h_sigXMassCA8jet[i]->Scale(1/h_sigXMassCA8jet[i]->Integral());
 
+    h_sbXMass[i]->Write();
+    h_sigXMass[i]->Write();
+    h_sbXMassCA8jet[i]->Write();
+    h_sigXMassCA8jet[i]->Write();    
+
+  }
 
   outFile->Close();
 
