@@ -1,5 +1,0 @@
-1. do pileup sys-err
-2. jetenscale 3 plots
-3. sherpa bkd estimate
-4. draw 3 known sys-err shape
-5. CSV data MC comparison (not only shape, combined all bkd)

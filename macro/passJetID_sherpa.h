@@ -72,7 +72,7 @@ Bool_t passJetID(TreeReader &data,
   Int_t*   CA8jetID   = data.GetPtrInt("CA8jetPassID");
   Float_t* CA8jetTau1 = data.GetPtrFloat("CA8jetTau1");
   Float_t* CA8jetTau2 = data.GetPtrFloat("CA8jetTau2");
-  Float_t* CA8jetPrunedEn = data.GetPtrFloat("CA8jetPrunedEn");
+  Float_t* CA8jetPrunedM = data.GetPtrFloat("CA8jetPrunedMass");
 
   // b-tagging
   Int_t    nSubjet   = data.GetInt("CA8nSubPrunedJet");
@@ -141,7 +141,7 @@ Bool_t passJetID(TreeReader &data,
     Bool_t ptCut = (CA8jetPt[jIndex]>30);
     Bool_t etaCut = (fabs(CA8jetEta[jIndex])<2.4);
     Bool_t IDcut = (CA8jetID[jIndex]>0);
-    Bool_t prunedJetCut = (CA8jetPt[jIndex]>200)&&(CA8jetPrunedEn[jIndex]>40);
+    Bool_t prunedJetCut = (CA8jetPt[jIndex]>200)&&(CA8jetPrunedM[jIndex]>40);
     Bool_t Tau21Cut = ((CA8jetTau2[jIndex]/CA8jetTau1[jIndex])<0.5);
 
     if( !ptCut ) continue;
