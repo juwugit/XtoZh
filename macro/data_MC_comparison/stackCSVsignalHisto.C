@@ -26,12 +26,15 @@
 #include <TSystemDirectory.h>
 #include <TGraphAsymmErrors.h>
 
+
+/*
 const Int_t totalNEvent1 = 11765438;
 const Int_t totalNEvent2 = 12511326;
 const Int_t totalNEvent3 = 10783509;
 const Int_t totalNEvent4 = 9959752;
 const Int_t totalNEvent5 = 9910267;
 const Int_t totalNEvent6 = 9769891;
+//const Int_t totalNEvent7 = 19997;
 
 const Double_t crossSection1 = 63.5;
 const Double_t crossSection2 = 39.4;
@@ -39,6 +42,7 @@ const Double_t crossSection3 = 25.8;
 const Double_t crossSection4 = 56.0;
 const Double_t crossSection5 = 22.4;
 const Double_t crossSection6 = 7.6;
+//const Double_t crossSection7 = 0.003263;
 
 
 // scale = fb^-1 / luminosity
@@ -51,21 +55,25 @@ Double_t scale3 = data_lumi / (totalNEvent3 / crossSection3); // TTbar
 Double_t scale4 = data_lumi / (totalNEvent4 / crossSection4); // WW
 Double_t scale5 = data_lumi / (totalNEvent5 / crossSection5); // WZ
 Double_t scale6 = data_lumi / (totalNEvent6 / crossSection6); // ZZ
+//Double_t scale7 = data_lumi / (totalNEvent7 / crossSection7); // signal
+
+*/
 
 
-void myPlot(TH1D*, TH1D*, TH1D*, TH1D*, TH1D*, TH1D*, TH1D*);
+void myPlot(TH1D*, TH1D*, TH1D*, TH1D*, TH1D*, TH1D*, TH1D*, TH1D*);
 
 
-void stackCSVhisto(){
+void stackCSVsignalHisto(){
 
 
-  TFile *dy70  = TFile::Open("rootfile/DY70To100_Mu.root");
-  TFile *dy100 = TFile::Open("rootfile/DY100_Mu.root");
-  TFile *ttbar = TFile::Open("rootfile/TTbar_Mu.root");
-  TFile *ww    = TFile::Open("rootfile/WW_Mu.root");
-  TFile *wz    = TFile::Open("rootfile/WZ_Mu.root");
-  TFile *zz    = TFile::Open("rootfile/ZZ_Mu.root");
-  TFile *data  = TFile::Open("rootfile/data_Mu.root");
+  TFile *dy70  = TFile::Open("rootfile/DY70To100_El.root");
+  TFile *dy100 = TFile::Open("rootfile/DY100_El.root");
+  TFile *ttbar = TFile::Open("rootfile/TTbar_El.root");
+  TFile *ww    = TFile::Open("rootfile/WW_El.root");
+  TFile *wz    = TFile::Open("rootfile/WZ_El.root");
+  TFile *zz    = TFile::Open("rootfile/ZZ_El.root");
+  TFile *data  = TFile::Open("rootfile/data_El.root");
+  TFile *SIG   = TFile::Open("rootfile/signal_M1500_El.root");
 
 
   gStyle->SetOptStat(0);
@@ -88,7 +96,8 @@ void stackCSVhisto(){
 	  ((TH1D*)(ww->Get("h_sbCA8jetCSV"))), 
 	  ((TH1D*)(wz->Get("h_sbCA8jetCSV"))), 
 	  ((TH1D*)(zz->Get("h_sbCA8jetCSV"))), 
-	  ((TH1D*)(data->Get("h_sbCA8jetCSV")))
+	  ((TH1D*)(data->Get("h_sbCA8jetCSV"))),
+	  ((TH1D*)(SIG->Get("h_sbCA8jetCSV")))
 	  );
 
   //-------------------------------------------//
@@ -100,7 +109,8 @@ void stackCSVhisto(){
 	  ((TH1D*)(ww->Get("h_sigCA8jetCSV"))), 
 	  ((TH1D*)(wz->Get("h_sigCA8jetCSV"))), 
 	  ((TH1D*)(zz->Get("h_sigCA8jetCSV"))), 
-	  ((TH1D*)(data->Get("h_sigCA8jetCSV")))
+	  ((TH1D*)(data->Get("h_sigCA8jetCSV"))),
+	  ((TH1D*)(SIG->Get("h_sbCA8jetCSV")))
 	  );
 
   //-------------------------------------------//
@@ -112,7 +122,8 @@ void stackCSVhisto(){
 	  ((TH1D*)(ww->Get("h_sbSubjetCSV"))), 
 	  ((TH1D*)(wz->Get("h_sbSubjetCSV"))), 
 	  ((TH1D*)(zz->Get("h_sbSubjetCSV"))), 
-	  ((TH1D*)(data->Get("h_sbSubjetCSV")))
+	  ((TH1D*)(data->Get("h_sbSubjetCSV"))),
+	  ((TH1D*)(SIG->Get("h_sbCA8jetCSV")))
 	  );
 
 
@@ -125,7 +136,8 @@ void stackCSVhisto(){
 	  ((TH1D*)(ww->Get("h_sigSubjetCSV"))), 
 	  ((TH1D*)(wz->Get("h_sigSubjetCSV"))), 
 	  ((TH1D*)(zz->Get("h_sigSubjetCSV"))), 
-	  ((TH1D*)(data->Get("h_sigSubjetCSV")))
+	  ((TH1D*)(data->Get("h_sigSubjetCSV"))),
+	  ((TH1D*)(SIG->Get("h_sbCA8jetCSV")))
 	  );
 
 
@@ -135,7 +147,7 @@ void stackCSVhisto(){
   gSystem->ProcessEvents();
   TImage *img1 = TImage::Create();
   img1->FromPad(c1);
-  img1->WriteImage("h_jetCSV_Mu.png");
+  img1->WriteImage("h_jetCSVshape1500_El.png");
   delete c1;
   delete img1;
 
@@ -149,9 +161,10 @@ void stackCSVhisto(){
 
 
 
-void myPlot(TH1D* h_dy70, TH1D* h_dy100, TH1D* h_ttbar, TH1D* h_ww, TH1D* h_wz, TH1D* h_zz, TH1D* h_data){
+void myPlot(TH1D* h_dy70, TH1D* h_dy100, TH1D* h_ttbar, TH1D* h_ww, TH1D* h_wz, TH1D* h_zz, TH1D* h_data, TH1D* h_sig){
 
   
+  /*
   h_dy70->Scale(scale1);
   h_dy70->SetFillColor(kCyan-4);
   h_dy70->SetLineColor(kBlack);
@@ -175,9 +188,10 @@ void myPlot(TH1D* h_dy70, TH1D* h_dy100, TH1D* h_ttbar, TH1D* h_ww, TH1D* h_wz, 
   h_zz->Scale(scale6);
   h_zz->SetFillColor(kViolet+3);
   h_zz->SetLineColor(kBlack);
+  */
 
 
-  THStack *h_stack = new THStack("h_stack", "");
+  TH1D* h_stack = new TH1D("h_stack","",20,0,1);
   h_stack->Add(h_zz);
   h_stack->Add(h_wz);
   h_stack->Add(h_ww);
@@ -185,33 +199,52 @@ void myPlot(TH1D* h_dy70, TH1D* h_dy100, TH1D* h_ttbar, TH1D* h_ww, TH1D* h_wz, 
   h_stack->Add(h_dy70);
   h_stack->Add(h_dy100);
 
+  h_stack->Scale(1/h_stack->Integral());
+  h_stack->SetFillColor(kCyan-4);
+  h_stack->SetLineColor(kBlack);
 
- 
+
+  h_data->Scale(1/h_data->Integral());
   h_data->SetLineColor(1);
   h_data->SetMarkerStyle(8);
   h_data->SetMarkerSize(1);
   h_data->SetLabelSize(0);
 
+  //h_sig->Scale(scale7);
+  h_sig->Scale(1/h_sig->Integral());
+  h_sig->SetLineColor(kRed);
+  h_sig->SetMarkerColor(kRed);
+  h_sig->SetMarkerStyle(8);
+  h_sig->SetMarkerSize(1);
+  h_sig->SetLabelSize(0);
 
-  Float_t dymaxbin =  h_dy100->GetBinContent(h_dy100->GetMaximumBin()) + h_dy70->GetBinContent(h_dy70->GetMaximumBin());
-  Float_t datamaxbin =  h_data->GetBinContent(h_data->GetMaximumBin());
 
-  if( dymaxbin > datamaxbin ){
+
+  Float_t dymaxbin =  h_stack->GetBinContent(h_stack->GetMaximumBin());
+  Float_t sigmaxbin = h_sig->GetBinContent(h_sig->GetMaximumBin());
+
+  if( dymaxbin > sigmaxbin ){
 
     h_stack->Draw("histe");
     h_stack->GetXaxis()->SetTitle( h_dy100->GetTitle() );
     h_data->Draw("e1same");
+    h_sig->Draw("e1same");
+
+    }
+    
+  else if( dymaxbin < sigmaxbin ){
+    
+    h_sig->GetXaxis()->SetTitle( h_data->GetTitle() );
+    h_sig->Draw("e1"); 
+    h_stack->Draw("histesame");
+    h_data->Draw("e1same");
+    h_sig->Draw("e1same");
 
   }
   
-  else if( dymaxbin < datamaxbin ){
-    
-    h_data->GetXaxis()->SetTitle( h_data->GetTitle() );
-    h_data->Draw("e1"); 
-    h_stack->Draw("histesame");
-    h_data->Draw("e1same");
 
-  }
+
+
 
 
   h_data->Clear();
@@ -222,6 +255,7 @@ void myPlot(TH1D* h_dy70, TH1D* h_dy100, TH1D* h_ttbar, TH1D* h_ww, TH1D* h_wz, 
   h_ww->Clear();
   h_wz->Clear();
   h_zz->Clear();
+  h_sig->Clear();
 
 
   TLegend *leg = new TLegend(0.73, 0.68, 0.98, 0.98);
@@ -229,13 +263,17 @@ void myPlot(TH1D* h_dy70, TH1D* h_dy100, TH1D* h_ttbar, TH1D* h_ww, TH1D* h_wz, 
   leg->SetFillStyle(1001);
   leg->SetFillColor(10);
   leg->SetBorderSize(1);
+  /*
   leg->AddEntry(h_zz,"ZZ_pythia_filtered", "f"); 
   leg->AddEntry(h_wz,"WZ_pythia_filtered", "f"); 
   leg->AddEntry(h_ww,"WW_pythia_filtered", "f"); 
   leg->AddEntry(h_ttbar,"TTTo2L2Nu2B", "f"); 
   leg->AddEntry(h_dy100,"DYJetsToLL_PtZ-100", "f"); 
-  leg->AddEntry(h_dy70, "DYJetsToLL_PtZ-70To100", "f"); 
+  leg->AddEntry(h_dy70, "DYJetsToLL_PtZ-70To100", "f");
+  */
+  leg->AddEntry(h_stack, "Background MC", "f");
   leg->AddEntry(h_data, "Data", "lp");
+  leg->AddEntry(h_sig, "ZprimeToZhTollqq", "lp");
   leg->Draw();
 
 

@@ -11,6 +11,8 @@
 #include <TLorentzVector.h>
 #include <TFile.h>
 #include "/home/juwu/XtoZh/macro/untuplizer.h"
+#include "/home/juwu/XtoZh/macro/passElectronID.h"
+#include "/home/juwu/XtoZh/macro/passMuonID.h"
 #include <standalone_LumiReWeighting.cc>
 
 
@@ -26,11 +28,11 @@ void recoNVtx(std::string inputFile, std::string outputFile){
 
   // check lepton channel
   bool isMuon=false;
-  if(inputFile.find("Mu")!= std::string::npos)
+  if(outputFile.find("Mu")!= std::string::npos)
     isMuon=true;
 
   bool isEle=false;
-  if(inputFile.find("El")!= std::string::npos)
+  if(outputFile.find("El")!= std::string::npos)
     isEle=true;
 
 
@@ -41,10 +43,10 @@ void recoNVtx(std::string inputFile, std::string outputFile){
 
 
   // declare histogram
-  TH1F* h_nVtx         = new TH1F("h_nVtx","",50,0,50);
-  TH1F* h_nVtx_central = new TH1F("h_nVtx_central","",50,0,50);
-  TH1F* h_nVtx_down    = new TH1F("h_nVtx_down","",50,0,50);
-  TH1F* h_nVtx_up      = new TH1F("h_nVtx_up","",50,0,50);
+  TH1F* h_nVtx         = new TH1F("h_nVtx","nVtx",50,0,50);
+  TH1F* h_nVtx_central = new TH1F("h_nVtx_central","nVtx_central",50,0,50);
+  TH1F* h_nVtx_down    = new TH1F("h_nVtx_down","nVtx_down",50,0,50);
+  TH1F* h_nVtx_up      = new TH1F("h_nVtx_up","nVtx_up",50,0,50);
   
   h_nVtx->Sumw2();    
   h_nVtx_central->Sumw2();
@@ -61,22 +63,51 @@ void recoNVtx(std::string inputFile, std::string outputFile){
   double   PU_weight_up      = -1;
   double   PU_weight_down    = -1;
   
+  Int_t    nLep;
+  Float_t* lepPt;
+  Float_t* lepEta;
+  Float_t* lepPhi;
+  Float_t* lepM; 
+
 
   //Event loop
   for(long jEntry=0; jEntry<data.GetEntriesFast() ;jEntry++){
 
     data.GetEntry(jEntry);
     
-    Int_t    nVtx        = data.GetInt("info_nVtx");
+    Int_t nVtx = data.GetInt("info_nVtx");
+    Int_t leadLep, secLep;
+
+    // load lepton variables    
+    if(isEle){
+      
+      nLep    = data.GetInt("nEle");
+      lepPt   = data.GetPtrFloat("elePt");
+      lepEta  = data.GetPtrFloat("eleEta");
+      lepPhi  = data.GetPtrFloat("elePhi");
+      lepM    = data.GetPtrFloat("eleM"); 
+      
+    }
+
+    if(isMuon){
+      
+      nLep    = data.GetInt("nMu");
+      lepPt   = data.GetPtrFloat("muPt");
+      lepEta  = data.GetPtrFloat("muEta");
+      lepPhi  = data.GetPtrFloat("muPhi");
+      lepM    = data.GetPtrFloat("muM"); 
+      
+    }
+
 
     // pile up weights
     if(!isData){
 
-    pu_nTrueInt       =  data.GetFloat("pu_nTrueInt");    
-    PU_weight_central =  LumiWeights_central.weight(pu_nTrueInt);
-    PU_weight_up      =  LumiWeights_up.weight(pu_nTrueInt);
-    PU_weight_down    =  LumiWeights_down.weight(pu_nTrueInt);
-
+      pu_nTrueInt       =  data.GetFloat("pu_nTrueInt");    
+      PU_weight_central =  LumiWeights_central.weight(pu_nTrueInt);
+      PU_weight_up      =  LumiWeights_up.weight(pu_nTrueInt);
+      PU_weight_down    =  LumiWeights_down.weight(pu_nTrueInt);
+      
     }
 
 
@@ -105,6 +136,27 @@ void recoNVtx(std::string inputFile, std::string outputFile){
       }
     
     if(isData && !passTrigger)continue;
+    if(isEle && !passElectronID(data, &leadLep, &secLep)) continue;
+    if(isMuon && !passMuonID(data, &leadLep, &secLep)) continue;
+    if(nLep<=1) continue;
+
+      
+
+    // Reco mLL & mLL cuts
+    TLorentzVector l1(0,0,0,0);
+    TLorentzVector l2(0,0,0,0);
+    TLorentzVector recoZ(0,0,0,0);
+    
+    l1.SetPtEtaPhiM(lepPt[leadLep],lepEta[leadLep],lepPhi[leadLep],lepM[leadLep]);
+    l2.SetPtEtaPhiM(lepPt[secLep],lepEta[secLep],lepPhi[secLep],lepM[secLep]);
+    recoZ=(l1+l2);
+
+    Float_t ZPt=recoZ.Pt();
+    
+    if(ZPt<70) continue;
+
+
+
     
     
     // Fill nVtx
