@@ -11,18 +11,28 @@
 #include "/home/juwu/XtoZh/macro/untuplizer.h"
 #include "/home/juwu/XtoZh/macro/passElectronID.h"
 #include "/home/juwu/XtoZh/macro/passMuonID.h"
-#include "/home/juwu/XtoZh/macro/JetSelections.h"
+#include "/home/juwu/XtoZh/macro/passJetID.h"
 #include "/home/juwu/XtoZh/macro/standalone_LumiReWeighting.cc"
 
 
+std::string unctext_DYJets = "/home/juwu/XtoZh/macro/START53_V23_Uncertainty_AK7PFchs.txt";
+std::string unctext_data = "/home/juwu/XtoZh/macro/FT_53_V21_AN4_Uncertainty_AK7PFchs.txt";
+
+
+
 using namespace std;
-void recoCSV(std::string inputFile, std::string outputFile){
+void recoXMassCSV(Int_t scaleMode, std::string inputFile, std::string outputFile){
 
 
-  // check if the file is data or not
+  // check if the file is data or DYJets
   bool isData=false;
   if(inputFile.find("data")!= std::string::npos)
     isData=true;
+
+
+  // JetEnScale structure
+  corrJetV corrJet(unctext_DYJets);
+  //corrJetV corrJet(unctext_data);
 
 
 
@@ -43,12 +53,19 @@ void recoCSV(std::string inputFile, std::string outputFile){
 
 
   // declare histogram
+  const Float_t varBins[] = {680,720,760,800,840,920,1000,1100,1250,1400,1600,1800,2000,2400};
+  Int_t nvarBins = sizeof(varBins)/sizeof(varBins[0])-1;
+
+  TH1F* h_sbXMass = new TH1F("h_sbXMass","sideband region XMass",nvarBins, varBins);
+  TH1F* h_sigXMass = new TH1F("h_sigXMass","signal region XMass",nvarBins, varBins);
   TH1F* h_sbCA8jetCSV = new TH1F("h_sbCA8jetCSV","sideband region CA8jet CSV",20,0,1);
   TH1F* h_sigCA8jetCSV = new TH1F("h_sigCA8jetCSV","signal region CA8jet CSV",20,0,1);
   TH1F* h_sbSubjetCSV = new TH1F("h_sbSubjetCSV","sideband region subjet CSV",20,0,1);
   TH1F* h_sigSubjetCSV = new TH1F("h_sigSubjetCSV","signal region subjet CSV",20,0,1);
 
   
+  h_sbXMass->Sumw2();
+  h_sigXMass->Sumw2();
   h_sbCA8jetCSV->Sumw2();
   h_sigCA8jetCSV->Sumw2();
   h_sbSubjetCSV->Sumw2();
@@ -72,11 +89,8 @@ void recoCSV(std::string inputFile, std::string outputFile){
   Float_t* lepPt;
   Float_t* lepEta;
   Float_t* lepPhi;
-  Float_t* lepM;
-  
-  Int_t leadjet;    
+  Float_t* lepM;  
   Int_t leadLep, secLep;
-  Int_t counter = 0;
 
 
   //Event loop
@@ -84,14 +98,7 @@ void recoCSV(std::string inputFile, std::string outputFile){
 
     data.GetEntry(jEntry);
 
-    counter++;
-    cout<<counter<<endl;
-
     Int_t    CA8nJet     = data.GetInt("CA8nJet");
-    Float_t* CA8jetPt    = data.GetPtrFloat("CA8jetPt");
-    Float_t* CA8jetEta   = data.GetPtrFloat("CA8jetEta");
-    Float_t* CA8jetPhi   = data.GetPtrFloat("CA8jetPhi");
-    Float_t* CA8jetEn    = data.GetPtrFloat("CA8jetEn");
     Float_t* CA8jetPrunedM = data.GetPtrFloat("CA8jetPrunedMass");
     Float_t* CA8jetCSV   = data.GetPtrFloat("CA8jetCSV");
 
@@ -189,20 +196,27 @@ void recoCSV(std::string inputFile, std::string outputFile){
 
 
     // reco XMass
-    if(!PassJet(3, data, leadjet)) continue;
+    Int_t leadjet;
+    Int_t csvlMode = 0;
+    TLorentzVector tempVector(0,0,0,0);
 
-    TLorentzVector recoH(0,0,0,0);
+    if(!passJetID(data, corrJet, csvlMode, scaleMode, &leadjet, &tempVector))continue;
+
+    TLorentzVector recoH = tempVector;
     TLorentzVector recoX(0,0,0,0);
+
     Float_t XMass;
     Float_t prunedmass=CA8jetPrunedM[leadjet];
-    
+
     if(CA8nJet>0 && leadjet>=0){
-      
-      recoH.SetPtEtaPhiE(CA8jetPt[leadjet],CA8jetEta[leadjet],CA8jetPhi[leadjet],CA8jetEn[leadjet]);
+
       recoX = recoZ+recoH;
       XMass = recoX.M();
 
-    }      
+      if(prunedmass>70 && prunedmass<110) h_sbXMass->Fill(XMass, PU_weight_central);
+      if(prunedmass>110 && prunedmass<140) h_sigXMass->Fill(XMass, PU_weight_central);
+
+    }
 
 
 
@@ -263,12 +277,12 @@ void recoCSV(std::string inputFile, std::string outputFile){
   //save output
   TFile* outFile = new TFile(outputFile.data(),"recreate");
 
+  h_sbXMass->Write();
+  h_sigXMass->Write();
   h_sbCA8jetCSV->Write();
   h_sigCA8jetCSV->Write();
   h_sbSubjetCSV->Write();
   h_sigSubjetCSV->Write();
-
-
 
   outFile->Close();
 
