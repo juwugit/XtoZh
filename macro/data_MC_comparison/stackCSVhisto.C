@@ -43,7 +43,7 @@ const Double_t crossSection6 = 7.6;
 
 // scale = fb^-1 / luminosity
 
-Double_t data_lumi = 19671.225; // El: 19712.225 ; Mu: 19671.225
+Double_t data_lumi = 19712.225; // El: 19712.225 ; Mu: 19671.225
 
 Double_t scale1 = data_lumi / (totalNEvent1 / crossSection1); // DYJetsToLL_PtZ-70To100
 Double_t scale2 = data_lumi / (totalNEvent2 / crossSection2); // DYJetsToLL_PtZ100
@@ -59,13 +59,13 @@ void myPlot(TH1D*, TH1D*, TH1D*, TH1D*, TH1D*, TH1D*, TH1D*);
 void stackCSVhisto(){
 
 
-  TFile *dy70  = TFile::Open("rootfile/DY70To100_Mu.root");
-  TFile *dy100 = TFile::Open("rootfile/DY100_Mu.root");
-  TFile *ttbar = TFile::Open("rootfile/TTbar_Mu.root");
-  TFile *ww    = TFile::Open("rootfile/WW_Mu.root");
-  TFile *wz    = TFile::Open("rootfile/WZ_Mu.root");
-  TFile *zz    = TFile::Open("rootfile/ZZ_Mu.root");
-  TFile *data  = TFile::Open("rootfile/data_Mu.root");
+  TFile *dy70  = TFile::Open("rootfile/DY70To100_El.root");
+  TFile *dy100 = TFile::Open("rootfile/DY100_El.root");
+  TFile *ttbar = TFile::Open("rootfile/TTbar_El.root");
+  TFile *ww    = TFile::Open("rootfile/WW_El.root");
+  TFile *wz    = TFile::Open("rootfile/WZ_El.root");
+  TFile *zz    = TFile::Open("rootfile/ZZ_El.root");
+  TFile *data  = TFile::Open("rootfile/data_El.root");
 
 
   gStyle->SetOptStat(0);
@@ -135,7 +135,7 @@ void stackCSVhisto(){
   gSystem->ProcessEvents();
   TImage *img1 = TImage::Create();
   img1->FromPad(c1);
-  img1->WriteImage("h_jetCSV_Mu.png");
+  img1->WriteImage("h_jetCSV_El.png");
   delete c1;
   delete img1;
 

@@ -27,7 +27,7 @@
 #include <TGraphAsymmErrors.h>
 
 
-/*
+
 const Int_t totalNEvent1 = 11765438;
 const Int_t totalNEvent2 = 12511326;
 const Int_t totalNEvent3 = 10783509;
@@ -47,7 +47,7 @@ const Double_t crossSection6 = 7.6;
 
 // scale = fb^-1 / luminosity
 
-Double_t data_lumi = 19671.225; // El: 19712.225 ; Mu: 19671.225
+Double_t data_lumi = 19712.225; // El: 19712.225 ; Mu: 19671.225
 
 Double_t scale1 = data_lumi / (totalNEvent1 / crossSection1); // DYJetsToLL_PtZ-70To100
 Double_t scale2 = data_lumi / (totalNEvent2 / crossSection2); // DYJetsToLL_PtZ100
@@ -57,7 +57,7 @@ Double_t scale5 = data_lumi / (totalNEvent5 / crossSection5); // WZ
 Double_t scale6 = data_lumi / (totalNEvent6 / crossSection6); // ZZ
 //Double_t scale7 = data_lumi / (totalNEvent7 / crossSection7); // signal
 
-*/
+
 
 
 void myPlot(TH1D*, TH1D*, TH1D*, TH1D*, TH1D*, TH1D*, TH1D*, TH1D*);
@@ -73,7 +73,7 @@ void stackCSVsignalHisto(){
   TFile *wz    = TFile::Open("rootfile/WZ_El.root");
   TFile *zz    = TFile::Open("rootfile/ZZ_El.root");
   TFile *data  = TFile::Open("rootfile/data_El.root");
-  TFile *SIG   = TFile::Open("rootfile/signal_M1500_El.root");
+  TFile *SIG   = TFile::Open("rootfile/signal_M1000_El.root");
 
 
   gStyle->SetOptStat(0);
@@ -85,10 +85,10 @@ void stackCSVsignalHisto(){
   TCanvas* c1 = new TCanvas("c1", "", 0, 0, 1500, 750);
 
 
-  c1->Divide(2,2);
+  //c1->Divide(2,2);
 
   //-------------------------------------------//
-
+  /*
   c1->cd(1);
   myPlot( ((TH1D*)(dy70->Get("h_sbCA8jetCSV"))), 
 	  ((TH1D*)(dy100->Get("h_sbCA8jetCSV"))), 
@@ -101,8 +101,8 @@ void stackCSVsignalHisto(){
 	  );
 
   //-------------------------------------------//
-  
-  c1->cd(2);
+  */
+  //c1->cd(2);
   myPlot( ((TH1D*)(dy70->Get("h_sigCA8jetCSV"))), 
 	  ((TH1D*)(dy100->Get("h_sigCA8jetCSV"))), 
 	  ((TH1D*)(ttbar->Get("h_sigCA8jetCSV"))), 
@@ -114,7 +114,7 @@ void stackCSVsignalHisto(){
 	  );
 
   //-------------------------------------------//
-
+  /*
   c1->cd(3);
   myPlot( ((TH1D*)(dy70->Get("h_sbSubjetCSV"))), 
 	  ((TH1D*)(dy100->Get("h_sbSubjetCSV"))), 
@@ -128,7 +128,8 @@ void stackCSVsignalHisto(){
 
 
   //------------------------------------------//
-
+  */
+  /*
   c1->cd(4);
   myPlot( ((TH1D*)(dy70->Get("h_sigSubjetCSV"))), 
 	  ((TH1D*)(dy100->Get("h_sigSubjetCSV"))), 
@@ -139,7 +140,7 @@ void stackCSVsignalHisto(){
 	  ((TH1D*)(data->Get("h_sigSubjetCSV"))),
 	  ((TH1D*)(SIG->Get("h_sbCA8jetCSV")))
 	  );
-
+  */
 
 
 
@@ -147,7 +148,7 @@ void stackCSVsignalHisto(){
   gSystem->ProcessEvents();
   TImage *img1 = TImage::Create();
   img1->FromPad(c1);
-  img1->WriteImage("h_jetCSVshape1500_El.png");
+  img1->WriteImage("h_jetCSVshape1000_El.png");
   delete c1;
   delete img1;
 
@@ -164,31 +165,31 @@ void stackCSVsignalHisto(){
 void myPlot(TH1D* h_dy70, TH1D* h_dy100, TH1D* h_ttbar, TH1D* h_ww, TH1D* h_wz, TH1D* h_zz, TH1D* h_data, TH1D* h_sig){
 
   
-  /*
+  
   h_dy70->Scale(scale1);
-  h_dy70->SetFillColor(kCyan-4);
-  h_dy70->SetLineColor(kBlack);
+  //h_dy70->SetFillColor(kCyan-4);
+  //h_dy70->SetLineColor(kBlack);
 
   h_dy100->Scale(scale2);
-  h_dy100->SetFillColor(kAzure+9);
-  h_dy100->SetLineColor(kBlack);
+  //h_dy100->SetFillColor(kAzure+9);
+  //h_dy100->SetLineColor(kBlack);
 
   h_ttbar->Scale(scale3);
-  h_ttbar->SetFillColor(kOrange+8);
-  h_ttbar->SetLineColor(kBlack);
+  //h_ttbar->SetFillColor(kOrange+8);
+  //h_ttbar->SetLineColor(kBlack);
 
   h_ww->Scale(scale4);
-  h_ww->SetFillColor(kViolet+1);
-  h_ww->SetLineColor(kBlack);
+  //h_ww->SetFillColor(kViolet+1);
+  //h_ww->SetLineColor(kBlack);
 
   h_wz->Scale(scale5);
-  h_wz->SetFillColor(kViolet+2);
-  h_wz->SetLineColor(kBlack);
+  //h_wz->SetFillColor(kViolet+2);
+  //h_wz->SetLineColor(kBlack);
 
   h_zz->Scale(scale6);
-  h_zz->SetFillColor(kViolet+3);
-  h_zz->SetLineColor(kBlack);
-  */
+  //h_zz->SetFillColor(kViolet+3);
+  //h_zz->SetLineColor(kBlack);
+
 
 
   TH1D* h_stack = new TH1D("h_stack","",20,0,1);

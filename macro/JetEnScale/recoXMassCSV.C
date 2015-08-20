@@ -24,15 +24,15 @@ using namespace std;
 void recoXMassCSV(Int_t scaleMode, std::string inputFile, std::string outputFile){
 
 
-  // check if the file is data or DYJets
+  // check if the file is data
   bool isData=false;
   if(inputFile.find("data")!= std::string::npos)
     isData=true;
 
 
   // JetEnScale structure
-  corrJetV corrJet(unctext_DYJets);
-  //corrJetV corrJet(unctext_data);
+  //corrJetV corrJet(unctext_DYJets);
+  corrJetV corrJet(unctext_data);
 
 
 
@@ -200,7 +200,7 @@ void recoXMassCSV(Int_t scaleMode, std::string inputFile, std::string outputFile
     Int_t csvlMode = 0;
     TLorentzVector tempVector(0,0,0,0);
 
-    if(!passJetID(data, corrJet, csvlMode, scaleMode, &leadjet, &tempVector))continue;
+    if(!passJetID(data, corrJet, csvlMode, scaleMode, &leadjet, &tempVector)) continue;
 
     TLorentzVector recoH = tempVector;
     TLorentzVector recoX(0,0,0,0);

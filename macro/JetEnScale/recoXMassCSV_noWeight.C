@@ -15,8 +15,19 @@
 #include "/home/juwu/XtoZh/macro/standalone_LumiReWeighting.cc"
 
 
+const float data_lumi = 19671.225; // El:19712.225 ; Mu:19671.225
+
+//const float weight = 1; //Data
+//const float weight = (data_lumi)/(11765438/63.5); //DY70to100
+//const float weight = (data_lumi)/(12511326/39.4); //DY100
+//const float weight = (data_lumi)/(10783509/25.8); //TTbar 
+//const float weight = (data_lumi)/(9959752/56.0); //WW
+//const float weight = (data_lumi)/(9910267/22.4); //WZ  
+const float weight = (data_lumi)/(9769891/7.6); //ZZ       
+
+
 using namespace std;
-void recoCSV(std::string inputFile, std::string outputFile){
+void recoXMassCSV_noWeight(std::string inputFile, std::string outputFile){
 
 
   // check if the file is data or not
@@ -43,12 +54,19 @@ void recoCSV(std::string inputFile, std::string outputFile){
 
 
   // declare histogram
+  const Float_t varBins[] = {680,720,760,800,840,920,1000,1100,1250,1400,1600,1800,2000,2400};
+  Int_t nvarBins = sizeof(varBins)/sizeof(varBins[0])-1;
+
+  TH1F* h_sbXMass = new TH1F("h_sbXMass","sideband region XMass",nvarBins, varBins);
+  TH1F* h_sigXMass = new TH1F("h_sigXMass","signal region XMass",nvarBins, varBins);
   TH1F* h_sbCA8jetCSV = new TH1F("h_sbCA8jetCSV","sideband region CA8jet CSV",20,0,1);
   TH1F* h_sigCA8jetCSV = new TH1F("h_sigCA8jetCSV","signal region CA8jet CSV",20,0,1);
   TH1F* h_sbSubjetCSV = new TH1F("h_sbSubjetCSV","sideband region subjet CSV",20,0,1);
   TH1F* h_sigSubjetCSV = new TH1F("h_sigSubjetCSV","signal region subjet CSV",20,0,1);
 
   
+  h_sbXMass->Sumw2();
+  h_sigXMass->Sumw2();
   h_sbCA8jetCSV->Sumw2();
   h_sigCA8jetCSV->Sumw2();
   h_sbSubjetCSV->Sumw2();
@@ -198,6 +216,9 @@ void recoCSV(std::string inputFile, std::string outputFile){
       recoX = recoZ+recoH;
       XMass = recoX.M();
 
+      if(prunedmass>70 && prunedmass<110) h_sbXMass->Fill(XMass, PU_weight_central*weight); 
+      if(prunedmass>110 && prunedmass<140) h_sigXMass->Fill(XMass, PU_weight_central*weight); 
+
     }      
 
 
@@ -226,12 +247,12 @@ void recoCSV(std::string inputFile, std::string outputFile){
 
 	if(dRjj>0.3){
 
-	  if(SubjetCSV[i][0]>0) h_sbSubjetCSV->Fill(SubjetCSV[i][0], PU_weight_central);
-	  if(SubjetCSV[i][1]>0) h_sbSubjetCSV->Fill(SubjetCSV[i][1], PU_weight_central);
+	  if(SubjetCSV[i][0]>0) h_sbSubjetCSV->Fill(SubjetCSV[i][0], PU_weight_central*weight);
+	  if(SubjetCSV[i][1]>0) h_sbSubjetCSV->Fill(SubjetCSV[i][1], PU_weight_central*weight);
 
 	}
 
-	if(dRjj<0.3 && CA8jetCSV[i]>0) h_sbCA8jetCSV->Fill(CA8jetCSV[i], PU_weight_central);
+	if(dRjj<0.3 && CA8jetCSV[i]>0) h_sbCA8jetCSV->Fill(CA8jetCSV[i], PU_weight_central*weight);
 		
       }
 
@@ -240,12 +261,12 @@ void recoCSV(std::string inputFile, std::string outputFile){
 
         if(dRjj>0.3){
 
-	  if(SubjetCSV[i][0]>0) h_sigSubjetCSV->Fill(SubjetCSV[i][0], PU_weight_central);
-	  if(SubjetCSV[i][1]>0) h_sigSubjetCSV->Fill(SubjetCSV[i][1], PU_weight_central);
+	  if(SubjetCSV[i][0]>0) h_sigSubjetCSV->Fill(SubjetCSV[i][0], PU_weight_central*weight);
+	  if(SubjetCSV[i][1]>0) h_sigSubjetCSV->Fill(SubjetCSV[i][1], PU_weight_central*weight);
 
 	}
 
-	if(dRjj<0.3 && CA8jetCSV[i]>0) h_sigCA8jetCSV->Fill(CA8jetCSV[i], PU_weight_central);
+	if(dRjj<0.3 && CA8jetCSV[i]>0) h_sigCA8jetCSV->Fill(CA8jetCSV[i], PU_weight_central*weight);
 	
       }
       
@@ -259,11 +280,12 @@ void recoCSV(std::string inputFile, std::string outputFile){
   //save output
   TFile* outFile = new TFile(outputFile.data(),"recreate");
 
+  h_sbXMass->Write();
+  h_sigXMass->Write();
   h_sbCA8jetCSV->Write();
   h_sigCA8jetCSV->Write();
   h_sbSubjetCSV->Write();
   h_sigSubjetCSV->Write();
-
 
 
   outFile->Close();

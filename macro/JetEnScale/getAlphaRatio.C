@@ -85,20 +85,20 @@ void getAlphaRatio(float data_lumi, std::string inputFile1, std::string inputFil
 
   
   // AlphaRatio
-  TH1F* h_alphaXMass = (TH1F*)h_sigXMass->Clone("h_alphaXMass");
-  h_alphaXMass->Clear();
+  const Float_t varBins[] = {680,720,760,800,840,920,1000,1100,1250,1400,1600,1800,2000,2400};
+  Int_t nvarBins = sizeof(varBins)/sizeof(varBins[0])-1;
+
+  TH1F* h_alphaXMass = new TH1F("h_alphaXMass","",nvarBins,varBins);
+  h_alphaXMass->Sumw2();
   h_alphaXMass->Divide(h_sigXMass, h_sbXMass);
-  h_alphaXMass->SetName("h_alphaXMass");
 
-  TH1F* h_alphaCA8jetCSV = (TH1F*)h_sigCA8jetCSV->Clone("h_alphaCA8jetCSV");
-  h_alphaCA8jetCSV->Clear();
+  TH1F* h_alphaCA8jetCSV = new TH1F("h_alphaCA8jetCSV","",20,0,1);
+  h_alphaCA8jetCSV->Sumw2();
   h_alphaCA8jetCSV->Divide(h_sigCA8jetCSV, h_sbCA8jetCSV);
-  h_alphaCA8jetCSV->SetName("h_alphaCA8jetCSV");
 
-  TH1F* h_alphaSubjetCSV = (TH1F*)h_sigSubjetCSV->Clone("h_alphaSubjetCSV");
-  h_alphaSubjetCSV->Clear();
+  TH1F* h_alphaSubjetCSV = new TH1F("h_alphaSubjetCSV","",20,0,1);
+  h_alphaSubjetCSV->Sumw2();
   h_alphaSubjetCSV->Divide(h_sigSubjetCSV, h_sbSubjetCSV);
-  h_alphaSubjetCSV->SetName("h_alphaSubjetCSV");
 
 
   // save file

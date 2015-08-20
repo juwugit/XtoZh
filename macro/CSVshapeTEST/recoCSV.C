@@ -16,7 +16,7 @@
 
 
 using namespace std;
-void recoCSV(std::string inputFile, std::string outputFile){
+void recoCSV(float masspoint, std::string inputFile, std::string outputFile){
 
 
   // check if the file is data or not
@@ -200,6 +200,11 @@ void recoCSV(std::string inputFile, std::string outputFile){
 
     }      
 
+    float upper_limit = masspoint*1.15;
+    float lower_limit = masspoint*0.85;
+
+    if(XMass>upper_limit || XMass<lower_limit) continue;
+
 
 
     // reco CSV
@@ -220,7 +225,7 @@ void recoCSV(std::string inputFile, std::string outputFile){
 
       }
 
-
+      /*
       // sideband region
       if(prunedmass>70 && prunedmass<110){
 
@@ -234,9 +239,9 @@ void recoCSV(std::string inputFile, std::string outputFile){
 	if(dRjj<0.3 && CA8jetCSV[i]>0) h_sbCA8jetCSV->Fill(CA8jetCSV[i], PU_weight_central);
 		
       }
-
+      */
       // signal region                                           
-      if(prunedmass>110 && prunedmass<140){
+      //if(prunedmass>110 && prunedmass<140){
 
         if(dRjj>0.3){
 
@@ -247,7 +252,7 @@ void recoCSV(std::string inputFile, std::string outputFile){
 
 	if(dRjj<0.3 && CA8jetCSV[i]>0) h_sigCA8jetCSV->Fill(CA8jetCSV[i], PU_weight_central);
 	
-      }
+	//}
       
     } // jet loop                                                                    
 
