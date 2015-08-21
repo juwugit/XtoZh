@@ -11,7 +11,7 @@
 #include "/home/juwu/XtoZh/macro/untuplizer.h"
 #include "/home/juwu/XtoZh/macro/passElectronID.h"
 #include "/home/juwu/XtoZh/macro/passMuonID.h"
-#include "/home/juwu/XtoZh/macro/JetSelections.h"
+#include "JetSelections.h"
 #include "/home/juwu/XtoZh/macro/standalone_LumiReWeighting.cc"
 
 
@@ -43,16 +43,16 @@ void recoCSV(float masspoint, std::string inputFile, std::string outputFile){
 
 
   // declare histogram
-  TH1F* h_sbCA8jetCSV = new TH1F("h_sbCA8jetCSV","sideband region CA8jet CSV",20,0,1);
-  TH1F* h_sigCA8jetCSV = new TH1F("h_sigCA8jetCSV","signal region CA8jet CSV",20,0,1);
-  TH1F* h_sbSubjetCSV = new TH1F("h_sbSubjetCSV","sideband region subjet CSV",20,0,1);
-  TH1F* h_sigSubjetCSV = new TH1F("h_sigSubjetCSV","signal region subjet CSV",20,0,1);
+  //TH1F* h_sbCA8jetCSV = new TH1F("h_sbCA8jetCSV","sideband region CA8jet CSV",20,0,1);
+  TH1F* h_CA8jetCSV = new TH1F("h_CA8jetCSV","CA8jetCSV",20,0,1);
+  //TH1F* h_sbSubjetCSV = new TH1F("h_sbSubjetCSV","sideband region subjet CSV",20,0,1);
+  TH1F* h_SubjetCSV = new TH1F("h_SubjetCSV","SubjetCSV",20,0,1);
 
   
-  h_sbCA8jetCSV->Sumw2();
-  h_sigCA8jetCSV->Sumw2();
-  h_sbSubjetCSV->Sumw2();
-  h_sigSubjetCSV->Sumw2();
+  //h_sbCA8jetCSV->Sumw2();
+  h_CA8jetCSV->Sumw2();
+  //h_sbSubjetCSV->Sumw2();
+  h_SubjetCSV->Sumw2();
 
 
 
@@ -245,12 +245,12 @@ void recoCSV(float masspoint, std::string inputFile, std::string outputFile){
 
         if(dRjj>0.3){
 
-	  if(SubjetCSV[i][0]>0) h_sigSubjetCSV->Fill(SubjetCSV[i][0], PU_weight_central);
-	  if(SubjetCSV[i][1]>0) h_sigSubjetCSV->Fill(SubjetCSV[i][1], PU_weight_central);
+	  if(SubjetCSV[i][0]>0) h_SubjetCSV->Fill(SubjetCSV[i][0], PU_weight_central);
+	  if(SubjetCSV[i][1]>0) h_SubjetCSV->Fill(SubjetCSV[i][1], PU_weight_central);
 
 	}
 
-	if(dRjj<0.3 && CA8jetCSV[i]>0) h_sigCA8jetCSV->Fill(CA8jetCSV[i], PU_weight_central);
+	if(dRjj<0.3 && CA8jetCSV[i]>0) h_CA8jetCSV->Fill(CA8jetCSV[i], PU_weight_central);
 	
 	//}
       
@@ -264,10 +264,10 @@ void recoCSV(float masspoint, std::string inputFile, std::string outputFile){
   //save output
   TFile* outFile = new TFile(outputFile.data(),"recreate");
 
-  h_sbCA8jetCSV->Write();
-  h_sigCA8jetCSV->Write();
-  h_sbSubjetCSV->Write();
-  h_sigSubjetCSV->Write();
+  //h_sbCA8jetCSV->Write();
+  h_CA8jetCSV->Write();
+  //h_sbSubjetCSV->Write();
+  h_SubjetCSV->Write();
 
 
 
