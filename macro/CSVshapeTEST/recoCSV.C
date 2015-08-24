@@ -26,32 +26,17 @@ void recoCSV(float masspoint, std::string inputFile, std::string outputFile){
 
 
 
-  // check lepton channel                                                        
-  bool isMuon=false;
-  if(outputFile.find("Mu")!= std::string::npos)
-    isMuon=true;
-
-  bool isEle=false;
-  if(outputFile.find("El")!= std::string::npos)
-    isEle=true;
-
-
-
   // get TTree from file ...
   TreeReader data(inputFile.data());
 
 
 
   // declare histogram
-  //TH1F* h_sbCA8jetCSV = new TH1F("h_sbCA8jetCSV","sideband region CA8jet CSV",20,0,1);
   TH1F* h_CA8jetCSV = new TH1F("h_CA8jetCSV","CA8jetCSV",20,0,1);
-  //TH1F* h_sbSubjetCSV = new TH1F("h_sbSubjetCSV","sideband region subjet CSV",20,0,1);
   TH1F* h_SubjetCSV = new TH1F("h_SubjetCSV","SubjetCSV",20,0,1);
 
   
-  //h_sbCA8jetCSV->Sumw2();
   h_CA8jetCSV->Sumw2();
-  //h_sbSubjetCSV->Sumw2();
   h_SubjetCSV->Sumw2();
 
 
@@ -63,19 +48,7 @@ void recoCSV(float masspoint, std::string inputFile, std::string outputFile){
 
   Float_t  pu_nTrueInt       = 1;
   double   PU_weight_central = 1;
-  double   PU_weight_up      = 1;
-  double   PU_weight_down    = 1;
 
-
-  // lepton var
-  Int_t    nLep;
-  Float_t* lepPt;
-  Float_t* lepEta;
-  Float_t* lepPhi;
-  Float_t* lepM;
-  
-  Int_t leadjet;    
-  Int_t leadLep, secLep;
 
 
   //Event loop
@@ -88,7 +61,6 @@ void recoCSV(float masspoint, std::string inputFile, std::string outputFile){
     Float_t* CA8jetEta   = data.GetPtrFloat("CA8jetEta");
     Float_t* CA8jetPhi   = data.GetPtrFloat("CA8jetPhi");
     Float_t* CA8jetEn    = data.GetPtrFloat("CA8jetEn");
-    Float_t* CA8jetPrunedM = data.GetPtrFloat("CA8jetPrunedMass");
     Float_t* CA8jetCSV   = data.GetPtrFloat("CA8jetCSV");
 
     Int_t*   nSubjet = data.GetPtrInt("CA8nSubPrunedJet");
@@ -98,27 +70,33 @@ void recoCSV(float masspoint, std::string inputFile, std::string outputFile){
     vector<Float_t>* SubjetPhi = data.GetPtrVectorFloat("CA8subjetPrunedPhi");
     vector<Float_t>* SubjetEn  = data.GetPtrVectorFloat("CA8subjetPrunedEn");
 
+    Int_t nEle      = data.GetInt("nEle");  
+    Float_t* elePt  = data.GetPtrFloat("elePt");  
+    Float_t* eleEta = data.GetPtrFloat("eleEta");
+    Float_t* elePhi = data.GetPtrFloat("elePhi");
+    Float_t* eleM   = data.GetPtrFloat("eleM");
 
-    // load lepton variables
-    if(isEle){
+    Int_t nMu       = data.GetInt("nMu");  
+    Float_t*  muPt  = data.GetPtrFloat("muPt");  
+    Float_t*  muEta = data.GetPtrFloat("muEta");
+    Float_t*  muPhi = data.GetPtrFloat("muPhi");
+    Float_t*  muM   = data.GetPtrFloat("muM");
 
-      nLep    = data.GetInt("nEle");  
-      lepPt   = data.GetPtrFloat("elePt");  
-      lepEta  = data.GetPtrFloat("eleEta");
-      lepPhi  = data.GetPtrFloat("elePhi");
-      lepM    = data.GetPtrFloat("eleM");
 
-    }               
+    Int_t leadEle, secEle;
+    passElectronID(data, &leadEle, &secEle);
+    Int_t leadMu, secMu;
+    passMuonID(data, &leadMu, &secMu);
 
-    if(isMuon){
 
-      nLep    = data.GetInt("nMu");  
-      lepPt   = data.GetPtrFloat("muPt");  
-      lepEta  = data.GetPtrFloat("muEta");
-      lepPhi  = data.GetPtrFloat("muPhi");
-      lepM    = data.GetPtrFloat("muM");
 
-    }               
+    // determine which channel
+    bool isEle  = false;
+    bool isMuon = false;
+    if(nEle>0 && nMu==0) isEle  = true;
+    if(nEle==0 && nMu>0) isMuon = true;
+    if(nEle>0 && nMu>0 && elePt[leadEle]>muPt[leadMu]) isEle  = true;
+    if(nEle>0 && nMu>0 && elePt[leadEle]<muPt[leadMu]) isMuon = true;
 
 
     // pile up weights 
@@ -126,8 +104,6 @@ void recoCSV(float masspoint, std::string inputFile, std::string outputFile){
 
       pu_nTrueInt       =  data.GetFloat("pu_nTrueInt");
       PU_weight_central =  LumiWeights_central.weight(pu_nTrueInt);
-      PU_weight_up      =  LumiWeights_up.weight(pu_nTrueInt);
-      PU_weight_down    =  LumiWeights_down.weight(pu_nTrueInt);
 
     }
 
@@ -159,11 +135,9 @@ void recoCSV(float masspoint, std::string inputFile, std::string outputFile){
 
     // passLeptonID
     if(isData && !passTrigger)continue;
-    if(isEle && !passElectronID(data, &leadLep, &secLep)) continue;
-    if(isMuon && !passMuonID(data, &leadLep, &secLep)) continue;
-    if(nLep<=1) continue;
-    if(isEle) passElectronID(data, &leadLep, &secLep);
-    if(isMuon) passMuonID(data, &leadLep, &secLep);
+    if(isEle && !passElectronID(data, &leadEle, &secEle)) continue;
+    if(isMuon && !passMuonID(data, &leadMu, &secMu)) continue;
+    if( (isEle && nEle<=1) || (isMuon && nMu<=1) ) continue;
 
 
       
@@ -172,8 +146,18 @@ void recoCSV(float masspoint, std::string inputFile, std::string outputFile){
     TLorentzVector l2(0,0,0,0);
     TLorentzVector recoZ(0,0,0,0);
     
-    l1.SetPtEtaPhiM(lepPt[leadLep],lepEta[leadLep],lepPhi[leadLep],lepM[leadLep]);
-    l2.SetPtEtaPhiM(lepPt[secLep],lepEta[secLep],lepPhi[secLep],lepM[secLep]);
+    if(isEle){
+
+      l1.SetPtEtaPhiM(elePt[leadEle],eleEta[leadEle],elePhi[leadEle],eleM[leadEle]);
+      l2.SetPtEtaPhiM(elePt[secEle],eleEta[secEle],elePhi[secEle],eleM[secEle]);
+    }
+
+    if(isMuon){
+
+      l1.SetPtEtaPhiM(muPt[leadMu],muEta[leadMu],muPhi[leadMu],muM[leadMu]);
+      l2.SetPtEtaPhiM(muPt[secMu],muEta[secMu],muPhi[secMu],muM[secMu]);
+    }
+
     recoZ=(l1+l2);
 
     Float_t ZMass=recoZ.M();
@@ -185,13 +169,13 @@ void recoCSV(float masspoint, std::string inputFile, std::string outputFile){
 
 
     // reco XMass
+    Int_t leadjet;
     if(!PassJet(3, data, leadjet)) continue;
 
     TLorentzVector recoH(0,0,0,0);
     TLorentzVector recoX(0,0,0,0);
-    Float_t XMass;
-    Float_t prunedmass=CA8jetPrunedM[leadjet];
-    
+    Float_t XMass=-999;
+
     if(CA8nJet>0 && leadjet>=0){
       
       recoH.SetPtEtaPhiE(CA8jetPt[leadjet],CA8jetEta[leadjet],CA8jetPhi[leadjet],CA8jetEn[leadjet]);
@@ -203,7 +187,7 @@ void recoCSV(float masspoint, std::string inputFile, std::string outputFile){
     float upper_limit = masspoint*1.15;
     float lower_limit = masspoint*0.85;
 
-    if(XMass>upper_limit || XMass<lower_limit) continue;
+    if(XMass>upper_limit || XMass<lower_limit || XMass==-999) continue;
 
 
 
@@ -225,34 +209,16 @@ void recoCSV(float masspoint, std::string inputFile, std::string outputFile){
 
       }
 
-      /*
-      // sideband region
-      if(prunedmass>70 && prunedmass<110){
 
-	if(dRjj>0.3){
-
-	  if(SubjetCSV[i][0]>0) h_sbSubjetCSV->Fill(SubjetCSV[i][0], PU_weight_central);
-	  if(SubjetCSV[i][1]>0) h_sbSubjetCSV->Fill(SubjetCSV[i][1], PU_weight_central);
-
-	}
-
-	if(dRjj<0.3 && CA8jetCSV[i]>0) h_sbCA8jetCSV->Fill(CA8jetCSV[i], PU_weight_central);
-		
-      }
-      */
-      // signal region                                           
-      //if(prunedmass>110 && prunedmass<140){
-
-        if(dRjj>0.3){
-
-	  if(SubjetCSV[i][0]>0) h_SubjetCSV->Fill(SubjetCSV[i][0], PU_weight_central);
-	  if(SubjetCSV[i][1]>0) h_SubjetCSV->Fill(SubjetCSV[i][1], PU_weight_central);
-
-	}
-
-	if(dRjj<0.3 && CA8jetCSV[i]>0) h_CA8jetCSV->Fill(CA8jetCSV[i], PU_weight_central);
+      if(dRjj>0.3){
 	
-	//}
+	if(SubjetCSV[i][0]>0) h_SubjetCSV->Fill(SubjetCSV[i][0], PU_weight_central);
+	if(SubjetCSV[i][1]>0) h_SubjetCSV->Fill(SubjetCSV[i][1], PU_weight_central);
+	
+      }
+      
+      if(dRjj<0.3 && CA8jetCSV[i]>0) h_CA8jetCSV->Fill(CA8jetCSV[i], PU_weight_central);
+      
       
     } // jet loop                                                                    
 
@@ -264,12 +230,9 @@ void recoCSV(float masspoint, std::string inputFile, std::string outputFile){
   //save output
   TFile* outFile = new TFile(outputFile.data(),"recreate");
 
-  //h_sbCA8jetCSV->Write();
+
   h_CA8jetCSV->Write();
-  //h_sbSubjetCSV->Write();
   h_SubjetCSV->Write();
-
-
 
   outFile->Close();
 
