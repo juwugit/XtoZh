@@ -197,30 +197,29 @@ void recoCSV(float masspoint, std::string inputFile, std::string outputFile){
     Float_t dRjj=-999;
 
 
-    for(int i=0; i<CA8nJet; i++){
+    if(CA8jetCSV[leadjet]>0) h_CA8jetCSV->Fill(CA8jetCSV[leadjet], PU_weight_central);
 
 
-      //check subjet deltaR
-      if(nSubjet[i]>=2){
-
-	subjet1.SetPtEtaPhiE(SubjetPt[i][0],SubjetEta[i][0],SubjetPhi[i][0],SubjetEn[i][0]);
-	subjet2.SetPtEtaPhiE(SubjetPt[i][1],SubjetEta[i][1],SubjetPhi[i][1],SubjetEn[i][1]);
-	dRjj=subjet1.DeltaR(subjet2);
-
-      }
-
-
-      if(dRjj>0.3){
-	
-	if(SubjetCSV[i][0]>0) h_SubjetCSV->Fill(SubjetCSV[i][0], PU_weight_central);
-	if(SubjetCSV[i][1]>0) h_SubjetCSV->Fill(SubjetCSV[i][1], PU_weight_central);
-	
-      }
+    //check subjet deltaR
+    if(nSubjet[leadjet]>=2){
       
-      if(dRjj<0.3 && CA8jetCSV[i]>0) h_CA8jetCSV->Fill(CA8jetCSV[i], PU_weight_central);
+      subjet1.SetPtEtaPhiE(SubjetPt[leadjet][0],SubjetEta[leadjet][0],SubjetPhi[leadjet][0],SubjetEn[leadjet][0]);
+      subjet2.SetPtEtaPhiE(SubjetPt[leadjet][1],SubjetEta[leadjet][1],SubjetPhi[leadjet][1],SubjetEn[leadjet][1]);
+      dRjj=subjet1.DeltaR(subjet2);
+      
+    }
+    
+    
+    if(dRjj>0.3){
+      
+      if(SubjetCSV[leadjet][0]>0) h_SubjetCSV->Fill(SubjetCSV[leadjet][0], PU_weight_central);
+      if(SubjetCSV[leadjet][1]>0) h_SubjetCSV->Fill(SubjetCSV[leadjet][1], PU_weight_central);
+      
+    }
+    
+    //if(dRjj<0.3 && CA8jetCSV[leadjet]>0) 
       
       
-    } // jet loop                                                                    
 
 
   } //entries 
