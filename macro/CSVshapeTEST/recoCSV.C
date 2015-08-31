@@ -16,7 +16,7 @@
 
 
 using namespace std;
-void recoCSV(float masspoint, std::string inputFile, std::string outputFile){
+void recoCSV(std::string inputFile, std::string outputFile){
 
 
   // check if the file is data or not
@@ -184,12 +184,6 @@ void recoCSV(float masspoint, std::string inputFile, std::string outputFile){
 
     }      
 
-    float upper_limit = masspoint*1.15;
-    float lower_limit = masspoint*0.85;
-
-    if(XMass>upper_limit || XMass<lower_limit || XMass==-999) continue;
-
-
 
     // reco CSV
     TLorentzVector subjet1(0,0,0,0);
@@ -197,7 +191,7 @@ void recoCSV(float masspoint, std::string inputFile, std::string outputFile){
     Float_t dRjj=-999;
 
 
-    if(CA8jetCSV[leadjet]>0) h_CA8jetCSV->Fill(CA8jetCSV[leadjet], PU_weight_central);
+    //if(CA8jetCSV[leadjet]>0) h_CA8jetCSV->Fill(CA8jetCSV[leadjet], PU_weight_central);
 
 
     //check subjet deltaR
@@ -217,7 +211,7 @@ void recoCSV(float masspoint, std::string inputFile, std::string outputFile){
       
     }
     
-    //if(dRjj<0.3 && CA8jetCSV[leadjet]>0) 
+    if(dRjj<0.3 && CA8jetCSV[leadjet]>0) h_CA8jetCSV->Fill(CA8jetCSV[leadjet], PU_weight_central);
       
       
 
