@@ -17,14 +17,12 @@ def MakeCountingDataCard(status, inputdatacard):
     TTstr='background_TT' 
     ZZstr='background_ZZ'
     WZstr='background_WZ'  
-    WWstr='background_WW'  
     histYieldDATA = gROOT.FindObject(DATAstr)
     histYieldSIG = gROOT.FindObject(SIGstr)
     histYieldDY = gROOT.FindObject(DYstr)
     histYieldTT = gROOT.FindObject(TTstr)
     histYieldZZ = gROOT.FindObject(ZZstr)
     histYieldWZ = gROOT.FindObject(WZstr)
-    histYieldWW = gROOT.FindObject(WWstr)
     datacard = open(datacardname,"a")
     for line in open(inputdatacard):
 
@@ -41,8 +39,7 @@ def MakeCountingDataCard(status, inputdatacard):
         line = line.replace("DYRATE",str(histYieldDY.Integral()))
         line = line.replace("TTRATE",str(histYieldTT.Integral()))
         line = line.replace("ZZRATE",str(histYieldZZ.Integral()))
-        line = line.replace("WZRATE",str(histYieldWZ.Integral()))
-        line = line.replace("WWRATE",str(histYieldWW.Integral()))
+        line = line.replace("WZRATE",str(histYieldWZ.Integral()))        
         datacard.write(line)
     datacard.close()
     return 0.0
@@ -64,14 +61,12 @@ def MakeShape1dDataCard(status, inputdatacard):
     TTstr='background_TT' 
     ZZstr='background_ZZ' 
     WZstr='background_WZ'
-    WWstr='background_WW'
     histYieldDATA = gROOT.FindObject(DATAstr)
     histYieldSIG = gROOT.FindObject(SIGstr)
     histYieldDY = gROOT.FindObject(DYstr)
     histYieldTT = gROOT.FindObject(TTstr)
     histYieldZZ = gROOT.FindObject(ZZstr)
     histYieldWZ = gROOT.FindObject(WZstr)
-    histYieldWW = gROOT.FindObject(WWstr)
     datacard = open(datacardname,"a")
     for line in open(inputdatacard):
 
@@ -89,7 +84,6 @@ def MakeShape1dDataCard(status, inputdatacard):
         line = line.replace("TTRATE",str(histYieldTT.Integral()))
         line = line.replace("ZZRATE",str(histYieldZZ.Integral()))       
         line = line.replace("WZRATE",str(histYieldWZ.Integral()))     
-        line = line.replace("WWRATE",str(histYieldWW.Integral()))     
         datacard.write(line)
     datacard.close()
     return 0.0
@@ -113,14 +107,12 @@ def MakeDataCard(status, ibin, inputdatacard):
     TTstr='background_TT_%d' %ibin
     ZZstr='background_ZZ_%d' %ibin
     WZstr='background_WZ_%d' %ibin
-    WWstr='background_WW_%d' %ibin
     histYieldDATA = gROOT.FindObject(DATAstr)
     histYieldSIG = gROOT.FindObject(SIGstr)
     histYieldDY = gROOT.FindObject(DYstr)
     histYieldTT = gROOT.FindObject(TTstr)
     histYieldZZ = gROOT.FindObject(ZZstr)
     histYieldWZ = gROOT.FindObject(WZstr) 
-    histYieldWW = gROOT.FindObject(WWstr) 
    
     datacard = open(datacardname,"a")
     for line in open(inputdatacard):
@@ -133,7 +125,6 @@ def MakeDataCard(status, ibin, inputdatacard):
         line = line.replace("BK_TT",str(TTstr))
         line = line.replace("BK_ZZ",str(ZZstr))
         line = line.replace("BK_WZ",str(WZstr))
-        line = line.replace("BK_WW",str(WWstr))
         line = line.replace("INPUTHIST",str(readfilename))
         line = line.replace("NUMBEROBS",str(histYieldDATA.Integral()))
         line = line.replace("SIGRATE",str(histYieldSIG.Integral()))
@@ -141,11 +132,10 @@ def MakeDataCard(status, ibin, inputdatacard):
         line = line.replace("TTRATE",str(histYieldTT.Integral()))
         line = line.replace("ZZRATE",str(histYieldZZ.Integral()))       
         line = line.replace("WZRATE",str(histYieldWZ.Integral()))
-        line = line.replace("WWRATE",str(histYieldWW.Integral()))
         datacard.write(line)
-        datacard.close()
-        return 0.0
-    
+    datacard.close()
+    return 0.0
+
 MakeDataCard("Testing_0819",1,"TemplateDataCard_YJ.txt")
 MakeDataCard("Testing_0819",2,"TemplateDataCard_YJ.txt")
 MakeDataCard("Testing_0819",3,"TemplateDataCard_YJ.txt")
@@ -153,3 +143,5 @@ MakeDataCard("Testing_0819",4,"TemplateDataCard_YJ.txt")
 MakeDataCard("Testing_0819",5,"TemplateDataCard_YJ.txt")
 MakeShape1dDataCard("Testing_0819","TemplateShape1dDataCard_YJ.txt")
 MakeCountingDataCard("Testing_0819","TemplateCountingDataCard_YJ.txt")
+
+

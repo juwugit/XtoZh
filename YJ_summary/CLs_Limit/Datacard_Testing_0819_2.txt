@@ -1,0 +1,1 @@
+imax    1       number of channels
