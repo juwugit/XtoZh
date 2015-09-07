@@ -76,38 +76,41 @@ void ProjectHistograms_YJ(string inputsigFile)
 
 //TFile* f = new TFile("/afs/cern.ch/work/y/yunju/private/CLs_setting/CMSSW_7_1_5/src/HZ_Samples/XMassVsCA8jetCSV_TH2_M1000_Mu.root" , "read");
   
-  string DATA_name="h_sigXMsCSV";
+  string DATA_name="h_sigMxSubjetCSV";
   
   TH2F *h2_data=(TH2F*)fresult->Get(DATA_name.data());
  // TH2F *h2_data_clone=(TH2F*)h2_data->Clone("data_obs_temp");
  // cout<<"For clone"<<endl;
 //  h2_data->Delete(); 
-  string SIG_name="h_sigXMsCSV";
+  string SIG_name="h_sigMxSubjetCSV";
   TH2F *h2_sig=(TH2F*)fsig->Get(SIG_name.data());
 //  TH1F *h_sig_x =(TH1F*)h2_sig->ProjectionX();
 
-  string DY_name="h_n_XMsCSV_DYSbCorred";
+  string DY_name="h_n_MxSubjetCSV_FINAL_DYJets";
   TH2F *h2_background_DY=(TH2F*)fresult->Get(DY_name.data());
 //  TH1F *h_background_DY_x =(TH1F*)h2_background_DY->ProjectionX();
 
 
 
-  string TT_name="h_n_XMsCSV_FINALTTTo2L2Nu2B";
+  string TT_name="h_n_MxSubjetCSV_FINAL_TTTo2L2Nu2B";
   TH2F *h2_background_TT=(TH2F*)fresult->Get(TT_name.data());
 //  TH1F *h_background_TT_x =(TH1F*)h2_background_TT->ProjectionX();
   
-  string ZZ_name="h_n_XMsCSV_FINALDiBZZ";
+  string ZZ_name="h_n_MxSubjetCSV_FINAL_DiBZZ";
   TH2F *h2_background_ZZ=(TH2F*)fresult->Get(ZZ_name.data());
 //  TH1F *h_background_ZZ_x =(TH1F*)h2_background_ZZ->ProjectionX();
-  string WZ_name="h_n_XMsCSV_FINALDiBWZ";
+  string WZ_name="h_n_MxSubjetCSV_FINAL_DiBWZ";
   TH2F *h2_background_WZ=(TH2F*)fresult->Get(WZ_name.data());
+  string WW_name="h_n_MxSubjetCSV_FINAL_DiBWW";
+  TH2F *h2_background_WW=(TH2F*)fresult->Get(WW_name.data());
+
 
   
   int NbinX=0;
   NbinX=h2_background_DY->GetNbinsY();
   
   
-  TH1F *h_DATA[50],*h_DY[50],*h_SIG[50],*h_TT[50],*h_ZZ[50],*h_WZ[50]; 
+  TH1F *h_DATA[50],*h_DY[50],*h_SIG[50],*h_TT[50],*h_ZZ[50],*h_WZ[50],*h_WW[50]; 
 //  TH1F *h_DY_up[50],*h_SIG_up[50],*h_TT_up[50],*h_ZZ_up[50]; 
 //  TH1F *h_DY_down[50],*h_SIG_down[50],*h_TT_down[50],*h_ZZ_down[50];
   TString neam="test";
@@ -121,7 +124,8 @@ void ProjectHistograms_YJ(string inputsigFile)
     ChangeOneBin(h2_background_TT, ibin,"background_TT" ,h_TT);
     ChangeOneBin(h2_background_ZZ, ibin,"background_ZZ" ,h_ZZ);
     ChangeOneBin(h2_background_WZ, ibin,"background_WZ" ,h_WZ);
-  
+    ChangeOneBin(h2_background_WW, ibin,"background_WW" ,h_WW);
+
   } 
     AllBin(h2_data,          99,"data_obs",h_DATA);
     AllBin(h2_sig,           99,"signal",h_SIG);
@@ -129,7 +133,7 @@ void ProjectHistograms_YJ(string inputsigFile)
     AllBin(h2_background_TT, 99,"background_TT" ,h_TT);
     AllBin(h2_background_ZZ, 99,"background_ZZ" ,h_ZZ);
     AllBin(h2_background_WZ, 99,"background_WZ" ,h_WZ);
-
+    AllBin(h2_background_WW, 99,"background_WW" ,h_WW);
 
 
 
@@ -165,15 +169,3 @@ TFile* f2[50];
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
