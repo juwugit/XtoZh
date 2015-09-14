@@ -89,8 +89,8 @@ void plot_Asymptotic_YJ()
   for(int n=0;n<nXm;n++)
   {
     char limitfile[100];
-  //  sprintf(limitfile,"higgsCombineshape_2d_%d.Asymptotic.mH120.root",Xmass[n]);
-  //  sprintf(limitfile,"higgsCombineshape_1d_%d.Asymptotic.mH120.root",Xmass[n]);
+    //sprintf(limitfile,"higgsCombineshape_2d_%d.Asymptotic.mH120.root",Xmass[n]);
+    //sprintf(limitfile,"higgsCombineshape_1d_%d.Asymptotic.mH120.root",Xmass[n]);
     sprintf(limitfile,"higgsCombinecounting_%d.Asymptotic.mH120.root",Xmass[n]);
     fFREQ[n] = new TFile(limitfile, "READ");
     cout<<" Read limit file: "<<limitfile<<endl;
