@@ -64,12 +64,12 @@ void AllBin(TH2F* h_in, int ibin, string name,TH1F* h[]){
 
 
 
-void ProjectHistograms_YJ(string inputsigFile)
+void ProjectHistograms_YJ(string inputsigFile, string inputdataFile)
 {
 
 //  TFile* f = new TFile("/afs/cern.ch/work/y/yunju/private/CLs_setting/CMSSW_7_1_5/src/HZ_Samples/XMassVsCA8jetCSV_TH2_M1000_Mu.root" , "read");
 //  TFile* f = new TFile("/afs/cern.ch/work/y/yunju/private/CLs_setting/CMSSW_7_1_5/src/HZ_Samples/XMassVsSubjetCSV_TH2_M1000_Mu.root" , "read");
-  TFile* fresult = new TFile("../Bkg_estimation/Total_data_El_Cen.root" , "read");
+  TFile* fresult = new TFile(inputdataFile.data() , "read");
   
   TFile* fsig = new TFile(inputsigFile.data(),"read");
 
