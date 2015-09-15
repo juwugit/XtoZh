@@ -20,7 +20,7 @@
 const float intLumi = 19.7;
 const string dirXSect = "./";
 
-void plot_Asymptotic_YJ();
+void plot_Asymptotic();
 void setFPStyle();
 void scaleGraph(TGraphAsymmErrors* g, double factor)
 {
@@ -73,7 +73,7 @@ double linear_interp(double s2, double s1, double mass, double m2, double m1)
 
 
 
-void plot_Asymptotic_YJ()
+void plot_Asymptotic()
 {
 
   bool useNewStyle = true;
@@ -141,7 +141,7 @@ void plot_Asymptotic_YJ()
 
   }//file loop
 
-  string xsect_file_th = dirXSect + "xsec_Zhllbb_YJ.txt";
+  string xsect_file_th = dirXSect + "xsec_Zhllbb.txt";
 
 
   ifstream xsect_file(xsect_file_th.c_str(), ios::in);
