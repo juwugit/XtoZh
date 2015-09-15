@@ -12,8 +12,8 @@ root -b -l -q Bkg_estimation/mergeDYJets.C++\(\"result_cuts/TH2_DYJetsPtZ70To100
 
 
 # data sb to signal corrrection
-root -b -l -q Bkg_estimation/bkd_estimate_TH2_YJ.C++\(\"Bkg_estimation/Total_data_$1_$2.root\"\,\"Bkg_estimation/Total_DYJets_$1_$2.root\"\,\"h_alphaMxCA8jetCSV\"\,\"h_sbMxCA8jetCSV\"\)
-root -b -l -q Bkg_estimation/bkd_estimate_TH2_YJ.C++\(\"Bkg_estimation/Total_data_$1_$2.root\"\,\"Bkg_estimation/Total_DYJets_$1_$2.root\"\,\"h_alphaMxSubjetCSV\"\,\"h_sbMxSubjetCSV\"\)
+root -b -l -q Bkg_estimation/bkg_estimate_TH2.C++\(\"Bkg_estimation/Total_data_$1_$2.root\"\,\"Bkg_estimation/Total_DYJets_$1_$2.root\"\,\"h_alphaMxCA8jetCSV\"\,\"h_sbMxCA8jetCSV\"\)
+root -b -l -q Bkg_estimation/bkg_estimate_TH2.C++\(\"Bkg_estimation/Total_data_$1_$2.root\"\,\"Bkg_estimation/Total_DYJets_$1_$2.root\"\,\"h_alphaMxSubjetCSV\"\,\"h_sbMxSubjetCSV\"\)
 
 
 # get DYJets/Total Bkg ratio
@@ -21,8 +21,8 @@ root -b -l -q Bkg_estimation/getRatio.C++\(\"Bkg_estimation/Total_DYJets_$1_$2.r
 
 
 # DYJets/Bkg ratio correction
-root -b -l -q Bkg_estimation/bkd_estimate_TH2_YJ.C++\(\"Bkg_estimation/Total_data_$1_$2.root\"\,\"Bkg_estimation/Total_DYJets_$1_$2.root\"\,\"h_ratio_sbMxCA8jetCSV\"\,\"h_n_MxCA8jetCSV_SbCorred\"\)
-root -b -l -q Bkg_estimation/bkd_estimate_TH2_YJ.C++\(\"Bkg_estimation/Total_data_$1_$2.root\"\,\"Bkg_estimation/Total_DYJets_$1_$2.root\"\,\"h_ratio_sbMxSubjetCSV\"\,\"h_n_MxSubjetCSV_SbCorred\"\)
+root -b -l -q Bkg_estimation/bkg_estimate_TH2.C++\(\"Bkg_estimation/Total_data_$1_$2.root\"\,\"Bkg_estimation/Total_DYJets_$1_$2.root\"\,\"h_ratio_sbMxCA8jetCSV\"\,\"h_n_MxCA8jetCSV_SbCorred\"\)
+root -b -l -q Bkg_estimation/bkg_estimate_TH2.C++\(\"Bkg_estimation/Total_data_$1_$2.root\"\,\"Bkg_estimation/Total_DYJets_$1_$2.root\"\,\"h_ratio_sbMxSubjetCSV\"\,\"h_n_MxSubjetCSV_SbCorred\"\)
 
 
 # get TTTo2L2Nu2B background

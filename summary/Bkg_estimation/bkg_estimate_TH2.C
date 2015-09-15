@@ -28,7 +28,7 @@
 
 
 using namespace std;
-void bkd_estimate_TH2_YJ(std::string inputFile1, std::string inputFile2, std::string histo1, std::string histo2){
+void bkg_estimate_TH2(std::string inputFile1, std::string inputFile2, std::string histo1, std::string histo2){
 
 
   TFile *data = TFile::Open(inputFile1.data());
