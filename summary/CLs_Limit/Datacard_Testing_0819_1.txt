@@ -4,22 +4,22 @@ kmax    7       number of nuisance parameters (sources of systematical uncertain
 
 -------------------------------------------------------------------------------------------------
 
-shapes *  *     INPUTHIST $PROCESS $PROCESS_$SYSTEMATIC
+shapes *  *     output_0819_1.root $PROCESS $PROCESS_$SYSTEMATIC
 
 -------------------------------------------------------------------------------------------------
 bin                      1
-observation              NUMBEROBS
+observation              104.0
 
 -------------------------------------------------------------------------------------------------
 
 bin                      1         1       1          1     1         
-process                  signal  BK_DY   BK_TT      BK_ZZ    BK_WZ       
+process                  signal  background_DY_1   background_TT_1      background_ZZ_1    background_WZ_1       
 
 -------------------------------------------------------------------------------------------------
 
 process                  0          1         2         3      4          
    
-rate                    SIGRATE   DYRATE    TTRATE    ZZRATE WZRATE    
+rate                    0.0958907294698   107.869844139    1.00689117238    0.853199962061 0.961432579905    
 
 -------------------------------------------------------------------------------------------------
 
