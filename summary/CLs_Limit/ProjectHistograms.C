@@ -7,9 +7,6 @@
 #include <cstdlib>
 
 void ChangeOneBin(TH2F* h_in, int ibin, string name,TH1F* h[]){
-  //double oldbincontent = h_in->GetBinContent(ibin) ;
-  //double newbincontent_up   = oldbincontent + sqrt(oldbincontent) ;
-  //double newbincontent_down = oldbincontent - sqrt(oldbincontent) ;
 
   cout<<"Here:"<<ibin<<endl;  
   
@@ -24,9 +21,6 @@ void ChangeOneBin(TH2F* h_in, int ibin, string name,TH1F* h[]){
 }
 
 void AllBin(TH2F* h_in, int ibin, string name,TH1F* h[]){
-  //double oldbincontent = h_in->GetBinContent(ibin) ;
-  //double newbincontent_up   = oldbincontent + sqrt(oldbincontent) ;
-  //double newbincontent_down = oldbincontent - sqrt(oldbincontent) ;
   
   cout<<"Here:"<<ibin<<endl;  
   h[20] = (TH1F*)h_in->ProjectionX(Form("%s",name.data()),1,6);

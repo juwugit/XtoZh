@@ -20,17 +20,18 @@ void Change_data_obs_name()
   TH1F  *h2=(TH1F*)f->Get(Form("signal_%d",n));
   h2->SetName("signal");
   h2->Write(); 
-  
 
+  TH1F  *h2_up=(TH1F*)f->Get(Form("signal_sigmaUp_%d",n));
+  h2_up->SetName("signal_sigmaUp");
+  h2_up->Write(); 
+
+  TH1F  *h2_down=(TH1F*)f->Get(Form("signal_sigmaDown_%d",n));
+  h2_down->SetName("signal_sigmaDown");
+  h2_down->Write(); 
+  
 
   f->Close();
   }
-
-
-
-
-
-
 
 
 }
