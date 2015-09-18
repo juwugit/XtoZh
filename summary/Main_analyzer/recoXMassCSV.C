@@ -130,9 +130,9 @@ void recoXMassCSV(Int_t scaleMode, std::string inputFile, std::string outputFile
 
   
   // PU weight
-  standalone_LumiReWeighting LumiWeights_central(2012,0);  
+  standalone_LumiReWeighting LumiWeights(2012, scaleMode);  
   Float_t pu_nTrueInt = 1;
-  double  PU_weight_central = 1;
+  double  PU_weight = 1;
 
 
 
@@ -183,8 +183,8 @@ void recoXMassCSV(Int_t scaleMode, std::string inputFile, std::string outputFile
 
     // pile up weight variable
     if(!isData){
-      pu_nTrueInt       =  data.GetFloat("pu_nTrueInt");
-      PU_weight_central =  LumiWeights_central.weight(pu_nTrueInt);
+      pu_nTrueInt = data.GetFloat("pu_nTrueInt");
+      PU_weight = LumiWeights.weight(pu_nTrueInt);
     }
 
 
@@ -283,15 +283,15 @@ void recoXMassCSV(Int_t scaleMode, std::string inputFile, std::string outputFile
       
       if(SubjetCSV[leadjet][0]>0){
 
-	if(prunedmass>70 && prunedmass<110) h_sbMxSubjetCSV->Fill(XMass, SubjetCSV[leadjet][0],weight*PU_weight_central);
-	if(prunedmass>110 && prunedmass<140) h_sigMxSubjetCSV->Fill(XMass, SubjetCSV[leadjet][0],weight*PU_weight_central);
+	if(prunedmass>70 && prunedmass<110) h_sbMxSubjetCSV->Fill(XMass, SubjetCSV[leadjet][0],weight*PU_weight);
+	if(prunedmass>110 && prunedmass<140) h_sigMxSubjetCSV->Fill(XMass, SubjetCSV[leadjet][0],weight*PU_weight);
       
       } //subjet1
       
       if(SubjetCSV[leadjet][1]>0){
 
-	if(prunedmass>70 && prunedmass<110) h_sbMxSubjetCSV->Fill(XMass, SubjetCSV[leadjet][1],weight*PU_weight_central);
-	if(prunedmass>110 && prunedmass<140) h_sigMxSubjetCSV->Fill(XMass, SubjetCSV[leadjet][1],weight*PU_weight_central);
+	if(prunedmass>70 && prunedmass<110) h_sbMxSubjetCSV->Fill(XMass, SubjetCSV[leadjet][1],weight*PU_weight);
+	if(prunedmass>110 && prunedmass<140) h_sigMxSubjetCSV->Fill(XMass, SubjetCSV[leadjet][1],weight*PU_weight);
       
       } //subjet2
 
@@ -300,8 +300,8 @@ void recoXMassCSV(Int_t scaleMode, std::string inputFile, std::string outputFile
 
     if(dRjj<0.3 && CA8jetCSV[leadjet]>0){
 
-      if(prunedmass>70 && prunedmass<110) h_sbMxCA8jetCSV->Fill(XMass, CA8jetCSV[leadjet],weight*PU_weight_central);
-      if(prunedmass>110 && prunedmass<140) h_sigMxCA8jetCSV->Fill(XMass, CA8jetCSV[leadjet],weight*PU_weight_central);
+      if(prunedmass>70 && prunedmass<110) h_sbMxCA8jetCSV->Fill(XMass, CA8jetCSV[leadjet],weight*PU_weight);
+      if(prunedmass>110 && prunedmass<140) h_sigMxCA8jetCSV->Fill(XMass, CA8jetCSV[leadjet],weight*PU_weight);
 
     } //dRjj<0.3 
     
