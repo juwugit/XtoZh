@@ -5,12 +5,12 @@ kmax *
 shapes * * Shape1d_0819.root $PROCESS $PROCESS_$SYSTEMATIC
 ---------------
 bin 1
-observation 128.0 
+observation 222.0 
 ------------------------------
 bin             1          1      1      1            1
 process         signal    background_DY background_TT background_ZZ background_WZ
 process         0          1      2      3        4  
-rate             0.315696271515   131.873903088    1.05148997903    1.23250604235  1.11541331746     
+rate             0.208840654916   190.877043754    1.69848291948    1.83016695367  1.72608195804     
 --------------------------------
 lumi_8TeV         lnN    1.044     1.044    1.044   1.044 1.044        
 bgnorm            lnN    1.00      1.07     1.07    1.07    1.07
