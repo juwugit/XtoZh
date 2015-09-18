@@ -89,9 +89,9 @@ void plot_Asymptotic()
   for(int n=0;n<nXm;n++)
   {
     char limitfile[100];
-    //sprintf(limitfile,"higgsCombineshape_2d_%d.Asymptotic.mH120.root",Xmass[n]);
+    sprintf(limitfile,"higgsCombineshape_2d_%d.Asymptotic.mH120.root",Xmass[n]);
     //sprintf(limitfile,"higgsCombineshape_1d_%d.Asymptotic.mH120.root",Xmass[n]);
-    sprintf(limitfile,"higgsCombinecounting_%d.Asymptotic.mH120.root",Xmass[n]);
+    //sprintf(limitfile,"higgsCombinecounting_%d.Asymptotic.mH120.root",Xmass[n]);
     fFREQ[n] = new TFile(limitfile, "READ");
     cout<<" Read limit file: "<<limitfile<<endl;
     t[n] = (TTree*)fFREQ[n]->Get("limit");
@@ -518,9 +518,9 @@ void plot_Asymptotic()
   // hr->GetYaxis()->DrawClone();
   cMCMC->Update();
   char fnam[50];
-  //string outputname="shape2d";
+  string outputname="shape2d";
   //string outputname="shape1d";
-  string outputname="couting";
+  //string outputname="couting";
 
     sprintf(fnam, "XZHllbb_%s_Asymptotic.root",outputname.data() );
     cMCMC->SaveAs(fnam);
