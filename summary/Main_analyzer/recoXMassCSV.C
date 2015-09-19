@@ -69,10 +69,18 @@ void recoXMassCSV(Int_t scaleMode, std::string inputFile, std::string outputFile
   
   float weightXM800 = (data_lumi)/(10710/0.00685367);
   float weightXM900 = (data_lumi)/(10209/0.00485861);
+  float weightXM1000= (data_lumi)/(19997/0.003263);
   float weightXM1100= (data_lumi)/(9370/0.00217483);
+  float weightXM1200= (data_lumi)/(10710/0.00145484);
+  float weightXM1300= (data_lumi)/(9369/0.000979745);
   float weightXM1400= (data_lumi)/(10497/0.000664783);
+  float weightXM1500= (data_lumi)/(19999/0.000454339);
+  float weightXM1600= (data_lumi)/(8950/0.000312541);
   float weightXM1700= (data_lumi)/(9369/0.000216282);
+  float weightXM1800= (data_lumi)/(10708/0.000150398);
   float weightXM1900= (data_lumi)/(10498/0.000105039);
+  float weightXM2000= (data_lumi)/(19999/7.36377e-05);
+
 
   float weight=999999;
   if(inputFile.find("Double")!= std::string::npos)
@@ -93,14 +101,28 @@ void recoXMassCSV(Int_t scaleMode, std::string inputFile, std::string outputFile
   weight=weightXM800;
   else if(inputFile.find("AbelianZPrime_ZH_lljj_M900")!= std::string::npos)
   weight=weightXM900;
+  else if(inputFile.find("AbelianZPrime_ZH_lljj_M1000")!= std::string::npos)
+  weight=weightXM1000;
   else if(inputFile.find("AbelianZPrime_ZH_lljj_M1100")!= std::string::npos)
   weight=weightXM1100;
+  else if(inputFile.find("AbelianZPrime_ZH_lljj_M1200")!= std::string::npos)
+  weight=weightXM1200;
+  else if(inputFile.find("AbelianZPrime_ZH_lljj_M1300")!= std::string::npos)
+  weight=weightXM1300;
   else if(inputFile.find("AbelianZPrime_ZH_lljj_M1400")!= std::string::npos)
   weight=weightXM1400;
+  else if(inputFile.find("AbelianZPrime_ZH_lljj_M1500")!= std::string::npos)
+  weight=weightXM1500;
+  else if(inputFile.find("AbelianZPrime_ZH_lljj_M1600")!= std::string::npos)
+  weight=weightXM1600;
   else if(inputFile.find("AbelianZPrime_ZH_lljj_M1700")!= std::string::npos)
   weight=weightXM1700;
+  else if(inputFile.find("AbelianZPrime_ZH_lljj_M1800")!= std::string::npos)
+  weight=weightXM1800;
   else if(inputFile.find("AbelianZPrime_ZH_lljj_M1900")!= std::string::npos)
   weight=weightXM1900;
+  else if(inputFile.find("AbelianZPrime_ZH_lljj_M2000")!= std::string::npos)
+  weight=weightXM2000;
 
 
 
