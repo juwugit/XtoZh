@@ -73,7 +73,7 @@ double linear_interp(double s2, double s1, double mass, double m2, double m1)
 
 
 
-void plot_Asymptotic()
+void plot_Asymptotic(string outputname)
 {
 
   bool useNewStyle = true;
@@ -89,9 +89,9 @@ void plot_Asymptotic()
   for(int n=0;n<nXm;n++)
   {
     char limitfile[100];
-    //sprintf(limitfile,"higgsCombineshape_2d_%d.Asymptotic.mH120.root",Xmass[n]);
-    //sprintf(limitfile,"higgsCombineshape_1d_%d.Asymptotic.mH120.root",Xmass[n]);
-    sprintf(limitfile,"higgsCombinecounting_%d.Asymptotic.mH120.root",Xmass[n]);
+    if(outputname.find("shape2d")!= std::string::npos) sprintf(limitfile,"higgsCombineshape_2d_%d.Asymptotic.mH120.root",Xmass[n]);
+    else if(outputname.find("shape1d")!= std::string::npos) sprintf(limitfile,"higgsCombineshape_1d_%d.Asymptotic.mH120.root",Xmass[n]);
+    else if(outputname.find("counting")!= std::string::npos) sprintf(limitfile,"higgsCombinecounting_%d.Asymptotic.mH120.root",Xmass[n]);
     fFREQ[n] = new TFile(limitfile, "READ");
     cout<<" Read limit file: "<<limitfile<<endl;
     t[n] = (TTree*)fFREQ[n]->Get("limit");
@@ -520,7 +520,7 @@ void plot_Asymptotic()
   char fnam[50];
   //string outputname="shape2d";
   //string outputname="shape1d";
-  string outputname="couting";
+  //string outputname="counting";
 
     sprintf(fnam, "XZHllbb_%s_Asymptotic.root",outputname.data() );
     cMCMC->SaveAs(fnam);
