@@ -15,7 +15,7 @@
 #include "TLegend.h"
 #include "TStyle.h"
 #include "TPaveText.h"
-#define nXm 13
+#define nXm 6
 
 const float intLumi = 19.7;
 const string dirXSect = "./";
@@ -82,7 +82,8 @@ void plot_Asymptotic(string outputname)
 
   TFile *fFREQ[nXm];
   TTree *t[nXm];
-  int Xmass[nXm]={800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000};  
+  //int Xmass[nXm]={800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000};  
+  int Xmass[nXm]={800,900,1100,1400,1700,1900};  
   vector<double> v_mh, v_median, v_68l, v_68h, v_95l, v_95h, v_obs;
  
 
