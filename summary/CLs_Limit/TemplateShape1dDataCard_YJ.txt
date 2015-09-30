@@ -21,3 +21,4 @@ alpha             shape  -          1         1       1        1
 sigma             shape  1          -         -       -        -
 lepIDsf           lnN	 1.0008     1.001    1.0005  1.0006  1.0007
 bjetRatio         lnN    -          1.002    -       -       -
+dibXsec           lnN    -          -        -       1.055   - 
