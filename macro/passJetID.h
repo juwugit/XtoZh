@@ -141,7 +141,7 @@ Bool_t passJetID(TreeReader &data,
     Bool_t ptCut = (CA8jetPt[jIndex]>30);
     Bool_t etaCut = (fabs(CA8jetEta[jIndex])<2.4);
     Bool_t IDcut = (CA8jetID[jIndex]>0);
-    Bool_t prunedJetCut = (CA8jetPt[jIndex]>200)&&(CA8jetPrunedM[jIndex]>40);
+    Bool_t prunedJetCut = (CA8jetPt[jIndex]>80)&&(CA8jetPrunedM[jIndex]>40);
     Bool_t Tau21Cut = ((CA8jetTau2[jIndex]/CA8jetTau1[jIndex])<0.5);
 
     if( !ptCut ) continue;
@@ -162,7 +162,7 @@ Bool_t passJetID(TreeReader &data,
 	  }
 	} // eleID
       } // loop ele
-    } // ee
+    } // El
     
     if( Mu ){
       for(Int_t i = 0; i < nSortMu; i++){
@@ -176,7 +176,7 @@ Bool_t passJetID(TreeReader &data,
 	  }
 	} // muID                                                                       
       } // loop muon                                                                             
-    } // mm                               
+    } // Mu                               
 
     // remove overlap
     if( overlap ) continue;
