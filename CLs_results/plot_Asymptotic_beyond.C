@@ -523,16 +523,18 @@ void plot_Asymptotic_beyond(string outputname)
   //string outputname="shape1d";
   //string outputname="counting";
 
-  /*
-  sprintf(fnam, "XZHllbb_%s_Asymptotic.root",outputname.data() );
-  cMCMC->SaveAs(fnam);
-  sprintf(fnam, "XZHllbb_%s_Asymptotic.eps", outputname.data());
-  cMCMC->SaveAs(fnam);
+
+  //sprintf(fnam, "XZHllbb_%s_Asymptotic.root",outputname.data() );
+  //cMCMC->SaveAs(fnam);
+  //sprintf(fnam, "XZHllbb_%s_Asymptotic.eps", outputname.data());
+  //cMCMC->SaveAs(fnam);
+  
   sprintf(fnam, "XZHllbb_%s_Asymptotic.png", outputname.data());
   cMCMC->SaveAs(fnam);
-  sprintf(fnam, "XZHllbb_%s_Asymptotic.pdf", outputname.data());
-  cMCMC->SaveAs(fnam);
-  */
+  
+  //sprintf(fnam, "XZHllbb_%s_Asymptotic.pdf", outputname.data());
+  //cMCMC->SaveAs(fnam);
+  
   gPad->SetLogy();
   //sprintf(fnam, "XZHllbb_%s_Asymptotic_log.eps", outputname.data());
   //cMCMC->SaveAs(fnam);
