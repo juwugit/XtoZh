@@ -405,7 +405,7 @@ void plot_Asymptotic_beyond(string outputname)
 
   // double fr_left = 590.0, fr_down = 1E-5, fr_right = 2000.0, fr_up = 0.5; 
   //double fr_left = 800.0, fr_down = 5E-5, fr_right = 3000.0, fr_up = 5;
-  double fr_left = 800.0, fr_down = 5E-7, fr_right = 3000.0, fr_up = 5;
+  double fr_left = 800.0, fr_down = 5E-6, fr_right = 3000.0, fr_up = 5;
 
   TCanvas *cMCMC = new TCanvas("c_lim_Asymptotic", "canvas with limits for Asymptotic CLs", 630, 600);
   cMCMC->cd();
