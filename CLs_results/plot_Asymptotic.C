@@ -20,7 +20,7 @@
 const float intLumi = 19.7;
 const string dirXSect = "./";
 
-void plot_Asymptotic();
+void plot_Asymptotic(string outputname);
 void setFPStyle();
 void scaleGraph(TGraphAsymmErrors* g, double factor)
 {
