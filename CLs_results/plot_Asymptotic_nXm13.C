@@ -15,12 +15,12 @@
 #include "TLegend.h"
 #include "TStyle.h"
 #include "TPaveText.h"
-#define nXm 6
+#define nXm 13
 
 const float intLumi = 19.7;
 const string dirXSect = "./";
 
-void plot_Asymptotic(string outputname);
+void plot_Asymptotic_nXm13(string outputname);
 void setFPStyle();
 void scaleGraph(TGraphAsymmErrors* g, double factor)
 {
@@ -73,7 +73,7 @@ double linear_interp(double s2, double s1, double mass, double m2, double m1)
 
 
 
-void plot_Asymptotic(string outputname)
+void plot_Asymptotic_nXm13(string outputname)
 {
 
   bool useNewStyle = true;
@@ -82,8 +82,8 @@ void plot_Asymptotic(string outputname)
 
   TFile *fFREQ[nXm];
   TTree *t[nXm];
-  //int Xmass[nXm]={800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000};  
-  int Xmass[nXm]={800,900,1100,1400,1700,1900};  
+  int Xmass[nXm]={800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000};  
+  //int Xmass[nXm]={800,900,1100,1400,1700,1900};  
   vector<double> v_mh, v_median, v_68l, v_68h, v_95l, v_95h, v_obs;
  
 
@@ -142,7 +142,7 @@ void plot_Asymptotic(string outputname)
 
   }//file loop
 
-  string xsect_file_th = dirXSect + "xsec_Zhllbb.txt";
+  string xsect_file_th = dirXSect + "xsec_Zhllbb_nXm13.txt";
 
 
   ifstream xsect_file(xsect_file_th.c_str(), ios::in);
