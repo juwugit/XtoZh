@@ -15,7 +15,7 @@
 #include "TLegend.h"
 #include "TStyle.h"
 #include "TPaveText.h"
-#define nXm 6
+#define nXm 13
 
 const float intLumi = 19.7;
 const string dirXSect = "./";
@@ -82,8 +82,8 @@ void plot_Asymptotic(string outputname)
 
   TFile *fFREQ[nXm];
   TTree *t[nXm];
-  //int Xmass[nXm]={800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000};  
-  int Xmass[nXm]={800,900,1100,1400,1700,1900};  
+  int Xmass[nXm]={800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800,1900,2000};  
+  //int Xmass[nXm]={800,900,1100,1400,1700,1900};  
   vector<double> v_mh, v_median, v_68l, v_68h, v_95l, v_95h, v_obs;
  
 
@@ -105,8 +105,8 @@ void plot_Asymptotic(string outputname)
   
     
     
-    int iMH = 0;
-    while (iMH < n) {
+    //int iMH = 0;
+    //while (iMH < n) {
  
       for (int i = 0; i < t[n]->GetEntries(); i++) {
 
@@ -137,8 +137,8 @@ void plot_Asymptotic(string outputname)
         cout << "Error! Quantile =  " << quant << endl;
         }
      }
-        iMH++;
-     }//end while loop
+      //   iMH++;
+      // }//end while loop
 
   }//file loop
 
