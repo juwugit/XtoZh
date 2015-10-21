@@ -91,6 +91,12 @@ void recoXMassCSV_pdftest(Int_t scaleMode, std::string inputFile, std::string ou
   corrJetV corrJet(jecfilename);
 
 
+  // check if the file is v5 ntuple ; v5 is for sigNtuples only
+  bool isV5=false;
+  if(inputFile.find("v5")!= std::string::npos)
+    isV5=true;
+
+
 
   // check lepton channel
   bool isMuon=false;
@@ -201,16 +207,20 @@ void recoXMassCSV_pdftest(Int_t scaleMode, std::string inputFile, std::string ou
   h_sigXMass->Sumw2();
 
 
+  // PDFsets info and extra histos for varies PDF weights
   TH1F* h_sigXMassPDF[NPDFS];
-  for(int i=0;i<NPDFS ;i++)
-    h_sigXMassPDF[i]=(TH1F*)h_sigXMass->Clone(Form("h_sigXMassPDF%d",i));
+  Float_t* pdfInfo;
+  MyPDF* mstw2008lo;
+  MyPDF* nnpdf21lo;
 
-
-
-  // PDFsets
-  MyPDF* mstw2008lo = new MyPDF("MSTW2008lo68cl.LHgrid",2);
-  MyPDF* nnpdf21lo = new MyPDF("NNPDF21_lo_as_0119_100.LHgrid",3);
-
+  if(isV5){
+    for(int i=0;i<NPDFS ;i++)
+      h_sigXMassPDF[i]=(TH1F*)h_sigXMass->Clone(Form("h_sigXMassPDF%d",i));
+    
+    mstw2008lo = new MyPDF("MSTW2008lo68cl.LHgrid",2);
+    nnpdf21lo = new MyPDF("NNPDF21_lo_as_0119_100.LHgrid",3);
+  }
+  
 
   
   // PU weight
@@ -246,7 +256,8 @@ void recoXMassCSV_pdftest(Int_t scaleMode, std::string inputFile, std::string ou
     vector<Float_t>* SubjetPhi = data.GetPtrVectorFloat("CA8subjetPrunedPhi");
     vector<Float_t>* SubjetEn  = data.GetPtrVectorFloat("CA8subjetPrunedEn");
 
-    Float_t* pdfInfo = data.GetPtrFloat("pdf");
+    // pdf info
+    if(isV5) pdfInfo = data.GetPtrFloat("pdf");
 
 
     // load lepton variables 
@@ -266,17 +277,8 @@ void recoXMassCSV_pdftest(Int_t scaleMode, std::string inputFile, std::string ou
       lepM    = data.GetPtrFloat("muM");
     }
 
-
-
-    // PDF weights for signal ntules
-    double weight_pdf[NPDFS]={
-      1.0,
-      mstw2008lo->weight(pdfInfo,0),
-      nnpdf21lo->weight(pdfInfo,0)
-    };
-
-
-
+    
+    
     // pile up weight variable
     if(!isData){
       pu_nTrueInt = data.GetFloat("pu_nTrueInt");
@@ -358,11 +360,20 @@ void recoXMassCSV_pdftest(Int_t scaleMode, std::string inputFile, std::string ou
 
       h_sigXMass->Fill(XMass,weight*PU_weight);
 
-      for(int i=0;i<NPDFS;i++)
-	h_sigXMassPDF[i]->Fill(XMass,weight*PU_weight*weight_pdf[i]);
+      if(isV5){
 
-    }
+	double weight_pdf[NPDFS]={
+	  1.0,
+	  mstw2008lo->weight(pdfInfo,0),
+	  nnpdf21lo->weight(pdfInfo,0)
+	};
+	
+	for(int i=0;i<NPDFS;i++)
+	  h_sigXMassPDF[i]->Fill(XMass,weight*PU_weight*weight_pdf[i]);
+      }// pdf
+    }// sig region
     
+
 
     // reco CSV
     TLorentzVector subjet1(0,0,0,0);
@@ -422,10 +433,13 @@ void recoXMassCSV_pdftest(Int_t scaleMode, std::string inputFile, std::string ou
   h_sigMxSubjetCSV->Write();
   h_sbMxSubjetCSV->Write();
   h_sigXMass->Write();
-  
-  for(int i=0;i<NPDFS;i++)
-    h_sigXMassPDF[i]->Write();
-  
+
+  if(isV5){
+    for(int i=0;i<NPDFS;i++)
+      h_sigXMassPDF[i]->Write();
+  }
+
+
   outFile->Close();
 
 
