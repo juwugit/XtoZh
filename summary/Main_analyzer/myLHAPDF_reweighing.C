@@ -14,7 +14,7 @@
 using namespace std;
 
 // maximum number of PDFs allowed is 5
-const int NPDFS=3;
+const int NPDFS=5;
 const int defaultIndex=1;
 
 class MyPDF {
@@ -78,8 +78,8 @@ void myLHAPDF_reweighing(std::string inputFile){
   //MyPDF* a02mlo = new MyPDF("a02m_lo.LHgrid",4);
   //MyPDF* heralo = new MyPDF("HERAPDF1.5LO_EIG.LHgrid",5);
   //MyPDF* ct10nlo = new MyPDF("CT10.LHgrid",2);
-  //MyPDF* mstw2008nlo = new MyPDF("MSTW2008nlo68cl.LHgrid",3);
-  //MyPDF* nnpdf23nlo = new MyPDF("NNPDF23_nlo_collider_as_0118.LHgrid",4);
+  MyPDF* mstw2008nlo = new MyPDF("MSTW2008nlo68cl.LHgrid",4);
+  MyPDF* nnpdf23nlo = new MyPDF("NNPDF23_nlo_collider_as_0118.LHgrid",5);
 
   //Event loop
   for(Long64_t jEntry=0; jEntry<data.GetEntriesFast() ;jEntry++){
@@ -123,10 +123,10 @@ void myLHAPDF_reweighing(std::string inputFile){
     double weight_pdf[NPDFS]={
       1.0,      
       mstw2008lo->weight(pdfInfo,0),
-      nnpdf21lo->weight(pdfInfo,0)
+      nnpdf21lo->weight(pdfInfo,0),
       //ct10nlo->weight(pdfInfo,0),
-      //mstw2008nlo->weight(pdfInfo,0),
-      //nnpdf23nlo->weight(pdfInfo,0)
+      mstw2008nlo->weight(pdfInfo,0),
+      nnpdf23nlo->weight(pdfInfo,0)
     };
 
     for(int i=0;i<NPDFS;i++)

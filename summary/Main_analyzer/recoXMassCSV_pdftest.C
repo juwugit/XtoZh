@@ -235,16 +235,18 @@ void recoXMassCSV_pdftest(Int_t scaleMode, std::string inputFile, std::string ou
 
     data.GetEntry(jEntry);
 
-    Int_t    CA8nJet     = data.GetInt("CA8nJet");
+    Int_t    CA8nJet       = data.GetInt("CA8nJet");
     Float_t* CA8jetPrunedM = data.GetPtrFloat("CA8jetPrunedMass");
-    Float_t* CA8jetCSV   = data.GetPtrFloat("CA8jetCSV");
+    Float_t* CA8jetCSV     = data.GetPtrFloat("CA8jetCSV");
 
     Int_t*   nSubjet = data.GetPtrInt("CA8nSubPrunedJet");
     vector<Float_t>* SubjetCSV = data.GetPtrVectorFloat("CA8subjetPrunedCSV");
     vector<Float_t>* SubjetPt  = data.GetPtrVectorFloat("CA8subjetPrunedPt");
     vector<Float_t>* SubjetEta = data.GetPtrVectorFloat("CA8subjetPrunedEta");
     vector<Float_t>* SubjetPhi = data.GetPtrVectorFloat("CA8subjetPrunedPhi");
-    vector<Float_t>* SubjetEn   = data.GetPtrVectorFloat("CA8subjetPrunedEn");
+    vector<Float_t>* SubjetEn  = data.GetPtrVectorFloat("CA8subjetPrunedEn");
+
+    Float_t* pdfInfo = data.GetPtrFloat("pdf");
 
 
     // load lepton variables 
@@ -420,7 +422,10 @@ void recoXMassCSV_pdftest(Int_t scaleMode, std::string inputFile, std::string ou
   h_sigMxSubjetCSV->Write();
   h_sbMxSubjetCSV->Write();
   h_sigXMass->Write();
-
+  
+  for(int i=0;i<NPDFS;i++)
+    h_sigXMassPDF[i]->Write();
+  
   outFile->Close();
 
 
