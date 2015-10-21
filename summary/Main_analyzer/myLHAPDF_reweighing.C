@@ -14,7 +14,7 @@
 using namespace std;
 
 // maximum number of PDFs allowed is 5
-const int NPDFS=5;
+const int NPDFS=3;
 const int defaultIndex=1;
 
 class MyPDF {
@@ -65,7 +65,7 @@ void myLHAPDF_reweighing(std::string inputFile){
 
   TH1F* hy = new TH1F("hy","",60,-3,3);
   hy->Sumw2();
-  hy->SetXTitle("Rapidity of generator-level Z");
+  hy->SetXTitle("Rapidity of generator-level Zprime");
   TH1F* hzy[NPDFS];
   
   for(int i=0;i<NPDFS ;i++)
@@ -75,11 +75,11 @@ void myLHAPDF_reweighing(std::string inputFile){
   // all LO PDFs, don't use defaultIndex
   MyPDF* mstw2008lo = new MyPDF("MSTW2008lo68cl.LHgrid",2);
   MyPDF* nnpdf21lo = new MyPDF("NNPDF21_lo_as_0119_100.LHgrid",3);
-  // MyPDF* a02mlo = new MyPDF("a02m_lo.LHgrid",4);
-  // MyPDF* heralo = new MyPDF("HERAPDF1.5LO_EIG.LHgrid",5);
-  // MyPDF* ct10nlo = new MyPDF("CT10.LHgrid",2);
-  // MyPDF* mstw2008nlo = new MyPDF("MSTW2008nlo68cl.LHgrid",3);
-  // MyPDF* nnpdf23nlo = new MyPDF("NNPDF23_nlo_collider_as_0118.LHgrid",4);
+  //MyPDF* a02mlo = new MyPDF("a02m_lo.LHgrid",4);
+  //MyPDF* heralo = new MyPDF("HERAPDF1.5LO_EIG.LHgrid",5);
+  //MyPDF* ct10nlo = new MyPDF("CT10.LHgrid",2);
+  //MyPDF* mstw2008nlo = new MyPDF("MSTW2008nlo68cl.LHgrid",3);
+  //MyPDF* nnpdf23nlo = new MyPDF("NNPDF23_nlo_collider_as_0118.LHgrid",4);
 
   //Event loop
   for(Long64_t jEntry=0; jEntry<data.GetEntriesFast() ;jEntry++){
@@ -124,7 +124,10 @@ void myLHAPDF_reweighing(std::string inputFile){
       1.0,      
       mstw2008lo->weight(pdfInfo,0),
       nnpdf21lo->weight(pdfInfo,0)
-     };
+      //ct10nlo->weight(pdfInfo,0),
+      //mstw2008nlo->weight(pdfInfo,0),
+      //nnpdf23nlo->weight(pdfInfo,0)
+    };
 
     for(int i=0;i<NPDFS;i++)
       hzy[i]->Fill(zy,weight_pdf[i]); // original 
