@@ -1,0 +1,96 @@
+#include <vector>
+#include <string>
+#include <iostream>
+#include <algorithm>
+#include <TPad.h>
+#include <TH1D.h>
+#include <TH1F.h>
+#include <TSystem.h>
+#include <TMath.h>
+#include <TFile.h>
+#include <TList.h>
+#include <TImage.h>
+#include <TLine.h>
+#include <TAxis.h>
+#include <TGraph.h>
+#include <TStyle.h>
+#include <TChain.h>
+#include <THStack.h>
+#include <TLegend.h>
+#include <TCanvas.h>
+#include <TBranch.h>
+#include <TRandom.h>
+#include <TVectorT.h>
+#include <TProfile.h>
+#include <TLorentzVector.h>
+#include <TSystemDirectory.h>
+#include <TGraphAsymmErrors.h>
+
+
+using namespace std;
+
+void PDF_error(string inputFile){
+
+
+  TFile *rootfile    = TFile::Open(inputFile.data());
+
+  TH1D *hzy0   = (TH1D*)(rootfile->Get("h_sigXMassPDF0"));
+  TH1D *hzy1   = (TH1D*)(rootfile->Get("h_sigXMassPDF1"));
+  TH1D *hzy2   = (TH1D*)(rootfile->Get("h_sigXMassPDF2"));
+  TH1D *hzy3   = (TH1D*)(rootfile->Get("h_sigXMassPDF3"));
+  TH1D *hzy4   = (TH1D*)(rootfile->Get("h_sigXMassPDF4"));
+
+
+  Int_t nbinsx = hzy0->GetNbinsX();
+  Double_t diff_max[nbinsx];
+  Double_t error[nbinsx];
+  double total_error=0.0;
+
+  for(int i=0; i<nbinsx; i++){
+
+    double center = hzy0->GetBinContent(i+1);
+    Double_t pdf[4];
+    Double_t diff[4];
+    
+    pdf[0] = hzy1->GetBinContent(i+1);
+    pdf[1] = hzy2->GetBinContent(i+1);
+    pdf[2] = hzy3->GetBinContent(i+1);
+    pdf[3] = hzy4->GetBinContent(i+1);
+
+    diff[0] = fabs(pdf[0]-center);
+    diff[1] = fabs(pdf[1]-center);
+    diff[2] = fabs(pdf[2]-center);
+    diff[3] = fabs(pdf[3]-center);
+
+    std::sort(diff,diff+4);
+
+    for(int j=0; j<4; j++) cout<<"bin:"<<i+1<<" | center:"<<center<<" | diff:"<<diff[j]<<endl;
+
+    diff_max[i]=diff[3];
+    cout<<"diff_max:"<<diff_max[i]<<endl;
+
+    if(center==0.0) continue;
+
+    error[i] = diff_max[i]/center;
+    cout<<"error:"<<error[i]<<endl;
+
+    total_error = total_error + pow(error[i],2);
+
+
+  } //for
+
+  total_error = sqrt(total_error);
+  cout<<"total_error(100% uncor):"<<total_error<<endl;
+
+  
+
+  double denom = hzy0->Integral();
+  double sum=0.0;
+
+  for(int i=0; i<nbinsx; i++) sum=sum+diff_max[i];
+
+
+
+  cout<<"total_error(100% cor):"<<sum/denom<<endl;
+
+}
