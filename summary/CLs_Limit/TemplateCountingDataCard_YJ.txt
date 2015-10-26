@@ -17,3 +17,4 @@ pu                lnN    1.02       1.02     1.02    1.02    1.02
 lepIDsf           lnN    1.0008     1.001    1.0005  1.0006  1.0007
 bjetRatio         lnN    -          1.002    -       -       -
 dibXsec           lnN    -          -        -       1.055   -
+PDF               lnN    1.1        -        -       -       -
