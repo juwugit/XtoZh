@@ -56,6 +56,11 @@ void stackXMassPDFtest(string inputFile, string outputFile){
   hzy3->SetLineColor(kViolet+2);
   hzy4->SetLineColor(kBlack);
   
+  hzy0->Scale(1/hzy0->Integral());
+  hzy1->Scale(1/hzy1->Integral());
+  hzy2->Scale(1/hzy2->Integral());
+  hzy3->Scale(1/hzy3->Integral());
+  hzy4->Scale(1/hzy4->Integral());
 
   hzy1->Draw("histe");
   hzy0->Draw("histesame");
