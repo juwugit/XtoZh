@@ -39,6 +39,7 @@ void stackXMassPDFtest(string inputFile, string outputFile){
   TH1D *hzy2   = (TH1D*)(rootfile->Get("h_sigXMassPDF2"));
   TH1D *hzy3   = (TH1D*)(rootfile->Get("h_sigXMassPDF3"));
   TH1D *hzy4   = (TH1D*)(rootfile->Get("h_sigXMassPDF4"));
+  TH1D *hzy5   = (TH1D*)(rootfile->Get("h_sigXMassPDF5"));
 
 
   gStyle->SetOptStat(0);
@@ -55,18 +56,21 @@ void stackXMassPDFtest(string inputFile, string outputFile){
   hzy2->SetLineColor(kGreen+3);
   hzy3->SetLineColor(kViolet+2);
   hzy4->SetLineColor(kBlack);
+  hzy5->SetLineColor(kRed);
   
   hzy0->Scale(1/hzy0->Integral());
   hzy1->Scale(1/hzy1->Integral());
   hzy2->Scale(1/hzy2->Integral());
   hzy3->Scale(1/hzy3->Integral());
   hzy4->Scale(1/hzy4->Integral());
-
-  hzy1->Draw("histe");
+  hzy5->Scale(1/hzy5->Integral());
+  
+  hzy4->Draw("histe");
   hzy0->Draw("histesame");
   hzy2->Draw("histesame");
   hzy3->Draw("histesame");
-  hzy4->Draw("histesame");
+  hzy1->Draw("histesame");
+  hzy5->Draw("histesame");
 
 
   TLegend *leg = new TLegend(0.73, 0.68, 0.98, 0.98);
@@ -79,6 +83,7 @@ void stackXMassPDFtest(string inputFile, string outputFile){
   leg->AddEntry(hzy2, "NNPDF21_lo_as_0119_100", "f");
   leg->AddEntry(hzy3, "MSTW2008nlo68cl", "f");
   leg->AddEntry(hzy4, "NNPDF21_nlo_collider_as_0118", "f");
+  leg->AddEntry(hzy5, "CT10", "f");
   leg->Draw("same");
 
 
