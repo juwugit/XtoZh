@@ -5,17 +5,17 @@
 
 using namespace std;
 
-void runPDF(Int_t scaleMode, std::string inputFile, std::string outputFile/*std::string filename*/)
+void runPDF(/*Int_t scaleMode, std::string inputFile, std::string outputFile*/std::string filename)
 {
   TStopwatch* myWatch = new TStopwatch();
   myWatch->Start();
   gROOT->ProcessLine(".L /data4/juwu/CMSSW_5_3_20/src/test_pdf/LHAPDF/lib/libLHAPDF.so");
 
-  //gROOT->ProcessLine(".L Main_analyzer/myLHAPDF_reweighing.C++");
-  //gROOT->ProcessLine(Form("myLHAPDF_reweighing(\"%s\")",filename.data()));
+  gROOT->ProcessLine(".L Main_analyzer/myLHAPDF_reweighing.C++");
+  gROOT->ProcessLine(Form("myLHAPDF_reweighing(\"%s\")",filename.data()));
 
-  gROOT->ProcessLine(".L Main_analyzer/recoXMassCSV_pdftest.C++");
-  gROOT->ProcessLine(Form("recoXMassCSV_pdftest(%d,\"%s\",\"%s\")",scaleMode,inputFile.data(),outputFile.data()));
+  //gROOT->ProcessLine(".L Main_analyzer/recoXMassCSV_pdftest.C++");
+  //gROOT->ProcessLine(Form("recoXMassCSV_pdftest(%d,\"%s\",\"%s\")",scaleMode,inputFile.data(),outputFile.data()));
 
 
   myWatch->Stop();

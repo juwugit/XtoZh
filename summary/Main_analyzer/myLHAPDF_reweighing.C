@@ -14,7 +14,7 @@
 using namespace std;
 
 // maximum number of PDFs allowed is 5
-const int NPDFS=5;
+const int NPDFS=4;
 const int defaultIndex=1;
 
 class MyPDF {
@@ -54,6 +54,45 @@ class MyPDF {
   }
 }; // end of myPDF definitions
 
+class MyPDF2 {
+ public:
+  int nIndex;
+  MyPDF2(const char* pdfname, int n) {
+    nIndex = n;	
+    // CT10/MSTW2008nlo
+    LHAPDF::initPDFSet(defaultIndex,"MSTW2008nlo68cl.LHgrid"); 
+    LHAPDF::initPDFSet(nIndex,pdfname);
+  }
+  virtual ~MyPDF2(){};
+
+  float weight2(float* Info_, unsigned int member)
+  {
+    int id1 = Info_[0]; 
+    int id2 = Info_[1]; 
+    float x1 = Info_[2]; 
+    float x2 = Info_[3]; 
+    float Q = Info_[6]; 
+
+    LHAPDF::usePDFMember(nIndex,member);
+    //  double xfx(int nset, double x, double Q, int fl);
+    float pdf1 = LHAPDF::xfx(nIndex,x1,Q,id1)*LHAPDF::xfx(nIndex,x2,Q,id2);
+
+    LHAPDF::usePDFMember(defaultIndex,member);
+    float pdf_default = LHAPDF::xfx(defaultIndex,x1,Q,id1)*LHAPDF::xfx(defaultIndex,x2,Q,id2);
+
+    if (pdf_default>0) {
+      // return the ratio of MSTW2008nlo PDF weights to CT10 PDF weight
+      return pdf1/pdf_default;
+    } else {
+      printf ("pdf1 = %e, pdf_default = %e\n", pdf1, pdf_default);
+      return 1.;
+    }
+
+  }
+}; // end of myPDF2 definitions
+
+
+
 
 void myLHAPDF_reweighing(std::string inputFile){
 
@@ -73,13 +112,13 @@ void myLHAPDF_reweighing(std::string inputFile){
 
 
   // all LO PDFs, don't use defaultIndex
-  MyPDF* mstw2008lo = new MyPDF("MSTW2008lo68cl.LHgrid",2);
-  MyPDF* nnpdf21lo = new MyPDF("NNPDF21_lo_as_0119_100.LHgrid",3);
+  //MyPDF* mstw2008lo = new MyPDF("MSTW2008lo68cl.LHgrid",2);
+  //MyPDF* nnpdf21lo = new MyPDF("NNPDF21_lo_as_0119_100.LHgrid",3);
   //MyPDF* a02mlo = new MyPDF("a02m_lo.LHgrid",4);
   //MyPDF* heralo = new MyPDF("HERAPDF1.5LO_EIG.LHgrid",5);
-  //MyPDF* ct10nlo = new MyPDF("CT10.LHgrid",2);
-  MyPDF* mstw2008nlo = new MyPDF("MSTW2008nlo68cl.LHgrid",4);
-  MyPDF* nnpdf23nlo = new MyPDF("NNPDF23_nlo_collider_as_0118.LHgrid",5);
+  MyPDF2* ct10nlo = new MyPDF2("CT10.LHgrid",2);
+  MyPDF* mstw2008nlo = new MyPDF("MSTW2008nlo68cl.LHgrid",2);
+  MyPDF* nnpdf23nlo = new MyPDF("NNPDF23_nlo_collider_as_0118.LHgrid",3);
 
   //Event loop
   for(Long64_t jEntry=0; jEntry<data.GetEntriesFast() ;jEntry++){
@@ -122,15 +161,22 @@ void myLHAPDF_reweighing(std::string inputFile){
     float zy = zprime_l4.Rapidity();
     double weight_pdf[NPDFS]={
       1.0,      
-      mstw2008lo->weight(pdfInfo,0),
-      nnpdf21lo->weight(pdfInfo,0),
+      //mstw2008lo->weight(pdfInfo,0),
+      //nnpdf21lo->weight(pdfInfo,0),
       //ct10nlo->weight(pdfInfo,0),
       mstw2008nlo->weight(pdfInfo,0),
       nnpdf23nlo->weight(pdfInfo,0)
     };
 
-    for(int i=0;i<NPDFS;i++)
-      hzy[i]->Fill(zy,weight_pdf[i]); // original 
+    double weight_pdf2 = weight_pdf[1]*ct10nlo->weight2(pdfInfo,0);
+
+
+    for(int i=0;i<NPDFS;i++){
+     
+      if(i<3) hzy[i]->Fill(zy,weight_pdf[i]); // original 
+      if(i==3) hzy[i]->Fill(zy,weight_pdf2); // CT10/MSTW2008nlo
+    }
+
 
   } // end of loop over entries
 
