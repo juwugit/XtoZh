@@ -1,6 +1,6 @@
 imax    1       number of channels
 jmax    4       number of backgrounds
-kmax    10      number of nuisance parameters (sources of systematical uncertainties)
+kmax    11      number of nuisance parameters (sources of systematical uncertainties)
 
 -------------------------------------------------------------------------------------------------
 
@@ -8,7 +8,7 @@ shapes *  *     output_0819_4.root $PROCESS $PROCESS_$SYSTEMATIC
 
 -------------------------------------------------------------------------------------------------
 bin                      1
-observation              4.0
+observation              3.0
 
 -------------------------------------------------------------------------------------------------
 
@@ -19,7 +19,7 @@ process                  signal  background_DY_4   background_TT_4      backgrou
 
 process                  0          1         2         3      4          
    
-rate                    0.01843905024   3.44317734241    0.0    0.072438698262 0.0    
+rate                    0.0116206308594   5.31573373079    0.082163579762    0.097006931901 0.0527209602296    
 
 -------------------------------------------------------------------------------------------------
 
@@ -33,6 +33,7 @@ sigma             shape  1          -        -       -       -
 lepIDsf           lnN	 1.0008     1.001    1.0005  1.0006  1.0007
 bjetRatio         lnN    -          1.002    -       -       -
 dibXsec           lnN    -          -        -       1.055   - 
+PDF               lnN    1.1        -        -       -       -
 
 ------------------------------------------------------------------------------------------------
 
