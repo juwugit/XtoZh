@@ -237,16 +237,19 @@ void recoXMassCSV_pdftest(Int_t scaleMode, std::string inputFile, std::string ou
   TH2F* h_sigMxSubjetCSV = new TH2F("h_sigMxSubjetCSV","signal region XMass vs subjet CSV",nvarBins,varBins,5,0,1);
   TH2F* h_sbMxSubjetCSV  = new TH2F("h_sbMxSubjetCSV","sideband region XMass vs subjet CSV",nvarBins,varBins,5,0,1);
   TH1F* h_sigXMass       = new TH1F("h_sigXMass","signal region XMass",nvarBins,varBins);
+  TH1F* h_sigSubjetCSV   = new TH1F("h_sigSubjetCSV","signal region subjetCSV",20,0,1);
 
   h_sigMxCA8jetCSV->Sumw2();
   h_sbMxCA8jetCSV->Sumw2();
   h_sigMxSubjetCSV->Sumw2();
   h_sbMxSubjetCSV->Sumw2();
   h_sigXMass->Sumw2();
+  h_sigSubjetCSV->Sumw2();
 
 
   // PDFsets info and extra histos for varies PDF weights
   TH1F* h_sigXMassPDF[NPDFS];
+  TH1F* h_sigSubjetCSVPDF[NPDFS];
   Float_t* pdfInfo;
   MyPDF* mstw2008lo;
   MyPDF* nnpdf21lo;
@@ -255,9 +258,11 @@ void recoXMassCSV_pdftest(Int_t scaleMode, std::string inputFile, std::string ou
   //MyPDF2* ct10nlo;
 
   if(isV5){
-    for(int i=0;i<NPDFS ;i++)
+    for(int i=0;i<NPDFS ;i++){
       h_sigXMassPDF[i]=(TH1F*)h_sigXMass->Clone(Form("h_sigXMassPDF%d",i));
-    
+      h_sigSubjetCSVPDF[i]=(TH1F*)h_sigSubjetCSV->Clone(Form("h_sigSubjetCSVPDF%d",i));
+    }
+
     mstw2008lo = new MyPDF("MSTW2008lo68cl.LHgrid",2);
     nnpdf21lo = new MyPDF("NNPDF21_lo_as_0119_100.LHgrid",3);
     mstw2008nlo = new MyPDF("MSTW2008nlo68cl.LHgrid",4);
@@ -302,7 +307,8 @@ void recoXMassCSV_pdftest(Int_t scaleMode, std::string inputFile, std::string ou
 
     // pdf info
     if(isV5) pdfInfo = data.GetPtrFloat("pdf");
-
+    double weight_pdf[NPDFS];
+    for(int i=0; i<NPDFS; i++) weight_pdf[i]=1.0;
 
     // load lepton variables 
     if(isEle){
@@ -406,7 +412,7 @@ void recoXMassCSV_pdftest(Int_t scaleMode, std::string inputFile, std::string ou
 
       if(isV5){
 
-	double weight_pdf[NPDFS]={
+	weight_pdf[NPDFS]={
 	  1.0,
 	  mstw2008lo->weight(pdfInfo,0),
 	  nnpdf21lo->weight(pdfInfo,0),
