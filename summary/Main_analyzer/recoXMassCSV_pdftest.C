@@ -29,7 +29,7 @@ using namespace std;
 
 
 // maximum number of PDFs allowed is 5
-const int NPDFS=5;
+const int NPDFS=3;
 const int defaultIndex=1;
 
 
@@ -248,21 +248,21 @@ void recoXMassCSV_pdftest(Int_t scaleMode, std::string inputFile, std::string ou
   // PDFsets info and extra histos for varies PDF weights
   TH1F* h_sigXMassPDF[NPDFS];
   Float_t* pdfInfo;
-  MyPDF* mstw2008lo;
-  MyPDF* nnpdf21lo;
+  //MyPDF* mstw2008lo;
+  //MyPDF* nnpdf21lo;
   MyPDF* mstw2008nlo;
-  MyPDF* nnpdf23nlo;
-  //MyPDF2* ct10nlo;
+  //MyPDF* nnpdf23nlo;
+  MyPDF2* ct10nlo;
 
   if(isV5){
     for(int i=0;i<NPDFS ;i++)
       h_sigXMassPDF[i]=(TH1F*)h_sigXMass->Clone(Form("h_sigXMassPDF%d",i));
     
-    mstw2008lo = new MyPDF("MSTW2008lo68cl.LHgrid",2);
-    nnpdf21lo = new MyPDF("NNPDF21_lo_as_0119_100.LHgrid",3);
+    //mstw2008lo = new MyPDF("MSTW2008lo68cl.LHgrid",2);
+    //nnpdf21lo = new MyPDF("NNPDF21_lo_as_0119_100.LHgrid",3);
     mstw2008nlo = new MyPDF("MSTW2008nlo68cl.LHgrid",4);
-    nnpdf23nlo = new MyPDF("NNPDF23_nlo_collider_as_0118.LHgrid",5);
-    //ct10nlo = new MyPDF2("CT10.LHgrid",2);
+    //nnpdf23nlo = new MyPDF("NNPDF23_nlo_collider_as_0118.LHgrid",5);
+    ct10nlo = new MyPDF2("CT10.LHgrid",2);
   }
   
 
@@ -408,11 +408,11 @@ void recoXMassCSV_pdftest(Int_t scaleMode, std::string inputFile, std::string ou
 
 	double weight_pdf[NPDFS]={
 	  1.0,
-	  mstw2008lo->weight(pdfInfo,0),
-	  nnpdf21lo->weight(pdfInfo,0),
+	  //mstw2008lo->weight(pdfInfo,0),
+	  //nnpdf21lo->weight(pdfInfo,0),
 	  mstw2008nlo->weight(pdfInfo,0),
-	  nnpdf23nlo->weight(pdfInfo,0)
-	  //((mstw2008nlo->weight(pdfInfo,0))*(ct10nlo->weight2(pdfInfo,0)))
+	  //nnpdf23nlo->weight(pdfInfo,0)
+	  ((mstw2008nlo->weight(pdfInfo,0))*(ct10nlo->weight2(pdfInfo,0)))
 	};
 	
 	for(int i=0;i<NPDFS;i++)
