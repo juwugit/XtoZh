@@ -29,17 +29,18 @@
 
 using namespace std;
 
-void stackXMassPDFtest(string inputFile, string outputFile){
+void stackXMassPDFtest(string inputFile,string inputFile2, string outputFile){
 
 
-  TFile *rootfile    = TFile::Open(inputFile.data());
+  TFile *rootfile  = TFile::Open(inputFile.data());
+  TFile *rootfile2 = TFile::Open(inputFile2.data());
 
   TH1D *hzy0   = (TH1D*)(rootfile->Get("h_sigXMassPDF0"));
   TH1D *hzy1   = (TH1D*)(rootfile->Get("h_sigXMassPDF1"));
   TH1D *hzy2   = (TH1D*)(rootfile->Get("h_sigXMassPDF2"));
   TH1D *hzy3   = (TH1D*)(rootfile->Get("h_sigXMassPDF3"));
   TH1D *hzy4   = (TH1D*)(rootfile->Get("h_sigXMassPDF4"));
-  TH1D *hzy5   = (TH1D*)(rootfile->Get("h_sigXMassPDF5"));
+  TH1D *hzy5   = (TH1D*)(rootfile2->Get("h_sigXMassPDF2"));
 
 
   gStyle->SetOptStat(0);
@@ -65,10 +66,10 @@ void stackXMassPDFtest(string inputFile, string outputFile){
   hzy4->Scale(1/hzy4->Integral());
   hzy5->Scale(1/hzy5->Integral());
   
-  hzy4->Draw("histe");
+  hzy3->Draw("histe");
   hzy0->Draw("histesame");
   hzy2->Draw("histesame");
-  hzy3->Draw("histesame");
+  hzy4->Draw("histesame");
   hzy1->Draw("histesame");
   hzy5->Draw("histesame");
 

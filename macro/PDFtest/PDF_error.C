@@ -29,16 +29,18 @@
 
 using namespace std;
 
-void PDF_error(string inputFile){
+void PDF_error(string inputFile, string inputFile2){
 
 
-  TFile *rootfile    = TFile::Open(inputFile.data());
+  TFile *rootfile  = TFile::Open(inputFile.data());
+  TFile *rootfile2 = TFile::Open(inputFile2.data());
 
   TH1D *hzy0   = (TH1D*)(rootfile->Get("h_sigXMassPDF0"));
   TH1D *hzy1   = (TH1D*)(rootfile->Get("h_sigXMassPDF1"));
   TH1D *hzy2   = (TH1D*)(rootfile->Get("h_sigXMassPDF2"));
   TH1D *hzy3   = (TH1D*)(rootfile->Get("h_sigXMassPDF3"));
   TH1D *hzy4   = (TH1D*)(rootfile->Get("h_sigXMassPDF4"));
+  TH1D *hzy5   = (TH1D*)(rootfile2->Get("h_sigXMassPDF2"));
 
 
   Int_t nbinsx = hzy0->GetNbinsX();
@@ -49,24 +51,26 @@ void PDF_error(string inputFile){
   for(int i=0; i<nbinsx; i++){
 
     double center = hzy0->GetBinContent(i+1);
-    Double_t pdf[4];
-    Double_t diff[4];
+    Double_t pdf[5];
+    Double_t diff[5];
     
     pdf[0] = hzy1->GetBinContent(i+1);
     pdf[1] = hzy2->GetBinContent(i+1);
     pdf[2] = hzy3->GetBinContent(i+1);
     pdf[3] = hzy4->GetBinContent(i+1);
+    pdf[4] = hzy5->GetBinContent(i+1);
 
     diff[0] = fabs(pdf[0]-center);
     diff[1] = fabs(pdf[1]-center);
     diff[2] = fabs(pdf[2]-center);
     diff[3] = fabs(pdf[3]-center);
+    diff[4] = fabs(pdf[4]-center);
 
-    std::sort(diff,diff+4);
+    std::sort(diff,diff+5);
 
-    for(int j=0; j<4; j++) cout<<"bin:"<<i+1<<" | center:"<<center<<" | diff:"<<diff[j]<<endl;
+    for(int j=0; j<5; j++) cout<<"bin:"<<i+1<<" | center:"<<center<<" | diff:"<<diff[j]<<endl;
 
-    diff_max[i]=diff[3];
+    diff_max[i]=diff[4];
     cout<<"diff_max:"<<diff_max[i]<<endl;
 
     if(center==0.0) continue;
