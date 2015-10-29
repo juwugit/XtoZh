@@ -1,0 +1,99 @@
+#include <vector>
+#include <string>
+#include <iostream>
+#include <algorithm>
+#include <TPad.h>
+#include <TH1D.h>
+#include <TH1F.h>
+#include <TSystem.h>
+#include <TMath.h>
+#include <TFile.h>
+#include <TList.h>
+#include <TImage.h>
+#include <TLine.h>
+#include <TAxis.h>
+#include <TGraph.h>
+#include <TStyle.h>
+#include <TChain.h>
+#include <THStack.h>
+#include <TLegend.h>
+#include <TCanvas.h>
+#include <TBranch.h>
+#include <TRandom.h>
+#include <TVectorT.h>
+#include <TProfile.h>
+#include <TLorentzVector.h>
+#include <TSystemDirectory.h>
+#include <TGraphAsymmErrors.h>
+
+
+using namespace std;
+
+void stackCSVPDFtest(string inputFile,string inputFile2, string outputFile){
+
+
+  TFile *rootfile  = TFile::Open(inputFile.data());
+  TFile *rootfile2 = TFile::Open(inputFile2.data());
+
+  TH1D *hzy0   = (TH1D*)(rootfile->Get("h_sigSubjetCSVPDF0"));
+  TH1D *hzy1   = (TH1D*)(rootfile->Get("h_sigSubjetCSVPDF1"));
+  TH1D *hzy2   = (TH1D*)(rootfile->Get("h_sigSubjetCSVPDF2"));
+  TH1D *hzy3   = (TH1D*)(rootfile->Get("h_sigSubjetCSVPDF3"));
+  TH1D *hzy4   = (TH1D*)(rootfile->Get("h_sigSubjetCSVPDF4"));
+  TH1D *hzy5   = (TH1D*)(rootfile2->Get("h_sigSubjetCSVPDF2"));
+
+
+  gStyle->SetOptStat(0);
+  gStyle->SetPadGridY(kTRUE);
+  gStyle->SetPadGridX(kTRUE);
+
+
+
+  TCanvas* c1 = new TCanvas("c1", "", 0, 0, 750, 750);
+
+
+  hzy0->SetLineColor(kOrange+6);
+  hzy1->SetLineColor(kAzure);
+  hzy2->SetLineColor(kGreen+3);
+  hzy3->SetLineColor(kViolet+2);
+  hzy4->SetLineColor(kBlack);
+  hzy5->SetLineColor(kRed);
+  
+  hzy0->Scale(1/hzy0->Integral());
+  hzy1->Scale(1/hzy1->Integral());
+  hzy2->Scale(1/hzy2->Integral());
+  hzy3->Scale(1/hzy3->Integral());
+  hzy4->Scale(1/hzy4->Integral());
+  hzy5->Scale(1/hzy5->Integral());
+  
+  hzy3->Draw("histe");
+  hzy0->Draw("histesame");
+  hzy2->Draw("histesame");
+  hzy4->Draw("histesame");
+  hzy1->Draw("histesame");
+  hzy5->Draw("histesame");
+
+
+  TLegend *leg = new TLegend(0.73, 0.68, 0.98, 0.98);
+
+  leg->SetFillStyle(1001);
+  leg->SetFillColor(10);
+  leg->SetBorderSize(1);
+  leg->AddEntry(hzy0, "CTEQ6L1", "f");
+  leg->AddEntry(hzy1, "MSTW2008lo68cl", "f");
+  leg->AddEntry(hzy2, "NNPDF21_lo_as_0119_100", "f");
+  leg->AddEntry(hzy3, "MSTW2008nlo68cl", "f");
+  leg->AddEntry(hzy4, "NNPDF21_nlo_collider_as_0118", "f");
+  leg->AddEntry(hzy5, "CT10", "f");
+  leg->Draw("same");
+
+
+
+  c1->SaveAs(outputFile.data());
+
+
+}
+
+
+
+
