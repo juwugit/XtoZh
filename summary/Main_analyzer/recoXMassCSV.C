@@ -144,12 +144,14 @@ void recoXMassCSV(Int_t scaleMode, std::string inputFile, std::string outputFile
   TH2F* h_sigMxSubjetCSV = new TH2F("h_sigMxSubjetCSV","signal region XMass vs subjet CSV",nvarBins,varBins,5,0,1);
   TH2F* h_sbMxSubjetCSV  = new TH2F("h_sbMxSubjetCSV","sideband region XMass vs subjet CSV",nvarBins,varBins,5,0,1);
   TH1F* h_sigXMass       = new TH1F("h_sigXMass","signal region XMass",nvarBins,varBins);
+  TH1F* h_sigSubjetCSV   = new TH1F("h_sigSubjetCSV","signal region SubjetCSV",20,0,1);
 
   h_sigMxCA8jetCSV->Sumw2();
   h_sbMxCA8jetCSV->Sumw2();
   h_sigMxSubjetCSV->Sumw2();
   h_sbMxSubjetCSV->Sumw2();
   h_sigXMass->Sumw2();
+  h_sigSubjetCSV->Sumw2();
 
   
   // PU weight
@@ -308,15 +310,19 @@ void recoXMassCSV(Int_t scaleMode, std::string inputFile, std::string outputFile
       if(SubjetCSV[leadjet][0]>0){
 
 	if(prunedmass>70 && prunedmass<110) h_sbMxSubjetCSV->Fill(XMass, SubjetCSV[leadjet][0],weight*PU_weight);
-	if(prunedmass>110 && prunedmass<140) h_sigMxSubjetCSV->Fill(XMass, SubjetCSV[leadjet][0],weight*PU_weight);
-      
+	if(prunedmass>110 && prunedmass<140){
+	  h_sigMxSubjetCSV->Fill(XMass, SubjetCSV[leadjet][0],weight*PU_weight);
+	  h_sigSubjetCSV->Fill(SubjetCSV[leadjet][0],weight*PU_weight);
+	}      
       } //subjet1
       
       if(SubjetCSV[leadjet][1]>0){
 
 	if(prunedmass>70 && prunedmass<110) h_sbMxSubjetCSV->Fill(XMass, SubjetCSV[leadjet][1],weight*PU_weight);
-	if(prunedmass>110 && prunedmass<140) h_sigMxSubjetCSV->Fill(XMass, SubjetCSV[leadjet][1],weight*PU_weight);
-      
+	if(prunedmass>110 && prunedmass<140){
+	  h_sigMxSubjetCSV->Fill(XMass, SubjetCSV[leadjet][1],weight*PU_weight);
+	  h_sigSubjetCSV->Fill(SubjetCSV[leadjet][1],weight*PU_weight);
+	}
       } //subjet2
 
     } //dRjj>0.3
@@ -343,6 +349,7 @@ void recoXMassCSV(Int_t scaleMode, std::string inputFile, std::string outputFile
   h_sigMxSubjetCSV->Write();
   h_sbMxSubjetCSV->Write();
   h_sigXMass->Write();
+  h_sigSubjetCSV->Write();
 
   outFile->Close();
 
