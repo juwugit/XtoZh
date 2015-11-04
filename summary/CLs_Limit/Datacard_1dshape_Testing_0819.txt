@@ -10,7 +10,7 @@ observation 222.0
 bin             1          1      1      1            1
 process         signal    background_DY background_TT background_ZZ background_WZ
 process         0          1      2      3        4  
-rate             0.124102585411   190.877043754    1.69848291948    1.83016695367  1.72608195804     
+rate             0.124102580841   190.877043754    1.69848291948    1.83016695367  1.72608195804     
 --------------------------------
 lumi_8TeV         lnN    1.026     1.026    1.026   1.026   1.026        
 bgnorm            lnN    1.00      1.07     1.07    1.07    1.07
