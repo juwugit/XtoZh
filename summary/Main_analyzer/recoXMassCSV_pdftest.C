@@ -470,7 +470,7 @@ void recoXMassCSV_pdftest(Int_t scaleMode, std::string inputFile, std::string ou
 	    for(int i=0;i<NPDFS;i++)
 	      h_sigSubjetCSVPDF[i]->Fill(SubjetCSV[leadjet][0],weight*PU_weight*weight_pdf[i]);
 	    
-	    if(SubjetCSV[leadjet][0]>0.0 && SubjetCSV[leadjet][0]<0.2)
+	    if(SubjetCSV[leadjet][0]>0.2 && SubjetCSV[leadjet][0]<0.4)
 	      for(int i=0;i<NPDFS;i++)
 		h_sigXMassPDF[i]->Fill(XMass,weight*PU_weight*weight_pdf[i]);
 	    
@@ -500,7 +500,7 @@ void recoXMassCSV_pdftest(Int_t scaleMode, std::string inputFile, std::string ou
 	    for(int i=0;i<NPDFS;i++)
 	      h_sigSubjetCSVPDF[i]->Fill(SubjetCSV[leadjet][1],weight*PU_weight*weight_pdf[i]);
 
-	    if(SubjetCSV[leadjet][1]>0.0 && SubjetCSV[leadjet][1]<0.2)
+	    if(SubjetCSV[leadjet][1]>0.2 && SubjetCSV[leadjet][1]<0.4)
 	      for(int i=0;i<NPDFS;i++)
 		h_sigXMassPDF[i]->Fill(XMass,weight*PU_weight*weight_pdf[i]);
 	    
