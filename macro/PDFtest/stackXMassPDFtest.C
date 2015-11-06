@@ -66,10 +66,10 @@ void stackXMassPDFtest(string inputFile,string inputFile2, string outputFile){
   hzy4->Scale(1/hzy4->Integral());
   hzy5->Scale(1/hzy5->Integral());
   
-  hzy3->Draw("histe");
+  hzy4->Draw("histe");
   hzy0->Draw("histesame");
   hzy2->Draw("histesame");
-  hzy4->Draw("histesame");
+  hzy3->Draw("histesame");
   hzy1->Draw("histesame");
   hzy5->Draw("histesame");
 
