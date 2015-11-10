@@ -27,53 +27,56 @@
 #include <TGraphAsymmErrors.h>
 
 
-/*
-const Int_t totalNEvent1 = 11765438;
-const Int_t totalNEvent2 = 12511326;
-const Int_t totalNEvent3 = 10783509;
-const Int_t totalNEvent4 = 9959752;
-const Int_t totalNEvent5 = 9910267;
-const Int_t totalNEvent6 = 9769891;
-//const Int_t totalNEvent7 = 19997;
-
-const Double_t crossSection1 = 63.5;
-const Double_t crossSection2 = 39.4;
-const Double_t crossSection3 = 25.8;
-const Double_t crossSection4 = 56.0;
-const Double_t crossSection5 = 22.4;
-const Double_t crossSection6 = 7.6;
-//const Double_t crossSection7 = 0.003263;
-
-
-// scale = fb^-1 / luminosity
-
-Double_t data_lumi = 19671.225; // El: 19712.225 ; Mu: 19671.225
-
-Double_t scale1 = data_lumi / (totalNEvent1 / crossSection1); // DYJetsToLL_PtZ-70To100
-Double_t scale2 = data_lumi / (totalNEvent2 / crossSection2); // DYJetsToLL_PtZ100
-Double_t scale3 = data_lumi / (totalNEvent3 / crossSection3); // TTbar
-Double_t scale4 = data_lumi / (totalNEvent4 / crossSection4); // WW
-Double_t scale5 = data_lumi / (totalNEvent5 / crossSection5); // WZ
-Double_t scale6 = data_lumi / (totalNEvent6 / crossSection6); // ZZ
-//Double_t scale7 = data_lumi / (totalNEvent7 / crossSection7); // signal
-
-*/
-
-
-void myPlot(TH1D*, TH1D*, TH1D*, TH1D*, TH1D*, TH1D*, TH1D*, TH1D*);
-
 
 void stackCSVsignalHisto(){
 
 
-  TFile *dy70  = TFile::Open("rootfile/DY70To100_El.root");
-  TFile *dy100 = TFile::Open("rootfile/DY100_El.root");
-  TFile *ttbar = TFile::Open("rootfile/TTbar_El.root");
-  TFile *ww    = TFile::Open("rootfile/WW_El.root");
-  TFile *wz    = TFile::Open("rootfile/WZ_El.root");
-  TFile *zz    = TFile::Open("rootfile/ZZ_El.root");
-  TFile *data  = TFile::Open("rootfile/data_El.root");
-  TFile *SIG   = TFile::Open("rootfile/signal_M1500_El.root");
+  TFile *dy70    = TFile::Open("../summary/result_cuts/TH2_DYJetsPtZ70To100_Mu_Cen.root");
+  TFile *dy100   = TFile::Open("../summary/result_cuts/TH2_DYJetsPtZ100_Mu_Cen.root");
+  TFile *ttbar   = TFile::Open("../summary/result_cuts/TH2_TTTo2L2Nu2B_Mu_Cen.root");
+  TFile *wz      = TFile::Open("../summary/result_cuts/TH2_DiBWZ_Mu_Cen.root");
+  TFile *zz      = TFile::Open("../summary/result_cuts/TH2_DiBZZ_Mu_Cen.root");
+  TFile *data    = TFile::Open("rootfile/data_Mu_Cen.root");
+  TFile *sig800  = TFile::Open("../summary/result_cuts/ZPrime_ZH_lljj_M800_Mu_Cen.root");
+  TFile *sig1200 = TFile::Open("../summary/result_cuts/ZPrime_ZH_lljj_M1200_Mu_Cen.root");
+  TFile *sig1300 = TFile::Open("../summary/result_cuts/ZPrime_ZH_lljj_M1300_Mu_Cen.root");
+  TFile *sig1400 = TFile::Open("../summary/result_cuts/ZPrime_ZH_lljj_M1400_Mu_Cen.root");
+  TFile *sig1600 = TFile::Open("../summary/result_cuts/ZPrime_ZH_lljj_M1600_Mu_Cen.root");
+  TFile *sig1800 = TFile::Open("../summary/result_cuts/ZPrime_ZH_lljj_M1800_Mu_Cen.root");
+  TFile *sig1900 = TFile::Open("../summary/result_cuts/ZPrime_ZH_lljj_M1900_Mu_Cen.root");
+  TFile *sig2000 = TFile::Open("../summary/result_cuts/ZPrime_ZH_lljj_M2000_Mu_Cen.root");
+
+  /*
+  TH1D *h_dy70    = (TH1D*)(dy70->Get("h_sigSubjetCSV"));
+  TH1D *h_dy100   = (TH1D*)(dy100->Get("h_sigSubjetCSV"));
+  TH1D *h_ttbar   = (TH1D*)(ttbar->Get("h_sigSubjetCSV"));
+  TH1D *h_wz      = (TH1D*)(wz->Get("h_sigSubjetCSV"));
+  TH1D *h_zz      = (TH1D*)(zz->Get("h_sigSubjetCSV"));
+  TH1D *h_data    = (TH1D*)(data->Get("h_sigSubjetCSV"));
+  TH1D *h_sig800  = (TH1D*)(sig800->Get("h_sigSubjetCSV"));
+  TH1D *h_sig1200 = (TH1D*)(sig1200->Get("h_sigSubjetCSV"));
+  TH1D *h_sig1300 = (TH1D*)(sig1300->Get("h_sigSubjetCSV"));
+  TH1D *h_sig1400 = (TH1D*)(sig1400->Get("h_sigSubjetCSV"));
+  TH1D *h_sig1600 = (TH1D*)(sig1600->Get("h_sigSubjetCSV"));
+  TH1D *h_sig1800 = (TH1D*)(sig1800->Get("h_sigSubjetCSV"));
+  TH1D *h_sig1900 = (TH1D*)(sig1900->Get("h_sigSubjetCSV"));
+  TH1D *h_sig2000 = (TH1D*)(sig2000->Get("h_sigSubjetCSV"));
+  */
+
+  TH1D *h_dy70    = (TH1D*)(dy70->Get("h_sigXMass"));
+  TH1D *h_dy100   = (TH1D*)(dy100->Get("h_sigXMass"));
+  TH1D *h_ttbar   = (TH1D*)(ttbar->Get("h_sigXMass"));
+  TH1D *h_wz      = (TH1D*)(wz->Get("h_sigXMass"));
+  TH1D *h_zz      = (TH1D*)(zz->Get("h_sigXMass"));
+  TH1D *h_data    = (TH1D*)(data->Get("h_sigXMass"));
+  TH1D *h_sig800  = (TH1D*)(sig800->Get("h_sigXMass"));
+  TH1D *h_sig1200 = (TH1D*)(sig1200->Get("h_sigXMass"));
+  TH1D *h_sig1300 = (TH1D*)(sig1300->Get("h_sigXMass"));
+  TH1D *h_sig1400 = (TH1D*)(sig1400->Get("h_sigXMass"));
+  TH1D *h_sig1600 = (TH1D*)(sig1600->Get("h_sigXMass"));
+  TH1D *h_sig1800 = (TH1D*)(sig1800->Get("h_sigXMass"));
+  TH1D *h_sig1900 = (TH1D*)(sig1900->Get("h_sigXMass"));
+  TH1D *h_sig2000 = (TH1D*)(sig2000->Get("h_sigXMass"));
 
 
   gStyle->SetOptStat(0);
@@ -82,181 +85,65 @@ void stackCSVsignalHisto(){
 
 
 
-  TCanvas* c1 = new TCanvas("c1", "", 0, 0, 1500, 750);
+  TCanvas* c1 = new TCanvas("c1", "", 0, 0, 750, 750);
 
 
-  c1->Divide(2,2);
+  const Double_t varBins[] = {680,720,760,800,840,920,1000,1100,1250,1400,1600,1800,2000,2400};
+  Int_t nvarBins = sizeof(varBins)/sizeof(varBins[0])-1;
 
-  //-------------------------------------------//
-
-  c1->cd(1);
-  myPlot( ((TH1D*)(dy70->Get("h_sbCA8jetCSV"))), 
-	  ((TH1D*)(dy100->Get("h_sbCA8jetCSV"))), 
-	  ((TH1D*)(ttbar->Get("h_sbCA8jetCSV"))), 
-	  ((TH1D*)(ww->Get("h_sbCA8jetCSV"))), 
-	  ((TH1D*)(wz->Get("h_sbCA8jetCSV"))), 
-	  ((TH1D*)(zz->Get("h_sbCA8jetCSV"))), 
-	  ((TH1D*)(data->Get("h_sbCA8jetCSV"))),
-	  ((TH1D*)(SIG->Get("h_sbCA8jetCSV")))
-	  );
-
-  //-------------------------------------------//
-  
-  c1->cd(2);
-  myPlot( ((TH1D*)(dy70->Get("h_sigCA8jetCSV"))), 
-	  ((TH1D*)(dy100->Get("h_sigCA8jetCSV"))), 
-	  ((TH1D*)(ttbar->Get("h_sigCA8jetCSV"))), 
-	  ((TH1D*)(ww->Get("h_sigCA8jetCSV"))), 
-	  ((TH1D*)(wz->Get("h_sigCA8jetCSV"))), 
-	  ((TH1D*)(zz->Get("h_sigCA8jetCSV"))), 
-	  ((TH1D*)(data->Get("h_sigCA8jetCSV"))),
-	  ((TH1D*)(SIG->Get("h_sbCA8jetCSV")))
-	  );
-
-  //-------------------------------------------//
-
-  c1->cd(3);
-  myPlot( ((TH1D*)(dy70->Get("h_sbSubjetCSV"))), 
-	  ((TH1D*)(dy100->Get("h_sbSubjetCSV"))), 
-	  ((TH1D*)(ttbar->Get("h_sbSubjetCSV"))), 
-	  ((TH1D*)(ww->Get("h_sbSubjetCSV"))), 
-	  ((TH1D*)(wz->Get("h_sbSubjetCSV"))), 
-	  ((TH1D*)(zz->Get("h_sbSubjetCSV"))), 
-	  ((TH1D*)(data->Get("h_sbSubjetCSV"))),
-	  ((TH1D*)(SIG->Get("h_sbCA8jetCSV")))
-	  );
-
-
-  //------------------------------------------//
-
-  c1->cd(4);
-  myPlot( ((TH1D*)(dy70->Get("h_sigSubjetCSV"))), 
-	  ((TH1D*)(dy100->Get("h_sigSubjetCSV"))), 
-	  ((TH1D*)(ttbar->Get("h_sigSubjetCSV"))), 
-	  ((TH1D*)(ww->Get("h_sigSubjetCSV"))), 
-	  ((TH1D*)(wz->Get("h_sigSubjetCSV"))), 
-	  ((TH1D*)(zz->Get("h_sigSubjetCSV"))), 
-	  ((TH1D*)(data->Get("h_sigSubjetCSV"))),
-	  ((TH1D*)(SIG->Get("h_sbCA8jetCSV")))
-	  );
-
-
-
-
-
-  gSystem->ProcessEvents();
-  TImage *img1 = TImage::Create();
-  img1->FromPad(c1);
-  img1->WriteImage("h_jetCSVshape1500_El.png");
-  delete c1;
-  delete img1;
-
-
-  //-------------------------------------------//
-
-
-
-
-}
-
-
-
-void myPlot(TH1D* h_dy70, TH1D* h_dy100, TH1D* h_ttbar, TH1D* h_ww, TH1D* h_wz, TH1D* h_zz, TH1D* h_data, TH1D* h_sig){
-
-  
-  /*
-  h_dy70->Scale(scale1);
-  h_dy70->SetFillColor(kCyan-4);
-  h_dy70->SetLineColor(kBlack);
-
-  h_dy100->Scale(scale2);
-  h_dy100->SetFillColor(kAzure+9);
-  h_dy100->SetLineColor(kBlack);
-
-  h_ttbar->Scale(scale3);
-  h_ttbar->SetFillColor(kOrange+8);
-  h_ttbar->SetLineColor(kBlack);
-
-  h_ww->Scale(scale4);
-  h_ww->SetFillColor(kViolet+1);
-  h_ww->SetLineColor(kBlack);
-
-  h_wz->Scale(scale5);
-  h_wz->SetFillColor(kViolet+2);
-  h_wz->SetLineColor(kBlack);
-
-  h_zz->Scale(scale6);
-  h_zz->SetFillColor(kViolet+3);
-  h_zz->SetLineColor(kBlack);
-  */
-
-
-  TH1D* h_stack = new TH1D("h_stack","",20,0,1);
+  TH1D* h_stack = new TH1D("h_stack","",nvarBins,varBins);
+  //TH1D* h_stack = new TH1D("h_stack","",20,0,1);
   h_stack->Add(h_zz);
   h_stack->Add(h_wz);
-  h_stack->Add(h_ww);
   h_stack->Add(h_ttbar);
   h_stack->Add(h_dy70);
   h_stack->Add(h_dy100);
 
-  h_stack->Scale(1/h_stack->Integral());
+
   h_stack->SetFillColor(kCyan-4);
   h_stack->SetLineColor(kBlack);
 
 
-  h_data->Scale(1/h_data->Integral());
   h_data->SetLineColor(1);
   h_data->SetMarkerStyle(8);
   h_data->SetMarkerSize(1);
   h_data->SetLabelSize(0);
 
-  //h_sig->Scale(scale7);
-  h_sig->Scale(1/h_sig->Integral());
-  h_sig->SetLineColor(kRed);
-  h_sig->SetMarkerColor(kRed);
-  h_sig->SetMarkerStyle(8);
-  h_sig->SetMarkerSize(1);
-  h_sig->SetLabelSize(0);
+
+  h_sig800->SetLineColor(kOrange+6);
+  h_sig1200->SetLineColor(kAzure);
+  h_sig1300->SetLineColor(kRed);
+  h_sig1400->SetLineColor(kGreen+3);
+  h_sig1600->SetLineColor(kRed);
+  h_sig1800->SetLineColor(kViolet+2);
+  h_sig1900->SetLineColor(kPink+10);
+  h_sig2000->SetLineColor(kBlack);
 
 
-
-  Float_t datamaxbin =  h_data->GetBinContent(h_data->GetMaximumBin());
-  Float_t sigmaxbin = h_sig->GetBinContent(h_sig->GetMaximumBin());
-
-  if( datamaxbin > sigmaxbin ){
-
-    h_data->GetXaxis()->SetTitle( h_dy100->GetTitle() );
-    h_data->Draw("e1");
-    h_stack->Draw("histesame");
-    h_sig->Draw("e1same");
-    h_data->Draw("e1same");
-
-    }
-    
-  else if( datamaxbin < sigmaxbin ){
-    
-    h_sig->GetXaxis()->SetTitle( h_data->GetTitle() );
-    h_sig->Draw("e1"); 
-    h_stack->Draw("histesame");
-    h_data->Draw("e1same");
-    h_sig->Draw("e1same");
-
-  }
+  /*
+  h_stack->Scale(1/h_stack->Integral());
+  h_data->Scale(1/h_data->Integral());
+  h_sig800->Scale(1/h_sig800->Integral());
+  h_sig1200->Scale(1/h_sig1200->Integral());
+  h_sig1300->Scale(1/h_sig1300->Integral());
+  h_sig1400->Scale(1/h_sig1400->Integral());
+  h_sig1600->Scale(1/h_sig1600->Integral());
+  h_sig1800->Scale(1/h_sig1800->Integral());
+  h_sig1900->Scale(1/h_sig1900->Integral());
+  h_sig2000->Scale(1/h_sig2000->Integral());
+  */
   
-
-
-
-
-
-  h_data->Clear();
-  h_stack->Clear();
-  h_dy70->Clear();
-  h_dy100->Clear();
-  h_ttbar->Clear();
-  h_ww->Clear();
-  h_wz->Clear();
-  h_zz->Clear();
-  h_sig->Clear();
+  h_stack->Draw("histe");
+  //h_sig800->Draw("histesame");
+  //h_sig1200->Draw("histesame");
+  h_sig1300->Draw("histesame");
+  h_sig1400->Draw("histesame");
+  //h_sig1600->Draw("histesame");
+  //h_sig1800->Draw("histesame");
+  //h_sig1900->Draw("histesame");
+  //h_sig2000->Draw("histesame");
+  h_data->Draw("e1same");
+  
 
 
   TLegend *leg = new TLegend(0.73, 0.68, 0.98, 0.98);
@@ -264,21 +151,47 @@ void myPlot(TH1D* h_dy70, TH1D* h_dy100, TH1D* h_ttbar, TH1D* h_ww, TH1D* h_wz, 
   leg->SetFillStyle(1001);
   leg->SetFillColor(10);
   leg->SetBorderSize(1);
-  /*
-  leg->AddEntry(h_zz,"ZZ_pythia_filtered", "f"); 
-  leg->AddEntry(h_wz,"WZ_pythia_filtered", "f"); 
-  leg->AddEntry(h_ww,"WW_pythia_filtered", "f"); 
-  leg->AddEntry(h_ttbar,"TTTo2L2Nu2B", "f"); 
-  leg->AddEntry(h_dy100,"DYJetsToLL_PtZ-100", "f"); 
-  leg->AddEntry(h_dy70, "DYJetsToLL_PtZ-70To100", "f");
-  */
   leg->AddEntry(h_stack, "Background MC", "f");
   leg->AddEntry(h_data, "Data", "lp");
-  leg->AddEntry(h_sig, "ZprimeToZhTollqq", "lp");
+  //leg->AddEntry(h_sig800, "ZprimeToZhTollqq_M800", "f");
+  //leg->AddEntry(h_sig1200, "ZprimeToZhTollqq_M1200", "f");
+  leg->AddEntry(h_sig1300, "ZprimeToZhTollqq_M1300", "f");
+  leg->AddEntry(h_sig1400, "ZprimeToZhTollqq_M1400", "f");
+  //leg->AddEntry(h_sig1600, "ZprimeToZhTollqq_M1600", "f");
+  //leg->AddEntry(h_sig1800, "ZprimeToZhTollqq_M1800", "f");
+  //leg->AddEntry(h_sig1900, "ZprimeToZhTollqq_M1900", "f");
+  //leg->AddEntry(h_sig2000, "ZprimeToZhTollqq_M2000", "f");
   leg->Draw();
 
 
 
+  c1->SaveAs("sigXMass.root");
+
+
+
+  cout<<"bkg MC:"<<h_stack->Integral()<<endl;
+  cout<<"sig800:"<<h_sig800->Integral()<<endl;
+  cout<<"sig1200:"<<h_sig1200->Integral()<<endl;
+  cout<<"sig1300:"<<h_sig1300->Integral()<<endl;
+  cout<<"sig1400:"<<h_sig1400->Integral()<<endl;
+  cout<<"sig1600:"<<h_sig1600->Integral()<<endl;
+  cout<<"sig1800:"<<h_sig1800->Integral()<<endl;
+  cout<<"sig1900:"<<h_sig1900->Integral()<<endl;
+  cout<<"sig2000:"<<h_sig2000->Integral()<<endl;
+  cout<<"data:"<<h_data->Integral()<<endl;
+
+
+  /*
+  gSystem->ProcessEvents();
+  TImage *img1 = TImage::Create();
+  img1->FromPad(c1);
+  img1->WriteImage("h_sigXMass.png");
+  delete c1;
+  delete img1;
+  */
+
 }
+
+
 
 
