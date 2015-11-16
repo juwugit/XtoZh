@@ -22,4 +22,5 @@ sigma             shape  1         -        -       -       -
 lepIDsf           lnN	 1.0008    1.001    1.0005  1.0006  1.0007
 bjetRatio         lnN    -         1.002    -       -       -
 dibXsec           lnN    -         -        -       1.055   - 
-PDF               lnN    1.1       -        -       -       -
+PDF               lnN    1.15      -        -       -       -
+sherpa            lnN    -         1.12     -       -       -
