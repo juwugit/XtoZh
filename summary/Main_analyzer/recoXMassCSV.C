@@ -67,20 +67,6 @@ void recoXMassCSV(Int_t scaleMode, std::string inputFile, std::string outputFile
   float weightdy70  = (data_lumi)/(11764538/63.5); //DYJets70To100
   float weightdy100 = (data_lumi)/(12511326/39.4); //DYJets100
   
-  float weightXM800 = (data_lumi)/(10710/0.00685367);
-  float weightXM900 = (data_lumi)/(10209/0.00485861);
-  float weightXM1000= (data_lumi)/(19997/0.003263);
-  float weightXM1100= (data_lumi)/(9370/0.00217483);
-  float weightXM1200= (data_lumi)/(10710/0.00145484);
-  float weightXM1300= (data_lumi)/(9369/0.000979745);
-  float weightXM1400= (data_lumi)/(10497/0.000664783);
-  float weightXM1500= (data_lumi)/(19999/0.000454339);
-  float weightXM1600= (data_lumi)/(8950/0.000312541);
-  float weightXM1700= (data_lumi)/(9369/0.000216282);
-  float weightXM1800= (data_lumi)/(10708/0.000150398);
-  float weightXM1900= (data_lumi)/(10498/0.000105039);
-  float weightXM2000= (data_lumi)/(19999/7.36377e-05);
-
 
   float weight=999999;
   if(inputFile.find("Double")!= std::string::npos)
@@ -97,33 +83,6 @@ void recoXMassCSV(Int_t scaleMode, std::string inputFile, std::string outputFile
   weight=weightdy70;
   else if(inputFile.find("DYJetsToLL_PtZ-100")!= std::string::npos)
   weight=weightdy100;
-  else if(inputFile.find("AbelianZPrime_ZH_lljj_M800")!= std::string::npos)
-  weight=weightXM800;
-  else if(inputFile.find("AbelianZPrime_ZH_lljj_M900")!= std::string::npos)
-  weight=weightXM900;
-  else if(inputFile.find("AbelianZPrime_ZH_lljj_M1000")!= std::string::npos)
-  weight=weightXM1000;
-  else if(inputFile.find("AbelianZPrime_ZH_lljj_M1100")!= std::string::npos)
-  weight=weightXM1100;
-  else if(inputFile.find("AbelianZPrime_ZH_lljj_M1200")!= std::string::npos)
-  weight=weightXM1200;
-  else if(inputFile.find("AbelianZPrime_ZH_lljj_M1300")!= std::string::npos)
-  weight=weightXM1300;
-  else if(inputFile.find("AbelianZPrime_ZH_lljj_M1400")!= std::string::npos)
-  weight=weightXM1400;
-  else if(inputFile.find("AbelianZPrime_ZH_lljj_M1500")!= std::string::npos)
-  weight=weightXM1500;
-  else if(inputFile.find("AbelianZPrime_ZH_lljj_M1600")!= std::string::npos)
-  weight=weightXM1600;
-  else if(inputFile.find("AbelianZPrime_ZH_lljj_M1700")!= std::string::npos)
-  weight=weightXM1700;
-  else if(inputFile.find("AbelianZPrime_ZH_lljj_M1800")!= std::string::npos)
-  weight=weightXM1800;
-  else if(inputFile.find("AbelianZPrime_ZH_lljj_M1900")!= std::string::npos)
-  weight=weightXM1900;
-  else if(inputFile.find("AbelianZPrime_ZH_lljj_M2000")!= std::string::npos)
-  weight=weightXM2000;
-
 
 
   cout<<"# run"<<inputFile.data()<<"  weight:"<<weight<<" jec file:"<<jecfilename<<endl;  
@@ -143,15 +102,11 @@ void recoXMassCSV(Int_t scaleMode, std::string inputFile, std::string outputFile
   TH2F* h_sbMxCA8jetCSV  = new TH2F("h_sbMxCA8jetCSV","sideband region XMass vs CA8jet CSV",nvarBins,varBins,5,0,1);
   TH2F* h_sigMxSubjetCSV = new TH2F("h_sigMxSubjetCSV","signal region XMass vs subjet CSV",nvarBins,varBins,5,0,1);
   TH2F* h_sbMxSubjetCSV  = new TH2F("h_sbMxSubjetCSV","sideband region XMass vs subjet CSV",nvarBins,varBins,5,0,1);
-  TH1F* h_sigXMass       = new TH1F("h_sigXMass","signal region XMass",nvarBins,varBins);
-  TH1F* h_sigSubjetCSV   = new TH1F("h_sigSubjetCSV","signal region SubjetCSV",20,0,1);
 
   h_sigMxCA8jetCSV->Sumw2();
   h_sbMxCA8jetCSV->Sumw2();
   h_sigMxSubjetCSV->Sumw2();
   h_sbMxSubjetCSV->Sumw2();
-  h_sigXMass->Sumw2();
-  h_sigSubjetCSV->Sumw2();
 
   
   // PU weight
@@ -174,7 +129,12 @@ void recoXMassCSV(Int_t scaleMode, std::string inputFile, std::string outputFile
   //Event loop
   for(long jEntry=0; jEntry<data.GetEntriesFast() ;jEntry++){
 
+
+    if (jEntry % 100 == 0)
+      fprintf(stderr, "Processing event %lli of %lli\n", jEntry + 1, data.GetEntriesFast());
+
     data.GetEntry(jEntry);
+
 
     Int_t    CA8nJet     = data.GetInt("CA8nJet");
     Float_t* CA8jetPrunedM = data.GetPtrFloat("CA8jetPrunedMass");
@@ -283,7 +243,6 @@ void recoXMassCSV(Int_t scaleMode, std::string inputFile, std::string outputFile
     }
 
     if(XMass<0) continue;
-    if(prunedmass>110 && prunedmass<140) h_sigXMass->Fill(XMass,weight*PU_weight);
 
 
 
@@ -308,30 +267,30 @@ void recoXMassCSV(Int_t scaleMode, std::string inputFile, std::string outputFile
     if(dRjj>0.3){
       
       if(SubjetCSV[leadjet][0]>0){
-
-	if(prunedmass>70 && prunedmass<110) h_sbMxSubjetCSV->Fill(XMass, SubjetCSV[leadjet][0],weight*PU_weight);
-	if(prunedmass>110 && prunedmass<140){
+	
+	if(prunedmass>70 && prunedmass<110) 
+	  h_sbMxSubjetCSV->Fill(XMass, SubjetCSV[leadjet][0],weight*PU_weight);
+	if(prunedmass>110 && prunedmass<140)
 	  h_sigMxSubjetCSV->Fill(XMass, SubjetCSV[leadjet][0],weight*PU_weight);
-	  h_sigSubjetCSV->Fill(SubjetCSV[leadjet][0],weight*PU_weight);
-	}      
       } //subjet1
       
       if(SubjetCSV[leadjet][1]>0){
 
-	if(prunedmass>70 && prunedmass<110) h_sbMxSubjetCSV->Fill(XMass, SubjetCSV[leadjet][1],weight*PU_weight);
-	if(prunedmass>110 && prunedmass<140){
+	if(prunedmass>70 && prunedmass<110) 
+	  h_sbMxSubjetCSV->Fill(XMass, SubjetCSV[leadjet][1],weight*PU_weight);
+	if(prunedmass>110 && prunedmass<140)
 	  h_sigMxSubjetCSV->Fill(XMass, SubjetCSV[leadjet][1],weight*PU_weight);
-	  h_sigSubjetCSV->Fill(SubjetCSV[leadjet][1],weight*PU_weight);
-	}
       } //subjet2
-
+      
     } //dRjj>0.3
     
-
+    
     if(dRjj<0.3 && CA8jetCSV[leadjet]>0){
 
-      if(prunedmass>70 && prunedmass<110) h_sbMxCA8jetCSV->Fill(XMass, CA8jetCSV[leadjet],weight*PU_weight);
-      if(prunedmass>110 && prunedmass<140) h_sigMxCA8jetCSV->Fill(XMass, CA8jetCSV[leadjet],weight*PU_weight);
+      if(prunedmass>70 && prunedmass<110) 
+	h_sbMxCA8jetCSV->Fill(XMass, CA8jetCSV[leadjet],weight*PU_weight);
+      if(prunedmass>110 && prunedmass<140) 
+	h_sigMxCA8jetCSV->Fill(XMass, CA8jetCSV[leadjet],weight*PU_weight);
 
     } //dRjj<0.3 
     
@@ -348,8 +307,6 @@ void recoXMassCSV(Int_t scaleMode, std::string inputFile, std::string outputFile
   h_sbMxCA8jetCSV->Write();
   h_sigMxSubjetCSV->Write();
   h_sbMxSubjetCSV->Write();
-  h_sigXMass->Write();
-  h_sigSubjetCSV->Write();
 
   outFile->Close();
 

@@ -5,7 +5,7 @@
 
 using namespace std;
 
-void runPDF(Int_t scaleMode,std::string inputFile,std::string outputFile){
+void runPDF_CT10(Int_t scaleMode,std::string inputFile,std::string outputFile){
 
   TStopwatch* myWatch = new TStopwatch();
   myWatch->Start();
@@ -14,8 +14,8 @@ void runPDF(Int_t scaleMode,std::string inputFile,std::string outputFile){
   //gROOT->ProcessLine(".L Main_analyzer/myLHAPDF_reweighing.C++");
   //gROOT->ProcessLine(Form("myLHAPDF_reweighing(\"%s\")",filename.data()));
 
-  gROOT->ProcessLine(".L Main_analyzer/recoXMassCSV_pdf.C++");
-  gROOT->ProcessLine(Form("recoXMassCSV_pdf(%d,\"%s\",\"%s\")",scaleMode,inputFile.data(),outputFile.data()));
+  gROOT->ProcessLine(".L Main_analyzer/recoXMassCSV_pdf_CT10.C++");
+  gROOT->ProcessLine(Form("recoXMassCSV_pdf_CT10(%d,\"%s\",\"%s\")",scaleMode,inputFile.data(),outputFile.data()));
 
 
   myWatch->Stop();
