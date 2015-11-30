@@ -53,6 +53,9 @@ void ProjectHistograms(string inputsigFile, string inputsigFile_Up, string input
 
   string SIG_name="h_sigMxSubjetCSV";
   TH2F *h2_sig=(TH2F*)fsig->Get(SIG_name.data());
+  TH2F *h2_sig_pdfUp=(TH2F*)fsig->Get("h_sigMxSubjetCSV_pdfshapeUp");
+  TH2F *h2_sig_pdfDown=(TH2F*)fsig->Get("h_sigMxSubjetCSV_pdfshapeDown");
+
   TH2F *h2_sig_up=(TH2F*)fsig_up->Get(SIG_name.data());
   TH2F *h2_sig_down=(TH2F*)fsig_down->Get(SIG_name.data());
   
@@ -86,8 +89,8 @@ void ProjectHistograms(string inputsigFile, string inputsigFile_Up, string input
   
   
   TH1F *h_DATA[50],*h_DY[50],*h_SIG[50],*h_TT[50],*h_ZZ[50],*h_WZ[50]; 
-  TH1F *h_DY_up[50],*h_SIG_up[50],*h_TT_up[50],*h_ZZ_up[50],*h_WZ_up[50]; 
-  TH1F *h_DY_down[50],*h_SIG_down[50],*h_TT_down[50],*h_ZZ_down[50],*h_WZ_down[50];
+  TH1F *h_DY_up[50],*h_SIG_up[50],*h_SIG_pdfup[50],*h_TT_up[50],*h_ZZ_up[50],*h_WZ_up[50]; 
+  TH1F *h_DY_down[50],*h_SIG_down[50],*h_SIG_pdfdown[50],*h_TT_down[50],*h_ZZ_down[50],*h_WZ_down[50];
 
   TString neam="test";
  
@@ -99,6 +102,8 @@ void ProjectHistograms(string inputsigFile, string inputsigFile_Up, string input
     ChangeOneBin(h2_sig,               ibin,"signal",h_SIG);
     ChangeOneBin(h2_sig_up,            ibin,"signal_sigmaUp",h_SIG_up);
     ChangeOneBin(h2_sig_down,          ibin,"signal_sigmaDown",h_SIG_down);
+    ChangeOneBin(h2_sig_pdfUp,         ibin,"signal_pdfshapeUp",h_SIG_pdfup);
+    ChangeOneBin(h2_sig_pdfDown,       ibin,"signal_pdfshapeDown",h_SIG_pdfdown);
 
     ChangeOneBin(h2_background_DY,     ibin,"background_DY" ,h_DY);
     ChangeOneBin(h2_background_DY_up,  ibin,"background_DY_alphaUp" ,h_DY_up);
@@ -123,6 +128,8 @@ void ProjectHistograms(string inputsigFile, string inputsigFile_Up, string input
     AllBin(h2_sig,           99,"signal",h_SIG);
     AllBin(h2_sig_up,           99,"signal_sigmaUp",h_SIG_up);
     AllBin(h2_sig_down,           99,"signal_sigmaDown",h_SIG_down);
+    AllBin(h2_sig_pdfUp,          99,"signal_pdfshapeUp",h_SIG_pdfup);
+    AllBin(h2_sig_pdfDown,        99,"signal_pdfshapeDown",h_SIG_pdfdown);
 
     AllBin(h2_background_DY, 99,"background_DY" ,h_DY);
     AllBin(h2_background_DY_up, 99,"background_DY_alphaUp" ,h_DY_up);
@@ -142,15 +149,6 @@ void ProjectHistograms(string inputsigFile, string inputsigFile_Up, string input
 
 
 }
-
-
-
-
-
-
-
-
-
 
 
 

@@ -1,0 +1,3 @@
+set cmsenv first
+
+bsub -R "type=SLC6_64" -q2nd $PWD/BatchRun.sh $PWD/

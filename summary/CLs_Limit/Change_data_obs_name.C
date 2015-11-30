@@ -19,6 +19,7 @@ void Change_data_obs_name()
   h_data->SetName("data_obs");
   h_data->Write(); 
 
+  // SIG
   TH1F  *h_sig=(TH1F*)f->Get(Form("signal_%d",n));
   h_sig->SetName("signal");
   h_sig->Write(); 
@@ -31,6 +32,14 @@ void Change_data_obs_name()
   h_sig_down->SetName("signal_sigmaDown");
   h_sig_down->Write(); 
   
+  TH1F  *h_sig_pdfup=(TH1F*)f->Get(Form("signal_pdfshapeUp_%d",n));
+  h_sig_pdfup->SetName("signal_pdfshapeUp");
+  h_sig_pdfup->Write(); 
+
+  TH1F  *h_sig_pdfdown=(TH1F*)f->Get(Form("signal_pdfshapeDown_%d",n));
+  h_sig_pdfdown->SetName("signal_pdfshapeDown");
+  h_sig_pdfdown->Write(); 
+
 
   // DYJets
   TH1F  *h_dy_up=(TH1F*)f->Get(Form("background_DY_alphaUp_%d",n));

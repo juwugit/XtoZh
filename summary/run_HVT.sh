@@ -49,3 +49,20 @@ root -b -l -q Main_analyzer/runPDF_CT10.C++\($3\,\"/data4/juwu/v5_sigNtuples/del
 root -b -l -q Main_analyzer/runPDF_CT10.C++\($3\,\"/data4/juwu/v5_sigNtuples/delpanj_v5_AbelianZPrime_ZH_lljj_M1800.root\"\,\"result_cuts/ZPrime_ZH_lljj_M1800_$1_$2.root\"\)
 root -b -l -q Main_analyzer/runPDF_CT10.C++\($3\,\"/data4/juwu/v5_sigNtuples/delpanj_v5_AbelianZPrime_ZH_lljj_M1900.root\"\,\"result_cuts/ZPrime_ZH_lljj_M1900_$1_$2.root\"\)
 root -b -l -q Main_analyzer/runPDF_CT10.C++\($3\,\"/data4/juwu/v5_sigNtuples/delpanj_v5_AbelianZPrime_ZH_lljj_M2000.root\"\,\"result_cuts/ZPrime_ZH_lljj_M2000_$1_$2.root\"\)
+
+
+# get signal MC maximum pdf shape uncertainty
+root -b -l -q Main_analyzer/PDF_MaxValue.C++\(\"result_cuts/ZPrime_ZH_lljj_M800_$1_$2.root\"\)
+root -b -l -q Main_analyzer/PDF_MaxValue.C++\(\"result_cuts/ZPrime_ZH_lljj_M900_$1_$2.root\"\)
+root -b -l -q Main_analyzer/PDF_MaxValue.C++\(\"result_cuts/ZPrime_ZH_lljj_M1000_$1_$2.root\"\)
+root -b -l -q Main_analyzer/PDF_MaxValue.C++\(\"result_cuts/ZPrime_ZH_lljj_M1100_$1_$2.root\"\)
+root -b -l -q Main_analyzer/PDF_MaxValue.C++\(\"result_cuts/ZPrime_ZH_lljj_M1200_$1_$2.root\"\)
+root -b -l -q Main_analyzer/PDF_MaxValue.C++\(\"result_cuts/ZPrime_ZH_lljj_M1300_$1_$2.root\"\)
+root -b -l -q Main_analyzer/PDF_MaxValue.C++\(\"result_cuts/ZPrime_ZH_lljj_M1400_$1_$2.root\"\)
+root -b -l -q Main_analyzer/PDF_MaxValue.C++\(\"result_cuts/ZPrime_ZH_lljj_M1500_$1_$2.root\"\)
+root -b -l -q Main_analyzer/PDF_MaxValue.C++\(\"result_cuts/ZPrime_ZH_lljj_M1600_$1_$2.root\"\)
+root -b -l -q Main_analyzer/PDF_MaxValue.C++\(\"result_cuts/ZPrime_ZH_lljj_M1700_$1_$2.root\"\)
+root -b -l -q Main_analyzer/PDF_MaxValue.C++\(\"result_cuts/ZPrime_ZH_lljj_M1800_$1_$2.root\"\)
+root -b -l -q Main_analyzer/PDF_MaxValue.C++\(\"result_cuts/ZPrime_ZH_lljj_M1900_$1_$2.root\"\)
+root -b -l -q Main_analyzer/PDF_MaxValue.C++\(\"result_cuts/ZPrime_ZH_lljj_M2000_$1_$2.root\"\)
+
