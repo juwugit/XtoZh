@@ -2,12 +2,12 @@ imax 1
 jmax 4
 kmax *
 bin 1
-observation 222.0 
+observation 350.0 
 ------------------------------
 bin             1          1      1      1   1
 process         signal    background_DY background_TT background_ZZ background_WZ
 process         0          1      2      3   4
-rate            0.124102580841     190.877043754  1.69848291948 1.83016695367 1.72608195804
+rate            0.303155053603     322.750949681  2.74997292459 3.06267297899 2.84149531834
 --------------------------------
 lumi_8TeV         lnN    1.026      1.026    1.026   1.026   1.026         
 bgnorm            lnN    1.00       1.07     1.07    1.07    1.07  
