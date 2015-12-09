@@ -96,19 +96,19 @@ void recoXMassCSV_pdf(Int_t scaleMode, std::string inputFile, std::string output
   if(isMuon) data_lumi=19671.225;
   if(data_lumi<0) cout<<">>>>>>>>>>>>>>lepton channel choosing is fail<<<<<<<<<<<<<<"<<endl;
 
-  float weightXM800 = (data_lumi)/(10710/0.00685367*0.033);
-  float weightXM900 = (data_lumi)/(10209/0.00485861*0.033);
-  float weightXM1000= (data_lumi)/(19997/0.003263*0.033);
-  float weightXM1100= (data_lumi)/(9370/0.00217483*0.033);
-  float weightXM1200= (data_lumi)/(10710/0.00145484*0.033);
-  float weightXM1300= (data_lumi)/(9369/0.000979745*0.033);
-  float weightXM1400= (data_lumi)/(10497/0.000664783*0.033);
-  float weightXM1500= (data_lumi)/(19999/0.000454339*0.033);
-  float weightXM1600= (data_lumi)/(8950/0.000312541*0.033);
-  float weightXM1700= (data_lumi)/(9369/0.000216282*0.033);
-  float weightXM1800= (data_lumi)/(10708/0.000150398*0.033);
-  float weightXM1900= (data_lumi)/(10498/0.000105039*0.033);
-  float weightXM2000= (data_lumi)/(19999/7.36377e-05*0.033);
+  float weightXM800 = (data_lumi)/(10710/0.00685367);
+  float weightXM900 = (data_lumi)/(10209/0.00485861);
+  float weightXM1000= (data_lumi)/(19997/0.003263);
+  float weightXM1100= (data_lumi)/(9370/0.00217483);
+  float weightXM1200= (data_lumi)/(10710/0.00145484);
+  float weightXM1300= (data_lumi)/(9369/0.000979745);
+  float weightXM1400= (data_lumi)/(10497/0.000664783);
+  float weightXM1500= (data_lumi)/(19999/0.000454339);
+  float weightXM1600= (data_lumi)/(8950/0.000312541);
+  float weightXM1700= (data_lumi)/(9369/0.000216282);
+  float weightXM1800= (data_lumi)/(10708/0.000150398);
+  float weightXM1900= (data_lumi)/(10498/0.000105039);
+  float weightXM2000= (data_lumi)/(19999/7.36377e-05);
 
 
   float weight=999999;

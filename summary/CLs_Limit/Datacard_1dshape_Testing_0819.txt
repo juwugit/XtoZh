@@ -1,0 +1,27 @@
+imax 1
+jmax 4
+kmax *
+---------------
+shapes * * Shape1d_0819.root $PROCESS $PROCESS_$SYSTEMATIC
+---------------
+bin 1
+observation 128.0 
+------------------------------
+bin             1          1      1      1            1
+process         signal    background_DY background_TT background_ZZ background_WZ
+process         0          1      2      3        4  
+rate             0.179052473672   131.873903088    1.05148997903    1.23250604235  1.11541331746     
+--------------------------------
+lumi_8TeV         lnN    1.026     1.026    1.026   1.026   1.026        
+bgnorm            lnN    1.00      1.07     1.07    1.07    1.07
+jec               lnN    1.08      1.08     1.08    1.08    1.08
+CSV               lnN    1.1       1.1      1.1     1.1     1.1
+pu                lnN    1.02      1.02     1.02    1.02    1.02
+alpha             shape  -         1        1       1       1
+sigma             shape  1         -        -       -       -
+pdfshape          shape  1         -        -       -       -
+lepIDsf           lnN	 1.0008    1.001    1.0005  1.0006  1.0007
+bjetRatio         lnN    -         1.002    -       -       -
+dibXsec           lnN    -         -        -       1.055   - 
+PDF               lnN    1.15      -        -       -       -
+sherpa            lnN    -         1.12     -       -       -

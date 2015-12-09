@@ -9,7 +9,7 @@ rm -rf result_cuts/*$1_$2.root
 root -b -l -q Main_analyzer/recoXMassCSV.C++\($3\,\"/afs/cern.ch/work/j/juwu/workspace/delpanjNtuples/delpanj_v4_data_Double$1_A.root\"\,\"result_cuts/dataA_$1_$2.root\"\)
 root -b -l -q Main_analyzer/recoXMassCSV.C++\($3\,\"/afs/cern.ch/work/j/juwu/workspace/delpanjNtuples/delpanj_v4_data_Double$1_B.root\"\,\"result_cuts/dataB_$1_$2.root\"\)
 root -b -l -q Main_analyzer/recoXMassCSV.C++\($3\,\"/afs/cern.ch/work/j/juwu/workspace/delpanjNtuples/delpanj_v4_data_Double$1_C.root\"\,\"result_cuts/dataC_$1_$2.root\"\)
-root -b -l -q Main_analyzer/recoXMassCSV.C++\($3\,\"/afs/cern.ch/work/j/juwu/workspace/delpanjNtuples/delpanjNtuples/delpanj_v4_data_Double$1_D.root\"\,\"result_cuts/dataD_$1_$2.root\"\)
+root -b -l -q Main_analyzer/recoXMassCSV.C++\($3\,\"/afs/cern.ch/work/j/juwu/workspace/delpanjNtuples/delpanj_v4_data_Double$1_D.root\"\,\"result_cuts/dataD_$1_$2.root\"\)
 
 # Bkg MC
 root -b -l -q Main_analyzer/recoXMassCSV.C++\($3\,\"/afs/cern.ch/work/j/juwu/workspace/delpanjNtuples/delpanj_v4_TTTo2L2Nu2B.root\"\,\"result_cuts/TH2_TTTo2L2Nu2B_$1_$2.root\"\)
