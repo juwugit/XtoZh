@@ -142,7 +142,7 @@ void plot_Asymptotic(string outputname)
 
   }//file loop
 
-  string xsect_file_th = dirXSect + "xsec_Zhllbb.txt";
+  string xsect_file_th = dirXSect + "xsec_Zh.txt";
 
 
   ifstream xsect_file(xsect_file_th.c_str(), ios::in);
