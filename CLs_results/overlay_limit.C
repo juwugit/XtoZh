@@ -20,7 +20,8 @@
 const float intLumi = 19.7;
 const string dirXSect = "./";
 
-void plot_Asymptotic(string outputname);
+
+TGraphAsymmErrors* plot_Asymptotic_test(int, int);
 void setFPStyle();
 void scaleGraph(TGraphAsymmErrors* g, double factor)
 {
@@ -72,8 +73,70 @@ double linear_interp(double s2, double s1, double mass, double m2, double m1)
 }
 
 
+void overlay_limit()
+{
 
-void plot_Asymptotic(string outputname)
+  TGraphAsymmErrors* g1 = plot_Asymptotic_test(1,1);
+  TGraphAsymmErrors* g2 = plot_Asymptotic_test(2,1);
+  TGraphAsymmErrors* g3 = plot_Asymptotic_test(3,1);
+  TGraphAsymmErrors* g4 = plot_Asymptotic_test(4,1);
+  TGraphAsymmErrors* g5 = plot_Asymptotic_test(5,1);
+
+  TGraphAsymmErrors* g6 = plot_Asymptotic_test(12,1);
+  TGraphAsymmErrors* g7 = plot_Asymptotic_test(345,1);
+  TGraphAsymmErrors* g8 = plot_Asymptotic_test(0,1);
+  TGraphAsymmErrors* g9 = plot_Asymptotic_test(12345,2);
+
+
+  gPad->SetLogy();
+
+  g2->SetLineColor(kRed);
+  g3->SetLineColor(kBlue);
+  g4->SetLineColor(kGreen);
+  g5->SetLineColor(kViolet+1);
+  g6->SetLineColor(kCyan);
+  g7->SetLineColor(kOrange-2);
+  g8->SetLineColor(kGreen+2);
+  g9->SetLineColor(kOrange-3);
+
+
+  g1->Draw();
+  g2->Draw("same");
+  g3->Draw("same");
+  g4->Draw("same");
+  g5->Draw("same");
+  g6->Draw("same");
+  g7->Draw("same");
+  g8->Draw("same");
+  g9->Draw("same");
+
+
+
+  TLegend *leg = new TLegend(.30, .65, .85, .90);
+  leg->SetFillColor(0);
+  leg->SetShadowColor(0);
+  leg->SetTextFont(42);
+  leg->SetTextSize(0.03);
+  leg->AddEntry(g1, "0.0 < subjetCSV < 0.2", "L");
+  leg->AddEntry(g2, "0.2 < subjetCSV < 0.4", "L");
+  leg->AddEntry(g3, "0.4 < subjetCSV < 0.6", "L");
+  leg->AddEntry(g4, "0.6 < subjetCSV < 0.8", "L");
+  leg->AddEntry(g5, "0.8 < subjetCSV < 1.0", "L");
+  leg->AddEntry(g6, "0.0 < subjetCSV < 0.4", "L");
+  leg->AddEntry(g7, "0.4 < subjetCSV < 1.0", "L");
+  leg->AddEntry(g8, "0.0 < subjetCSV < 1.0 (1d)", "L");
+  leg->AddEntry(g9, "adding 5 CSV bins (2d)", "L");
+  leg->Draw();
+
+
+
+}
+
+
+
+
+
+TGraphAsymmErrors* plot_Asymptotic_test(int Input, int dim)
 {
 
   bool useNewStyle = true;
@@ -90,9 +153,7 @@ void plot_Asymptotic(string outputname)
   for(int n=0;n<nXm;n++)
   {
     char limitfile[100];
-    if(outputname.find("shape2d")!= std::string::npos) sprintf(limitfile,"higgsCombineshape_2d_%d.Asymptotic.mH120.root",Xmass[n]);
-    else if(outputname.find("shape1d")!= std::string::npos) sprintf(limitfile,"higgsCombineshape_1d_%d.Asymptotic.mH120.root",Xmass[n]);
-    else if(outputname.find("counting")!= std::string::npos) sprintf(limitfile,"higgsCombinecounting_%d.Asymptotic.mH120.root",Xmass[n]);
+    sprintf(limitfile,"Mu_CSVbin%d/higgsCombineshape_%dd_%d.Asymptotic.mH120.root",Input,dim,Xmass[n]);
     fFREQ[n] = new TFile(limitfile, "READ");
     cout<<" Read limit file: "<<limitfile<<endl;
     t[n] = (TTree*)fFREQ[n]->Get("limit");
@@ -415,10 +476,9 @@ void plot_Asymptotic(string outputname)
   TH1F *hr = cMCMC->DrawFrame(fr_left, fr_down, fr_right, fr_up, "");
   TString VV = "ZH";
   
-  hr->SetXTitle("M_{Z'} [GeV]");
-  hr->SetYTitle("#sigma_{95%} #times BR(Z' #rightarrow Zh) #times BR(h #rightarrow bb) #times BR(Z #rightarrow ee/#mu#mu) [pb]"); // #rightarrow 2l2q
-  hr->GetYaxis()->SetTitleSize(0.04);
-  hr->GetYaxis()->SetTitleOffset(1.5);
+  hr->SetXTitle("M_{X} [GeV]");
+  hr->SetYTitle("#sigma_{95%} [pb]"); // #rightarrow 2l2q
+  
 
   gr95_cls->SetFillColor(kYellow);
   gr95_cls->SetFillStyle(1001);//solid
@@ -428,13 +488,13 @@ void plot_Asymptotic(string outputname)
   gr95_cls->GetYaxis()->SetTitle("#sigma_{95%} #times BR(V' #rightarrow " + VV + ") [pb]"); // #rightarrow 2l2q
   gr95_cls->GetXaxis()->SetRangeUser(fr_left, fr_right);
 
-  gr95_cls->Draw("3");
+  //gr95_cls->Draw("3");
 
   gr68_cls->SetFillColor(kGreen);
   gr68_cls->SetFillStyle(1001);//solid
   gr68_cls->SetLineStyle(kDashed);
   gr68_cls->SetLineWidth(3);
-  gr68_cls->Draw("3same");
+  //gr68_cls->Draw("3same");
   grmedian_cls->GetXaxis()->SetTitle("M_{V'} [GeV]");
   grmedian_cls->GetYaxis()->SetTitle("#sigma_{95%} #times BR(V' #rightarrow " + VV + ") [pb]"); // #rightarrow 2l2q
   grmedian_cls->SetMarkerStyle(24);//25=hollow squre
@@ -463,9 +523,10 @@ void plot_Asymptotic(string outputname)
   grthSM10->SetFillColor(kRed);
   grthSM10->SetFillStyle(3344);
 
-  grthSM->Draw("L3");
-  grmedian_cls->Draw("L");
-  grobslim_cls->Draw("LP");
+  //grthSM->Draw("L3");
+  return grmedian_cls;
+  //grmedian_cls->Draw("L");
+  //grobslim_cls->Draw("LP");
 
   /*
   TFile *fUnMPlus=new TFile("AsymptoticCLs_UnmatchedPlus_TGraph.root","READ");
@@ -491,7 +552,7 @@ void plot_Asymptotic(string outputname)
 
   //more graphics
 
-  TLegend *leg = new TLegend(.35, .25, .85, .40);
+  TLegend *leg = new TLegend(.30, .65, .85, .90);
   //   TLegend *leg = new TLegend(.35,.71,.90,.90);
   leg->SetFillColor(0);
   leg->SetShadowColor(0);
@@ -521,27 +582,24 @@ void plot_Asymptotic(string outputname)
   cMCMC->Update();
   char fnam[50];
   //string outputname="shape2d";
-  //string outputname="shape1d";
+    string outputname="shape1d";
   //string outputname="counting";
 
- 
-  sprintf(fnam, "XZHllbb_%s_Asymptotic.root",outputname.data() );
+  sprintf(fnam, "XZHllbb_%s_Asymptotic.root" , outputname.data());
   cMCMC->SaveAs(fnam);
   //sprintf(fnam, "XZHllbb_%s_Asymptotic.eps", outputname.data());
   //cMCMC->SaveAs(fnam);
-  sprintf(fnam, "XZHllbb_%s_Asymptotic.png", outputname.data());
-  cMCMC->SaveAs(fnam);
-  //sprintf(fnam, "XZHllbb_%s_Asymptotic.pdf", outputname.data());
-  //cMCMC->SaveAs(fnam);
-  gPad->SetLogy();
-  //sprintf(fnam, "XZHllbb_%s_Asymptotic_log.eps", outputname.data());
-  //cMCMC->SaveAs(fnam);
-  sprintf(fnam, "XZHllbb_%s_Asymptotic_log.root",outputname.data() );
-  cMCMC->SaveAs(fnam);
-  sprintf(fnam, "XZHllbb_%s_Asymptotic_log.png", outputname.data());
-  cMCMC->SaveAs(fnam);
-  //sprintf(fnam, "XZHllbb_%s_Asymptotic_log.pdf", outputname.data());
-  //cMCMC->SaveAs(fnam);
+    sprintf(fnam, "XZHllbb_%s_Asymptotic.png", outputname.data());
+    cMCMC->SaveAs(fnam);
+    //sprintf(fnam, "XZHllbb_%s_Asymptotic.pdf", outputname.data());
+    //cMCMC->SaveAs(fnam);
+    gPad->SetLogy();
+    //sprintf(fnam, "XZHllbb_%s_Asymptotic_log.eps", outputname.data());
+    //cMCMC->SaveAs(fnam);
+    sprintf(fnam, "XZHllbb_%s_Asymptotic_log.png", outputname.data());
+    cMCMC->SaveAs(fnam);
+    //sprintf(fnam, "XZHllbb_%s_Asymptotic_log.pdf", outputname.data());
+    //cMCMC->SaveAs(fnam);
  
 
   cMCMC->Draw();
