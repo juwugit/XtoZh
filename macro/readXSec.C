@@ -521,6 +521,9 @@ void readXSec(double searchM)
     myMap.insert(std::pair<double, parMap>(numbers[i][0],thisMass));
   }
 
+  ofstream fout;
+  fout.open("xsec_Zh.txt",ios::out | ios::app);
+
   ofstream foutbb;
   foutbb.open("xsec_Zhllbb.txt",ios::out | ios::app);
   ofstream foutww;
@@ -534,6 +537,7 @@ void readXSec(double searchM)
   double brZh=myMap[searchM]["BRhZ"];
   cout << "BR(X->Zh) = " << brZh << endl;
   cout << "Production cross section of X(" << searchM << ") -> Zh = " << xsec*brZh << " pb" << endl;
+  fout << (int) searchM << " " << xsec*brZh << endl;
 
   cout << "---------------------------------------------------------------------------------------------------------------------------" << endl;
   cout << endl;
