@@ -142,7 +142,7 @@ void plot_Asymptotic(string outputname)
 
   }//file loop
 
-  string xsect_file_th = dirXSect + "xsec_Zhllbb.txt";
+  string xsect_file_th = dirXSect + "xsec_Zh.txt";
 
 
   ifstream xsect_file(xsect_file_th.c_str(), ios::in);
@@ -416,7 +416,7 @@ void plot_Asymptotic(string outputname)
   TString VV = "ZH";
   
   hr->SetXTitle("M_{Z'} [GeV]");
-  hr->SetYTitle("#sigma_{95%} #times BR(Z' #rightarrow Zh) #times BR(h #rightarrow bb) #times BR(Z #rightarrow ee/#mu#mu) [pb]"); // #rightarrow 2l2q
+  hr->SetYTitle("#sigma_{95%} #times BR(Z' #rightarrow Zh) [pb]"); // #rightarrow 2l2q
   hr->GetYaxis()->SetTitleSize(0.04);
   hr->GetYaxis()->SetTitleOffset(1.5);
 
@@ -545,6 +545,75 @@ void plot_Asymptotic(string outputname)
  
 
   cMCMC->Draw();
+
+
+  //=======================this part for caculate the intersection value==========================
+
+  // Return a TGraph with the points of intersection                                                                
+  TGraph *interPoint = new TGraph();
+  Int_t i = 0;
+  unsigned int a_up = grmedian_cls->GetN()-1;
+  unsigned int b_up = grthSM->GetN()-1;
+ 
+  // Loop over all points in this TGraph                                                                            
+  for(size_t a_i = 0; a_i < a_up; ++a_i)
+    {
+      // Loop over all points in the other TGraph
+      for(size_t b_i = 0; b_i < b_up; ++b_i)
+        {
+
+          // Get the current point, and the next point for each of the objects  
+          Double_t x1, y1, x2, y2 = 0;
+          Double_t ax1, ay1, ax2, ay2 = 0;
+          grmedian_cls->GetPoint(a_i, x1, y1);
+          grmedian_cls->GetPoint(a_i+1, x2, y2);
+          grthSM->GetPoint(b_i, ax1, ay1);
+          grthSM->GetPoint(b_i+1, ax2, ay2);
+
+          // Calculate the intersection between two straight lines, x axis
+          Double_t x = (ax1 *(ay2 *(x1-x2)+x2 * y1 - x1 * y2 )+ ax2 * (ay1 * (-x1+x2)- x2 * y1+x1 * y2))
+            / (-(ay1-ay2) * (x1-x2)+(ax1-ax2)* (y1-y2));
+
+          // Calculate the intersection between two straight lines, y axis 
+          Double_t y = (ax1 * ay2 * (y1-y2)+ax2 * ay1 * (-y1+y2)+(ay1-ay2) * (x2 * y1-x1 * y2))/(-(ay1-ay2) * (x1-x2)+(ax1-ax2) * (y1-y2));
+
+          // Find the tightest interval along the x-axis defined by the four points
+          Double_t xrange_min = max(min(x1, x2), min(ax1, ax2));
+          Double_t xrange_max = min(max(x1, x2), max(ax1, ax2));
+
+          // If points from the two lines overlap, they are trivially intersecting 
+          if ((x1 == ax1 and y1 == ay1) or (x2 == ax2 and y2 == ay2)){
+            interPoint->SetPoint(i, (x1 == ax1 and y1 == ay1) ? x1 : x2, (x1 == ax1 and y1 == ay1) ? y1 : y2);
+            i++;
+          }
+
+	  // If the intersection between the two lines is within the tight range, add it to the list of intersections.  
+          else if(x > xrange_min && x < xrange_max)
+            {
+              interPoint->SetPoint(i,x, y);
+              i++;
+            }
+        }
+    }
+  
+  //cout<<"interPoint:"<<interPoint<<endl;
+
+  //TLatex ll;
+  //ll.SetTextSize(0.015);
+  //ll.SetTextColor(kBlack);
+
+  unsigned int i_up = interPoint->GetN();
+
+  for(size_t i = 0; i < i_up; ++i)
+    {
+      Double_t x, y = 0;
+      interPoint->GetPoint(i, x, y);
+      printf("x=%f, y=%f\n", x, y);
+
+      //ll.DrawLatex(x - 2, y - 0.003, TString::Format("(%0.2f,%0.2f)", x, y));
+
+    }
+
 
 
 
