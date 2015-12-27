@@ -20,6 +20,7 @@
 const float intLumi = 19.7;
 const string dirXSect = "./";
 
+TGraph* GRTHSM();
 void plot_Asymptotic(string outputname);
 void setFPStyle();
 void scaleGraph(TGraphAsymmErrors* g, double factor)
@@ -237,7 +238,8 @@ void plot_Asymptotic(string outputname)
   gr95_cls->SetName("Limit95CLs");
 
   // TGraphAsymmErrors *grthSM=new TGraphAsymmErrors(nMassEff1,mass1,xs,0,0,0,0);//xs_downerr,xs_uperr);
-  TGraph *grthSM=new TGraph(nMassEff,mass,xs);//xs_downerr,xs_uperr);
+  //TGraph *grthSM=new TGraph(nMassEff,mass,xs);//xs_downerr,xs_uperr);
+  TGraph *grthSM=GRTHSM();
 
   /// For the time being we have to do it like this, given that
   /// the cards and the limits were made with the old, wrong xsects.
@@ -685,4 +687,58 @@ void setFPStyle()
   gStyle->SetTitleFontSize(0.05);
 }
 
+TGraph* GRTHSM(){
 
+  string xsect_file_th = dirXSect + "xsec_Zh_FinerBin.txt";
+
+  ifstream xsect_file(xsect_file_th.c_str(), ios::in);
+  if (! xsect_file.is_open()) {
+    cout << "Failed to open file with xsections: " << xsect_file_th << endl;
+  }
+
+  float mH, CS;
+  vector<float> v_mhxs, v_xs, v_toterrh, v_toterrl;
+  while (xsect_file.good()) {
+    xsect_file >> mH >> CS;
+  
+    v_mhxs.push_back(mH);
+    v_xs.push_back(CS);
+
+    //unavailable theory errors for graviton
+
+    float tot_err_p = 0.0;
+    float tot_err_m = 0.0;
+
+    v_toterrh.push_back(1.0 + (tot_err_p));
+    v_toterrl.push_back(1.0 - (tot_err_m));
+  }
+  
+  xsect_file.close();
+  ///////////////////////////
+  // END THEORY INPUT PART //
+  ///////////////////////////
+
+  double mass[241];
+  double xs[241];
+  int nMassEff = 0;
+  
+  for (int im = 0; im < 241; im++) {
+
+    double fl_xs = double(v_xs.at(im));
+    double fl_mh = double(v_mhxs.at(im));
+
+    fl_xs = (fl_xs);
+    fl_mh = (fl_mh);
+
+    mass[nMassEff] = fl_mh;
+    xs[nMassEff] = fl_xs; 
+    nMassEff++;
+
+    
+  }//end loop over im (mass points)
+
+  TGraph *grthSM=new TGraph(nMassEff,mass,xs);
+
+  return grthSM;
+
+}
