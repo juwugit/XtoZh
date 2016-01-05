@@ -1,0 +1,88 @@
+\section{Systematic uncertainties}
+
+\label{sec:Systematics}
+
+The following systematic uncertainties are included in this analysis:
+
+\begin{itemize}
+%	\item \textbf{Trigger efficiency:} This uncertainty is very small since we use di-object triggers for multilepton final states. Given the four lepton final states, 
+%two leptons need to be triggered, while four possibilities exist. In case of 2l2l', we need one muon and one electron to be triggered while we have two of each kind in one event. 
+%%Here, the uncertainty is slightly higher than in the four lepton channel. Given the very small trigger uncertainty, it has been neglected (this analysis is statistics dominated).
+	\item \textbf{Electron reconstruction:}
+		\begin{enumerate}
+		        \item Electron energy scale: For electrons, the recommended uncertainty of 1$\%$ on the transverse electron energy 
+                              $E_{T}$~\cite{DP-12-007} is applied. This results in an uncertainty on the number of signal events at the 1\% level. 
+                              The impact on backgrounds is 0.8\% in the $\mu\mu^{*}\rightarrow \mu\mu Z \rightarrow 2\mu2e$ channel. 
+                              In the other channel, where the electron pair does not originate from the Z-boson, the impact on background's event yield is 
+                              larger due to Z-veto selection. 
+                              It is 8\% for $ee^{*}\rightarrow eeZ\rightarrow 2e2\mu$ channel.   
+			\item Electron energy resolution: For electron resolution, electron $E_{T}$ is smeared by 1$\%$ \cite{AN-12-415}. The impact on event yield is smaller than the energy scale uncertaintyand is at 0.1\% level.  
+			\item Electron ID scale factors: The systematic uncertainty on electron scale factors is 0.7\%(0.6\%) for electrons below 100 GeV in EB(EE) and 1.4\%(0.4\%) for electrons greater than 100 GeV in EB(EE)\cite{heepSFsyst}. This scale factor does also include the isolation requirement. 
+		\end{enumerate}
+	\item \textbf{Muon reconstruction:} 
+		\begin{enumerate}
+			\item Muon momentum scale: For muons with $p_{T}$ below 200 GeV, 0.2\% uncertainty is applied. For muons with larger transverse momentum, a $p_{T}$ depending uncertainty of 5\% / TeV \cite{muonresol} is applied. The impact of the yield is below 0.1\% for backgrounds and less than 1\% for signal processes.  
+			\item Muon resolution: To calculate the uncertainty on the resolution, a $p_{T}$ smearing of 0.6\% \cite{muonresol} is applied. The impact on the event yield is smaller than the momentum scale uncertainty.  
+			\item Muon ID scale factors: The systematic uncertainty on muon scale factors is expected to be 0.5 \% for the ID efficiency and 0.2 \% for the isolation efficiency per muon. 
+		\end{enumerate}
+ 	\item \textbf{Background cross section:} For the main background $ZZ\rightarrow 4l$, an uncertainty of 15\% is considered, based on SMP-12-024~\cite{SMP-12-024}.
+ 	\item \textbf{Signal cross section:} An uncertainty of 10 \% on the NLO QCD k-factor based on the PDF measurements from \cite{kfactor}. The k-factor has been calculated with CTEQ6 and MSTW2008. The maximum difference of 10 \% is used as uncertainty.
+	\item \textbf{Pileup simulation:} To calculate the uncertainties on the pileup simulation, we produce two pileup distributions where the minimum bias cross section is 
+shifted by $\pm 5\%$ \cite{pileupsyst}. The impact on the event yields is less than 1\%.  
+	\item \textbf{Luminosity:} The uncertainty on the luminosity is considered to be 2.6\%~\cite{lumi001}.
+\end{itemize}
+
+The considered uncertainties are summarized in the Tab. \ref{tab:uncertainties1}-\ref{tab:uncertainties2}. These systematics are included in the limit computation. Since this analysis use a single bin counting experiment, the error on the event yield by resolution and scale uncertainties is very small, also if the effect on bin in the histogram is large.
+
+\begin{table}[h!]
+\begin{center}
+\begin{tabular}{lccc}
+\hline
+Systematic & $m_{\mu^{*}} =$ 200 GeV & $m_{\mu^{*}} =$ 2600 GeV & Backgrounds \\
+\hline
+Trigger efficiency & negligible & negligible & negligible \\
+Muon ID efficiency & 1\% & 1\% & 1\% \\
+Muon Iso efficiency & 0.4\% & 0.4\% & 0.4\% \\
+Muon momentum scale & 0.3\% & 0.4\% & 1.1\% \\
+Muon momentum resolution & 0.2\% & $<$ 0.1\% &  0.2\% \\
+Electron ID efficiency & 2.0\% & 2.8\% & 1.5\% \\
+Electron energy scale & 0.4\% & 0.2\% & 0.8\% \\
+Electron energy resolution & 0.2\% & $<$ 0.1\% & 0.1\% \\
+ZZ background & - & - & 15\% \\
+Signal cross section & 10\% & 10\% & - \\
+pileup simulation & 0.6\% & 0.1\% & 0.2\% \\
+Luminosity & 2.6\% & 2.6\% & 2.6\% \\
+\hline
+
+\end{tabular}
+\end{center}
+\caption{\label{tab:uncertainties1}Summary of systematic uncertainties on signal and background yields for the $\mu\mu^{*}\rightarrow 2\mu 2e$ channel. Here, the two electrons come from the boosted Z and the Z Veto is applied to the muon pair. The uncertainties are the combined ones for all leptons, the considered single lepton uncertainties are summarized in the text.}
+\end{table}
+
+
+\begin{table}[h!]
+\begin{center}
+\begin{tabular}{lccc}
+\hline
+Systematic & $m_{e^{*}} =$ 200 GeV & $m_{e^{*}} =$ 2600 GeV & Backgrounds \\
+\hline
+Trigger efficiency & negligible & negligible & negligible \\
+Muon ID efficiency & 1\% & 1\% & 1\% \\
+Muon Iso efficiency & 0.4\% & 0.4\% & 0.4\% \\
+Muon momentum scale & 0.3\% & 0.8\% & 0.2\% \\
+Muon momentum resolution & 0.1\% & $<$ 0.1\% & 0.1\% \\
+Electron ID efficiency & 2.2\% & 3.3\% & 1.6\% \\
+Electron energy scale & 0.2\% & $<$ 0.1\% & 8\% \\
+Electron energy resolution & 0.1\% & $<$ 0.1\% & 0.1\% \\
+ZZ background & - & - & 15\% \\
+Signal cross section & 10\% & 10\% & - \\
+pileup simulation & 0.2\% & 0.5\% & 0.4\% \\
+Luminosity & 2.6\% & 2.6\% & 2.6\% \\
+\hline
+
+\end{tabular}
+\end{center}
+\caption{\label{tab:uncertainties2}Summary of systematic uncertainties on signal and background yields for the $ee^{*}\rightarrow 2e2\mu$ channel. Here, the two muons come from the boosted Z and the Z Veto is applied to the electron pair. The uncertainties are the combined ones for all leptons, the considered single lepton uncertainties are summarized in the text.}
+\end{table}
+
+\clearpage
