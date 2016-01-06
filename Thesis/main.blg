@@ -1,0 +1,67 @@
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: main.aux
+The style file: unsrt.bst
+A level-1 auxiliary file: body/contents.aux
+A level-1 auxiliary file: body/Introduction.aux
+A level-1 auxiliary file: body/CMSdetector.aux
+A level-1 auxiliary file: body/Analysis.aux
+A level-1 auxiliary file: body/Analysis2.aux
+A level-1 auxiliary file: body/Systematics.aux
+A level-1 auxiliary file: body/Results.aux
+A level-1 auxiliary file: body/biblio.aux
+Database file #1: main.bib
+Warning--empty journal in kfactor
+Warning--empty journal in EXO-10-016
+Warning--empty year in EXO-10-016
+Warning--empty journal in atlas2011-limit
+Warning--empty author in mureco
+Warning--empty journal in ExoMu
+Warning--empty year in ExoMu
+Warning--empty journal in SMP-12-024
+Warning--empty journal in RooStatsCl95
+Warning--empty year in RooStatsCl95
+Warning--empty journal in stat_HiggsPAG
+Warning--empty year in stat_HiggsPAG
+You've used 41 entries,
+            1791 wiz_defined-function locations,
+            651 strings with 8628 characters,
+and the built_in function-call counts, 6148 in all, are:
+= -- 481
+> -- 225
+< -- 3
++ -- 98
+- -- 57
+* -- 288
+:= -- 965
+add.period$ -- 102
+call.type$ -- 41
+change.case$ -- 31
+chr.to.int$ -- 0
+cite$ -- 53
+duplicate$ -- 319
+empty$ -- 714
+format.name$ -- 57
+if$ -- 1379
+int.to.chr$ -- 0
+int.to.str$ -- 41
+missing$ -- 28
+newline$ -- 187
+num.names$ -- 30
+pop$ -- 166
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 172
+stack$ -- 0
+substring$ -- 190
+swap$ -- 45
+text.length$ -- 3
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 12
+while$ -- 45
+width$ -- 43
+write$ -- 372
+(There were 12 warnings)
