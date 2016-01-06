@@ -126,8 +126,7 @@ H.~Bethe and W.~Heitler.
   146(856):83--112, 1934.
 
 \bibitem{eRecoEff}
-https://twiki.cern.ch/twiki/bin/viewauth/CMS/EgCommissioningAndPhysicsDelivera%
-bles.
+https://twiki.cern.ch/twiki/bin/viewauth/CMS/EgCommissioningAndPhysicsDeliverables.
 
 \bibitem{heepeid}
 https://twiki.cern.ch/twiki/bin/view/CMS/HEEPElectronID.
@@ -202,7 +201,6 @@ G.~K. et. al.
 Higgs~Statistic Group.
 \newblock Documentation of the roostats-based statistics tools for higgs pag.
 \newblock
-  https://twiki.cern.ch/twiki/bin/viewauth/CMS/SWGuideHiggsAnalysisCombinedLim%
-it.
+  https://twiki.cern.ch/twiki/bin/viewauth/CMS/SWGuideHiggsAnalysisCombinedLimit.
 
 \end{thebibliography}

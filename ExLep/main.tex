@@ -49,22 +49,22 @@ process all files:}
 % Some departments (e.g. 5) require an additional signature page.  See
 % signature.tex for more information and uncomment the following line if
 % applicable.
-% \include{signature}
+%\include{signature}
 \pagestyle{plain}
 \bibliographystyle{unsrt}
 
 \pagenumbering{roman}
-\include{contents}
+\include{body/contents}
 
 \pagenumbering{arabic}
-\include{Introduction}
-\include{CMSdetector}
-\include{Analysis}
-\include{Analysis2}
-\include{Systematics}
-\include{Results}
+\include{body/Introduction}
+\include{body/CMSdetector}
+\include{body/Analysis}
+\include{body/Analysis2}
+\include{body/Systematics}
+\include{body/Results}
 \appendix
 %\bibliography{auto_generated}
-\include{biblio}
+\include{body/biblio}
 \end{document}
 
