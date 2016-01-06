@@ -12,6 +12,7 @@ Push an existing repository from the command line
 git remote add origin https://github.com/juwugit/XtoZh.git
 git push -u origin master
 
+
 --
 
 Github seems only supports ssh way to read&write the repo, although https way also displayed 'Read&Write'.
