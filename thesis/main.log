@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.11.18)  7 JAN 2016 03:44
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.11.14)  8 JAN 2016 16:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -375,9 +375,9 @@ Package pdftex.def Info: plot/XS.pdf used on input line 196.
  (./body/CMSdetector.tex
 Chapter 2.
 
-Overfull \hbox (0.46439pt too wide) in paragraph at lines 2--3
-\OT1/cmr/m/n/12 This anal-y-sis is done by us-ing the data recorded by the Com-
-pact Muon Solenoid(CMS)
+Overfull \hbox (23.47249pt too wide) in paragraph at lines 2--3
+\OT1/cmr/m/n/12 TESThis anal-y-sis is done by us-ing the data recorded by the C
+om-pact Muon Solenoid(CMS)
  []
 
 [12
