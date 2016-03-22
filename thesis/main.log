@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.3.5)  5 MAR 2016 21:26
+=======
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.3.9)  22 MAR 2016 16:11
+>>>>>>> 8be5d9c7d05c3e4170f79266f1d57c2140977490
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -272,104 +276,107 @@ Chapter 1.
 
 
 
-] [2] [3] <plot/pair.pdf, id=46, 569.12625pt x 548.0475pt>
+]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[2] [3] <plot/pair.pdf, id=46, 569.12625pt x 548.0475pt>
 File: plot/pair.pdf Graphic file (type pdf)
-
-<use plot/pair.pdf>
-Package pdftex.def Info: plot/pair.pdf used on input line 106.
+ <use plot/pair.pdf>
+Package pdftex.def Info: plot/pair.pdf used on input line 107.
 (pdftex.def)             Requested size: 151.76964pt x 146.15176pt.
- <plot/single.pdf, id=47, 569.12625pt x 548.0475pt>
+
+<plot/single.pdf, id=47, 569.12625pt x 548.0475pt>
 File: plot/single.pdf Graphic file (type pdf)
-
-<use plot/single.pdf>
-Package pdftex.def Info: plot/single.pdf used on input line 112.
+ <use plot/single.pdf>
+Package pdftex.def Info: plot/single.pdf used on input line 113.
 (pdftex.def)             Requested size: 151.76964pt x 146.15176pt.
- <plot/CIp.pdf, id=48, 569.12625pt x 548.0475pt>
+
+<plot/CIp.pdf, id=48, 569.12625pt x 548.0475pt>
 File: plot/CIp.pdf Graphic file (type pdf)
-
-<use plot/CIp.pdf>
-Package pdftex.def Info: plot/CIp.pdf used on input line 119.
+ <use plot/CIp.pdf>
+Package pdftex.def Info: plot/CIp.pdf used on input line 120.
 (pdftex.def)             Requested size: 151.76964pt x 146.15176pt.
- <plot/CIs.pdf, id=49, 569.12625pt x 548.0475pt>
+
+<plot/CIs.pdf, id=49, 569.12625pt x 548.0475pt>
 File: plot/CIs.pdf Graphic file (type pdf)
-
-<use plot/CIs.pdf>
-Package pdftex.def Info: plot/CIs.pdf used on input line 119.
+ <use plot/CIs.pdf>
+Package pdftex.def Info: plot/CIs.pdf used on input line 120.
 (pdftex.def)             Requested size: 151.76964pt x 146.15176pt.
- [4]
-<plot/Feynman_Mustar4mu.pdf, id=53, 506.89375pt x 227.85126pt>
+
+<plot/Feynman_Mustar4mu.pdf, id=50, 506.89375pt x 227.85126pt>
 File: plot/Feynman_Mustar4mu.pdf Graphic file (type pdf)
 
 <use plot/Feynman_Mustar4mu.pdf>
-Package pdftex.def Info: plot/Feynman_Mustar4mu.pdf used on input line 129.
+Package pdftex.def Info: plot/Feynman_Mustar4mu.pdf used on input line 130.
 (pdftex.def)             Requested size: 212.47617pt x 95.50912pt.
 
-<plot/Feynman_Mustar2mu2e.pdf, id=54, 506.89375pt x 227.85126pt>
+<plot/Feynman_Mustar2mu2e.pdf, id=51, 506.89375pt x 227.85126pt>
 File: plot/Feynman_Mustar2mu2e.pdf Graphic file (type pdf)
 
 <use plot/Feynman_Mustar2mu2e.pdf>
-Package pdftex.def Info: plot/Feynman_Mustar2mu2e.pdf used on input line 129.
+Package pdftex.def Info: plot/Feynman_Mustar2mu2e.pdf used on input line 130.
 (pdftex.def)             Requested size: 212.47617pt x 95.50912pt.
 
-Overfull \hbox (3.08221pt too wide) in paragraph at lines 126--130
+Overfull \hbox (3.08221pt too wide) in paragraph at lines 127--131
  [][] 
  []
 
-<plot/Feynman_Estar4e.pdf, id=55, 502.87875pt x 227.85126pt>
+<plot/Feynman_Estar4e.pdf, id=52, 502.87875pt x 227.85126pt>
 File: plot/Feynman_Estar4e.pdf Graphic file (type pdf)
 
 <use plot/Feynman_Estar4e.pdf>
-Package pdftex.def Info: plot/Feynman_Estar4e.pdf used on input line 134.
+Package pdftex.def Info: plot/Feynman_Estar4e.pdf used on input line 135.
 (pdftex.def)             Requested size: 212.47617pt x 96.27052pt.
 
-<plot/Feynman_Estar2e2mu.pdf, id=56, 502.87875pt x 227.85126pt>
+<plot/Feynman_Estar2e2mu.pdf, id=53, 502.87875pt x 227.85126pt>
 File: plot/Feynman_Estar2e2mu.pdf Graphic file (type pdf)
 
 <use plot/Feynman_Estar2e2mu.pdf>
-Package pdftex.def Info: plot/Feynman_Estar2e2mu.pdf used on input line 134.
+Package pdftex.def Info: plot/Feynman_Estar2e2mu.pdf used on input line 135.
 (pdftex.def)             Requested size: 212.47617pt x 96.27052pt.
 
-Overfull \hbox (3.08221pt too wide) in paragraph at lines 131--135
+Overfull \hbox (3.08221pt too wide) in paragraph at lines 132--136
  [][] 
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[5] [6 <./plot/pair.pdf, page is rotated 90 degrees> <./plot/single.pdf, page i
+[4] [5 <./plot/pair.pdf, page is rotated 90 degrees> <./plot/single.pdf, page i
 s rotated 90 degrees> <./plot/CIp.pdf, page is rotated 90 degrees> <./plot/CIs.
-pdf, page is rotated 90 degrees>] [7 <./plot/Feynman_Mustar4mu.pdf> <./plot/Fey
+pdf, page is rotated 90 degrees>] [6 <./plot/Feynman_Mustar4mu.pdf> <./plot/Fey
 nman_Mustar2mu2e.pdf> <./plot/Feynman_Estar4e.pdf> <./plot/Feynman_Estar2e2mu.p
-df>] <plot/BRff.pdf, id=279, 569.12625pt x 415.5525pt>
+df>] <plot/BRff.pdf, id=276, 569.12625pt x 415.5525pt>
 File: plot/BRff.pdf Graphic file (type pdf)
  <use plot/BRff.pdf>
-Package pdftex.def Info: plot/BRff.pdf used on input line 159.
+Package pdftex.def Info: plot/BRff.pdf used on input line 160.
 (pdftex.def)             Requested size: 390.25534pt x 284.96245pt.
 
-[8 <./plot/BRff.pdf, page is rotated 90 degrees>]
-<plot/BR1.pdf, id=326, 569.12625pt x 415.5525pt>
+[7 <./plot/BRff.pdf, page is rotated 90 degrees>]
+<plot/BR1.pdf, id=323, 569.12625pt x 415.5525pt>
 File: plot/BR1.pdf Graphic file (type pdf)
  <use plot/BR1.pdf>
-Package pdftex.def Info: plot/BR1.pdf used on input line 168.
+Package pdftex.def Info: plot/BR1.pdf used on input line 169.
 (pdftex.def)             Requested size: 390.25534pt x 284.96245pt.
 
-<plot/BRn1.pdf, id=327, 569.12625pt x 415.5525pt>
+<plot/BRn1.pdf, id=324, 569.12625pt x 415.5525pt>
 File: plot/BRn1.pdf Graphic file (type pdf)
  <use plot/BRn1.pdf>
-Package pdftex.def Info: plot/BRn1.pdf used on input line 175.
+Package pdftex.def Info: plot/BRn1.pdf used on input line 176.
 (pdftex.def)             Requested size: 390.25534pt x 284.96245pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[9 <./plot/BR1.pdf, page is rotated 90 degrees>]
-<plot/XS.pdf, id=374, 569.12625pt x 415.5525pt>
+[8 <./plot/BR1.pdf, page is rotated 90 degrees>]
+<plot/XS.pdf, id=371, 569.12625pt x 415.5525pt>
 File: plot/XS.pdf Graphic file (type pdf)
  <use plot/XS.pdf>
-Package pdftex.def Info: plot/XS.pdf used on input line 196.
+Package pdftex.def Info: plot/XS.pdf used on input line 197.
 (pdftex.def)             Requested size: 390.25534pt x 284.96245pt.
- [10 <./plot/BRn1.pdf, page is rotated 90 degrees>] [11 <./plot/XS.pdf, page is
- rotated 90 degrees>])
+ [9 <./plot/BRn1.pdf, page is rotated 90 degrees>] [10 <./plot/XS.pdf, page is 
+rotated 90 degrees>])
 \openout2 = `body/CMSdetector.aux'.
 
  (./body/CMSdetector.tex
@@ -380,11 +387,11 @@ Overfull \hbox (23.47249pt too wide) in paragraph at lines 2--3
 om-pact Muon Solenoid(CMS)
  []
 
-[12
+[11
 
 
 
-] <plot/cern-lhc-aerial.jpg, id=473, 1204.5pt x 860.21375pt>
+] <plot/cern-lhc-aerial.jpg, id=470, 1204.5pt x 860.21375pt>
 File: plot/cern-lhc-aerial.jpg Graphic file (type jpg)
 
 <use plot/cern-lhc-aerial.jpg>
@@ -397,21 +404,21 @@ File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 19.
- [13 <./plot/cern-lhc-aerial.jpg>] <plot/cms_3d_jul10.png, id=477, 642.4pt x 45
+ [12 <./plot/cern-lhc-aerial.jpg>] <plot/cms_3d_jul10.png, id=474, 642.4pt x 45
 4.69875pt>
 File: plot/cms_3d_jul10.png Graphic file (type png)
 
 <use plot/cms_3d_jul10.png>
 Package pdftex.def Info: plot/cms_3d_jul10.png used on input line 32.
 (pdftex.def)             Requested size: 390.25534pt x 276.23491pt.
- [14] [15 <./plot/cms_3d_jul10.png>] [16]
-<plot/tracker.png, id=487, 959.585pt x 455.7025pt>
+ [13] [14 <./plot/cms_3d_jul10.png>] [15]
+<plot/tracker.png, id=484, 959.585pt x 455.7025pt>
 File: plot/tracker.png Graphic file (type png)
  <use plot/tracker.png>
 Package pdftex.def Info: plot/tracker.png used on input line 98.
 (pdftex.def)             Requested size: 433.62pt x 205.92645pt.
 
-<plot/pixel.png, id=488, 899.36pt x 526.96875pt>
+<plot/pixel.png, id=485, 899.36pt x 526.96875pt>
 File: plot/pixel.png Graphic file (type png)
  <use plot/pixel.png>
 Package pdftex.def Info: plot/pixel.png used on input line 105.
@@ -422,15 +429,15 @@ Overfull \hbox (6.6046pt too wide) in paragraph at lines 111--127
 inly through bremsstrahlung
  []
 
-[17 <./plot/tracker.png>] [18 <./plot/pixel.png>]
-<plot/muonchamber.png, id=496, 909.3975pt x 660.4675pt>
+[16 <./plot/tracker.png>] [17 <./plot/pixel.png>]
+<plot/muonchamber.png, id=493, 909.3975pt x 660.4675pt>
 File: plot/muonchamber.png Graphic file (type png)
 
 <use plot/muonchamber.png>
 Package pdftex.def Info: plot/muonchamber.png used on input line 148.
 (pdftex.def)             Requested size: 390.25534pt x 283.43112pt.
- [19] [20 <./plot/muonchamber.png>] [21]
-<plot/trigger.png, id=506, 1225.57875pt x 669.50125pt>
+ [18] [19 <./plot/muonchamber.png>] [20]
+<plot/trigger.png, id=503, 1225.57875pt x 669.50125pt>
 File: plot/trigger.png Graphic file (type png)
  <use plot/trigger.png>
 Package pdftex.def Info: plot/trigger.png used on input line 199.
@@ -442,7 +449,7 @@ Missing character: There is no ‚ in font cmr12!
 Missing character: There is no Ä in font cmr12!
 Missing character: There is no ù in font cmr12!
 
-[22]) [23 <./plot/trigger.png>]
+[21]) [22 <./plot/trigger.png>]
 \openout2 = `body/Analysis.aux'.
 
  (./body/Analysis.tex
@@ -450,25 +457,25 @@ Chapter 3.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[24
+[23
 
 
 
-] [25]
+] [24]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[26] [27] <plot/TrgEff_estar.pdf, id=527, 569.12625pt x 553.06625pt>
+[25] [26] <plot/TrgEff_estar.pdf, id=524, 569.12625pt x 553.06625pt>
 File: plot/TrgEff_estar.pdf Graphic file (type pdf)
 
 <use plot/TrgEff_estar.pdf>
 Package pdftex.def Info: plot/TrgEff_estar.pdf used on input line 141.
 (pdftex.def)             Requested size: 303.53267pt x 294.98032pt.
 
-<plot/TrgEff_mustar.pdf, id=528, 569.12625pt x 553.06625pt>
+<plot/TrgEff_mustar.pdf, id=525, 569.12625pt x 553.06625pt>
 File: plot/TrgEff_mustar.pdf Graphic file (type pdf)
 
 <use plot/TrgEff_mustar.pdf>
@@ -478,59 +485,59 @@ Package pdftex.def Info: plot/TrgEff_mustar.pdf used on input line 142.
 
 LaTeX Warning: Float too large for page by 7.03064pt on input line 145.
 
-[28] [29 <./plot/TrgEff_estar.pdf, page is rotated 90 degrees> <./plot/TrgEff_m
-ustar.pdf, page is rotated 90 degrees>] [30] [31]
+[27] [28 <./plot/TrgEff_estar.pdf, page is rotated 90 degrees> <./plot/TrgEff_m
+ustar.pdf, page is rotated 90 degrees>] [29] [30]
 Overfull \hbox (69.13945pt too wide) in paragraph at lines 179--200
  [] 
  []
 
-[32] [33] [34]
+[31] [32] [33]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<plot/Isolation_electrons.pdf, id=637, 569.12625pt x 549.05125pt>
+<plot/Isolation_electrons.pdf, id=634, 569.12625pt x 549.05125pt>
 File: plot/Isolation_electrons.pdf Graphic file (type pdf)
 
 <use plot/Isolation_electrons.pdf>
 Package pdftex.def Info: plot/Isolation_electrons.pdf used on input line 357.
 (pdftex.def)             Requested size: 216.81pt x 209.16107pt.
 
-<plot/Isolation_muons.pdf, id=638, 569.12625pt x 551.05875pt>
+<plot/Isolation_muons.pdf, id=635, 569.12625pt x 551.05875pt>
 File: plot/Isolation_muons.pdf Graphic file (type pdf)
 
 <use plot/Isolation_muons.pdf>
 Package pdftex.def Info: plot/Isolation_muons.pdf used on input line 358.
 (pdftex.def)             Requested size: 216.81pt x 209.92581pt.
- [35 <./plot/Isolation_electrons.pdf, page is rotated 90 degrees> <./plot/Isola
+ [34 <./plot/Isolation_electrons.pdf, page is rotated 90 degrees> <./plot/Isola
 tion_muons.pdf, page is rotated 90 degrees>]
-[36] [37] [38] <plot/VtxN_2mu2e.pdf, id=739, 569.12625pt x 553.06625pt>
+[35] [36] [37] <plot/VtxN_2mu2e.pdf, id=736, 569.12625pt x 553.06625pt>
 File: plot/VtxN_2mu2e.pdf Graphic file (type pdf)
 
 <use plot/VtxN_2mu2e.pdf>
 Package pdftex.def Info: plot/VtxN_2mu2e.pdf used on input line 384.
 (pdftex.def)             Requested size: 208.13574pt x 202.25992pt.
 
-<plot/VtxN_2e2mu.pdf, id=740, 569.12625pt x 553.06625pt>
+<plot/VtxN_2e2mu.pdf, id=737, 569.12625pt x 553.06625pt>
 File: plot/VtxN_2e2mu.pdf Graphic file (type pdf)
 
 <use plot/VtxN_2e2mu.pdf>
 Package pdftex.def Info: plot/VtxN_2e2mu.pdf used on input line 385.
 (pdftex.def)             Requested size: 208.13574pt x 202.25992pt.
-) [39
+) [38
 
  <./plot/VtxN_2mu2e.pdf, page is rotated 90 degrees> <./plot/VtxN_2e2mu.pdf, pa
 ge is rotated 90 degrees>]
 \openout2 = `body/Analysis2.aux'.
 
  (./body/Analysis2.tex
-[40
+[39
 
 
-] [41]
+] [40]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<plot/Effizienz_allchannels.pdf, id=838, 569.12625pt x 385.44pt>
+<plot/Effizienz_allchannels.pdf, id=834, 569.12625pt x 385.44pt>
 File: plot/Effizienz_allchannels.pdf Graphic file (type pdf)
 
 <use plot/Effizienz_allchannels.pdf>
@@ -541,7 +548,7 @@ Package pdftex.def Info: plot/Effizienz_allchannels.pdf used on input line 113.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<plot/Acceptance_only.pdf, id=839, 569.12625pt x 385.44pt>
+<plot/Acceptance_only.pdf, id=835, 569.12625pt x 385.44pt>
 File: plot/Acceptance_only.pdf Graphic file (type pdf)
 
 <use plot/Acceptance_only.pdf>
@@ -551,7 +558,7 @@ Package pdftex.def Info: plot/Acceptance_only.pdf used on input line 120.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[42] [43] [44 <./plot/Effizienz_allchannels.pdf, page is rotated 90 degrees> <.
+[41] [42] [43 <./plot/Effizienz_allchannels.pdf, page is rotated 90 degrees> <.
 /plot/Acceptance_only.pdf, page is rotated 90 degrees>]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -559,101 +566,101 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<plot/Pt_2mu2e.pdf, id=936, 569.12625pt x 553.06625pt>
+<plot/Pt_2mu2e.pdf, id=933, 569.12625pt x 553.06625pt>
 File: plot/Pt_2mu2e.pdf Graphic file (type pdf)
  <use plot/Pt_2mu2e.pdf>
 Package pdftex.def Info: plot/Pt_2mu2e.pdf used on input line 222.
 (pdftex.def)             Requested size: 208.13574pt x 202.25992pt.
 
-<plot/Pt_2e2mu.pdf, id=937, 569.12625pt x 553.06625pt>
+<plot/Pt_2e2mu.pdf, id=934, 569.12625pt x 553.06625pt>
 File: plot/Pt_2e2mu.pdf Graphic file (type pdf)
  <use plot/Pt_2e2mu.pdf>
 Package pdftex.def Info: plot/Pt_2e2mu.pdf used on input line 223.
 (pdftex.def)             Requested size: 208.13574pt x 202.25992pt.
 
-<plot/Eta_2mu2e.pdf, id=938, 569.12625pt x 553.06625pt>
+<plot/Eta_2mu2e.pdf, id=935, 569.12625pt x 553.06625pt>
 File: plot/Eta_2mu2e.pdf Graphic file (type pdf)
 
 <use plot/Eta_2mu2e.pdf>
 Package pdftex.def Info: plot/Eta_2mu2e.pdf used on input line 231.
 (pdftex.def)             Requested size: 208.13574pt x 202.25992pt.
 
-<plot/Eta_2e2mu.pdf, id=939, 569.12625pt x 553.06625pt>
+<plot/Eta_2e2mu.pdf, id=936, 569.12625pt x 553.06625pt>
 File: plot/Eta_2e2mu.pdf Graphic file (type pdf)
 
 <use plot/Eta_2e2mu.pdf>
 Package pdftex.def Info: plot/Eta_2e2mu.pdf used on input line 232.
 (pdftex.def)             Requested size: 208.13574pt x 202.25992pt.
 
-<plot/Phi_2mu2e.pdf, id=940, 569.12625pt x 553.06625pt>
+<plot/Phi_2mu2e.pdf, id=937, 569.12625pt x 553.06625pt>
 File: plot/Phi_2mu2e.pdf Graphic file (type pdf)
 
 <use plot/Phi_2mu2e.pdf>
 Package pdftex.def Info: plot/Phi_2mu2e.pdf used on input line 240.
 (pdftex.def)             Requested size: 208.13574pt x 202.25992pt.
 
-<plot/Phi_2e2mu.pdf, id=941, 569.12625pt x 553.06625pt>
+<plot/Phi_2e2mu.pdf, id=938, 569.12625pt x 553.06625pt>
 File: plot/Phi_2e2mu.pdf Graphic file (type pdf)
 
 <use plot/Phi_2e2mu.pdf>
 Package pdftex.def Info: plot/Phi_2e2mu.pdf used on input line 241.
 (pdftex.def)             Requested size: 208.13574pt x 202.25992pt.
- <plot/Z_2mu2e.pdf, id=942, 569.12625pt x 553.06625pt>
+ <plot/Z_2mu2e.pdf, id=939, 569.12625pt x 553.06625pt>
 File: plot/Z_2mu2e.pdf Graphic file (type pdf)
 
 <use plot/Z_2mu2e.pdf>
 Package pdftex.def Info: plot/Z_2mu2e.pdf used on input line 249.
 (pdftex.def)             Requested size: 208.13574pt x 202.25992pt.
- <plot/Z_2e2mu.pdf, id=943, 569.12625pt x 553.06625pt>
+ <plot/Z_2e2mu.pdf, id=940, 569.12625pt x 553.06625pt>
 File: plot/Z_2e2mu.pdf Graphic file (type pdf)
 
 <use plot/Z_2e2mu.pdf>
 Package pdftex.def Info: plot/Z_2e2mu.pdf used on input line 250.
 (pdftex.def)             Requested size: 208.13574pt x 202.25992pt.
 
-<plot/nonZ_2mu2e.pdf, id=944, 569.12625pt x 553.06625pt>
+<plot/nonZ_2mu2e.pdf, id=941, 569.12625pt x 553.06625pt>
 File: plot/nonZ_2mu2e.pdf Graphic file (type pdf)
 
 <use plot/nonZ_2mu2e.pdf>
 Package pdftex.def Info: plot/nonZ_2mu2e.pdf used on input line 258.
 (pdftex.def)             Requested size: 208.13574pt x 202.25992pt.
 
-<plot/nonZ_2e2mu.pdf, id=945, 569.12625pt x 553.06625pt>
+<plot/nonZ_2e2mu.pdf, id=942, 569.12625pt x 553.06625pt>
 File: plot/nonZ_2e2mu.pdf Graphic file (type pdf)
 
 <use plot/nonZ_2e2mu.pdf>
 Package pdftex.def Info: plot/nonZ_2e2mu.pdf used on input line 259.
 (pdftex.def)             Requested size: 208.13574pt x 202.25992pt.
 
-<plot/Minv_2mu2e.pdf, id=946, 569.12625pt x 553.06625pt>
+<plot/Minv_2mu2e.pdf, id=943, 569.12625pt x 553.06625pt>
 File: plot/Minv_2mu2e.pdf Graphic file (type pdf)
 
 <use plot/Minv_2mu2e.pdf>
 Package pdftex.def Info: plot/Minv_2mu2e.pdf used on input line 273.
 (pdftex.def)             Requested size: 208.13574pt x 202.25992pt.
 
-<plot/Minv_2e2mu.pdf, id=947, 569.12625pt x 553.06625pt>
+<plot/Minv_2e2mu.pdf, id=944, 569.12625pt x 553.06625pt>
 File: plot/Minv_2e2mu.pdf Graphic file (type pdf)
 
 <use plot/Minv_2e2mu.pdf>
 Package pdftex.def Info: plot/Minv_2e2mu.pdf used on input line 274.
 (pdftex.def)             Requested size: 208.13574pt x 202.25992pt.
 
-<plot/dR_Z_2mu2e.pdf, id=948, 569.12625pt x 553.06625pt>
+<plot/dR_Z_2mu2e.pdf, id=945, 569.12625pt x 553.06625pt>
 File: plot/dR_Z_2mu2e.pdf Graphic file (type pdf)
 
 <use plot/dR_Z_2mu2e.pdf>
 Package pdftex.def Info: plot/dR_Z_2mu2e.pdf used on input line 282.
 (pdftex.def)             Requested size: 208.13574pt x 202.25992pt.
 
-<plot/dR_Z_2e2mu.pdf, id=949, 569.12625pt x 553.06625pt>
+<plot/dR_Z_2e2mu.pdf, id=946, 569.12625pt x 553.06625pt>
 File: plot/dR_Z_2e2mu.pdf Graphic file (type pdf)
 
 <use plot/dR_Z_2e2mu.pdf>
 Package pdftex.def Info: plot/dR_Z_2e2mu.pdf used on input line 283.
 (pdftex.def)             Requested size: 208.13574pt x 202.25992pt.
 
-<plot/2e2muZZMass_70-800_8TeV.pdf, id=950, 569.12625pt x 546.04pt>
+<plot/2e2muZZMass_70-800_8TeV.pdf, id=947, 569.12625pt x 546.04pt>
 File: plot/2e2muZZMass_70-800_8TeV.pdf Graphic file (type pdf)
 
 <use plot/2e2muZZMass_70-800_8TeV.pdf>
@@ -664,56 +671,56 @@ Package pdftex.def Info: plot/2e2muZZMass_70-800_8TeV.pdf used on input line 29
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[45
+[44
 
-] [46 <./plot/Pt_2mu2e.pdf, page is rotated 90 degrees> <./plot/Pt_2e2mu.pdf, p
+] [45 <./plot/Pt_2mu2e.pdf, page is rotated 90 degrees> <./plot/Pt_2e2mu.pdf, p
 age is rotated 90 degrees> <./plot/Eta_2mu2e.pdf, page is rotated 90 degrees> <
-./plot/Eta_2e2mu.pdf, page is rotated 90 degrees>] [47 <./plot/Phi_2mu2e.pdf, p
+./plot/Eta_2e2mu.pdf, page is rotated 90 degrees>] [46 <./plot/Phi_2mu2e.pdf, p
 age is rotated 90 degrees> <./plot/Phi_2e2mu.pdf, page is rotated 90 degrees> <
 ./plot/Z_2mu2e.pdf, page is rotated 90 degrees> <./plot/Z_2e2mu.pdf, page is ro
-tated 90 degrees>] [48 <./plot/nonZ_2mu2e.pdf, page is rotated 90 degrees> <./p
+tated 90 degrees>] [47 <./plot/nonZ_2mu2e.pdf, page is rotated 90 degrees> <./p
 lot/nonZ_2e2mu.pdf, page is rotated 90 degrees> <./plot/Minv_2mu2e.pdf, page is
  rotated 90 degrees> <./plot/Minv_2e2mu.pdf, page is rotated 90 degrees>]
-[49 <./plot/dR_Z_2mu2e.pdf, page is rotated 90 degrees> <./plot/dR_Z_2e2mu.pdf,
- page is rotated 90 degrees>] [50] [51 <./plot/2e2muZZMass_70-800_8TeV.pdf>]
+[48 <./plot/dR_Z_2mu2e.pdf, page is rotated 90 degrees> <./plot/dR_Z_2e2mu.pdf,
+ page is rotated 90 degrees>] [49] [50 <./plot/2e2muZZMass_70-800_8TeV.pdf>]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<plot/Mmin_2mu2e.pdf, id=1586, 569.12625pt x 553.06625pt>
+<plot/Mmin_2mu2e.pdf, id=1583, 569.12625pt x 553.06625pt>
 File: plot/Mmin_2mu2e.pdf Graphic file (type pdf)
 
 <use plot/Mmin_2mu2e.pdf>
 Package pdftex.def Info: plot/Mmin_2mu2e.pdf used on input line 380.
 (pdftex.def)             Requested size: 208.13574pt x 202.25992pt.
 
-<plot/Mmin_2e2mu.pdf, id=1587, 569.12625pt x 552.0625pt>
+<plot/Mmin_2e2mu.pdf, id=1584, 569.12625pt x 552.0625pt>
 File: plot/Mmin_2e2mu.pdf Graphic file (type pdf)
 
 <use plot/Mmin_2e2mu.pdf>
 Package pdftex.def Info: plot/Mmin_2e2mu.pdf used on input line 381.
 (pdftex.def)             Requested size: 208.13574pt x 201.89284pt.
 
-<plot/Mmax_2mu2e.pdf, id=1588, 569.12625pt x 553.06625pt>
+<plot/Mmax_2mu2e.pdf, id=1585, 569.12625pt x 553.06625pt>
 File: plot/Mmax_2mu2e.pdf Graphic file (type pdf)
 
 <use plot/Mmax_2mu2e.pdf>
 Package pdftex.def Info: plot/Mmax_2mu2e.pdf used on input line 389.
 (pdftex.def)             Requested size: 208.13574pt x 202.25992pt.
 
-<plot/Mmax_2e2mu.pdf, id=1589, 569.12625pt x 553.06625pt>
+<plot/Mmax_2e2mu.pdf, id=1586, 569.12625pt x 553.06625pt>
 File: plot/Mmax_2e2mu.pdf Graphic file (type pdf)
 
 <use plot/Mmax_2e2mu.pdf>
 Package pdftex.def Info: plot/Mmax_2e2mu.pdf used on input line 390.
 (pdftex.def)             Requested size: 208.13574pt x 202.25992pt.
- [52
+ [51
 
-] [53 <./plot/Mmin_2mu2e.pdf, page is rotated 90 degrees> <./plot/Mmin_2e2mu.pd
+] [52 <./plot/Mmin_2mu2e.pdf, page is rotated 90 degrees> <./plot/Mmin_2e2mu.pd
 f, page is rotated 90 degrees> <./plot/Mmax_2mu2e.pdf, page is rotated 90 degre
-es> <./plot/Mmax_2e2mu.pdf, page is rotated 90 degrees>]) [54]
+es> <./plot/Mmax_2e2mu.pdf, page is rotated 90 degrees>]) [53]
 \openout2 = `body/Systematics.aux'.
 
- (./body/Systematics.tex [55
+ (./body/Systematics.tex [54
 
 
 ]
@@ -723,105 +730,105 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[56] [57])
+[55] [56])
 \openout2 = `body/Results.aux'.
 
  (./body/Results.tex
 Chapter 4.
-[58
+[57
 
 
 
 
-] <plot/signal_2mu2e.pdf, id=1785, 569.12625pt x 423.5825pt>
+] <plot/signal_2mu2e.pdf, id=1782, 569.12625pt x 423.5825pt>
 File: plot/signal_2mu2e.pdf Graphic file (type pdf)
 
 <use plot/signal_2mu2e.pdf>
 Package pdftex.def Info: plot/signal_2mu2e.pdf used on input line 16.
 (pdftex.def)             Requested size: 208.13574pt x 154.90688pt.
 
-<plot/signal_2e2mu.pdf, id=1786, 569.12625pt x 413.545pt>
+<plot/signal_2e2mu.pdf, id=1783, 569.12625pt x 413.545pt>
 File: plot/signal_2e2mu.pdf Graphic file (type pdf)
 
 <use plot/signal_2e2mu.pdf>
 Package pdftex.def Info: plot/signal_2e2mu.pdf used on input line 17.
 (pdftex.def)             Requested size: 208.13574pt x 151.23608pt.
 
-<plot/Effizienz_2mu2e.pdf, id=1787, 569.12625pt x 385.44pt>
+<plot/Effizienz_2mu2e.pdf, id=1784, 569.12625pt x 385.44pt>
 File: plot/Effizienz_2mu2e.pdf Graphic file (type pdf)
 
 <use plot/Effizienz_2mu2e.pdf>
 Package pdftex.def Info: plot/Effizienz_2mu2e.pdf used on input line 26.
 (pdftex.def)             Requested size: 208.13574pt x 140.9579pt.
 
-<plot/Effizienz_2e2mu.pdf, id=1788, 569.12625pt x 385.44pt>
+<plot/Effizienz_2e2mu.pdf, id=1785, 569.12625pt x 385.44pt>
 File: plot/Effizienz_2e2mu.pdf Graphic file (type pdf)
 
 <use plot/Effizienz_2e2mu.pdf>
 Package pdftex.def Info: plot/Effizienz_2e2mu.pdf used on input line 27.
 (pdftex.def)             Requested size: 208.13574pt x 140.9579pt.
- [59 <./plot/signal_2mu2e.pdf, page is rotated 90 degrees> <./plot/signal_2e2mu
+ [58 <./plot/signal_2mu2e.pdf, page is rotated 90 degrees> <./plot/signal_2e2mu
 .pdf, page is rotated 90 degrees>]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<plot/L_shape_2mu2e.pdf, id=1880, 569.12625pt x 553.06625pt>
+<plot/L_shape_2mu2e.pdf, id=1876, 569.12625pt x 553.06625pt>
 File: plot/L_shape_2mu2e.pdf Graphic file (type pdf)
 
 <use plot/L_shape_2mu2e.pdf>
 Package pdftex.def Info: plot/L_shape_2mu2e.pdf used on input line 89.
 (pdftex.def)             Requested size: 208.13574pt x 202.25992pt.
 
-<plot/L_shape_2e2mu.pdf, id=1881, 569.12625pt x 553.06625pt>
+<plot/L_shape_2e2mu.pdf, id=1877, 569.12625pt x 553.06625pt>
 File: plot/L_shape_2e2mu.pdf Graphic file (type pdf)
 
 <use plot/L_shape_2e2mu.pdf>
 Package pdftex.def Info: plot/L_shape_2e2mu.pdf used on input line 90.
 (pdftex.def)             Requested size: 208.13574pt x 202.25992pt.
- [60 <./plot/Effizienz_2mu2e.pdf, page is rotated 90 degrees> <./plot/Effizienz
-_2e2mu.pdf, page is rotated 90 degrees>] [61]
-<plot/limit_4mu.pdf, id=1974, 569.12625pt x 552.0625pt>
+ [59 <./plot/Effizienz_2mu2e.pdf, page is rotated 90 degrees> <./plot/Effizienz
+_2e2mu.pdf, page is rotated 90 degrees>] [60]
+<plot/limit_4mu.pdf, id=1971, 569.12625pt x 552.0625pt>
 File: plot/limit_4mu.pdf Graphic file (type pdf)
 
 <use plot/limit_4mu.pdf>
 Package pdftex.def Info: plot/limit_4mu.pdf used on input line 115.
 (pdftex.def)             Requested size: 208.13574pt x 201.89284pt.
 
-<plot/limit_lambda_4mu.pdf, id=1975, 569.12625pt x 552.0625pt>
+<plot/limit_lambda_4mu.pdf, id=1972, 569.12625pt x 552.0625pt>
 File: plot/limit_lambda_4mu.pdf Graphic file (type pdf)
 
 <use plot/limit_lambda_4mu.pdf>
 Package pdftex.def Info: plot/limit_lambda_4mu.pdf used on input line 116.
 (pdftex.def)             Requested size: 208.13574pt x 201.89284pt.
 
-<plot/limit_2mu2e.pdf, id=1976, 569.12625pt x 552.0625pt>
+<plot/limit_2mu2e.pdf, id=1973, 569.12625pt x 552.0625pt>
 File: plot/limit_2mu2e.pdf Graphic file (type pdf)
 
 <use plot/limit_2mu2e.pdf>
 Package pdftex.def Info: plot/limit_2mu2e.pdf used on input line 123.
 (pdftex.def)             Requested size: 208.13574pt x 201.89284pt.
 
-<plot/limit_lambda_2mu2e.pdf, id=1977, 569.12625pt x 552.0625pt>
+<plot/limit_lambda_2mu2e.pdf, id=1974, 569.12625pt x 552.0625pt>
 File: plot/limit_lambda_2mu2e.pdf Graphic file (type pdf)
 
 <use plot/limit_lambda_2mu2e.pdf>
 Package pdftex.def Info: plot/limit_lambda_2mu2e.pdf used on input line 124.
 (pdftex.def)             Requested size: 208.13574pt x 201.89284pt.
 
-<plot/limit_4e.pdf, id=1978, 569.12625pt x 552.0625pt>
+<plot/limit_4e.pdf, id=1975, 569.12625pt x 552.0625pt>
 File: plot/limit_4e.pdf Graphic file (type pdf)
  <use plot/limit_4e.pdf>
 Package pdftex.def Info: plot/limit_4e.pdf used on input line 135.
 (pdftex.def)             Requested size: 208.13574pt x 201.89284pt.
 
-<plot/limit_lambda_2e2mu.pdf, id=1979, 569.12625pt x 552.0625pt>
+<plot/limit_lambda_2e2mu.pdf, id=1976, 569.12625pt x 552.0625pt>
 File: plot/limit_lambda_2e2mu.pdf Graphic file (type pdf)
 
 <use plot/limit_lambda_2e2mu.pdf>
 Package pdftex.def Info: plot/limit_lambda_2e2mu.pdf used on input line 136.
 (pdftex.def)             Requested size: 208.13574pt x 201.89284pt.
 
-<plot/limit_2e2mu.pdf, id=1980, 569.12625pt x 552.0625pt>
+<plot/limit_2e2mu.pdf, id=1977, 569.12625pt x 552.0625pt>
 File: plot/limit_2e2mu.pdf Graphic file (type pdf)
 
 <use plot/limit_2e2mu.pdf>
@@ -832,7 +839,7 @@ File: plot/limit_lambda_2e2mu.pdf Graphic file (type pdf)
 Package pdftex.def Info: plot/limit_lambda_2e2mu.pdf used on input line 144.
 (pdftex.def)             Requested size: 208.13574pt x 201.89284pt.
 
-<plot/limit_combined_mustar.pdf, id=1981, 569.12625pt x 552.0625pt>
+<plot/limit_combined_mustar.pdf, id=1978, 569.12625pt x 552.0625pt>
 File: plot/limit_combined_mustar.pdf Graphic file (type pdf)
 
 <use plot/limit_combined_mustar.pdf>
@@ -840,7 +847,7 @@ Package pdftex.def Info: plot/limit_combined_mustar.pdf used on input line 153.
 
 (pdftex.def)             Requested size: 208.13574pt x 201.89284pt.
 
-<plot/limit_lambda_combined_mustar.pdf, id=1982, 569.12625pt x 552.0625pt>
+<plot/limit_lambda_combined_mustar.pdf, id=1979, 569.12625pt x 552.0625pt>
 File: plot/limit_lambda_combined_mustar.pdf Graphic file (type pdf)
 
 <use plot/limit_lambda_combined_mustar.pdf>
@@ -848,26 +855,26 @@ Package pdftex.def Info: plot/limit_lambda_combined_mustar.pdf used on input li
 ne 154.
 (pdftex.def)             Requested size: 208.13574pt x 201.89284pt.
 
-<plot/limit_combined_estar.pdf, id=1983, 569.12625pt x 552.0625pt>
+<plot/limit_combined_estar.pdf, id=1980, 569.12625pt x 552.0625pt>
 File: plot/limit_combined_estar.pdf Graphic file (type pdf)
 
 <use plot/limit_combined_estar.pdf>
 Package pdftex.def Info: plot/limit_combined_estar.pdf used on input line 161.
 (pdftex.def)             Requested size: 208.13574pt x 201.89284pt.
 
-<plot/limit_lambda_combined_estar.pdf, id=1984, 569.12625pt x 552.0625pt>
+<plot/limit_lambda_combined_estar.pdf, id=1981, 569.12625pt x 552.0625pt>
 File: plot/limit_lambda_combined_estar.pdf Graphic file (type pdf)
 
 <use plot/limit_lambda_combined_estar.pdf>
 Package pdftex.def Info: plot/limit_lambda_combined_estar.pdf used on input lin
 e 162.
 (pdftex.def)             Requested size: 208.13574pt x 201.89284pt.
- [62] [63 <./plot/L_shape_2mu2e.pdf, page is rotated 90 degrees> <./plot/L_shap
+ [61] [62 <./plot/L_shape_2mu2e.pdf, page is rotated 90 degrees> <./plot/L_shap
 e_2e2mu.pdf, page is rotated 90 degrees> <./plot/limit_4mu.pdf, page is rotated
- 90 degrees> <./plot/limit_lambda_4mu.pdf, page is rotated 90 degrees>] [64 <./
+ 90 degrees> <./plot/limit_lambda_4mu.pdf, page is rotated 90 degrees>] [63 <./
 plot/limit_2mu2e.pdf, page is rotated 90 degrees> <./plot/limit_lambda_2mu2e.pd
 f, page is rotated 90 degrees> <./plot/limit_4e.pdf, page is rotated 90 degrees
-> <./plot/limit_lambda_2e2mu.pdf, page is rotated 90 degrees>] [65 <./plot/limi
+> <./plot/limit_lambda_2e2mu.pdf, page is rotated 90 degrees>] [64 <./plot/limi
 t_2e2mu.pdf, page is rotated 90 degrees> <./plot/limit_combined_mustar.pdf, pag
 e is rotated 90 degrees> <./plot/limit_lambda_combined_mustar.pdf, page is rota
 ted 90 degrees>]
@@ -877,16 +884,16 @@ Missing character: There is no ó in font cmr6!
 Missing character: There is no ‚ in font cmr6!
 Missing character: There is no à in font cmr6!
 Missing character: There is no ó in font cmr6!
- [66]) [67 <./plot/limit_combined_estar.pdf, page is rotated 90 degrees> <./plo
+ [65]) [66 <./plot/limit_combined_estar.pdf, page is rotated 90 degrees> <./plo
 t/limit_lambda_combined_estar.pdf, page is rotated 90 degrees>]
 \openout2 = `body/biblio.aux'.
 
  (./body/biblio.tex (./main.bbl
-Underfull \hbox (badness 10000) in paragraph at lines 33--37
+Underfull \hbox (badness 10000) in paragraph at lines 48--52
 []\OT1/cmr/m/n/12 Exotica Res-o-nances Group.  Physic-sre-sults exo10016.
  []
 
-[68
+[67
 
 
 
@@ -904,7 +911,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 145--148
 []\OT1/cmr/m/n/12 Exotica Muon Group.  High pt muons.
  []
 
-[69]
+[68]
 Underfull \hbox (badness 1953) in paragraph at lines 196--199
 []\OT1/cmr/m/n/12 G. K. et. al.  Roost-atscl95: cross sec-tion in a count-ing e
 x-per-i-ment.
@@ -926,13 +933,17 @@ Overfull \hbox (44.36812pt too wide) in paragraph at lines 201--205
 isCombinedLimit. 
  []
 
-)) [70] (./main.aux (./body/contents.aux) (./body/Introduction.aux)
+)) [69] (./main.aux (./body/contents.aux) (./body/Introduction.aux)
 (./body/CMSdetector.aux) (./body/Analysis.aux) (./body/Analysis2.aux)
 (./body/Systematics.aux) (./body/Results.aux) (./body/biblio.aux)) ) 
 Here is how much of TeX's memory you used:
  3049 strings out of 495028
  43136 string characters out of 6181498
+<<<<<<< HEAD
  121256 words of memory out of 5000000
+=======
+ 121255 words of memory out of 5000000
+>>>>>>> 8be5d9c7d05c3e4170f79266f1d57c2140977490
  6090 multiletter control sequences out of 15000+600000
  10888 words of font info for 39 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
@@ -952,10 +963,10 @@ share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/
 texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-
 dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on main.pdf (78 pages, 12646239 bytes).
+Output written on main.pdf (77 pages, 12644893 bytes).
 PDF statistics:
- 2623 PDF objects out of 2984 (max. 8388607)
- 1177 compressed objects within 12 object streams
+ 2620 PDF objects out of 2984 (max. 8388607)
+ 1175 compressed objects within 12 object streams
  0 named destinations out of 1000 (max. 500000)
  311 words of extra memory for PDF output out of 10000 (max. 10000000)
 
