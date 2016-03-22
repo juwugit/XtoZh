@@ -5,6 +5,21 @@ Swapan Majhi.
 \newblock {QCD corrections to excited lepton (pair)production at LHC}.
 \newblock 2012.
 
+\bibitem{preons-idea}
+J.~Pati and A.~Salam.
+\newblock Lepton number as the fourth color.
+\newblock {\em Phys. Rev. D}, 10:275, 1974.
+
+\bibitem{compositeness}
+U.~Baur, M.~Spira, and P.M. Zerwas.
+\newblock Excited-quark and -lepton production at hadron colliders.
+\newblock {\em Phys. Rev. D}, 42:815, 1990.
+
+\bibitem{eichten}
+E.J. Eichten, K.D. Lane, and M.E. Peskin.
+\newblock New tests for quark and lepton substructure.
+\newblock {\em Phys. Rev. Lett.}, 50:811, 1983.
+
 \bibitem{tevatron1}
 CDF Collaboration.
 \newblock Search for excited and exotic electrons in the $e\gamma$ decay
@@ -53,21 +68,6 @@ ATLAS Collaboration.
 \newblock {Search for excited leptons in proton-proton collisions at sqrt(s) =
   7 TeV with the ATLAS detector}.
 \newblock 2012.
-
-\bibitem{preons-idea}
-J.~Pati and A.~Salam.
-\newblock Lepton number as the fourth color.
-\newblock {\em Phys. Rev. D}, 10:275, 1974.
-
-\bibitem{compositeness}
-U.~Baur, M.~Spira, and P.M. Zerwas.
-\newblock Excited-quark and -lepton production at hadron colliders.
-\newblock {\em Phys. Rev. D}, 42:815, 1990.
-
-\bibitem{eichten}
-E.J. Eichten, K.D. Lane, and M.E. Peskin.
-\newblock New tests for quark and lepton substructure.
-\newblock {\em Phys. Rev. Lett.}, 50:811, 1983.
 
 \bibitem{Sjostrand:2006za}
 Torbjorn Sjostrand, Stephen Mrenna, and Peter~Z. Skands.
