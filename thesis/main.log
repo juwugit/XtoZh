@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.3.5)  23 MAR 2016 22:23
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.3.5)  24 MAR 2016 15:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -244,139 +244,33 @@ e
 
 (./body/Introduction.tex
 Chapter 1.
-[1
+) [1
 
 
 
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[2] [3] <plot/pair.pdf, id=21, 569.12625pt x 548.0475pt>
-File: plot/pair.pdf Graphic file (type pdf)
- <use plot/pair.pdf>
-Package pdftex.def Info: plot/pair.pdf used on input line 107.
-(pdftex.def)             Requested size: 151.76964pt x 146.15176pt.
-
-<plot/single.pdf, id=22, 569.12625pt x 548.0475pt>
-File: plot/single.pdf Graphic file (type pdf)
- <use plot/single.pdf>
-Package pdftex.def Info: plot/single.pdf used on input line 113.
-(pdftex.def)             Requested size: 151.76964pt x 146.15176pt.
-
-<plot/CIp.pdf, id=23, 569.12625pt x 548.0475pt>
-File: plot/CIp.pdf Graphic file (type pdf)
- <use plot/CIp.pdf>
-Package pdftex.def Info: plot/CIp.pdf used on input line 120.
-(pdftex.def)             Requested size: 151.76964pt x 146.15176pt.
-
-<plot/CIs.pdf, id=24, 569.12625pt x 548.0475pt>
-File: plot/CIs.pdf Graphic file (type pdf)
- <use plot/CIs.pdf>
-Package pdftex.def Info: plot/CIs.pdf used on input line 120.
-(pdftex.def)             Requested size: 151.76964pt x 146.15176pt.
-
-<plot/Feynman_Mustar4mu.pdf, id=25, 506.89375pt x 227.85126pt>
-File: plot/Feynman_Mustar4mu.pdf Graphic file (type pdf)
-
-<use plot/Feynman_Mustar4mu.pdf>
-Package pdftex.def Info: plot/Feynman_Mustar4mu.pdf used on input line 130.
-(pdftex.def)             Requested size: 212.47617pt x 95.50912pt.
-
-<plot/Feynman_Mustar2mu2e.pdf, id=26, 506.89375pt x 227.85126pt>
-File: plot/Feynman_Mustar2mu2e.pdf Graphic file (type pdf)
-
-<use plot/Feynman_Mustar2mu2e.pdf>
-Package pdftex.def Info: plot/Feynman_Mustar2mu2e.pdf used on input line 130.
-(pdftex.def)             Requested size: 212.47617pt x 95.50912pt.
-
-Overfull \hbox (3.08221pt too wide) in paragraph at lines 127--131
- [][] 
- []
-
-<plot/Feynman_Estar4e.pdf, id=27, 502.87875pt x 227.85126pt>
-File: plot/Feynman_Estar4e.pdf Graphic file (type pdf)
-
-<use plot/Feynman_Estar4e.pdf>
-Package pdftex.def Info: plot/Feynman_Estar4e.pdf used on input line 135.
-(pdftex.def)             Requested size: 212.47617pt x 96.27052pt.
-
-<plot/Feynman_Estar2e2mu.pdf, id=28, 502.87875pt x 227.85126pt>
-File: plot/Feynman_Estar2e2mu.pdf Graphic file (type pdf)
-
-<use plot/Feynman_Estar2e2mu.pdf>
-Package pdftex.def Info: plot/Feynman_Estar2e2mu.pdf used on input line 135.
-(pdftex.def)             Requested size: 212.47617pt x 96.27052pt.
-
-Overfull \hbox (3.08221pt too wide) in paragraph at lines 132--136
- [][] 
- []
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[4] [5 <./plot/pair.pdf, page is rotated 90 degrees> <./plot/single.pdf, page i
-s rotated 90 degrees> <./plot/CIp.pdf, page is rotated 90 degrees> <./plot/CIs.
-pdf, page is rotated 90 degrees>] [6 <./plot/Feynman_Mustar4mu.pdf> <./plot/Fey
-nman_Mustar2mu2e.pdf> <./plot/Feynman_Estar4e.pdf> <./plot/Feynman_Estar2e2mu.p
-df>] <plot/BRff.pdf, id=250, 569.12625pt x 415.5525pt>
-File: plot/BRff.pdf Graphic file (type pdf)
- <use plot/BRff.pdf>
-Package pdftex.def Info: plot/BRff.pdf used on input line 160.
-(pdftex.def)             Requested size: 390.25534pt x 284.96245pt.
-
-[7 <./plot/BRff.pdf, page is rotated 90 degrees>]
-<plot/BR1.pdf, id=298, 569.12625pt x 415.5525pt>
-File: plot/BR1.pdf Graphic file (type pdf)
- <use plot/BR1.pdf>
-Package pdftex.def Info: plot/BR1.pdf used on input line 169.
-(pdftex.def)             Requested size: 390.25534pt x 284.96245pt.
-
-<plot/BRn1.pdf, id=299, 569.12625pt x 415.5525pt>
-File: plot/BRn1.pdf Graphic file (type pdf)
- <use plot/BRn1.pdf>
-Package pdftex.def Info: plot/BRn1.pdf used on input line 176.
-(pdftex.def)             Requested size: 390.25534pt x 284.96245pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[8 <./plot/BR1.pdf, page is rotated 90 degrees>]
-<plot/XS.pdf, id=346, 569.12625pt x 415.5525pt>
-File: plot/XS.pdf Graphic file (type pdf)
- <use plot/XS.pdf>
-Package pdftex.def Info: plot/XS.pdf used on input line 197.
-(pdftex.def)             Requested size: 390.25534pt x 284.96245pt.
- [9 <./plot/BRn1.pdf, page is rotated 90 degrees>] [10 <./plot/XS.pdf, page is 
-rotated 90 degrees>]) (./main.aux (./body/contents.aux) (./body/Introduction.au
-x)
-(./body/CMSdetector.aux) (./body/Analysis.aux) (./body/Analysis2.aux)
-(./body/Systematics.aux) (./body/Results.aux) (./body/biblio.aux)) ) 
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./main.aux
+(./body/contents.aux) (./body/Introduction.aux) (./body/CMSdetector.aux)
+(./body/Analysis.aux) (./body/Analysis2.aux) (./body/Systematics.aux)
+(./body/Results.aux) (./body/biblio.aux)) ) 
 Here is how much of TeX's memory you used:
- 2744 strings out of 495028
- 36257 string characters out of 6181498
- 99288 words of memory out of 5000000
- 5868 multiletter control sequences out of 15000+600000
- 8867 words of font info for 32 fonts, out of 8000000 for 9000
+ 2670 strings out of 495028
+ 34872 string characters out of 6181498
+ 95167 words of memory out of 5000000
+ 5807 multiletter control sequences out of 15000+600000
+ 8262 words of font info for 30 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 38i,10n,23p,1048b,267s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share
-/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
-8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/s
-hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on main.pdf (10 pages, 598580 bytes).
+ 38i,5n,23p,884b,122s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
+msy8.pfb>
+Output written on main.pdf (1 page, 52011 bytes).
 PDF statistics:
- 476 PDF objects out of 1000 (max. 8388607)
- 237 compressed objects within 3 object streams
+ 28 PDF objects out of 1000 (max. 8388607)
+ 19 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 61 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
