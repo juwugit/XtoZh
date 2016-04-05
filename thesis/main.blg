@@ -6,44 +6,46 @@ A level-1 auxiliary file: body/contents.aux
 A level-1 auxiliary file: body/Introduction.aux
 A level-1 auxiliary file: body/biblio.aux
 Database file #1: main.bib
-You've used 1 entry,
+Warning--I didn't find a database entry for ""
+You've used 7 entries,
             1791 wiz_defined-function locations,
-            450 strings with 3576 characters,
-and the built_in function-call counts, 149 in all, are:
-= -- 11
-> -- 4
+            486 strings with 4760 characters,
+and the built_in function-call counts, 1241 in all, are:
+= -- 109
+> -- 32
 < -- 0
-+ -- 2
-- -- 1
-* -- 5
-:= -- 33
-add.period$ -- 3
-call.type$ -- 1
-change.case$ -- 1
++ -- 15
+- -- 8
+* -- 70
+:= -- 218
+add.period$ -- 21
+call.type$ -- 7
+change.case$ -- 7
 chr.to.int$ -- 0
-cite$ -- 1
-duplicate$ -- 8
-empty$ -- 15
-format.name$ -- 1
-if$ -- 29
+cite$ -- 7
+duplicate$ -- 63
+empty$ -- 137
+format.name$ -- 8
+if$ -- 270
 int.to.chr$ -- 0
-int.to.str$ -- 1
-missing$ -- 1
-newline$ -- 8
-num.names$ -- 1
-pop$ -- 3
+int.to.str$ -- 7
+missing$ -- 7
+newline$ -- 38
+num.names$ -- 7
+pop$ -- 7
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 3
+skip$ -- 22
 stack$ -- 0
-substring$ -- 0
-swap$ -- 1
+substring$ -- 72
+swap$ -- 7
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 1
-width$ -- 2
-write$ -- 12
+while$ -- 14
+width$ -- 8
+write$ -- 79
+(There was 1 warning)
