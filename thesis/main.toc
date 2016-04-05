@@ -1,38 +1,3 @@
 \contentsline {chapter}{\numberline {1}Introduction and theory overview}{1}
 \contentsline {section}{\numberline {1.1}Introduction}{1}
-\contentsline {section}{\numberline {1.2}Theory overview}{1}
-\contentsline {subsection}{\numberline {1.2.1}Model of excited leptons}{2}
-\contentsline {subsection}{\numberline {1.2.2}Decay of excited leptons}{4}
-\contentsline {subsection}{\numberline {1.2.3}Production of excited leptons}{8}
-\contentsline {chapter}{\numberline {2}CMS detector and LHC}{11}
-\contentsline {section}{\numberline {2.1}Large Hadron Collider}{11}
-\contentsline {section}{\numberline {2.2}CMS detector}{12}
-\contentsline {subsection}{\numberline {2.2.1}Coordinate in CMS}{13}
-\contentsline {subsection}{\numberline {2.2.2}Superconduction solenoid}{14}
-\contentsline {subsection}{\numberline {2.2.3}Tracking system}{15}
-\contentsline {subsection}{\numberline {2.2.4}Electromagmetic calorimeter}{16}
-\contentsline {subsection}{\numberline {2.2.5}Hadron calorimeter}{18}
-\contentsline {subsection}{\numberline {2.2.6}Muon chamber}{18}
-\contentsline {section}{\numberline {2.3}Trigger system}{21}
-\contentsline {chapter}{\numberline {3}Analysis Procedures}{23}
-\contentsline {section}{\numberline {3.1}Data and Monte-Carlo samples}{23}
-\contentsline {subsection}{\numberline {3.1.1}Data samples}{23}
-\contentsline {subsection}{\numberline {3.1.2}Monte Carlo samples}{24}
-\contentsline {section}{\numberline {3.2}Trigger}{26}
-\contentsline {section}{\numberline {3.3}Object reconstruction and identification}{27}
-\contentsline {subsection}{\numberline {3.3.1}Electron reconstruction}{27}
-\contentsline {subsection}{\numberline {3.3.2}Electron identification}{29}
-\contentsline {subsection}{\numberline {3.3.3}Muon reconstruction}{31}
-\contentsline {subsection}{\numberline {3.3.4}Muon identification}{32}
-\contentsline {subsection}{\numberline {3.3.5}Pileup Reweighting}{38}
-\contentsline {section}{\numberline {3.4}Event selection}{39}
-\contentsline {subsection}{\numberline {3.4.1}Analysis strategy}{39}
-\contentsline {subsection}{\numberline {3.4.2}Background estimation}{44}
-\contentsline {section}{\numberline {3.5}Systematic uncertainties}{54}
-\contentsline {chapter}{\numberline {4}Results and conclusion}{57}
-\contentsline {section}{\numberline {4.1}Cross section limit computation}{57}
-\contentsline {section}{\numberline {4.2}Optimization of the final selection}{58}
-\contentsline {section}{\numberline {4.3}Limit computation}{61}
-\contentsline {subsection}{\numberline {4.3.1}Limits for excited muons $\mu ^{*}$}{61}
-\contentsline {subsection}{\numberline {4.3.2}Limits for excited leptons $e^{*}$}{61}
-\contentsline {section}{\numberline {4.4}Conclusion}{65}
+\contentsline {section}{\numberline {1.2}Theory overview}{2}
