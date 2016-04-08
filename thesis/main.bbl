@@ -1,49 +1,84 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{atlas-higgs-1}
 ATLAS Collaboration.
-\newblock Observation of a new particle in the search for the {Standard}
-  {Model} {Higgs} boson with the {ATLAS} detector at the {LHC}.
+\newblock {Observation of a new particle in the search for the Standard Model
+  Higgs boson with the ATLAS detector at the LHC}.
 \newblock {\em Phy. Lett. B}, 716:1, 2012.
 
 \bibitem{cms-higgs-1}
 CMS Collaboration.
-\newblock Observation of a new boson at a mass of 125 {GeV} with the {CMS}
-  experiment at the {LHC}.
+\newblock {Observation of a new boson at a mass of 125 GeV with the CMS
+  experiment at the LHC}.
 \newblock {\em Phy. Lett. B}, 716:30, 2012.
 
 \bibitem{cms-higgs-2}
 CMS Collaboration.
-\newblock Observation of a new boson with mass near 125 {GeV} in pp collisions
-  at $\sqrt{s} =$ 7 and 8 {TeV}.
+\newblock {Observation of a new boson with mass near 125 GeV in pp collisions
+  at $\sqrt{s} =$ 7 and 8 TeV}.
 \newblock {\em JHEP}, 06:081, 2013.
 
 \bibitem{cms-higgs-3}
 CMS Collaboration.
-\newblock Precise determination of the mass of the {Higgs} boson and tests of
+\newblock {Precise determination of the mass of the Higgs boson and tests of
   compatibility of its couplings with the standard model predictions using
-  proton collisions at 7 and 8 {TeV}.
+  proton collisions at 7 and 8 TeV}.
 \newblock {\em Eur. Phys. J. C}, 75:212, 2015.
 
 \bibitem{atlas-higgs-2}
 ATLAS Collaboration.
-\newblock Measurement of the {Higgs} boson mass from the ${H}$ $\rightarrow$
-  $\gamma$$\gamma$ and ${H}$ $\rightarrow$ ${ZZ^{*}}$ $\rightarrow$ $4l$
-  channels in pp collisions at center-of-mass energies of 7 and 8 tev with the
-  {ATLAS} detector.
+\newblock {Measurement of the Higgs boson mass from the $H$ $\rightarrow$
+  $\gamma$$\gamma$ and $H$ $\rightarrow$ $ZZ^{*}$ $\rightarrow$ $4l$ channels
+  in pp collisions at center-of-mass energies of 7 and 8 TeV with the ATLAS
+  detector}.
 \newblock {\em Phys. Rev. D}, 90:052004, 2014.
 
 \bibitem{atlas-higgs-3}
 ATLAS Collaboration.
-\newblock Evidence for the spin-0 nature of the {Higgs} boson using {ATLAS}
-  data.
+\newblock {Evidence for the spin-0 nature of the Higgs boson using ATLAS data}.
 \newblock {\em Phys. Lett. B}, 726:120, 2013.
 
 \bibitem{atlas-cms-higgs}
 CMS and ATLAS Collaboration.
-\newblock Combined {Measurement} of the {Higgs} {Boson} {Mass} in pp
-  {Collisions} at $\sqrt{s} =$ 7 and 8 {TeV} with the {ATLAS} and {CMS}
-  experiments.
+\newblock {Combined Measurement of the Higgs Boson Mass in pp Collisions at
+  $\sqrt{s} =$ 7 and 8 TeV with the ATLAS and CMS Experiments}.
 \newblock {\em Phys. Rev. Lett.}, 114:191803, 2015.
+
+\bibitem{technicolor}
+Mads~T. Frandsen.
+\newblock {Minimal Walking Technicolor}.
+\newblock 2007.
+
+\bibitem{little-higgs-1}
+B.~McElrath T.~Han, H. E.~Logan and L.-T. Wang.
+\newblock {Phenomenology of the little Higgs model}.
+\newblock {\em Phys. Rev. D}, 67:095004, 2003.
+
+\bibitem{little-higgs-2}
+M.~Schmaltz and D.~Tucker-Smith.
+\newblock {LITTLE HIGGS THEORIES}.
+\newblock {\em Annual Review of Nuclear and Particle Science}, 55:no. 1,
+  229--270, 2005.
+
+\bibitem{little-higgs-3}
+M.~Perelstein.
+\newblock {Little Higgs models and their phenomenolog}.
+\newblock {\em Progress in Particle and Neclear Physics}, 58:no. 1, 247--291,
+  2007.
+
+\bibitem{compositehiggs-1}
+D.~Marzocca R.~Contino, D.~Pappadopulo and R.~Rattazzi.
+\newblock {On the effect of resonances in composite Higgs phenomenology}.
+\newblock {\em Journal of High Energy Physic}, 2011:no. 10, 1--50, 2011.
+
+\bibitem{compositehiggs-2}
+M.~Serone D.~Marzocca and J.~Shu.
+\newblock {General composite Higgs model}.
+\newblock {\em Journal of High Energy Physics}, 2012:no. 8, 1--52, 2012.
+
+\bibitem{compositehiggs-3}
+C.~Cski B.~Bellazzini and J.~Serra.
+\newblock {Composite Higgses}.
+\newblock {\em Eur. Phys. J.}, C74:no. 5, 2766, 2014.
 
 \end{thebibliography}
