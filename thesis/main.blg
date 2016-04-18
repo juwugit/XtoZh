@@ -6,33 +6,32 @@ A level-1 auxiliary file: body/contents.aux
 A level-1 auxiliary file: body/Introduction.aux
 A level-1 auxiliary file: body/biblio.aux
 Database file #1: main.bib
-Warning--empty note in technicolor
 You've used 15 entries,
             1791 wiz_defined-function locations,
-            531 strings with 5664 characters,
-and the built_in function-call counts, 3164 in all, are:
-= -- 292
+            532 strings with 5720 characters,
+and the built_in function-call counts, 3163 in all, are:
+= -- 293
 > -- 88
 < -- 0
 + -- 37
 - -- 22
-* -- 206
-:= -- 520
+* -- 204
+:= -- 521
 add.period$ -- 45
 call.type$ -- 15
 change.case$ -- 15
 chr.to.int$ -- 0
-cite$ -- 16
+cite$ -- 15
 duplicate$ -- 130
 empty$ -- 336
 format.name$ -- 22
-if$ -- 698
+if$ -- 699
 int.to.chr$ -- 0
 int.to.str$ -- 15
 missing$ -- 14
 newline$ -- 78
 num.names$ -- 15
-pop$ -- 15
+pop$ -- 14
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
@@ -44,8 +43,7 @@ text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 1
+warning$ -- 0
 while$ -- 29
 width$ -- 17
-write$ -- 165
-(There was 1 warning)
+write$ -- 166
