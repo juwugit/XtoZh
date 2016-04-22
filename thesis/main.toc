@@ -1,5 +1,6 @@
-\contentsline {chapter}{\numberline {1}Introduction and theory overview}{1}
+\contentsline {chapter}{\numberline {1}Introduction and Theory Overview}{1}
 \contentsline {section}{\numberline {1.1}Introduction}{1}
-\contentsline {section}{\numberline {1.2}Theory overview}{2}
-\contentsline {subsection}{\numberline {1.2.1}Heavy Vector Triplet model}{2}
-\contentsline {subsection}{\numberline {1.2.2}Masses and decay widths}{3}
+\contentsline {section}{\numberline {1.2}Theory Overview}{2}
+\contentsline {subsection}{\numberline {1.2.1}Heavy Vector Triplet Model}{2}
+\contentsline {subsection}{\numberline {1.2.2}Basic Phenomenology}{3}
+\contentsline {subsection}{\numberline {1.2.3}Explicit Models}{3}

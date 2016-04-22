@@ -1,19 +1,39 @@
-\chapter{Introduction and theory overview}
+\chapter{Introduction and Theory Overview}
 
 \section{Introduction}
 This thesis presents the analysis details and the results of the search for heavy resonances decaying into a Z boson and a Higgs boson (h) at the center-of-mass energy of 8 TeV, using 19.7 $fb^{-1}$ p-p collision data. In turn, the Z boson is identified through its leptonic decays (Leptons often refer to $e$ and $\mu$ only in experiments. $l = e, \mu$). The Higgs boson h is expected to hadronically decay into a pair of b-quarks. The investigated final states consist of two charged leptons which are identified in the detector and limit the presence of the background, and two b-quarks from the hadronic Higgs decay which collects the largest possible fraction of Higgs events.
 \newline This thesis is organised as follows. In the latter part of this chapter, the heavy resonances model is introduced, including the expected cross section and the specification of model parameters. In chapter 2, the LHC and the CMS experiment are introduced, including the information of each sub-detector and the trigger system of the CMS. The details of the analysis are shown in chapter 3. This chapter reveals the way to reconstruct physical objects in CMS. By adding some proper kinematic selections on those physics objects, the interested event in data collected by the CMS detector can be selected. Moreover, this chapter shows the comparison between data and simulation. In the last chapter, the results of the search and the conclusion are shown.
 
-\section{Theory overview}
+\section{Theory Overview}
 Although the Higgs boson discovery by the ATLAS and CMS collaborations\cite{atlas-higgs-1,cms-higgs-1,cms-higgs-2} imposes strong constraints on theories beyond the Standard Model(SM), the extreme fine tuning in quantum corrections required to have a light fundamental Higgs boson with mass close to 125 GeV\cite{cms-higgs-3,atlas-higgs-2,atlas-higgs-3,atlas-cms-higgs} suggests that the Standard Model may be incomplete, and not valid beyond a scale of a few TeV. Various dynamical electroweak symmetry breaking scenarios which attempt to solve this naturalness problem, such as Minimal Walking Technicolor\cite{technicolor}, Little Higgs\cite{little-higgs-1,little-higgs-2,little-higgs-3}, or compositeHiggs models\cite{compositehiggs-1,compositehiggs-2,compositehiggs-3} predict the existence of new resonances decaying to a vector boson plus a Higgs boson.
 
-\subsection{Heavy Vector Triplet model}
-Resonant searches are typically not sensitive to all the details and the free parameters of the underlying model, but only to those parameters or combinations of parameters that control the mass of the resonance and the interactions involved in its production and decay. Therefore one can employ a simplified description of the resonance defined by a phenomenological Lagrangian where only the relevant couplings and mass parameters are retained. This model-independent strategy applies a Heavy Vector Triplet (HVT)\cite{HVT} to the Standard Model group and reproduces a large class of explicit models. In these models, new heavy vector bosons ($V^{\pm}$, $V^{0}$) that couple to the Higgs and SM gauge bosons with the parameters $g_{V}$ and $c_{H}$ and to the fermions via the combination $(g^{2}/g_{V})c_{F}$ . The parameter $g_{V}$ represents the strength of the new vector boson interaction, while $c_{H}$ and $c_{F}$ represent the couplings to the Higgs and the fermions respectively, and are expected to be of order unity in most models. The mathematical form of the simplified Lagrangian is defined in Eq.~(\ref{eq:phen-Lag}).
+\subsection{Heavy Vector Triplet Model}
+Resonant searches are typically not sensitive to all the details and the free parameters of the underlying model, but only to those parameters or combinations of parameters that control the mass of the resonance and the interactions involved in its production and decay. Therefore one can employ a simplified description of the resonance defined by a phenomenological Lagrangian where only the relevant couplings and mass parameters are retained. This model-independent strategy applies a Heavy Vector Triplet (HVT)\cite{HVT} to the Standard Model group and reproduces a large class of explicit models. In Eq.~(\ref{eq:phen-Lag}), the mathematical form of the simplified Lagrangian is defined, where $V_{\nu}^{a}$ , $a$ = 1,2,3, is a real vector with vanishing hypercharge in the adjoint representation of $SU(2)_{L}$, it decscribes one charged and one neutral heavy spin-1 particle with charge eigenstate fields, and $D_{[\mu}V_{\nu]}^{a}$ represents the covariant derivative.
 
 \begin{align} 
 \label{eq:phen-Lag}
-\mathcal{L}_{\mathcal{V}} =& -\frac{1}{4}D_{\mu}{V_{\nu}}^{a}D^{\mu}V^{\nu a}+\frac{{m_{V}^{2}}}{2}{V_{\mu}}^{a}V^{\mu a}\nonumber\\&+ig_{V}c_{H}{V_{\mu}}^{a}H^{\dagger}{\tau}^{a}{\bar{D}}^{\mu}H+\frac{g^{2}}{g_{V}}c_{F}{V_{\mu}}^{a}\sum_{f}\bar{f}_{L}{\gamma}^{\mu}{\tau}^{a}f_{L}\nonumber\\&+\frac{g_{V}}{2}c_{VVV}\epsilon_{abc}{V_{\mu}}^{a}{V_{\nu}}^{b}D^{\mu}V^{\nu c}+\textup{quadrilinear terms}
+\mathcal{L}_{\mathcal{V}} =& -\frac{1}{4}D_{[\mu}V_{\nu]}^{a}D^{[\mu}V^{\nu] a}+\frac{{m_{V}^{2}}}{2}V_{\mu}^{a}V^{\mu a}\nonumber\\&+ig_{V}c_{H}V_{\mu}^{a}H^{\dagger}{\tau}^{a}{\overset{\text{\scriptsize$\leftrightarrow$}}{D}}^{\mu}H+\frac{g^{2}}{g_{V}}c_{F}V_{\mu}^{a}\sum_{f}\bar{f}_{L}{\gamma}^{\mu}{\tau}^{a}f_{L}\nonumber\\&+\frac{g_{V}}{2}c_{VVV}\epsilon_{abc}V_{\mu}^{a}V_{\nu}^{b}D^{[\mu}V^{\nu] c}+\textup{quadrilinear terms}
 \end{align}
 
-%\subsection{Basic phenomenology}
-\subsection{Masses and decay widths}
+\begin{align}
+\label{eq:ChargedState}
+V_{\mu}^{\pm}=\frac{V_{\mu}^{1}\mp iV_{\mu}^{2}}{\sqrt{2}}\textup{ , }V_{\mu}^{0}=V_{\mu}^{3}
+\end{align}
+\begin{align}
+\label{eq:covariantD}
+D_{[\mu}V_{\nu]}^{a} = D_{\mu}V_{\nu}^{a}-D_{\nu}V_{\mu}^{a}\textup{ , }D_{\mu}V_{\nu}^{a}=\partial_{\mu}V_{\nu}^{a}+g\epsilon^{abc}W_{\mu}^{b}V_{\nu}^{c}
+\end{align}
+\newline In these models, new heavy vector bosons ($V^{\pm}, V^{0}$) that couple to the Higgs and SM gauge bosons with the parameters $g_{V}$ and $c_{H}$ and to the fermions via the combination $(g^{2}/g_{V})c_{F}$ . The parameter $g_{V}$ represents the strength of the new vector boson interaction, while $c_{H}$ and $c_{F}$ represent the couplings to the Higgs and the fermions respectively, and are expected to be of order unity in most models. 
+
+
+\subsection{Basic Phenomenology}
+\subsection*{Masses and Mixings}
+
+
+
+\subsection*{Decay Widths}
+
+
+
+
+\subsection{Explicit Models}
