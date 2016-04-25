@@ -1,18 +1,18 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2016.4.20)  22 APR 2016 20:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.25)  25 APR 2016 17:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **main.tex
 (./main.tex
-LaTeX2e <2011/06/27>
-Babel <3.9h> and hyphenation patterns for 78 languages loaded.
+LaTeX2e <2016/02/01>
+Babel <3.9q> and hyphenation patterns for 81 language(s) loaded.
 (./mitthesis.cls
 Document Class: mitthesis 1999/10/20
 \vithesis=\count79
 (/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
-Document Class: report 2007/10/19 v1.4h Standard LaTeX document class
+Document Class: report 2014/09/29 v1.4h Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo
-File: size12.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+File: size12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count80
 \c@chapter=\count81
@@ -52,15 +52,15 @@ Package: amsmath 2013/01/14 v2.14 AMS math features
 
 For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
-Package: amstext 2000/06/29 v2.01
+Package: amstext 2000/06/29 v2.01 AMS text
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
-File: amsgen.sty 1999/11/30 v2.0
+File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks14
 \ex@=\dimen105
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
-Package: amsbsy 1999/11/29 v1.2d
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 \pmbraise@=\dimen106
 )
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
@@ -109,22 +109,22 @@ LaTeX Info: Redefining \] on input line 2666.
 (./rotating.sty
 Package: rotating 2009/03/28 v2.16a rotated objects in LaTeX
  (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
-Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
 
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
-Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks19
 )
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
-Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+Package: graphics 2016/01/03 v1.0q Standard LaTeX Graphics (DPC,SPQR)
 
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
-Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 )
 (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/graphics.cfg
 File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
 )
-Package graphics Info: Driver file: pdftex.def on input line 91.
+Package graphics Info: Driver file: pdftex.def on input line 95.
 
 (/usr/share/texlive/texmf-dist/tex/latex/pdftex-def/pdftex.def
 File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
@@ -141,7 +141,7 @@ Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 \Gin@req@width=\dimen116
 )
 (/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
-Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 )
 \c@r@tfl@t=\count106
 \rotFPtop=\skip48
@@ -279,12 +279,12 @@ Chapter 1.
 ])) [5] (./main.aux
 (./body/contents.aux) (./body/Introduction.aux) (./body/biblio.aux)) ) 
 Here is how much of TeX's memory you used:
- 2582 strings out of 493304
- 33597 string characters out of 6139871
- 100123 words of memory out of 5000000
- 5976 multiletter control sequences out of 15000+600000
+ 2581 strings out of 493029
+ 33603 string characters out of 6136234
+ 101226 words of memory out of 5000000
+ 6052 multiletter control sequences out of 15000+600000
  9748 words of font info for 35 fonts, out of 8000000 for 9000
- 957 hyphenation exceptions out of 8191
+ 1141 hyphenation exceptions out of 8191
  38i,16n,23p,1030b,248s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/sha
 re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/tex
@@ -296,7 +296,7 @@ ts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type
 /amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
 nts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
 cmti12.pfb>
-Output written on main.pdf (8 pages, 112485 bytes).
+Output written on main.pdf (8 pages, 112427 bytes).
 PDF statistics:
  67 PDF objects out of 1000 (max. 8388607)
  47 compressed objects within 1 object stream
