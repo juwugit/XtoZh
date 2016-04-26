@@ -11,29 +11,123 @@ Although the Higgs boson discovery by the ATLAS and CMS collaborations\cite{atla
 Resonant searches are typically not sensitive to all the details and the free parameters of the underlying model, but only to those parameters or combinations of parameters that control the mass of the resonance and the interactions involved in its production and decay. Therefore one can employ a simplified description of the resonance defined by a phenomenological Lagrangian where only the relevant couplings and mass parameters are retained. This model-independent strategy applies a Heavy Vector Triplet (HVT)\cite{HVT} to the Standard Model group and reproduces a large class of explicit models. In Eq.~(\ref{eq:phen-Lag}), the mathematical form of the simplified Lagrangian is defined, where $V_{\nu}^{a}$ , $a$ = 1,2,3, is a real vector with vanishing hypercharge in the adjoint representation of $SU(2)_{L}$, it decscribes one charged and one neutral heavy spin-1 particle with charge eigenstate fields, and $D_{[\mu}V_{\nu]}^{a}$ represents the covariant derivative.
 
 \begin{align} 
-\label{eq:phen-Lag}
-\mathcal{L}_{\mathcal{V}} =& -\frac{1}{4}D_{[\mu}V_{\nu]}^{a}D^{[\mu}V^{\nu] a}+\frac{{m_{V}^{2}}}{2}V_{\mu}^{a}V^{\mu a}\nonumber\\&+ig_{V}c_{H}V_{\mu}^{a}H^{\dagger}{\tau}^{a}{\overset{\text{\scriptsize$\leftrightarrow$}}{D}}^{\mu}H+\frac{g^{2}}{g_{V}}c_{F}V_{\mu}^{a}\sum_{f}\bar{f}_{L}{\gamma}^{\mu}{\tau}^{a}f_{L}\nonumber\\&+\frac{g_{V}}{2}c_{VVV}\epsilon_{abc}V_{\mu}^{a}V_{\nu}^{b}D^{[\mu}V^{\nu] c}+\textup{quadrilinear terms}
+  \label{eq:phen-Lag}
+  \mathcal{L}_{\mathcal{V}} =& -\frac{1}{4}D_{[\mu}V_{\nu]}^{a}D^{[\mu}V^{\nu] a}+\frac{{m_{V}^{2}}}{2}V_{\mu}^{a}V^{\mu a}\nonumber\\&+ig_{V}c_{H}V_{\mu}^{a}H^{\dagger}{\tau}^{a}{\overset{\text{\scriptsize$\leftrightarrow$}}{D}}^{\mu}H+\frac{g^{2}}{g_{V}}c_{F}V_{\mu}^{a}\sum_{f}\bar{f}_{L}{\gamma}^{\mu}{\tau}^{a}f_{L}\nonumber\\&+\frac{g_{V}}{2}c_{VVV}\epsilon_{abc}V_{\mu}^{a}V_{\nu}^{b}D^{[\mu}V^{\nu] c}+\textup{quadrilinear terms}
 \end{align}
 
 \begin{align}
-\label{eq:ChargedState}
 V_{\mu}^{\pm}=\frac{V_{\mu}^{1}\mp iV_{\mu}^{2}}{\sqrt{2}}\textup{ , }V_{\mu}^{0}=V_{\mu}^{3}
 \end{align}
 \begin{align}
-\label{eq:covariantD}
-D_{[\mu}V_{\nu]}^{a} = D_{\mu}V_{\nu}^{a}-D_{\nu}V_{\mu}^{a}\textup{ , }D_{\mu}V_{\nu}^{a}=\partial_{\mu}V_{\nu}^{a}+g\epsilon^{abc}W_{\mu}^{b}V_{\nu}^{c}
+  D_{[\mu}V_{\nu]}^{a} = D_{\mu}V_{\nu}^{a}-D_{\nu}V_{\mu}^{a}\textup{ , }D_{\mu}V_{\nu}^{a}=\partial_{\mu}V_{\nu}^{a}+g\epsilon^{abc}W_{\mu}^{b}V_{\nu}^{c}
 \end{align}
 \newline In these models, new heavy vector bosons ($V^{\pm}, V^{0}$) that couple to the Higgs and SM gauge bosons with the parameters $g_{V}$ and $c_{H}$ and to the fermions via the combination $(g^{2}/g_{V})c_{F}$ . The parameter $g_{V}$ represents the strength of the new vector boson interaction, while $c_{H}$ and $c_{F}$ represent the couplings to the Higgs and the fermions respectively, and are expected to be of order unity in most models. 
 
 
 \subsection{Basic Phenomenology}
 \subsection*{Masses and Mixings}
+After electro-weak symmetry breaking (EWSB), the only massless state is the photon which can be identified as the gauge field associated with the unbroken $U(1)_{em}$. The two other neutral mass eigenstates are the SM $Z$ boson and one heavy vector of mass $M_{0}$ which are obtained by diagonalizing the mass matrix of the ($Z,V^{0}$) system by a rotation with angle $\theta_{N}$
+\begin{align}
+  \begin{pmatrix}
+    Z\\
+    V^{0}
+  \end{pmatrix}
+  \rightarrow
+  \begin{pmatrix}
+    \cos{\theta_{N}} & \sin{\theta_{N}}\\
+    -\sin{\theta_{N}}& \cos{\theta_{N}}
+  \end{pmatrix}
+  \begin{pmatrix}
+    Z\\
+    V^{0}
+  \end{pmatrix}
+  .
+\end{align}
+The mass matrix is
+\begin{align}
+  \label{eq:MassMatrixN}
+  \mathcal{M}_{N}^{2}=
+  \begin{pmatrix}
+    \hat{m}_{Z}^{2} & c_{H}\xi \hat{m}_{Z} \hat{m}_{V}\\
+    c_{H}\xi \hat{m}_{Z} \hat{m}_{V} & \hat{m}_{V}^{2}
+  \end{pmatrix}
+  \textup{ , where}
+  \begin{cases}
+    \hat{m}_{Z}=\frac{e\hat{\upsilon}}{2\sin{\theta_{W}}\cos{\theta_{W}}}\\
+    \hat{m}_{V}^{2}=m_{V}^{2}+g_{V}^{2}c_{VVHH}\hat{\upsilon}^{2}\\
+    \xi=\frac{g_{V}\hat{\upsilon}}{2\hat{m}_{V}}
+  \end{cases}
+  .
+\end{align}
+In the above equations $\hat{\upsilon}$ denotes the Vacuum Expetation Value (VEV) defined by $\big \langle H^{\dagger}H\big \rangle=\hat{\upsilon}^{2}/2$, and one should know the masses $\hat{m}_{Z}$ and $\hat{m}_{V}$ do not coincide with the physical $Z$ boson and new resonance masses of this model, although they do in the approximations later. The mass eigenvalues and the rotation angles are easily obtained by inverting the relations
+\begin{align}
+  \label{eq:detMN}
+  &Tr[\mathcal{M}_{N}^{2}]=\hat{m}_{Z}^{2}+\hat{m}_{V}^{2}=m_{Z}^{2}+M_{0}^{2}\textup{ ,}\nonumber\\
+  &Det[\mathcal{M}_{N}^{2}]=\hat{m}_{Z}^{2}\hat{m}_{V}^{2}(1-c_{H}^{2}\xi^{2})=m_{Z}^{2}M_{0}^{2}\textup{ ,}\nonumber\\
+  &\tan{2\theta_{N}}=\frac{2c_{H}\xi \hat{m}_{Z} \hat{m}_{V}}{\hat{m}_{V}^{2}-\hat{m}_{Z}^{2}}\textup{ .}
+\end{align}
+Notice that the tangent can be uniquely inverted because the angle $\theta_{N}$ is in the range $[-\pi/4,\pi/4]$ in the parameter region we will be interested in, where $\hat{m}_{Z}<\hat{m}_{V}$.
+\newline The situation is similar in the charged vector where the mass matrix of the ($W^{\pm},V^{\pm}$) system reads
+\begin{align}
+  \label{eq:MassMatrixC}
+  \mathcal{M}_{C}^{2}=
+  \begin{pmatrix}
+    \hat{m}_{W}^{2} & c_{H}\xi \hat{m}_{W} \hat{m}_{V}\\
+    c_{H}\xi \hat{m}_{W} \hat{m}_{V} & \hat{m}_{V}^{2}
+  \end{pmatrix}
+  \textup{ , where }
+  \hat{m}_{W}=\frac{e\hat{\upsilon}}{2\sin{\theta_{W}}}=\cos{\theta_{W}}\hat{m}_{Z}
+  \textup{ ,}
+\end{align}
+and it is diagonalized by
+\begin{align}
+  \label{eq:detMC}
+  &Tr[\mathcal{M}_{C}^{2}]=\hat{m}_{W}^{2}+\hat{m}_{V}^{2}=m_{W}^{2}+M_{\pm}^{2}\textup{ ,}\nonumber\\
+  &Det[\mathcal{M}_{C}^{2}]=\hat{m}_{W}^{2}\hat{m}_{V}^{2}(1-c_{H}^{2}\xi^{2})=m_{W}^{2}M_{\pm}^{2}\textup{ ,}\nonumber\\
+  &\tan{2\theta_{C}}=\frac{2c_{H}\xi \hat{m}_{W} \hat{m}_{V}}{\hat{m}_{V}^{2}-\hat{m}_{W}^{2}}\textup{ .}
+\end{align}
+By checking Eq.~(\ref{eq:MassMatrixN}) and Eq.~(\ref{eq:MassMatrixC}), the charged and neutral mass matrices are connected by custodial symmetry, which can be shown in full generality to imply
+\begin{align}
+  \mathcal{M}_{C}^{2}=
+  \begin{pmatrix}
+    \cos{\theta_{W}} & 0\\
+    0&1
+  \end{pmatrix}
+  \mathcal{M}_{N}^{2}
+  \begin{pmatrix}
+    \cos{\theta_{W}} & 0\\
+    0&1
+  \end{pmatrix}
+  \textup{ .}
+\end{align}
+By taking the determinant of the above equation, or equivalently by comparing the charged and neutral determinants in Eq.~(\ref{eq:detMN}) and Eq.~(\ref{eq:detMC}), we obtain a generalized custodial relation among the physical masses
+\begin{align}
+  \label{eq:custRelation}
+m_{W}^{2}M_{\pm}^{2}=\cos^{2}\theta_{W}m_{Z}^{2}M_{0}^{2}\textup{ .}
+\end{align}
+From the simple formula above, we can start to identify the physically reasonable region of the parameter space in this model. We aim at describing new vectors with masses at or above the TeV scale, but we also want the SM masses $m_{W,Z} \sim$ 100 GeV to be reproduced. Therefore we require a hierachy in the mass relation of SM $Z$ and $W$ bosons versus the new vectors.
+\begin{align}
+  \label{eq:hierachyEq}
+  \frac{\hat{m}_{W,Z}}{\hat{m}_{V}}\sim \frac{m_{W,Z}}{M_{\pm ,0}}\leq10^{-1}\ll1
+\end{align}
+In the limit of Eq.~(\ref{eq:hierachyEq}) we obtain simple approximation for $m_{W}$ and $m_{Z}$
+\begin{align}
+  &m_{Z}^{2}=\hat{m}_{Z}^{2}(1-c_{H}^{2}\xi^{2})(1+\mathcal{O}(\hat{m}_{Z}^{2}/\hat{m}_{V}^{2}))\textup{ ,}\nonumber\\
+  &m_{W}^{2}=\hat{m}_{W}^{2}(1-c_{H}^{2}\xi^{2})(1+\mathcal{O}(\hat{m}_{W}^{2}/\hat{m}_{V}^{2}))\textup{ .}
+\end{align}
+The parameter $\xi$ can be either very small or of order unity. Both cases are realized in explicit models. While $\xi\ll1$ is the most common situation, $\xi\sim1$ only occurs in strongly coupled scenarios at very large $g_{V}$. In these approximations, SM tree-level experimental observation can be reproduced to percent accuracy.
+\newline Since $\hat{m}_{W}=\cos\theta_{W}\hat{m}_{Z}$, the $W$-$Z$ mass ratio is thus given by
+\begin{align}
+  \label{eq:fracWZ}
+  \frac{m_{W}^{2}}{m_{Z}^{2}}\simeq \cos^{2}{\theta_{W}}\textup{ .}
+\end{align}
+Eq.~(\ref{eq:fracWZ}) has one important implication on the masses of the new vectors. When combined with the custodial relation Eq.~(\ref{eq:custRelation}), it tells us that the charged and neutral $V$s are practically degenerate
+\begin{align}
+  M_{\pm}^{2}=M_{0}^{2}(1+\mathcal{O}(\%))\textup{ ,}
+\end{align}
+In the following, when working at the leading order in the limit Eq.~(\ref{eq:hierachyEq}), we can ignore the mass splitting and denote the mass of the charged and the neutral states collectively as $M_{V}$. It is easy to check that in that limit $M_{V}=\hat{m}_{V}$.
 
 
 
 \subsection*{Decay Widths}
-
-
-
-
 \subsection{Explicit Models}

@@ -3,4 +3,4 @@
 \contentsline {section}{\numberline {1.2}Theory Overview}{2}
 \contentsline {subsection}{\numberline {1.2.1}Heavy Vector Triplet Model}{2}
 \contentsline {subsection}{\numberline {1.2.2}Basic Phenomenology}{3}
-\contentsline {subsection}{\numberline {1.2.3}Explicit Models}{3}
+\contentsline {subsection}{\numberline {1.2.3}Explicit Models}{6}
