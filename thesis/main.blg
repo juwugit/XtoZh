@@ -6,44 +6,44 @@ A level-1 auxiliary file: body/contents.aux
 A level-1 auxiliary file: body/Introduction.aux
 A level-1 auxiliary file: body/biblio.aux
 Database file #1: main.bib
-You've used 15 entries,
+You've used 18 entries,
             1791 wiz_defined-function locations,
-            532 strings with 5720 characters,
-and the built_in function-call counts, 3163 in all, are:
-= -- 293
-> -- 88
-< -- 0
-+ -- 37
-- -- 22
-* -- 204
-:= -- 521
-add.period$ -- 45
-call.type$ -- 15
-change.case$ -- 15
+            551 strings with 6161 characters,
+and the built_in function-call counts, 3593 in all, are:
+= -- 332
+> -- 108
+< -- 1
++ -- 45
+- -- 27
+* -- 222
+:= -- 603
+add.period$ -- 54
+call.type$ -- 18
+change.case$ -- 18
 chr.to.int$ -- 0
-cite$ -- 15
-duplicate$ -- 130
-empty$ -- 336
-format.name$ -- 22
-if$ -- 699
+cite$ -- 18
+duplicate$ -- 150
+empty$ -- 375
+format.name$ -- 27
+if$ -- 791
 int.to.chr$ -- 0
-int.to.str$ -- 15
-missing$ -- 14
-newline$ -- 78
-num.names$ -- 15
-pop$ -- 14
+int.to.str$ -- 18
+missing$ -- 15
+newline$ -- 93
+num.names$ -- 18
+pop$ -- 17
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 49
+skip$ -- 56
 stack$ -- 0
-substring$ -- 309
-swap$ -- 14
-text.length$ -- 0
+substring$ -- 318
+swap$ -- 16
+text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 29
-width$ -- 17
-write$ -- 166
+while$ -- 33
+width$ -- 20
+write$ -- 198

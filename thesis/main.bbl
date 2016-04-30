@@ -86,4 +86,20 @@ R.~Torre D.~Pappadopulo, A.~Thamm and A.~Wulzer.
 \newblock {Heavy vector triplets: bridging theory and data}.
 \newblock {\em Journal of High Energy Physics}, 2014:no. 9, 1--50, 2014.
 
+\bibitem{EquivGauge}
+Andrea Wulzer.
+\newblock {An Equivalent Gauge and the Equivalence Theorem}.
+\newblock arXiv:1309.6055 [hep-ph], http://arxiv.org/abs/1309.6055, 2013.
+
+\bibitem{modelA}
+W.-Y.~Keung V.~Barger and E.~Ma.
+\newblock {Gauge model with light W and Z bosons}.
+\newblock {\em Phys. Rev. D}, 22:727, 1980.
+
+\bibitem{CMS_AN_2015-186}
+J.~Pazzini A.~Zucchetta and M.~Zanetti.
+\newblock Search for heavy resonances decaying into a vector boson and a higgs
+  boson in the ($ll,l\nu,\nu \nu$)$b\bar{b}$ final state.
+\newblock CMS Note 2015/186, CMS, 2015.
+
 \end{thebibliography}
