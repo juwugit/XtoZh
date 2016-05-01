@@ -4,11 +4,12 @@ The top-level auxiliary file: main.aux
 The style file: unsrt.bst
 A level-1 auxiliary file: body/contents.aux
 A level-1 auxiliary file: body/Introduction.aux
+A level-1 auxiliary file: body/CMSdetector.aux
 A level-1 auxiliary file: body/biblio.aux
 Database file #1: main.bib
 You've used 18 entries,
             1791 wiz_defined-function locations,
-            551 strings with 6161 characters,
+            552 strings with 6181 characters,
 and the built_in function-call counts, 3593 in all, are:
 = -- 332
 > -- 108
