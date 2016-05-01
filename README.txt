@@ -17,8 +17,8 @@ git push -u origin master
 
 If you cannot commit your modification via ssh key, see following lines.
 
-Github seems only supports ssh way to read&write the repo, although https way also 
-displayed 'Read&Write'.
+Github seems only supports ssh way to read&write the repo, although https
+way also displayed 'Read&Write'.
 
 So you need to change your repo config on your PC to ssh way:
 
