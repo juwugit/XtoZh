@@ -9,15 +9,15 @@ A level-1 auxiliary file: body/biblio.aux
 Database file #1: main.bib
 You've used 18 entries,
             1791 wiz_defined-function locations,
-            552 strings with 6181 characters,
-and the built_in function-call counts, 3593 in all, are:
+            552 strings with 6426 characters,
+and the built_in function-call counts, 3749 in all, are:
 = -- 332
-> -- 108
+> -- 144
 < -- 1
-+ -- 45
-- -- 27
-* -- 222
-:= -- 603
++ -- 57
+- -- 39
+* -- 247
+:= -- 639
 add.period$ -- 54
 call.type$ -- 18
 change.case$ -- 18
@@ -25,8 +25,8 @@ chr.to.int$ -- 0
 cite$ -- 18
 duplicate$ -- 150
 empty$ -- 375
-format.name$ -- 27
-if$ -- 791
+format.name$ -- 39
+if$ -- 815
 int.to.chr$ -- 0
 int.to.str$ -- 18
 missing$ -- 15
@@ -36,7 +36,7 @@ pop$ -- 17
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 56
+skip$ -- 55
 stack$ -- 0
 substring$ -- 318
 swap$ -- 16
