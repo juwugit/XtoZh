@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.25)  3 MAY 2016 17:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.25)  4 MAY 2016 21:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -292,19 +292,27 @@ Package pdftex.def Info: figure/CH1/BRs_modelAvsB.png used on input line 191.
 
 (./body/CMSdetector.tex
 Chapter 2.
-
-Underfull \hbox (badness 10000) in paragraph at lines 6--8
-
- []
-
 [10
 
 
 
-]) [11]
+] <figure/CH2/CERN_Overview.jpg, id=56, 723.67007pt x 542.75255pt>
+File: figure/CH2/CERN_Overview.jpg Graphic file (type jpg)
+
+<use figure/CH2/CERN_Overview.jpg>
+Package pdftex.def Info: figure/CH2/CERN_Overview.jpg used on input line 11.
+(pdftex.def)             Requested size: 433.62pt x 325.2151pt.
+
+<figure/CH2/complex.png, id=57, 1173.38374pt x 764.8575pt>
+File: figure/CH2/complex.png Graphic file (type png)
+
+<use figure/CH2/complex.png>
+Package pdftex.def Info: figure/CH2/complex.png used on input line 18.
+(pdftex.def)             Requested size: 433.62pt x 282.64272pt.
+) [11 <./figure/CH2/CERN_Overview.jpg>] [12 <./figure/CH2/complex.png>]
 \openout2 = `body/biblio.aux'.
 
- (./body/biblio.tex (./main.bbl [12
+ (./body/biblio.tex (./main.bbl [13
 
 
 
@@ -314,13 +322,13 @@ Underfull \hbox (badness 1917) in paragraph at lines 90--93
 he-o-rem.
  []
 
-)) [13] (./main.aux (./body/contents.aux) (./body/Introduction.aux)
+)) [14] (./main.aux (./body/contents.aux) (./body/Introduction.aux)
 (./body/CMSdetector.aux) (./body/biblio.aux)) ) 
 Here is how much of TeX's memory you used:
- 2609 strings out of 493029
- 34084 string characters out of 6136234
- 104664 words of memory out of 5000000
- 6070 multiletter control sequences out of 15000+600000
+ 2623 strings out of 493029
+ 34400 string characters out of 6136234
+ 104686 words of memory out of 5000000
+ 6080 multiletter control sequences out of 15000+600000
  9748 words of font info for 35 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  38i,16n,23p,1030b,269s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -336,10 +344,10 @@ are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/te
 xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-di
 st/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on main.pdf (16 pages, 227453 bytes).
+Output written on main.pdf (17 pages, 1266643 bytes).
 PDF statistics:
- 105 PDF objects out of 1000 (max. 8388607)
- 73 compressed objects within 1 object stream
+ 110 PDF objects out of 1000 (max. 8388607)
+ 75 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 16 words of extra memory for PDF output out of 10000 (max. 10000000)
 
