@@ -32,6 +32,7 @@
 \usepackage{rotating}
 \usepackage{cite}
 \usepackage{subfigure}
+\usepackage{lineno}
 \pagestyle{plain}
 
 %% This bit allows you to either specify only the files which you wish to
@@ -57,8 +58,9 @@ process all files:}
 \include{body/contents}
 
 \pagenumbering{arabic}
+\begin{linenumbers}
 \include{body/Introduction}
-\include{body/CMSdetector}
+%\include{body/CMSdetector}
 %\include{body/Analysis}
 %\include{body/Analysis2}
 %\include{body/Systematics}
@@ -66,5 +68,6 @@ process all files:}
 \appendix
 %\bibliography{auto_generated}
 \include{body/biblio}
+\end{linenumbers}
 \end{document}
 
