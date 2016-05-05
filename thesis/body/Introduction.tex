@@ -21,7 +21,20 @@ Resonance searches are typically not sensitive to all the details and the free p
 \begin{align}
   D_{[\mu}V_{\nu]}^{a} = D_{\mu}V_{\nu}^{a}-D_{\nu}V_{\mu}^{a}\textup{ , }D_{\mu}V_{\nu}^{a}=\partial_{\mu}V_{\nu}^{a}+g\epsilon^{abc}W_{\mu}^{b}V_{\nu}^{c}
 \end{align}
-\newline In these models, new heavy vector bosons ($V^{\pm}, V^{0}$) that couple to the Higgs and SM gauge bosons with the parameters $c_{H}$ and $g_{V}$ and to the fermions via the combination $(g^{2}/g_{V})c_{F}$ . The parameter $g_{V}$ represents the strength of the new vector boson interaction, while $c_{H}$ and $c_{F}$ represent the couplings to the Higgs and the fermions respectively, and are expected to be of the order of unity in most models. 
+\begin{align}
+  \label{eq:higgsdoublet}
+  H=
+  \begin{pmatrix}
+    \phi^{+}\\
+    \phi^{-}
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    \frac{1}{\sqrt{2}}(\phi_{1}+i\phi_{2})\\
+    \frac{1}{\sqrt{2}}(\phi_{3}+i\phi_{4})
+  \end{pmatrix}
+\end{align}
+\newline In these models, new heavy vector bosons ($V^{\pm}, V^{0}$) that couple to the SM Higgs doublet (Eq.~\ref{eq:higgsdoublet}) and SM gauge bosons with the parameters $c_{H}$ and $g_{V}$ and to the fermions via the combination $(g^{2}/g_{V})c_{F}$ . The parameter $g_{V}$ represents the strength of the new vector boson interaction, while $c_{H}$ and $c_{F}$ represent the couplings to the Higgs and the fermions respectively, and are expected to be of the order of unity in most models. 
 
 
 \subsection{Basic Phenomenology}
@@ -66,8 +79,8 @@ In the above equations $\hat{\upsilon}$ denotes the Vacuum Expetation Value (VEV
   &Det[\mathcal{M}_{N}^{2}]=\hat{m}_{Z}^{2}\hat{m}_{V}^{2}(1-c_{H}^{2}\xi^{2})=m_{Z}^{2}M_{0}^{2}\textup{ ,}\nonumber\\
   &\tan{2\theta_{N}}=\frac{2c_{H}\xi \hat{m}_{Z} \hat{m}_{V}}{\hat{m}_{V}^{2}-\hat{m}_{Z}^{2}}\textup{ .}
 \end{align}
-Notice that the tangent can be uniquely inverted because the angle $\theta_{N}$ is in the range $[-\pi/4,\pi/4]$ in the parameter region we will be interested in, where $\hat{m}_{Z}<\hat{m}_{V}$.
-\newline The situation is similar in the charged vector where the mass matrix of the ($W^{\pm},V^{\pm}$) system reads
+Notice that the tangent can be uniquely inverted because the angle $\theta_{N}$ is in the range $[-\pi/4,\pi/4]$ in the parameter region we will be interested in, where $\hat{m}_{Z}<\hat{m}_{V}$, and $M_{0}$ represents the real mass eigenvalue of the neutral heavy vector boson.
+\newline The situation is similar in the charged vector mass matrix of ($W^{\pm},V^{\pm}$) system, and $M_{\pm}$ denotes the real mass eigenvalue of charged states as well.
 \begin{align}
   \label{eq:MassMatrixC}
   \mathcal{M}_{C}^{2}=
@@ -79,7 +92,7 @@ Notice that the tangent can be uniquely inverted because the angle $\theta_{N}$ 
   \hat{m}_{W}=\frac{e\hat{\upsilon}}{2\sin{\theta_{W}}}=\cos{\theta_{W}}\hat{m}_{Z}
   \textup{ ,}
 \end{align}
-and it is diagonalized by
+where it is diagonalized by
 \begin{align}
   \label{eq:detMC}
   &Tr[\mathcal{M}_{C}^{2}]=\hat{m}_{W}^{2}+\hat{m}_{V}^{2}=m_{W}^{2}+M_{\pm}^{2}\textup{ ,}\nonumber\\
@@ -156,7 +169,7 @@ where $N_{C}[f]$ is the number of colors (3 for the di-quark and 1 for the dilep
   &\Gamma_{V_{0}\rightarrow W_{L}^{+}W_{L}^{-}}\simeq\Gamma_{V_{\pm}\rightarrow W_{L}^{\pm}Z_{L}}\simeq\frac{g_{V}^{2}c_{H}^{2}M_{V}}{192\pi}\frac{(1+c_{H}c_{VVV}\xi^{2})^{2}}{(1-c_{H}^{2}\xi^{2})^{2}}=\frac{g_{V}^{2}c_{H}^{2}M_{V}}{192\pi}[1+\mathcal{O}(\xi^{2})]\textup{ ,}\nonumber\\
   &\Gamma_{V_{0}\rightarrow Z_{L}h}\simeq\Gamma_{V_{\pm}\rightarrow W_{L}^{\pm}h}\simeq\frac{g_{V}^{2}c_{H}^{2}M_{V}}{192\pi}\frac{(1-4c_{VVHH}\xi^{2})^{2}}{1-c_{H}^{2}\xi^{2}}=\frac{g_{V}^{2}c_{H}^{2}M_{V}}{192\pi}[1+\mathcal{O}(\xi^{2})]\textup{ .}\nonumber\\
 \end{align}
-Note that Eq.~(\ref{eq:DRboson}) is derived in the Equivalent Gauge\cite{EquivGauge} because the decay to transverse SM vectors is highly suppressed while to the longitudinal parts grows with the energy of the process, therefore the Unitary Gauge which is used in the original Lagrangian is instead useful. The channels that are not shown in the above equations are either forbidden, like $hh$ and $\gamma\gamma$ decays, or suppressed like the decays to transverse polarizations.
+Note that Eq.~(\ref{eq:DRboson}) is derived in the Equivalent Gauge\cite{EquivGauge} because the decay to transverse SM vectors is highly suppressed while to the longitudinal parts grows with the energy of the process, therefore the Unitary Gauge which is used in the original Lagrangian is instead useful. The channels that are not shown in the above equations are either forbidden or suppressed like the decays to transverse polarizations.
 \newline From this section, a very simple picture emerges. At small $\xi$, all the decay widths are fixed with a given resonance mass $M_{V}$ and the couplings $\{g^{2}c_{F}/g_{V}$, $g_{V}c_{H}\}$ which control the BRs in all relevant channels. Paremeters $c_{VVV},\textup{ } c_{VVHH}\textup{ and }c_{VVW}$ are basically irrelevent. Thus, the basic phenomenology of this model is well described by a good approximation.
 
 
@@ -185,10 +198,18 @@ Thus the determinate $V_{0}$ decay widths for model B ($g_{V}=3$) are
   &\Gamma_{V_{0}\rightarrow f\bar{f}'}\simeq N_{c}[f]\frac{g^{4}M_{V}}{342\pi}\nonumber\\
   &\Gamma_{V_{0}\rightarrow W^{+}W^{-}}\simeq \Gamma_{V_{0}\rightarrow Zh}\simeq \frac{3M_{V}}{64\pi}\textup{ .}
 \end{align}
-For model B$_{g_{V}=3}$ the dominant BRs are into di-bosons and the fermionic decays are extremely suppressed. Moreover, the total width increases with increasing $g_{V}$ since it is dominated by the di-boson width which grows with $g_{V}$ as expected from Eq.~({\ref{eq:DeterB}}). This model B is particularly interesting for the present search, since it predicts signal cross sections in order of fb\cite{HVT} \cite{CMS_AN_2015-186}, branching ratios to vector bosons close to unity, and thus being accessible at the LHC. In the latter chapters, the mass eigenstate of the neutral heavy vector boson in model B scenario refers to the $Z'$ particle, which is the search target of this thesis.\\
-\begin{figure}[h]
+For model B$_{g_{V}=3}$ the dominant BRs are into di-bosons and the fermionic decays are extremely suppressed. Moreover, the total width increases with increasing $g_{V}$ since it is dominated by the di-boson width which grows with $g_{V}$ as expected from Eq.~({\ref{eq:DeterB}}). This model B is particularly interesting for the present search, since it predicts signal cross sections in order of fb\cite{HVT} \cite{CMS_AN_2015-186} [Fig.~\ref{fig:xsec}], branching ratios to vector bosons close to unity, and thus being accessible at the LHC. In the latter chapters, the mass eigenstate of the neutral heavy vector boson in model B scenario refers to the $Z'$ particle, which is the search target of this thesis.\\
+\newpage
+\begin{figure}[hbtp]
   \begin{center}
     \includegraphics[width=\textwidth]{figure/CH1/BRs_modelAvsB.png}
   \end{center}
   \caption{\label{fig:BRs_AvsB}Branching ratios as a function of the resonance mass for the HVT benchmark model A(left) and model B(right).}
+\end{figure}
+
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=0.7\textwidth]{figure/CH1/xsec.png}
+  \end{center}
+  \caption{\label{fig:xsec}Theoretical production cross-section as a function of new resonance particles for HVT model B benchmark. Dash lines are 8 TeV predictions while solid lines are 13 TeV predictions.}
 \end{figure}

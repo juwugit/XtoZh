@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.5.5)  5 MAY 2016 20:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.5.5)  5 MAY 2016 22:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -287,26 +287,37 @@ Chapter 1.
 
 
 ] [2] [3] [4] [5]
-Underfull \hbox (badness 10000) in paragraph at lines 145--148
+Underfull \hbox (badness 10000) in paragraph at lines 158--161
 
  []
 
 [6] [7]
-Underfull \hbox (badness 10000) in paragraph at lines 165--167
+Underfull \hbox (badness 10000) in paragraph at lines 178--180
 
  []
 
-[8] <figure/CH1/BRs_modelAvsB.png, id=49, 1226.5825pt x 392.46625pt>
+[8]
+Underfull \hbox (badness 10000) in paragraph at lines 200--202
+
+ []
+
+[9] <figure/CH1/BRs_modelAvsB.png, id=52, 1226.5825pt x 389.455pt>
 File: figure/CH1/BRs_modelAvsB.png Graphic file (type png)
 
 <use figure/CH1/BRs_modelAvsB.png>
-Package pdftex.def Info: figure/CH1/BRs_modelAvsB.png used on input line 191.
-(pdftex.def)             Requested size: 433.62pt x 138.7426pt.
-) [9 <./figure/CH1/BRs_modelAvsB.png>]
+Package pdftex.def Info: figure/CH1/BRs_modelAvsB.png used on input line 205.
+(pdftex.def)             Requested size: 433.62pt x 137.67809pt.
+
+<figure/CH1/xsec.png, id=53, 897.3525pt x 622.325pt>
+File: figure/CH1/xsec.png Graphic file (type png)
+ <use figure/CH1/xsec.png>
+Package pdftex.def Info: figure/CH1/xsec.png used on input line 212.
+(pdftex.def)             Requested size: 303.53267pt x 210.50516pt.
+) [10 <./figure/CH1/BRs_modelAvsB.png> <./figure/CH1/xsec.png>]
 \openout2 = `body/biblio.aux'.
 
 
-(./body/biblio.tex (./main.bbl [10
+(./body/biblio.tex (./main.bbl [11
 
 
 
@@ -316,16 +327,16 @@ Underfull \hbox (badness 1917) in paragraph at lines 90--93
 he-o-rem.
  []
 
-)) [11] (./main.aux (./body/contents.aux) (./body/Introduction.aux)
+)) [12] (./main.aux (./body/contents.aux) (./body/Introduction.aux)
 (./body/biblio.aux)) ) 
 Here is how much of TeX's memory you used:
- 2806 strings out of 494953
- 37003 string characters out of 6180978
- 100881 words of memory out of 5000000
- 6018 multiletter control sequences out of 15000+600000
+ 2813 strings out of 494953
+ 37133 string characters out of 6180978
+ 103903 words of memory out of 5000000
+ 6024 multiletter control sequences out of 15000+600000
  10048 words of font info for 36 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 38i,16n,23p,1032b,326s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,16n,23p,1032b,324s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
 mex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.
@@ -339,10 +350,10 @@ e1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
 lic/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
 fonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
 m/cmti12.pfb>
-Output written on main.pdf (14 pages, 233587 bytes).
+Output written on main.pdf (15 pages, 263706 bytes).
 PDF statistics:
- 103 PDF objects out of 1000 (max. 8388607)
- 72 compressed objects within 1 object stream
+ 107 PDF objects out of 1000 (max. 8388607)
+ 74 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
