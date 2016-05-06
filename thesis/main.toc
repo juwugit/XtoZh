@@ -4,3 +4,6 @@
 \contentsline {subsection}{\numberline {1.2.1}Heavy Vector Triplet Model}{2}
 \contentsline {subsection}{\numberline {1.2.2}Basic Phenomenology}{3}
 \contentsline {subsection}{\numberline {1.2.3}Explicit Models}{8}
+\contentsline {chapter}{\numberline {2}CMS detector and LHC}{11}
+\contentsline {section}{\numberline {2.1}Large Hadron Collider}{11}
+\contentsline {section}{\numberline {2.2}Compact Muon Solenoid}{13}

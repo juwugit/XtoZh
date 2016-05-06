@@ -6,13 +6,13 @@
 2. CMS detector and LHC
    2.1 LHC
    2.2 CMS detector
-       2.2.1 Coordinate in CMS
-       2.2.2 Superconduction solenoid
-       2.2.3 Tracking system
-       2.2.4 ECAL
-       2.2.5 HCAL
-       2.2.6 Muon chamber
-   2.3 Trigger system
+       2.2   Coordinate in CMS
+       2.2   Superconduction solenoid
+       2.2.1 Tracker
+       2.2.2 ECAL
+       2.2.3 HCAL
+       2.2.4 Muon Chamber
+       2.2.5 Trigger System
 
 3. Analysis procedures
    3.1 Data sets and MC samples
