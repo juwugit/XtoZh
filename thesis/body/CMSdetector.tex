@@ -2,9 +2,12 @@
 This thesis is done via analyzing the data collected by the Compact Muon Solenid (CMS) detector at the Large Hadron Collider (LHC). CMS is one of the two largest detectors built on the LHC. This chapter will briefly introduce the LHC and the CMS detector.
 
 \section{Large Hadron Collider}
-The LHC is the world's most powerful hadron collider and the largest experimental facility ever. It was built by the European Organization for Nuclear Research (CERN) between 1998 and 2008 in collaboration with over 10,000 scientists and engineers from over 100 countries, as well as hundreds of universities and laboratories. It lies in a tunnel 27 km in circumference, as deep as 175 m beneath the France$-$Switzerland border near Geneva. The designed maximum collison energy and highest luminosity of the LHC are 14 TeV and $\textup{10}^{-34} \textup{cm}^{-2}\textup{s}^{-1}$ respectively.\\
-Other accelerators that had been originally built at CERN for previous experiments is working as an injection chain for the LHC now. The proton beam starts from LINAC, a small linear accelerator, where its energy firstly reaches 50 MeV. It then passes through a booster and goes to the PS, where it is accelerated up to 25 GeV. After that, it reaches 450 GeV in the SPS. The beam is finally injected in the LHC ring from the SPS, it is accelerated up to 4 TeV in 2012. In early 2015, the proton beam had been acceletated to 6.5 TeV, a value near its designed energy, before undergoing collision.\\
-There are four collision points at the LHC, corresponding to four main experiments, CMS, ATLAS, LHCb and ALICE. The ALICE experiment is optimized to study heavy-ion (Pb-Pb nuclei) collisions and focusing on the physics of strongly interacting matter at extreme energy densities. LHCb is a specialized b-physics experiment, measuring the parameters of CP violation in the interactions of b-hadrons. Such studies can help to explain the matter-antimatter asymmetry of the universe. Last, CMS and ATLAS are two general purpose detectors. The aims of these two experiments are investigating a wide range of physics, including the search for the beyond standard model particles, extra dimensions, and dark matter.\\
+The LHC is the world's most powerful hadron collider and the largest experimental facility ever. It was built by the European Organization for Nuclear Research (CERN) between 1998 and 2008 in collaboration with over 10,000 scientists and engineers from over 100 countries, as well as hundreds of universities and laboratories. It lies in a tunnel 27 km in circumference, as deep as 175 m beneath the France$-$Switzerland border near Geneva. The designed maximum collison energy and highest luminosity of the LHC are 14 TeV and $\textup{10}^{-34} \textup{cm}^{-2}\textup{s}^{-1}$ respectively.
+
+Other accelerators that had been originally built at CERN for previous experiments is working as an injection chain for the LHC now. The proton beam starts from LINAC, a small linear accelerator, where its energy firstly reaches 50 MeV. It then passes through a booster and goes to the PS, where it is accelerated up to 25 GeV. After that, it reaches 450 GeV in the SPS. The beam is finally injected in the LHC ring from the SPS, it is accelerated up to 4 TeV in 2012. In early 2015, the proton beam had been acceletated to 6.5 TeV, a value near its designed energy, before undergoing collision.
+
+There are four collision points at the LHC, corresponding to four main experiments, CMS, ATLAS, LHCb and ALICE. The ALICE experiment is optimized to study heavy-ion (Pb-Pb nuclei) collisions and focusing on the physics of strongly interacting matter at extreme energy densities. LHCb is a specialized b-physics experiment, measuring the parameters of CP violation in the interactions of b-hadrons. Such studies can help to explain the matter-antimatter asymmetry of the universe. Last, CMS and ATLAS are two general purpose detectors. The aims of these two experiments are investigating a wide range of physics, including the search for the beyond standard model particles, extra dimensions, and dark matter.
+
 
 \begin{figure}[hbtp]
   \begin{center}
@@ -21,10 +24,13 @@ There are four collision points at the LHC, corresponding to four main experimen
 \end{figure}
 
 \section{Compact Muon Solenoid}
-The Compact Muon Solenoid (CMS) detector is designed to cope very high rate of interactions expected to take place at the high LHC luminosity. It has the typical structure of detectors at hadron colliders: a central region ($barrel$) enclosed by two disks ($endcaps$). The structure of CMS can be seen in Fig.~(\ref{fig:CMS}).\\
+The Compact Muon Solenoid (CMS) detector is designed to cope very high rate of interactions expected to take place at the high LHC luminosity. It has the typical structure of detectors at hadron colliders: a central region ($barrel$) enclosed by two disks ($endcaps$). The structure of CMS can be seen in Fig.~(\ref{fig:CMS}).
+
 \subsection*{Solenoid and Sub-detectors}
-CMS features a powerful superconducting coil, generating a solenoidal magnetic field around 3.8 Tesla in a large volume, which hosts different sub-detctors. The magnetic field lines close through steel yoke in the outer region and the distinct sub-detectors are designed in order to obtain the highest possible resolution and the largest acceptance for every kind of particles.\\
-The innermost layer is a silicon-based tracker. Surrounding it is a scintillating crystal electromagnetic calorimeter (ECAL), which is itself surrounded with a sampling calorimeter for hadrons (HCAL). The tracker and the calorimeters are compact enough to fit inside the CMS Solenoid. Outside the magnet are the large muon detectors separated by layers of the steel yoke.\\
+CMS features a powerful superconducting coil, generating a solenoidal magnetic field around 3.8 Tesla in a large volume, which hosts different sub-detctors. The magnetic field lines close through steel yoke in the outer region and the distinct sub-detectors are designed in order to obtain the highest possible resolution and the largest acceptance for every kind of particles.
+
+The innermost layer is a silicon-based tracker. Surrounding it is a scintillating crystal electromagnetic calorimeter (ECAL), which is itself surrounded with a sampling calorimeter for hadrons (HCAL). The tracker and the calorimeters are compact enough to fit inside the CMS Solenoid. Outside the magnet are the large muon detectors separated by layers of the steel yoke.
+
 \begin{figure}[hbtp]
   \begin{center}
     \includegraphics[width=0.9\textwidth]{figure/CH2/CMS.png}
@@ -32,9 +38,31 @@ The innermost layer is a silicon-based tracker. Surrounding it is a scintillatin
   \caption{\label{fig:CMS}Schematic layout of the CMS detector.}
 \end{figure}
 \subsection*{Coordinate System}
+
 The CMS coordinate system is oriented such that the $x$-axis points to the center of the LHC ring, the $y$-axis points vertically upward and the $z$-axis is in the direction of the beam. The azimuthal angle $\phi$ is measured from the $x$-axis in the $xy$ plane and the radial coordinate in this plane is denoted by $r$. The polar angle $\theta$ is defined in the $rz$ plane, while the pseudo-rapidity $\eta=-ln\tan{(\theta/2)}$. The momentum component transverse to the beam direction, denoted by $p_{T}$, is computed from the $x$- and $y$-components, and the transverse energy is defined as $E_{T}=E\sin\theta$.
 
 \subsection{Tracker}
+Tracker is the most inner part of CMS that contacts the productions of collisions in the first place. It traces the charged particles' trajectories without considering their energy as possible. Physicists can reconstruct the vertices of the interaction and the momentum of charged particles by linking tracks to the collider's pipe and measuring the curves of particles under magnetic field.
+
+The tracking system is composed of two kinds of detector, the pixel detector and silicon strip detector. The pixel detector is built from three barrel layers at $r$=44, 73, 102 mm, and two endcap disks on each side at $z$=$\pm$345, $\pm$465 mm.
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=0.9\textwidth]{figure/CH2/tracker.png}
+  \end{center}
+  \caption{\label{fig:tracker}Schematic layout of tracker.}
+\end{figure}
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=0.4\textwidth]{figure/CH2/pixel.png}
+  \end{center}
+  \caption{\label{fig:pixel}The pixel detector inside tracker.}
+\end{figure}
+\newline And the pixel detector consists of 1440 segmented silicon sensor modules with total 66 millon readout channels. Charge carriers are distributed over several pixels. The analog pulse height information can be used to calculate the center of certain charge distribution which could improve the hit information. The spatial resolution is measured to be about 10 $\mu m$ for the $r-\phi$ plane or about 20 $\mu m$ for $z$ direction measurement.
+
+Outside the pixel detector, there comes the silicon strip detector. The barrel region of silicon strip detector is divided into two parts, the Tracker Inner Barrel (TIB) and the Tracker Outer Barrel (TOB). The former is composed of four layers of silicon sensors with a thickness of 320 $\mu m$ and of strip pitches varying from 80 to 120 $\mu m$. The TOB is made of six layers. In this sub-detector thicker silicon sensors (500 $\mu m$) are employed, while the strip pitch varies from 120 to 180 $\mu m$. The endcap region ($|\eta| >$ 1.6) is covered by the Tracker Inner Disks (TID) and the Tracker End Cap (TEC). The entire silicon strip detector is comprised of 15200 high-sensitivity modules consisting of detecting unit, supporting structure and readout electonic system.
+
+
+
 \subsection{ECAL}
 \subsection{HCAL}
 \subsection{Muon Chamber}

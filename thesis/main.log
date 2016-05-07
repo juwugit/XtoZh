@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.5.5)  7 MAY 2016 16:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.5.5)  7 MAY 2016 23:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -288,17 +288,17 @@ Chapter 1.
 
 
 ] [2] [3] [4] [5]
-Underfull \hbox (badness 10000) in paragraph at lines 158--161
+Underfull \hbox (badness 10000) in paragraph at lines 160--163
 
  []
 
 [6] [7]
-Underfull \hbox (badness 10000) in paragraph at lines 178--180
+Underfull \hbox (badness 10000) in paragraph at lines 181--183
 
  []
 
 [8]
-Underfull \hbox (badness 10000) in paragraph at lines 200--202
+Underfull \hbox (badness 10000) in paragraph at lines 203--205
 
  []
 
@@ -306,13 +306,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 200--202
 File: figure/CH1/BRs_modelAvsB.png Graphic file (type png)
 
 <use figure/CH1/BRs_modelAvsB.png>
-Package pdftex.def Info: figure/CH1/BRs_modelAvsB.png used on input line 205.
+Package pdftex.def Info: figure/CH1/BRs_modelAvsB.png used on input line 208.
 (pdftex.def)             Requested size: 433.62pt x 137.67809pt.
 
 <figure/CH1/xsec.png, id=53, 897.3525pt x 622.325pt>
 File: figure/CH1/xsec.png Graphic file (type png)
  <use figure/CH1/xsec.png>
-Package pdftex.def Info: figure/CH1/xsec.png used on input line 212.
+Package pdftex.def Info: figure/CH1/xsec.png used on input line 215.
 (pdftex.def)             Requested size: 303.53267pt x 210.50516pt.
 ) [10 <./figure/CH1/BRs_modelAvsB.png> <./figure/CH1/xsec.png>]
 \openout2 = `body/CMSdetector.aux'.
@@ -320,11 +320,6 @@ Package pdftex.def Info: figure/CH1/xsec.png used on input line 212.
 
 (./body/CMSdetector.tex
 Chapter 2.
-
-Underfull \hbox (badness 10000) in paragraph at lines 5--8
-
- []
-
 [11
 
 
@@ -333,31 +328,40 @@ Underfull \hbox (badness 10000) in paragraph at lines 5--8
 File: figure/CH2/CERN_Overview.jpg Graphic file (type jpg)
 
 <use figure/CH2/CERN_Overview.jpg>
-Package pdftex.def Info: figure/CH2/CERN_Overview.jpg used on input line 11.
+Package pdftex.def Info: figure/CH2/CERN_Overview.jpg used on input line 14.
 (pdftex.def)             Requested size: 390.25534pt x 292.69276pt.
 
 <figure/CH2/complex.png, id=62, 1173.38374pt x 764.8575pt>
 File: figure/CH2/complex.png Graphic file (type png)
 
 <use figure/CH2/complex.png>
-Package pdftex.def Info: figure/CH2/complex.png used on input line 18.
+Package pdftex.def Info: figure/CH2/complex.png used on input line 21.
 (pdftex.def)             Requested size: 390.25534pt x 254.37611pt.
- [12 <./figure/CH2/CERN_Overview.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 24--25
-
- []
-
-<figure/CH2/CMS.png, id=66, 1606.0pt x 1136.245pt>
+ [12 <./figure/CH2/CERN_Overview.jpg>] [13 <./figure/CH2/complex.png>] <figure/
+CH2/CMS.png, id=69, 1606.0pt x 1136.245pt>
 File: figure/CH2/CMS.png Graphic file (type png)
- <use figure/CH2/CMS.png>
-Package pdftex.def Info: figure/CH2/CMS.png used on input line 30.
-(pdftex.def)             Requested size: 390.25534pt x 276.10255pt.
 
-[13 <./figure/CH2/complex.png>] [14 <./figure/CH2/CMS.png>]) [15]
+<use figure/CH2/CMS.png>
+Package pdftex.def Info: figure/CH2/CMS.png used on input line 36.
+(pdftex.def)             Requested size: 390.25534pt x 276.10255pt.
+ [14 <./figure/CH2/CMS.png>]
+<figure/CH2/tracker.png, id=73, 959.585pt x 455.7025pt>
+File: figure/CH2/tracker.png Graphic file (type png)
+
+<use figure/CH2/tracker.png>
+Package pdftex.def Info: figure/CH2/tracker.png used on input line 50.
+(pdftex.def)             Requested size: 390.25534pt x 185.33032pt.
+
+<figure/CH2/pixel.png, id=74, 899.36pt x 526.96875pt>
+File: figure/CH2/pixel.png Graphic file (type png)
+
+<use figure/CH2/pixel.png>
+Package pdftex.def Info: figure/CH2/pixel.png used on input line 56.
+(pdftex.def)             Requested size: 173.44534pt x 101.62874pt.
+ [15 <./figure/CH2/tracker.png> <./figure/CH2/pixel.png>]) [16]
 \openout2 = `body/biblio.aux'.
 
-
-(./body/biblio.tex (./main.bbl [16
+ (./body/biblio.tex (./main.bbl [17
 
 
 
@@ -367,13 +371,13 @@ Underfull \hbox (badness 1917) in paragraph at lines 90--93
 he-o-rem.
  []
 
-)) [17] (./main.aux (./body/contents.aux) (./body/Introduction.aux)
+)) [18] (./main.aux (./body/contents.aux) (./body/Introduction.aux)
 (./body/CMSdetector.aux) (./body/biblio.aux)) ) 
 Here is how much of TeX's memory you used:
- 2841 strings out of 494953
- 37712 string characters out of 6180978
- 104289 words of memory out of 5000000
- 6040 multiletter control sequences out of 15000+600000
+ 2853 strings out of 494953
+ 37962 string characters out of 6180978
+ 103311 words of memory out of 5000000
+ 6050 multiletter control sequences out of 15000+600000
  10048 words of font info for 36 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  38i,16n,23p,1032b,328s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -390,10 +394,10 @@ live/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-di
 st/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/font
 s/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on main.pdf (20 pages, 2397593 bytes).
+Output written on main.pdf (21 pages, 2544418 bytes).
 PDF statistics:
- 126 PDF objects out of 1000 (max. 8388607)
- 85 compressed objects within 1 object stream
+ 131 PDF objects out of 1000 (max. 8388607)
+ 87 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 26 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 36 words of extra memory for PDF output out of 10000 (max. 10000000)
 
