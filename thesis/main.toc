@@ -7,3 +7,8 @@
 \contentsline {chapter}{\numberline {2}CMS detector and LHC}{11}
 \contentsline {section}{\numberline {2.1}Large Hadron Collider}{11}
 \contentsline {section}{\numberline {2.2}Compact Muon Solenoid}{13}
+\contentsline {subsection}{\numberline {2.2.1}Tracker}{15}
+\contentsline {subsection}{\numberline {2.2.2}ECAL}{15}
+\contentsline {subsection}{\numberline {2.2.3}HCAL}{15}
+\contentsline {subsection}{\numberline {2.2.4}Muon Chamber}{15}
+\contentsline {subsection}{\numberline {2.2.5}Trigger System}{15}
