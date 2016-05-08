@@ -35,7 +35,7 @@ The innermost layer is a silicon-based tracker. Surrounding it is a scintillatin
   \begin{center}
     \includegraphics[width=0.9\textwidth]{figure/CH2/CMS.png}
   \end{center}
-  \caption{\label{fig:CMS}Schematic layout of the CMS detector.}
+  \caption{\label{fig:CMS}Structure overview of the CMS detector.}
 \end{figure}
 \subsection*{Coordinate System}
 
@@ -61,9 +61,34 @@ The tracking system is composed of two kinds of detector, the pixel detector and
 
 Outside the pixel detector, there comes the silicon strip detector. The barrel region of silicon strip detector is divided into two parts, the Tracker Inner Barrel (TIB) and the Tracker Outer Barrel (TOB). The former is composed of four layers of silicon sensors with a thickness of 320 $\mu m$ and of strip pitches varying from 80 to 120 $\mu m$. The TOB is made of six layers. In this sub-detector thicker silicon sensors (500 $\mu m$) are employed, while the strip pitch varies from 120 to 180 $\mu m$. The endcap region ($|\eta| >$ 1.6) is covered by the Tracker Inner Disks (TID) and the Tracker End Cap (TEC). The entire silicon strip detector is comprised of 15200 high-sensitivity modules consisting of detecting unit, supporting structure and readout electonic system.
 
-
-
 \subsection{ECAL}
+
+The Electromagnetic Calorimeter (ECAL) measures the energy of photons, electrons and positrons. It it is placed just outside the tracker, but still inside the solenoid. ECAL is made of 74848 lead-tungstate (PbWO$_{4}$) crystals. This material is characterized by a high density (8.28 g/cm$^3$ ), which gives the crystals a very compact form and makes them particularly suitable to be placed inside the magnetic coil. Another reason, this material has also a fast temporal response ($\sim$10 ns) and its radiation length (X$_{0}$) of 0.89 cm give ECAL the possibility to fully contain the expansion of the electromagnetic shower.
+
+The arrangement of ECAL is shown in Fig.~(\ref{fig:ECAL}). The barrel crystals have a front face area of 2.2 $\times$ 2.2 cm$^2$ and a length of 23 cm. They are positioned at $r$= 1.29 m in pseudo-rapidity region 0 $< |\eta| <$ 1.479. The crystals in the endcaps have a 2.47 $\times$ 2.47 cm$^2$ front face, a 22 cm length and they are positioned at $z$= 3.17 m in 1.479 $< |\eta| <$ 3.0. A Preshower detector is placed in front of the endcaps crystals. The active elements of Preshower are two planes of silicon strips with a pitch of 1.9 mm, which lie behind disks of lead absorber at depths of 2X$_{0}$ and 3X$_{0}$. It allows the rejection of photon pairs from $\pi^{0}$ decays and improvesthe estimation of the direction of photons, to enhance the measurement of the two-photon invariant mass.
+
+The energy resolution of the ECAL is given by three different contributions\cite{EcalReso},
+\begin{align}
+\frac{\sigma_{E}}{E}=\frac{a}{\sqrt{E}}\oplus\frac{b}{E}\oplus c
+\end{align}
+where the first term is statistical in nature, it also contains fluctuation in showering and in the amplification through photodiodes (a$\sim$2.8\%), the second one considers electronic noise and pile-up (b$\sim$12\%) and the last term is mainly due to the calibration (c$\sim$0.3\%).
+
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=0.9\textwidth]{figure/CH2/ECAL.png}
+  \end{center}
+  \caption{\label{fig:ECAL}Schematic layout of the CMS ECAL.}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
 \subsection{HCAL}
 \subsection{Muon Chamber}
 \subsection{Trigger System}
