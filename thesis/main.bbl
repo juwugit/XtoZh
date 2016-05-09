@@ -110,4 +110,21 @@ A~Benaglia.
 \newblock {The CMS ECAL performance with examples}.
 \newblock {\em JINST}, 09:C02008, 2014.
 
+\bibitem{CMS_AN_2006-138}
+CMS~HCAL Collaboration.
+\newblock Design, performance, and calibration of cms hadron-barrel calorimeter
+  wedges.
+\newblock CMS Note 2006/138, CMS, 2006.
+
+\bibitem{CMS_AN_2004-020}
+Victor~Daniel Elvira.
+\newblock Measurement of the pion energy response and resolution in the cms
+  hcal test beam 2002 experiment.
+\newblock CMS Note 2004/020, CMS, 2004.
+
+\bibitem{L1T}
+on~behalf of the CMS~Collaboration J.~Brooke.
+\newblock {Performance of the CMS Level-1 Trigger}.
+\newblock arXiv:1302.2469 [hep-ex], http://arxiv.org/abs/1302.2469, 2013.
+
 \end{thebibliography}

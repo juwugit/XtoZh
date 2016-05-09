@@ -33,18 +33,18 @@ The innermost layer is a silicon-based tracker. Surrounding it is a scintillatin
 
 \begin{figure}[hbtp]
   \begin{center}
-    \includegraphics[width=0.9\textwidth]{figure/CH2/CMS.png}
+    \includegraphics[width=\textwidth]{figure/CH2/CMS.png}
   \end{center}
   \caption{\label{fig:CMS}Structure overview of the CMS detector.}
 \end{figure}
 \subsection*{Coordinate System}
 
-The CMS coordinate system is oriented such that the $x$-axis points to the center of the LHC ring, the $y$-axis points vertically upward and the $z$-axis is in the direction of the beam. The azimuthal angle $\phi$ is measured from the $x$-axis in the $xy$ plane and the radial coordinate in this plane is denoted by $r$. The polar angle $\theta$ is defined in the $rz$ plane, while the pseudo-rapidity $\eta=-ln\tan{(\theta/2)}$. The momentum component transverse to the beam direction, denoted by $p_{T}$, is computed from the $x$- and $y$-components, and the transverse energy is defined as $E_{T}=E\sin\theta$.
+The CMS coordinate system is oriented such that the $x$-axis points to the center of the LHC ring, the $y$-axis points vertically upward and the $z$-axis is in the direction of the beam. The azimuthal angle $\phi$ is measured from the $x$-axis in the $xy$ plane and the radial coordinate in this plane is denoted by $r$. The polar angle $\theta$ is defined in the $rz$ plane, while the pseudo-rapidity $\eta = -ln\tan{(\theta/2)}$. The momentum component transverse to the beam direction, denoted by $p_{T}$, is computed from the $x$- and $y$-components, and the transverse energy is defined as $E_{T} = E\sin\theta$.
 
 \subsection{Tracker}
 Tracker is the most inner part of CMS that contacts the productions of collisions in the first place. It traces the charged particles' trajectories without considering their energy as possible. Physicists can reconstruct the vertices of the interaction and the momentum of charged particles by linking tracks to the collider's pipe and measuring the curves of particles under magnetic field.
 
-The tracking system is composed of two kinds of detector, the pixel detector and silicon strip detector. The pixel detector is built from three barrel layers at $r$=44, 73, 102 mm, and two endcap disks on each side at $z$=$\pm$345, $\pm$465 mm.
+The tracking system is composed of two kinds of detector, the pixel detector and silicon strip detector. The pixel detector is built from three barrel layers at $r$ = 44, 73, 102 mm, and two endcap disks on each side at $z$ = $\pm$345, $\pm$465 mm.
 \begin{figure}[hbtp]
   \begin{center}
     \includegraphics[width=0.9\textwidth]{figure/CH2/tracker.png}
@@ -63,15 +63,15 @@ Outside the pixel detector, there comes the silicon strip detector. The barrel r
 
 \subsection{ECAL}
 
-The Electromagnetic Calorimeter (ECAL) measures the energy of photons, electrons and positrons. It it is placed just outside the tracker, but still inside the solenoid. ECAL is made of 74848 lead-tungstate (PbWO$_{4}$) crystals. This material is characterized by a high density (8.28 g/cm$^3$ ), which gives the crystals a very compact form and makes them particularly suitable to be placed inside the magnetic coil. Another reason, this material has also a fast temporal response ($\sim$10 ns) and its radiation length (X$_{0}$) of 0.89 cm give ECAL the possibility to fully contain the expansion of the electromagnetic shower.
+The Electromagnetic Calorimeter (ECAL) measures the energy of photons, electrons and positrons. It it is placed just outside the tracker, but still inside the solenoid. ECAL is made of 74848 lead-tungstate (PbWO$_{4}$) crystals. This material is characterized by a high density (8.28 g/cm$^3$ ), which gives the crystals a very compact form and makes them particularly suitable to be placed inside the magnetic coil. Another reason, this material has also a fast temporal response ($\sim$10 ns) and its radiation length ($X_{0}$) of 0.89 cm give ECAL the possibility to fully contain the expansion of the electromagnetic shower.
 
-The arrangement of ECAL is shown in Fig.~(\ref{fig:ECAL}). The barrel crystals have a front face area of 2.2 $\times$ 2.2 cm$^2$ and a length of 23 cm. They are positioned at $r$= 1.29 m in pseudo-rapidity region 0 $< |\eta| <$ 1.479. The crystals in the endcaps have a 2.47 $\times$ 2.47 cm$^2$ front face, a 22 cm length and they are positioned at $z$= 3.17 m in 1.479 $< |\eta| <$ 3.0. A Preshower detector is placed in front of the endcaps crystals. The active elements of Preshower are two planes of silicon strips with a pitch of 1.9 mm, which lie behind disks of lead absorber at depths of 2X$_{0}$ and 3X$_{0}$. It allows the rejection of photon pairs from $\pi^{0}$ decays and improvesthe estimation of the direction of photons, to enhance the measurement of the two-photon invariant mass.
+The arrangement of ECAL is shown in Fig.~(\ref{fig:ECAL}). The barrel crystals have a front face area of 2.2 $\times$ 2.2 cm$^2$ and a length of 23 cm. They are positioned at $r$ = 1.29 m in pseudo-rapidity region 0 $< |\eta| <$ 1.479. The crystals in the endcaps have a 2.47 $\times$ 2.47 cm$^2$ front face, a 22 cm length and they are positioned at $z$ = 3.17 m in 1.479 $< |\eta| <$ 3.0. A Preshower detector is placed in front of the endcaps crystals. The active elements of Preshower are two planes of silicon strips with a pitch of 1.9 mm, which lie behind disks of lead absorber at depths of 2$X_{0}$ and 3$X_{0}$. It allows the rejection of photon pairs from $\pi^{0}$ decays and improvesthe estimation of the direction of photons, to enhance the measurement of the two-photon invariant mass.
 
-The energy resolution of the ECAL is given by three different contributions\cite{EcalReso},
+The energy resolution of the ECAL is given by three different contributions\cite{EcalReso} (E in GeV),
 \begin{align}
-\frac{\sigma_{E}}{E}=\frac{a}{\sqrt{E}}\oplus\frac{b}{E}\oplus c
+\frac{\sigma_{E}}{E}=\frac{2.8\%}{\sqrt{E}}\oplus\frac{12\%}{E}\oplus 0.3\%
 \end{align}
-where the first term is statistical in nature, it also contains fluctuation in showering and in the amplification through photodiodes (a$\sim$2.8\%), the second one considers electronic noise and pile-up (b$\sim$12\%) and the last term is mainly due to the calibration (c$\sim$0.3\%).
+where the first term is statistical in nature, it also contains fluctuation in showering and in the amplification through photodiodes, the second one considers electronic noise and pile-up and the last term is mainly due to the calibration.
 
 \begin{figure}[hbtp]
   \begin{center}
@@ -80,15 +80,62 @@ where the first term is statistical in nature, it also contains fluctuation in s
   \caption{\label{fig:ECAL}Schematic layout of the CMS ECAL.}
 \end{figure}
 
-
-
-
-
-
-
-
-
-
 \subsection{HCAL}
+
+The hadron calorimeter (HCAL) is placed mainly between ECAL and the magnet coil. It measures the energy of hadrons and mesons. Additionally it provides indirect measurement of the presence of non-interacting, uncharged particles such as neutrinos. The design is strongly influenced by these aims, hence an important requirement is the high hermeticity (the ability to capture every particle emerging from the collisions). This means the detector must cover the biggest possible portion of the solid angle.
+
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=0.9\textwidth]{figure/CH2/HCAL.png}
+  \end{center}
+  \caption{\label{fig:HCAL}Longitudinal view of one quarter of CMS and the locations of HB (hadron barrel calorimeter), HE (hadron endcap calorimeter), HF (hadron forward calorimeter) and HO (hadron outer calorimeter)}
+\end{figure}
+
+For this reason, a hadron forward calorimeter is required, which is placed outside the magnet return yokes, with a total coverage of 3 $< |\eta| <$ 5.31 at 11 m from the interaction point. Moreover, an outer hadronic calorimeter is placed in the first muon absorber layer in order to enhance the containment of high energy jets in the central region of the detector.
+
+HCAL is a sampling calorimeter, whose active elements are plastic scintillators interleaved with brass absorber plates and read out by wavelength shifting fibers. Brass has been chosen as absorber material for its short interaction length and because it is non-magnetic. The thickness of the absorber layers is between 60 mm in the barrel and 80 mm in the endcaps. The barrel has 5.46 interaction lengths at $\eta$ = 0 and 10.82 at $\eta$ = 1.3, while the endcaps have an average of 11 interaction lengths\cite{CMS_AN_2006-138}.
+
+The HCAL energy resolution (E in GeV and measured by pion) \cite{CMS_AN_2004-020} is
+\begin{align}
+\frac{\sigma_{E}}{E}\simeq\frac{a}{\sqrt{E}}\oplus 5\%
+\end{align}
+where a $\simeq$ 65\% in the barrel, a $\simeq$ 85\% in the endcaps and a $\simeq$ 100\% in the hadron forward calorimeter.
+
 \subsection{Muon Chamber}
+
+The efficient detection of muons has primary importance, as muons represent a clear signature for a large number of processes. Muons can penetrate several meters of iron without interacting. Unlike most particles, they are not stopped by any of calorimeters in CMS. Therefore, chambers to detect muons are placed at the very edge of the experiment where they are the only particles likely to register a signal.
+
+The muon system fulfills three purposes, muon identification, momentum measurement and triggering. Three different types of gaseous detectors are used for CMS muon system depending on the requirements. 
+
+\subsection*{Drift Tube}
+The drift tube (DT) system measures muon positions in the barrel part of the detector. Each DT chamber, on average 2 m $\times$ 2.5 m in size, consists of 12 aluminium layers, arranged in three groups of four segmentations, each with up to 60 4-cm-wide tubes that contain a stretched wire within each gas volume. The middle group measures the coordinate along the direction parallel to the beam and the two outside groups measure the perpendicular coordinate.
+
+\subsection*{Cathod Strip Chamber}
+In the two endcaps, where the muon flux and the residual inhomogeneous magnetic field are higher, cathode strip chambers (CSC) are used. CSC is composed of anode wires and cathod strips in the gas volume. The chambers are arranged in 4 disks perpendicular to the beam, and in concentric rings (3 rings in the innermost station, 2 in the others) in each of the endcaps.
+
+\subsection*{Resistive Plate Chambers}
+Resistive plate chambers (RPC) are fast gaseous detectors that provide a muon trigger system parallel with DTs and CSCs. Each RPC consists of two parallel plates, a positively charged anode and a negatively charged cathode, both made of a very high resistivity plastic material and separated by a gas volume.
+
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=0.9\textwidth]{figure/CH2/MuonSys.png}
+  \end{center}
+  \caption{\label{fig:MuonSys}Slice view of one quarter of muon chamber system.}
+\end{figure}
+
 \subsection{Trigger System}
+
+To have a good chance of producing rare particles, a very large number of collisions is required. Most collision events in the detector are soft and do not produce interesting effects. The amount of data from each crossing is approximately 1 megabytes, which at the 40 MHz crossing rate would result in 40 terabytes of data a second, an amount that the experiment cannot store. The task of the trigger system is to reduce the storage rate while keeping a high efficiency on the potentially interesting events. In CMS the input rate is reduced in two steps, Level-1 Trigger (L1T) and High-Level Trigger (HLT).
+
+\subsection*{Level-1 Trigger}
+After the Level-1 Trigger selection, the event recording frequency is 100kHz\cite{L1T}, which is much smaller than the collision rate. The L1T objects are particles (such as photons, muons and elections), jet candidates, global transverse energy and missing transverse energy. Level-1 Trigger just choose the event with $E_{T}$ and $P_{T}$ higher than the threshols.
+
+\subsection*{High Level Trigger}
+High Level Trigger is behind the readout buffers after Level-1 Trigger. It reduces the data output rate to 100Hz and uses all the information from CMS including the sub-detectors. The reconstruction algorithms are the same as the off-line analysis. However the triggering procedure doesn't need maximal precision, therefore these algorithms are modified to be faster even with lower resolution.
+
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=0.9\textwidth]{figure/CH2/trigger.png}
+  \end{center}
+  \caption{\label{fig:trigger}CMS triggering and data acquisition architecture.}
+\end{figure}
