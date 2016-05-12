@@ -127,4 +127,17 @@ J.~Brooke on~behalf of~the CMS~Collaboration.
 \newblock {Performance of the CMS Level-1 Trigger}.
 \newblock arXiv:1302.2469 [hep-ex], http://arxiv.org/abs/1302.2469, 2013.
 
+\bibitem{MG5}
+J.~Alwall, R.~Frederix, S.~Frixione, V.~Hirschi, F.~Maltoni, O.~Mattelaer,
+  H.-S. Shaoand~T. Stelzer, P.~Torrielli, and M.~Zaro.
+\newblock {The automated computation of tree-level and next-to-leading order
+  differential cross sections, and their matching to parton shower
+  simulations}.
+\newblock {\em JHEP}, 07:079, 2014.
+
+\bibitem{PYTHIA}
+Torbjorn Sjostrand, Stephen Mrenna, and Peter Skands.
+\newblock {PYTHIA 6.4 Physics and Manual}.
+\newblock {\em JHEP}, 0605:026, 2006.
+
 \end{thebibliography}
