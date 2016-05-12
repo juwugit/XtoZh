@@ -13,4 +13,5 @@
 \contentsline {subsection}{\numberline {2.2.4}Muon Chamber}{19}
 \contentsline {subsection}{\numberline {2.2.5}Trigger System}{20}
 \contentsline {chapter}{\numberline {3}Analysis Procedures}{22}
-\contentsline {section}{\numberline {3.1}Data Sets and Monte Carlo Samples}{22}
+\contentsline {section}{\numberline {3.1}Monte Carlo Samples and Data sets}{22}
+\contentsline {subsection}{\numberline {3.1.1}Signal MC}{22}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.5.5)  11 MAY 2016 21:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.5.5)  12 MAY 2016 16:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -406,10 +406,10 @@ Chapter 3.
 
 
 
-]
+] [23]
 \openout2 = `body/biblio.aux'.
 
- (./body/biblio.tex (./main.bbl [23
+ (./body/biblio.tex (./main.bbl [24
 
 
 
@@ -419,16 +419,16 @@ Underfull \hbox (badness 1917) in paragraph at lines 90--93
 he-o-rem.
  []
 
-)) [24] (./main.aux (./body/contents.aux) (./body/Introduction.aux)
+)) [25] (./main.aux (./body/contents.aux) (./body/Introduction.aux)
 (./body/CMSdetector.aux) (./body/Analysis1.aux) (./body/biblio.aux)) ) 
 Here is how much of TeX's memory you used:
- 2889 strings out of 494953
- 38639 string characters out of 6180978
- 103725 words of memory out of 5000000
- 6075 multiletter control sequences out of 15000+600000
+ 2891 strings out of 494953
+ 38676 string characters out of 6180978
+ 103736 words of memory out of 5000000
+ 6077 multiletter control sequences out of 15000+600000
  10048 words of font info for 36 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 38i,16n,23p,1032b,328s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,16n,23p,1032b,349s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/sha
 re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/tex
 live/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/t
@@ -442,10 +442,10 @@ ss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pf
 b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr
 /share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/
 texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on main.pdf (27 pages, 4628440 bytes).
+Output written on main.pdf (28 pages, 4630313 bytes).
 PDF statistics:
- 157 PDF objects out of 1000 (max. 8388607)
- 101 compressed objects within 2 object streams
+ 160 PDF objects out of 1000 (max. 8388607)
+ 103 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  56 words of extra memory for PDF output out of 10000 (max. 10000000)
 
