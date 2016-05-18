@@ -140,4 +140,9 @@ Torbjorn Sjostrand, Stephen Mrenna, and Peter Skands.
 \newblock {PYTHIA 6.4 Physics and Manual}.
 \newblock {\em JHEP}, 0605:026, 2006.
 
+\bibitem{POWHEG}
+Stefano Frixione, Paolo Nason, and Giovanni Ridolfi.
+\newblock {The POWHEG-hvq manual version 1.0}.
+\newblock arXiv:0707.3081 [hep-ph], http://arxiv.org/abs/0707.3081, 2007.
+
 \end{thebibliography}
