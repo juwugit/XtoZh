@@ -2,9 +2,10 @@
 % 3. Analysis procedures
 %    3.1 Data sets and MC samples
 %        3.1.X sub-sections for samples
-%        3.1.Y Trigger
-%    3.2 Physics objects reconstruction and identification
-%        3.2.X sub-sections for physics objects
+%    3.2 Trigger
+%    3.3 Physics objects reconstruction and identification
+%        3.3.X sub-sections for physics objects
+
 \chapter{Analysis Procedures}
 
 In this chapter, the analysis procedures of the search for $Z'$ decaying into $Z$h in $llbb$ final state are reported. The data sets and Monte Carlo (MC) samples we used in this analysis will be indicated. Physics objects reconstruction and event selections are also introduced. Moreover, background yields and the effects of systematic uncertainties will be demonstrated in the end of this chapter.
@@ -12,7 +13,7 @@ In this chapter, the analysis procedures of the search for $Z'$ decaying into $Z
 \section{Monte Carlo Samples and Data sets}
 
 \subsection{Signal MC}
-As introduced in section 1.2.3, the signal hypothesis is HVT model B benchmark. The heavy resonance ($Z'$) is tested using a wide set of masses from 800 GeV to 2000 GeV, one masspoint every 100 GeV (Tab.~\ref{tab:TableSignalMC}). The signal is simulated by MadGraph5\_aMC$@$NLO\cite{MG5} in LO mode, as a narrow spin-1 neutral resonance and is forced to decay in the $Z'\rightarrow Zh\rightarrow llqq$ channel. Showering and hadronization are performed with PYTHIA6\cite{PYTHIA}.
+As introduced in section 1.2.3, the signal hypothesis is HVT model B benchmark. The heavy resonance ($Z'$) is tested using a wide set of masses from 800 GeV to 2000 GeV, one masspoint every 100 GeV (Table~\ref{tab:TableSignalMC}). The signal is simulated by MadGraph5\_aMC$@$NLO\cite{MG5} in LO mode, as a narrow spin-1 neutral resonance and is forced to decay in the $Z'\rightarrow Zh\rightarrow llqq$ channel. Showering and hadronization are performed with PYTHIA6\cite{PYTHIA}.
 \begin{figure}[hbtp]
   \begin{center}
     \includegraphics[width=0.4\textwidth]{figure/CH3/ZPrimeTo2l2q.png}
@@ -55,7 +56,7 @@ Other sources of background considered are SM di-boson productions (WW, WZ and Z
 \begin{center}
   \begin{table}[h]
     \begin{center}
-      \begin{tabular}{|c|c|c|c|}
+      \begin{tabular}{|c|c|c|}
         \hline
         Sample & Number of Processed Events & $\sigma_{NLO}$(pb) \\ \hline
         DYJetsToLL\_PtZ-70To100 & 11764538 & 63.5 \\ \hline
@@ -70,6 +71,33 @@ Other sources of background considered are SM di-boson productions (WW, WZ and Z
     \caption{\label{tab:TabBkgMC}Background samples used in the analysis.}    
   \end{table}
 \end{center}
+
+\subsection{Data Samples}
+In this analysis, the full CMS data collected in 2012 is used, corresponding to the integrated luminosity of 19.7 fb$^{-1}$ at center-of-mass energy $\sqrt{s} = $8 TeV. For each lepton channel, there are four datasets. All datasets are collected with a double muon or a double electron trigger, as explained in detail in the next section. The trigger algorithm employed for the electron samples doesn't use any information from the tracker but only the energy deposite in the ECAL. This expedient is implemented in order to avoid any possible inefficiencies due to the presence of two tracks very close to each other when the Z is highly boosted and its decay products are very collimated. Such a trigger is contained in the Photon/DoublePhotonHighPt dataset. The full dataset names are listed in Table~\ref{tab:TabDataSet}.
+
+\begin{center}
+  \begin{table}[h]
+    \begin{center}
+      \begin{tabular}{|c|c|}
+        \hline
+        AOD Sample & Luminosity (pb$^{-1}$) \\ \hline
+        DoubleMu/Run2012A-22Jan2013-v1 & 876.225 \\ \hline
+        DoubleMuParked/Run2012B-22Jan2013-v1 & 4409 \\ \hline
+        DoubleMuParked/Run2012C-22Jan2013-v1 & 7017 \\ \hline
+        DoubleMuParked/Run2012D-22Jan2013-v1 & 7369 \\ \hline
+        Photon/Run2012A-22Jan2013-v1 &  876.225 \\ \hline
+        DoublePhotonHighPt/Run2012B-22Jan2013-v1 & 4412 \\ \hline
+        DoublePhotonHighPt/Run2012C-22Jan2013-v1 & 7055 \\ \hline
+        DoublePhotonHighPt/Run2012D-22Jan2013-v1 & 7369 \\
+        \hline
+      \end{tabular}
+    \end{center}
+    \caption{\label{tab:TabDataSet}Data sets used in this analysis.}    
+  \end{table}
+\end{center}
+
+\section{Trigger}
+
 
 
 
