@@ -32,5 +32,3 @@ So you need to change your repo config on your PC to ssh way:
 
    4. Save config file and quit. now you could use git push origin master
       to sync your repo on GitHub
-
-
