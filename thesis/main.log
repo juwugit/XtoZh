@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.5.5)  19 MAY 2016 23:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.5.5)  21 MAY 2016 21:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -417,11 +417,20 @@ Overfull \hbox (2.39784pt too wide) in paragraph at lines 26--44
 
 
 
-] [23 <./figure/CH3/ZPrimeTo2l2q.png>] [24]) [25]
+] [23 <./figure/CH3/ZPrimeTo2l2q.png>] [24]
+Underfull \hbox (badness 10000) in paragraph at lines 100--102
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 103--106
+
+ []
+
+) [25]
 \openout2 = `body/biblio.aux'.
 
- (./body/biblio.tex
-(./main.bbl [26
+ (./body/biblio.tex (./main.bbl [26
 
 
 
@@ -454,7 +463,7 @@ ss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pf
 b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr
 /share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/
 texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on main.pdf (30 pages, 4654548 bytes).
+Output written on main.pdf (30 pages, 4655534 bytes).
 PDF statistics:
  168 PDF objects out of 1000 (max. 8388607)
  107 compressed objects within 2 object streams
