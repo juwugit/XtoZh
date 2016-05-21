@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.5.5)  21 MAY 2016 21:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.5.5)  21 MAY 2016 21:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -427,10 +427,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 103--106
 
  []
 
-) [25]
+[25]) [26]
 \openout2 = `body/biblio.aux'.
 
- (./body/biblio.tex (./main.bbl [26
+ (./body/biblio.tex (./main.bbl [27
 
 
 
@@ -440,7 +440,7 @@ Underfull \hbox (badness 1917) in paragraph at lines 90--93
 he-o-rem.
  []
 
-)) [27] (./main.aux (./body/contents.aux) (./body/Introduction.aux)
+)) [28] (./main.aux (./body/contents.aux) (./body/Introduction.aux)
 (./body/CMSdetector.aux) (./body/Analysis1.aux) (./body/biblio.aux)) ) 
 Here is how much of TeX's memory you used:
  2903 strings out of 494953
@@ -463,10 +463,10 @@ ss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pf
 b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr
 /share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/
 texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on main.pdf (30 pages, 4655534 bytes).
+Output written on main.pdf (31 pages, 4656422 bytes).
 PDF statistics:
- 168 PDF objects out of 1000 (max. 8388607)
- 107 compressed objects within 2 object streams
+ 172 PDF objects out of 1000 (max. 8388607)
+ 110 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  61 words of extra memory for PDF output out of 10000 (max. 10000000)
 
