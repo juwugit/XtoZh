@@ -1,4 +1,4 @@
-# $1 = El/Mu
+# $1 = El/Mu/FN
 # $sh run_AllMassPoints.sh El
 
 sh run_2d_Shape.sh $1 800

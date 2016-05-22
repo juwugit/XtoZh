@@ -1,3 +1,5 @@
+# $1 = Cen, Up or Down
+
 hadd Bkg_estimation/Total_data_FN_$1.root Bkg_estimation/Total_data_El_$1.root Bkg_estimation/Total_data_Mu_$1.root
 
 

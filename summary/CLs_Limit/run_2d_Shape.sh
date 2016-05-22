@@ -1,4 +1,4 @@
-# $1 = El/Mu
+# $1 = El/Mu/FN
 # $2 = XMass
 # $sh run_2d_Shape.sh El 900
 
