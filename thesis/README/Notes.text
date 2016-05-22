@@ -3,13 +3,20 @@ This text file will be deleted after this thesis is finished.
 
 3. Analysis procedures
    3.1 Data sets and MC samples
-       3.1.X sub-sections for samples
-       3.1.Y Trigger
-   3.2 Physics objects reconstruction and identification
-       3.2.X sub-sections for physics objects
-   3.3 Event and object selection
-   3.4 Data and MC comparison
-   3.5 Background estimation
-   3.6 Systematic uncertainty
+   3.2 Trigger
+   3.3 Physics objects reconstruction and identification
+       3.3.1 electron reconstruction and selection
+       3.3.2 muon reconstruction and selection
+       3.3.3 jet reconstruction and selection
+       3.3.4 prunedjet mass
+       3.3.5 b-tagging
+       
+   3.4 Event and object selection
+       3.4.1 Event topology
+       3.4.2 pileup
+       
+   3.5 Data and MC comparison
+   3.6 Background estimation
+   3.7 Systematic uncertainty
 
 4. Results and conclusion

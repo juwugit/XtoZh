@@ -98,20 +98,26 @@ In this analysis, the full CMS data collected in 2012 is used, corresponding to 
 
 \section{Trigger}
 Since the final state contains two same flavour leptons and at least one jet, we perform this analysis on the DoubleMu and Photon/DoublePhotonHighPt datasets. The first dataset is triggered by two muons, the second one is triggered by two eletrons. These triggers are:
-\newline
+\begin{itemize}
+\item HLT\_Mu22\_TkMu8* (for DoubleMu datasets)
+\item HLT\_DoubleEle33\_* (for Photon/DoublePhontonHighPt datasets)
+\end{itemize}
 
-\noindent
-$\bullet$ HLT\_Mu22\_TkMu8* (for DoubleMu datasets)\\
-$\bullet$ HLT\_DoubleEle33\_* (for Photon/DoublePhontonHighPt datasets)\\
-
-
-\noindent
 The muon trigger has a double $p_{T}$ threshold, requires leading muon $p_{T}$ greater than 22 GeV and sub-leading muon $p_{T}$ greater than 8 GeV. Differently, the double electron trigger requires a higher threshold of 33 GeV to electrons. The trigger efficiencies are close to 1 in both cases.
+
+\section{Physics Objects}
+
+\subsection{Muon}
+\subsection*{Reconstruction}
+The muon reconstruction algorithm at CMS takes advantage of the redundancy of detection methods. Muon tracks are first reconstructed independently in the inner tracker (tracker track) and in the muon system (standalone track). Based on these objects, two reconstruction approaches are used\cite{MuonReco}:
+\begin{itemize}
+\item $Globol~Muon$ (outside-in): Starting from a standalone track, this algorithm finds a best tracker track to match the standalone track. Then, the fit of the track is repeated using the hits both in the tracker and in the muon system\cite{KF}. The resulting object is called a $Global~Muon$. At large transverse momentum ($pt > $200 GeV), the global muon fit can improve the momentum resolution compared to the tracker only fit.
+\item $Tracker~Muon$ (inside-out): A tracker muon is reconstructed by an opposite direction from a global muon. In this approach, all tracker tracks with $p_{T} >$ 0.5 GeV and the total momentum $p >$ 2.5 GeV are considered as possible muon candidates. The extrapolation to the muon system takes into account the magnetic field, average expected energy losses, and multiple scattering in the detector material. If at least one muon segment matches the extrapolated track, the corresponding track track qualifies as a $Tracker~Muon$. This algorithm is useful for low-$p_{T}$ muons that are not fully penetrate the muon system, and therefore only register a few hits
+\end{itemize}
+
+If no match is found when extrapolating outside-in, the standalone track is stored as a $Stanalone~Muon$. This happens only for less than 1\% of the muons produced in a collison, and the reconstruction efficiency is about 99\% for the muon which carries enough high momentum within detector coverage\cite{MuonReco}.
+
 \newpage
-
-\section{Physics Objects Reconstruction and Identification}
-
-
-
-
+\subsection*{Identification}
+TEST.
 
