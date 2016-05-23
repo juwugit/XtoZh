@@ -156,4 +156,9 @@ Wolfgang Adam, Boris Mangano, Thomas Speer, and Teddy Todorow.
 \newblock Track reconstruction in the cms tracker.
 \newblock CMS Note 2006/041, CMS, 2006.
 
+\bibitem{MuonID}
+CMS Collaboration.
+\newblock {Baseline muon selections for Run-I}.
+\newblock https://twiki.cern.ch/twiki/bin/view/CMSPublic/SWGuideMuonId.
+
 \end{thebibliography}

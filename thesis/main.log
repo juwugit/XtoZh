@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.5.5)  22 MAY 2016 21:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.5.5)  23 MAY 2016 22:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -173,6 +173,121 @@ Package: lineno 2005/11/02 line numbers on paragraphs v4.41
 \bframebox=\box34
 LaTeX Info: Redefining \\ on input line 3056.
 )
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2012/11/06 v6.83m Hypertext links for LaTeX
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+Package: hobsub-hyperref 2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
+
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty
+Package: hobsub-generic 2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2012/05/28 v1.13 Construct package bundles (HO)
+Package hobsub Info: Skipping package `infwarerr' (already loaded).
+Package hobsub Info: Skipping package `ltxcmds' (already loaded).
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+Package: intcalc 2007/09/27 v1.1 Expandable calculations with integers (HO)
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
+Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+Package: pdfescape 2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
+Package: bigintcalc 2012/04/08 v1.3 Expandable calculations on big integers (HO
+)
+Package: bitset 2011/01/30 v1.1 Handle bit-vector datatype (HO)
+Package: uniquecounter 2011/01/30 v1.2 Provide unlimited unique counter (HO)
+)
+Package hobsub Info: Skipping package `hobsub' (already loaded).
+Package: letltxmacro 2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+Package: hopatch 2012/05/28 v1.2 Wrapper for package hooks (HO)
+Package: xcolor-patch 2011/01/30 xcolor patch
+Package: atveryend 2011/06/30 v1.8 Hooks at the very end of document (HO)
+Package atveryend Info: \enddocument detected (standard20110627).
+Package: atbegshi 2011/10/05 v1.16 At begin shipout hook (HO)
+Package: refcount 2011/10/16 v3.4 Data extraction from label references (HO)
+Package: hycolor 2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/auxhook.sty
+Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
+)
+\@linkdim=\dimen122
+\Hy@linkcounter=\count115
+\Hy@pagecounter=\count116
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2012/11/06 v6.83m Hyperref: PDFDocEncoding definition (HO)
+)
+\Hy@SavedSpaceFactor=\count117
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/hyperref.cfg
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+Package hyperref Info: Hyper figures OFF on input line 4443.
+Package hyperref Info: Link nesting OFF on input line 4448.
+Package hyperref Info: Hyper index ON on input line 4451.
+Package hyperref Info: Plain pages OFF on input line 4458.
+Package hyperref Info: Backreferencing OFF on input line 4463.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4688.
+\c@Hy@tempcnt=\count118
+
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip11
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 5041.
+\XeTeXLinkMargin=\dimen123
+\Fld@menulength=\count119
+\Field@Width=\dimen124
+\Fld@charsize=\dimen125
+Package hyperref Info: Hyper figures OFF on input line 6295.
+Package hyperref Info: Link nesting OFF on input line 6300.
+Package hyperref Info: Hyper index ON on input line 6303.
+Package hyperref Info: backreferencing OFF on input line 6310.
+Package hyperref Info: Link coloring OFF on input line 6315.
+Package hyperref Info: Link coloring with OCG OFF on input line 6320.
+Package hyperref Info: PDF/A mode OFF on input line 6325.
+LaTeX Info: Redefining \ref on input line 6365.
+LaTeX Info: Redefining \pageref on input line 6369.
+\Hy@abspage=\count120
+\c@Item=\count121
+\c@Hfootnote=\count122
+)
+
+Package hyperref Message: Driver (autodetected): hpdftex.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2012/11/06 v6.83m Hyperref driver for pdfTeX
+\Fld@listcount=\count123
+\c@bookmark@seq@number=\count124
+
+(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
+Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+82.
+)
+\Hy@SectionHShift=\skip50
+)
 Enter file names to process, (chap1,chap2 ...), or `all' to process all files:
 
 \files=all
@@ -181,71 +296,40 @@ Including all files.
 (./body/CMSdetector.aux) (./body/Analysis1.aux) (./body/biblio.aux))
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count115
-\scratchdimen=\dimen122
+\scratchcounter=\count125
+\scratchdimen=\dimen126
 \scratchbox=\box35
-\nofMPsegments=\count116
-\nofMParguments=\count117
+\nofMPsegments=\count126
+\nofMParguments=\count127
 \everyMPshowfont=\toks22
-\MPscratchCnt=\count118
-\MPscratchDim=\dimen123
-\MPnumerator=\count119
-\makeMPintoPDFobject=\count120
+\MPscratchCnt=\count128
+\MPscratchDim=\dimen127
+\MPnumerator=\count129
+\makeMPintoPDFobject=\count130
 \everyMPtoPDFconversion=\toks23
-) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
-Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
-)
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifluatex.sty
-Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
-Package ifluatex Info: LuaTeX not detected.
-)
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
-Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
-Package ifpdf Info: pdfTeX in PDF mode is detected.
-)
-Package pdftexcmds Info: LuaTeX not detected.
-Package pdftexcmds Info: \pdf@primitive is available.
-Package pdftexcmds Info: \pdf@ifprimitive is available.
-Package pdftexcmds Info: \pdfdraftmode found.
-)
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
 
 (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/grfext.sty
 Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
-Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
-))
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
-Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
-Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
-
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/etexcmds.sty
-Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
-Package etexcmds Info: Could not find \expanded.
-(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
-(etexcmds)             that some package has redefined \expanded.
-(etexcmds)             In the latter case, load this package earlier.
-)))
+)
 Package grfext Info: Graphics extension search list:
 (grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
 G,.JBIG2,.JB2,.eps]
@@ -255,32 +339,50 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
+\AtBeginShipoutBox=\box36
+Package hyperref Info: Link coloring OFF on input line 48.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
+Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
+)
+\c@section@level=\count131
+)
+LaTeX Info: Redefining \ref on input line 48.
+LaTeX Info: Redefining \pageref on input line 48.
+LaTeX Info: Redefining \nameref on input line 48.
+
+(./main.out) (./main.out)
+\@outlinefile=\write3
+\openout3 = `main.out'.
+
 \openout2 = `body/contents.aux'.
 
-
-(./body/contents.tex (./main.toc)
-\tf@toc=\write3
-\openout3 = `main.toc'.
-
- [1
+ (./body/contents.tex (./main.toc [1
 
 
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] (./main.lof
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}])
+\tf@toc=\write4
+\openout4 = `main.toc'.
+
+ [2] (./main.lof
 Overfull \hbox (13.5784pt too wide) in paragraph at lines 11--11
  \OT1/cmr/m/n/12 (hadron bar-rel calorime-ter), HE (hadron end-cap calorime-ter
 ), HF (hadron 
  []
 
 )
-\tf@lof=\write4
-\openout4 = `main.lof'.
+\tf@lof=\write5
+\openout5 = `main.lof'.
 
  [3
 
 ] (./main.lot)
-\tf@lot=\write5
-\openout5 = `main.lot'.
+\tf@lot=\write6
+\openout6 = `main.lot'.
 
 ) [4
 
@@ -308,78 +410,78 @@ Underfull \hbox (badness 10000) in paragraph at lines 203--205
 
  []
 
-[9] <figure/CH1/BRs_modelAvsB.png, id=56, 1226.5825pt x 389.455pt>
+[9] <figure/CH1/BRs_modelAvsB.png, id=302, 1226.5825pt x 389.455pt>
 File: figure/CH1/BRs_modelAvsB.png Graphic file (type png)
 
 <use figure/CH1/BRs_modelAvsB.png>
 Package pdftex.def Info: figure/CH1/BRs_modelAvsB.png used on input line 208.
 (pdftex.def)             Requested size: 433.62pt x 137.67809pt.
 
-<figure/CH1/xsec.png, id=57, 897.3525pt x 622.325pt>
+<figure/CH1/xsec.png, id=303, 897.3525pt x 622.325pt>
 File: figure/CH1/xsec.png Graphic file (type png)
- <use figure/CH1/xsec.png>
+
+<use figure/CH1/xsec.png>
 Package pdftex.def Info: figure/CH1/xsec.png used on input line 215.
 (pdftex.def)             Requested size: 303.53267pt x 210.50516pt.
 ) [10 <./figure/CH1/BRs_modelAvsB.png> <./figure/CH1/xsec.png>]
 \openout2 = `body/CMSdetector.aux'.
 
-
-(./body/CMSdetector.tex
+ (./body/CMSdetector.tex
 Chapter 2.
 [11
 
 
 
-] <figure/CH2/CERN_Overview.jpg, id=64, 723.67007pt x 542.75255pt>
+] <figure/CH2/CERN_Overview.jpg, id=312, 723.67007pt x 542.75255pt>
 File: figure/CH2/CERN_Overview.jpg Graphic file (type jpg)
 
 <use figure/CH2/CERN_Overview.jpg>
 Package pdftex.def Info: figure/CH2/CERN_Overview.jpg used on input line 14.
 (pdftex.def)             Requested size: 390.25534pt x 292.69276pt.
 
-<figure/CH2/complex.png, id=65, 1173.38374pt x 764.8575pt>
+<figure/CH2/complex.png, id=313, 1173.38374pt x 764.8575pt>
 File: figure/CH2/complex.png Graphic file (type png)
 
 <use figure/CH2/complex.png>
 Package pdftex.def Info: figure/CH2/complex.png used on input line 21.
 (pdftex.def)             Requested size: 390.25534pt x 254.37611pt.
  [12 <./figure/CH2/CERN_Overview.jpg>] [13 <./figure/CH2/complex.png>] <figure/
-CH2/CMS.png, id=72, 1606.0pt x 1136.245pt>
+CH2/CMS.png, id=324, 1606.0pt x 1136.245pt>
 File: figure/CH2/CMS.png Graphic file (type png)
 
 <use figure/CH2/CMS.png>
 Package pdftex.def Info: figure/CH2/CMS.png used on input line 36.
 (pdftex.def)             Requested size: 433.62pt x 306.79025pt.
  [14 <./figure/CH2/CMS.png>]
-<figure/CH2/tracker.png, id=76, 959.585pt x 455.7025pt>
+<figure/CH2/tracker.png, id=330, 959.585pt x 455.7025pt>
 File: figure/CH2/tracker.png Graphic file (type png)
 
 <use figure/CH2/tracker.png>
 Package pdftex.def Info: figure/CH2/tracker.png used on input line 50.
 (pdftex.def)             Requested size: 390.25534pt x 185.33032pt.
 
-<figure/CH2/pixel.png, id=77, 899.36pt x 526.96875pt>
+<figure/CH2/pixel.png, id=331, 899.36pt x 526.96875pt>
 File: figure/CH2/pixel.png Graphic file (type png)
 
 <use figure/CH2/pixel.png>
 Package pdftex.def Info: figure/CH2/pixel.png used on input line 56.
 (pdftex.def)             Requested size: 173.44534pt x 101.62874pt.
  [15 <./figure/CH2/tracker.png> <./figure/CH2/pixel.png>] [16] <figure/CH2/ECAL
-.png, id=85, 1441.385pt x 734.745pt>
+.png, id=343, 1441.385pt x 734.745pt>
 File: figure/CH2/ECAL.png Graphic file (type png)
 
 <use figure/CH2/ECAL.png>
 Package pdftex.def Info: figure/CH2/ECAL.png used on input line 78.
 (pdftex.def)             Requested size: 390.25534pt x 198.93315pt.
 
-<figure/CH2/HCAL.png, id=87, 1307.88625pt x 768.8725pt>
+<figure/CH2/HCAL.png, id=345, 1307.88625pt x 768.8725pt>
 File: figure/CH2/HCAL.png Graphic file (type png)
 
 <use figure/CH2/HCAL.png>
 Package pdftex.def Info: figure/CH2/HCAL.png used on input line 89.
 (pdftex.def)             Requested size: 390.25534pt x 229.41992pt.
  [17 <./figure/CH2/ECAL.png>] [18 <./figure/CH2/HCAL.png>] [19] <figure/CH2/Muo
-nSys.png, id=98, 790.955pt x 574.145pt>
+nSys.png, id=369, 790.955pt x 574.145pt>
 File: figure/CH2/MuonSys.png Graphic file (type png)
 
 <use figure/CH2/MuonSys.png>
@@ -390,7 +492,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 134--135
 
  []
 
-<figure/CH2/trigger.png, id=102, 1225.57875pt x 669.50125pt>
+<figure/CH2/trigger.png, id=375, 1225.57875pt x 669.50125pt>
 File: figure/CH2/trigger.png Graphic file (type png)
 
 <use figure/CH2/trigger.png>
@@ -402,7 +504,7 @@ Package pdftex.def Info: figure/CH2/trigger.png used on input line 138.
 
 (./body/Analysis1.tex
 Chapter 3.
-<figure/CH3/ZPrimeTo2l2q.png, id=107, 732.7375pt x 439.6425pt>
+<figure/CH3/ZPrimeTo2l2q.png, id=387, 732.7375pt x 439.6425pt>
 File: figure/CH3/ZPrimeTo2l2q.png Graphic file (type png)
 
 <use figure/CH3/ZPrimeTo2l2q.png>
@@ -426,11 +528,25 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 102.
- [25] [26]) [27]
+ [25] [26]
+Underfull \hbox (badness 10000) in paragraph at lines 122--123
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 133--134
+
+ []
+
+[27]
+Underfull \hbox (badness 10000) in paragraph at lines 147--148
+
+ []
+
+) [28]
 \openout2 = `body/biblio.aux'.
 
-
-(./body/biblio.tex (./main.bbl [28
+ (./body/biblio.tex (./main.bbl [29
 
 
 
@@ -440,33 +556,47 @@ Underfull \hbox (badness 1917) in paragraph at lines 90--93
 he-o-rem.
  []
 
-)) [29] [30] (./main.aux (./body/contents.aux) (./body/Introduction.aux)
-(./body/CMSdetector.aux) (./body/Analysis1.aux) (./body/biblio.aux)) ) 
+
+Underfull \hbox (badness 10000) in paragraph at lines 160--163
+[]\OT1/cmr/m/n/12 CMS Col-lab-o-ra-tion.  Base-line muon se-lec-tions for Run-I
+.
+ []
+
+[30])) [31]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 74.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 74.
+ (./main.aux (./body/contents.aux) (./body/Introduction.aux)
+(./body/CMSdetector.aux) (./body/Analysis1.aux) (./body/biblio.aux))
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 74.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 74.
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: 8D838D3C2F46254877C81287E562A9E0;1414.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 74.
+ ) 
 Here is how much of TeX's memory you used:
- 2922 strings out of 494953
- 39203 string characters out of 6180978
- 103789 words of memory out of 5000000
- 6103 multiletter control sequences out of 15000+600000
+ 6629 strings out of 494953
+ 94781 string characters out of 6180978
+ 185571 words of memory out of 5000000
+ 9641 multiletter control sequences out of 15000+600000
  10048 words of font info for 36 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 38i,16n,23p,1032b,354s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-ss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pf
-b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr
-/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on main.pdf (34 pages, 4660220 bytes).
+ 34i,16n,30p,1037b,548s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
+6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on main.pdf (35 pages, 4676809 bytes).
 PDF statistics:
- 181 PDF objects out of 1000 (max. 8388607)
- 116 compressed objects within 2 object streams
- 0 named destinations out of 1000 (max. 500000)
- 61 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 531 PDF objects out of 1000 (max. 8388607)
+ 462 compressed objects within 5 object streams
+ 145 named destinations out of 1000 (max. 500000)
+ 245 words of extra memory for PDF output out of 10000 (max. 10000000)
 

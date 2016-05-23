@@ -111,7 +111,7 @@ The muon trigger has a double $p_{T}$ threshold, requires leading muon $p_{T}$ g
 \subsection*{Reconstruction}
 The muon reconstruction algorithm at CMS takes advantage of the redundancy of detection methods. Muon tracks are first reconstructed independently in the inner tracker (tracker track) and in the muon system (standalone track). Based on these objects, two reconstruction approaches are used\cite{MuonReco}:
 \begin{itemize}
-\item $Globol~Muon$ (outside-in): Starting from a standalone track, this algorithm finds a best tracker track to match the standalone track. Then, the fit of the track is repeated using the hits both in the tracker and in the muon system\cite{KF}. The resulting object is called a $Global~Muon$. At large transverse momentum ($pt > $200 GeV), the global muon fit can improve the momentum resolution compared to the tracker only fit.
+\item $Globol~Muon$ (outside-in): Starting from a standalone track, this algorithm finds a best tracker track to match the standalone track. Then, the fit of the track is repeated using the hits both in the tracker and in the muon system\cite{KF}. The resulting object is called a $Global~Muon$. At large transverse momentum ($p_{t} > $200 GeV), the global muon fit can improve the momentum resolution compared to the tracker only fit.
 \item $Tracker~Muon$ (inside-out): A tracker muon is reconstructed by an opposite direction from a global muon. In this approach, all tracker tracks with $p_{T} >$ 0.5 GeV and the total momentum $p >$ 2.5 GeV are considered as possible muon candidates. The extrapolation to the muon system takes into account the magnetic field, average expected energy losses, and multiple scattering in the detector material. If at least one muon segment matches the extrapolated track, the corresponding track track qualifies as a $Tracker~Muon$. This algorithm is useful for low-$p_{T}$ muons that are not fully penetrate the muon system, and therefore only register a few hits
 \end{itemize}
 
@@ -119,5 +119,54 @@ If no match is found when extrapolating outside-in, the standalone track is stor
 
 \newpage
 \subsection*{Identification}
-TEST.
+We use both tracker muons and global muons in this analysis. To identify muons from the signal, the muons must pass one of these two off-line selections, high$-p_{T}$ muon ID or tracker-based muon ID\cite{MuonID}. The requirements are listed as follows:\\
 
+High-$p_{T}$ muon ID
+\begin{itemize}
+\item Muon identified as a $Global~Muon$.
+\item Number of muon hits in the global track $> 0$.
+\item Number of matched muon stations $> 1$.
+\item Number of pixel hits $> 0$.
+\item Number of tracker layer with hits $> 8$.
+\item Transverse impact parameter $d_{xy} < 0.2$ cm.
+\item Longitudinal impact parameter $d_{z} < 0.5$ cm.
+\item Relative error on the track transverse momentum $\sigma_{p_{T}}/p_{T} < 0.3$.\\
+\end{itemize}
+
+In the tracker-based muon ID, the muon has to be identified as a $Tracker~Muon$, and the requirement of muon hits in the global track is removed. Other requirements are the same.
+
+An additional useful variable for lepton identification is the isolation. It is defined as the scalar sum of the $p_{T}$ of the reconstructed objects within a cone (typical size is $\Delta R=0.3$) space around the lepton track but excluding the $p_{T}$ of the lepton itself. Moreover, the relative isolation is defined as isolation divided by the lepton $p_{T}$ ($I_{rel} = Iso/p_{T}^{lep}$). The relative isolation is more frequently used in the modern analysis.
+
+In this analysis, a modified isolation criteria is used. The two muons originated from boosted Z decay are close to each other, and consequently the presence of another muon in the isolation cone could break the function of this variable. To solve this problem, we exclude the energy contribution of muons inside the cone.
+
+\begin{align}
+  \label{eq:ModIso}
+  I_{rel}^{mod}=\frac{\sum p_{T}^{CH}+max(0.0 , \sum E_{T}^{NH}+\sum E_{T}^{\gamma}-0.5\times \sum p_{T}^{PU})}{p_{T}^{lep}}
+\end{align}
+
+In the above equation, $p_{T}^{CH}$ denotes the charged hadron transverse momentum inside the cone. Similarly, $E_{T}^{NH}$ and $E_{T}^{\gamma}$ stand for neutral hadron and photon transverse energy respectively. The last term in the nomimator, $\sum p_{T}^{PU}$ is defined as sum of transverse momentum of the charged particles in the cone but with particles not originating from the primary vertex (for pile-up corrections). Finally, the modified requirement is $I_{rel}^{mod} < 0.1$.\\
+
+\begin{table}[h]
+  \begin{center}
+    \begin{tabular}{|l|c|c|}
+      \hline
+      Variable & Standard & Modified \\ \hline
+      Muon type & Global muon & Tracker muon \\
+      Muon hits in global track & $\geq$ 1 & - \\
+      Muon stations matched & $\geq$ 2 & $\geq$ 2 \\
+      $d_{xy}$ & $<$ 0.2 cm & $<$ 0.2 cm\\
+      $d_{z}$ & $<$ 0.5 cm & $<$ 0.5 cm\\
+      Pixel hits & $\geq$ 1 & $\geq$ 1 \\
+      Tracker layers & $\geq$ 8 & $\geq$ 8 \\
+      $\sigma_{p_{T}}/p_{T}$ & $<$ 0.3 & $<$ 0.3 \\ \hline
+      $I_{rel}^{mod}$  & $<$ 0.1 & $<$ 0.1 \\
+      \hline
+    \end{tabular}
+    \caption{\label{tab:MuonIDtable} Summary of the muon ID selection criteria.}
+  \end{center}
+\end{table}
+
+
+\subsection{Electron}
+\subsection*{Reconstruction}
+Text.
