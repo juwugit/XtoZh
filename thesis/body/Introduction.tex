@@ -73,14 +73,14 @@ The mass matrix is
   \end{cases}
   .
 \end{align}
-In the above equations $\hat{\upsilon}$ denotes the Vacuum Expetation Value (VEV) defined by $\big \langle H^{\dagger}H\big \rangle=\hat{\upsilon}^{2}/2$, and one should know the masses $\hat{m}_{Z}$ and $\hat{m}_{V}$ do not coincide with the physical $Z$ boson and the masses of the new resonances of this model, although they do in the approximations later. The mass eigenvalues and the rotation angles are easily obtained by inverting the relations
+In the above equations $\hat{\upsilon}$ denotes the Vacuum Expetation Value (VEV) defined by $\big \langle H^{\dagger}H\big \rangle=\hat{\upsilon}^{2}/2$, and one should know the masses $\hat{m}_{Z}$ and $\hat{m}_{V}$ do not coincide with the physical $Z$ boson and the masses of the new resonances of this model, although they do in the approximations later (Eq.~\ref{eq:hierachyEq}). The mass eigenvalues and the rotation angles are easily obtained by inverting the relations
 \begin{align}
   \label{eq:detMN}
   &Tr[\mathcal{M}_{N}^{2}]=\hat{m}_{Z}^{2}+\hat{m}_{V}^{2}=m_{Z}^{2}+M_{0}^{2}\textup{ ,}\nonumber\\
   &Det[\mathcal{M}_{N}^{2}]=\hat{m}_{Z}^{2}\hat{m}_{V}^{2}(1-c_{H}^{2}\xi^{2})=m_{Z}^{2}M_{0}^{2}\textup{ ,}\nonumber\\
   &\tan{2\theta_{N}}=\frac{2c_{H}\xi \hat{m}_{Z} \hat{m}_{V}}{\hat{m}_{V}^{2}-\hat{m}_{Z}^{2}}\textup{ .}
 \end{align}
-Notice that the tangent can be uniquely inverted because the angle $\theta_{N}$ is in the range $[-\pi/4,\pi/4]$ in the parameter region we will be interested in, where $\hat{m}_{Z}<\hat{m}_{V}$, and $M_{0}$ represents the real mass eigenvalue of the neutral heavy vector boson.
+Note that $M_{0}$ represents the real mass eigenvalue of the neutral heavy vector boson. Moreover, since we assume $\hat{m}_{V}>\hat{m}_{Z}$, the only variable controls the sign of the tangent function is $c_{H}$, which is model dependent. Once the sign of $c_{H}$ is determined, the tangent can be uniquely inverted.
 
 The situation is similar in the charged vector mass matrix of ($W^{\pm},V^{\pm}$) system, and $M_{\pm}$ denotes the real mass eigenvalue of charged states as well.
 \begin{align}
@@ -125,7 +125,7 @@ From the simple formula above, we can start to identify the physically reasonabl
   \label{eq:hierachyEq}
   \frac{\hat{m}_{W,Z}}{\hat{m}_{V}}\sim \frac{m_{W,Z}}{M_{\pm ,0}}\leq10^{-1}\ll1
 \end{align}
-In the limit of Eq.~(\ref{eq:hierachyEq}) we obtain simple approximation for $m_{W}$ and $m_{Z}$
+Use the limit above, we can expand the determinant formulas both in Eq.~(\ref{eq:detMN}) and Eq.~(\ref{eq:detMC}) to obtain simple approximations for $m_{W}$ and $m_{Z}$
 \begin{align}
   &m_{Z}^{2}=\hat{m}_{Z}^{2}(1-c_{H}^{2}\xi^{2})(1+\mathcal{O}(\hat{m}_{Z}^{2}/\hat{m}_{V}^{2}))\textup{ ,}\nonumber\\
   &m_{W}^{2}=\hat{m}_{W}^{2}(1-c_{H}^{2}\xi^{2})(1+\mathcal{O}(\hat{m}_{W}^{2}/\hat{m}_{V}^{2}))\textup{ .}
@@ -175,15 +175,13 @@ Note that Eq.~(\ref{eq:DRboson}) is derived in the Equivalent Gauge\cite{EquivGa
 
 From this section, a very simple picture emerges. At small $\xi$, all the decay widths are fixed with a given resonance mass $M_{V}$ and the couplings $\{g^{2}c_{F}/g_{V}$, $g_{V}c_{H}\}$ which control the BRs in all relevant channels. Paremeters $c_{VVV},\textup{ } c_{VVHH}\textup{ and }c_{VVW}$ are basically irrelevent. Thus, the basic phenomenology of this model is well described by a good approximation.
 
-
-\newpage
 \subsection{Explicit Models}
 Now the general picture is clear, we can get exact values of the widths and BRs from explicit models. Consider two benchmark models, A and B, which correspond to two explicit models describing the heavy vectors in Refs.~\cite{modelA} and \cite{compositehiggs-1} respectively. All the $c$ parameters are fixed to specific values in these models and the only free parameters are the resonance mass $M_{V}$ and coupling $g_{V}$. Moreover, model A is inspired by weakly coupled extensions of the SM gauge group while model B is by strongly coupled scenarios of EWSB, $i.e.$ Composite Higgs models, we will consider them in different regions of $g_{V}$, relatively small $g_{V}\leq3$ and relatively large $g_{V}\geq3$.\\
 \newline Figure \ref{fig:BRs_AvsB} shows the BRs as functions of the mass in model A and B. As expected from the previous discussion and according to Refs.~\cite{modelA}, model A predicts
 \begin{align}
   \label{eq:DeterA}
-  &c_{H}=-g^{2}/g_{V}^{2}\textup{ , }c_{F}\simeq 1 \textup{ ,} \nonumber\\
-  &|g_{V}c_{H}|\simeq g^{2}c_{F}/g_{V}\simeq g^{2}/g_{V}\textup{ .}
+  &c_{H}\simeq-g^{2}/g_{V}^{2}\textup{ , }c_{F}\simeq 1 \textup{ ,} \nonumber\\
+  &g_{V}^{2}c_{H}^{2}\simeq g^{4}c_{F}^{2}/g_{V}^{2}\simeq g^{2}/g_{V}\textup{ .}
 \end{align}
 Therefore Eq.~(\ref{eq:DRfermion}) and (\ref{eq:DRboson}) can be determined in the following form for $V_{0}$ in model A ($g_{V}=1$),
 \begin{align}
@@ -194,7 +192,7 @@ One can easily check either from the plot or the equation, a factor of two diffe
 \begin{align}
   \label{eq:DeterB}
   &c_{H}\simeq c_{F}\simeq 1 \textup{ ,}\nonumber\\
-  &g_{V}c_{H}\simeq-g_{V}\textup{ , }g^{2}c_{c_{F}}/g_{g_{V}}\simeq g^{2}/g_{V}\textup{ .}
+  &g_{V}^{2}c_{H}^{2}\simeq g_{V}^{2}\textup{ , }g^{2}c_{c_{F}}/g_{g_{V}}\simeq g^{2}/g_{V}\textup{ .}
 \end{align}
 Thus the determinate $V_{0}$ decay widths for model B ($g_{V}=3$) are
 \begin{align}

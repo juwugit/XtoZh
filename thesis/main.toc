@@ -4,7 +4,7 @@
 \contentsline {subsection}{\numberline {1.2.1}Heavy Vector Triplet Model}{2}{subsection.7}
 \contentsline {subsection}{\numberline {1.2.2}Basic Phenomenology}{3}{subsection.12}
 \contentsline {subsection}{\numberline {1.2.3}Explicit Models}{8}{subsection.30}
-\contentsline {chapter}{\numberline {2}CMS detector and LHC}{11}{chapter.37}
+\contentsline {chapter}{\numberline {2}The LHC and the CMS Detector}{11}{chapter.37}
 \contentsline {section}{\numberline {2.1}Large Hadron Collider}{11}{section.38}
 \contentsline {section}{\numberline {2.2}Compact Muon Solenoid}{13}{section.41}
 \contentsline {subsection}{\numberline {2.2.1}Tracker}{15}{subsection.45}
