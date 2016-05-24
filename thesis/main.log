@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.5.5)  23 MAY 2016 22:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.5.5)  24 MAY 2016 17:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -432,56 +432,56 @@ Chapter 2.
 
 
 
-] <figure/CH2/CERN_Overview.jpg, id=312, 723.67007pt x 542.75255pt>
+] <figure/CH2/CERN_Overview.jpg, id=313, 723.67007pt x 542.75255pt>
 File: figure/CH2/CERN_Overview.jpg Graphic file (type jpg)
 
 <use figure/CH2/CERN_Overview.jpg>
 Package pdftex.def Info: figure/CH2/CERN_Overview.jpg used on input line 14.
 (pdftex.def)             Requested size: 390.25534pt x 292.69276pt.
 
-<figure/CH2/complex.png, id=313, 1173.38374pt x 764.8575pt>
+<figure/CH2/complex.png, id=314, 1173.38374pt x 764.8575pt>
 File: figure/CH2/complex.png Graphic file (type png)
 
 <use figure/CH2/complex.png>
 Package pdftex.def Info: figure/CH2/complex.png used on input line 21.
 (pdftex.def)             Requested size: 390.25534pt x 254.37611pt.
  [12 <./figure/CH2/CERN_Overview.jpg>] [13 <./figure/CH2/complex.png>] <figure/
-CH2/CMS.png, id=324, 1606.0pt x 1136.245pt>
+CH2/CMS.png, id=325, 1606.0pt x 1136.245pt>
 File: figure/CH2/CMS.png Graphic file (type png)
 
 <use figure/CH2/CMS.png>
 Package pdftex.def Info: figure/CH2/CMS.png used on input line 36.
 (pdftex.def)             Requested size: 433.62pt x 306.79025pt.
  [14 <./figure/CH2/CMS.png>]
-<figure/CH2/tracker.png, id=330, 959.585pt x 455.7025pt>
+<figure/CH2/tracker.png, id=331, 959.585pt x 455.7025pt>
 File: figure/CH2/tracker.png Graphic file (type png)
 
 <use figure/CH2/tracker.png>
 Package pdftex.def Info: figure/CH2/tracker.png used on input line 50.
 (pdftex.def)             Requested size: 390.25534pt x 185.33032pt.
 
-<figure/CH2/pixel.png, id=331, 899.36pt x 526.96875pt>
+<figure/CH2/pixel.png, id=332, 899.36pt x 526.96875pt>
 File: figure/CH2/pixel.png Graphic file (type png)
 
 <use figure/CH2/pixel.png>
 Package pdftex.def Info: figure/CH2/pixel.png used on input line 56.
 (pdftex.def)             Requested size: 173.44534pt x 101.62874pt.
  [15 <./figure/CH2/tracker.png> <./figure/CH2/pixel.png>] [16] <figure/CH2/ECAL
-.png, id=343, 1441.385pt x 734.745pt>
+.png, id=344, 1441.385pt x 734.745pt>
 File: figure/CH2/ECAL.png Graphic file (type png)
 
 <use figure/CH2/ECAL.png>
 Package pdftex.def Info: figure/CH2/ECAL.png used on input line 78.
 (pdftex.def)             Requested size: 390.25534pt x 198.93315pt.
 
-<figure/CH2/HCAL.png, id=345, 1307.88625pt x 768.8725pt>
+<figure/CH2/HCAL.png, id=346, 1307.88625pt x 768.8725pt>
 File: figure/CH2/HCAL.png Graphic file (type png)
 
 <use figure/CH2/HCAL.png>
 Package pdftex.def Info: figure/CH2/HCAL.png used on input line 89.
 (pdftex.def)             Requested size: 390.25534pt x 229.41992pt.
  [17 <./figure/CH2/ECAL.png>] [18 <./figure/CH2/HCAL.png>] [19] <figure/CH2/Muo
-nSys.png, id=369, 790.955pt x 574.145pt>
+nSys.png, id=370, 790.955pt x 574.145pt>
 File: figure/CH2/MuonSys.png Graphic file (type png)
 
 <use figure/CH2/MuonSys.png>
@@ -492,7 +492,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 134--135
 
  []
 
-<figure/CH2/trigger.png, id=375, 1225.57875pt x 669.50125pt>
+<figure/CH2/trigger.png, id=376, 1225.57875pt x 669.50125pt>
 File: figure/CH2/trigger.png Graphic file (type png)
 
 <use figure/CH2/trigger.png>
@@ -504,7 +504,7 @@ Package pdftex.def Info: figure/CH2/trigger.png used on input line 138.
 
 (./body/Analysis1.tex
 Chapter 3.
-<figure/CH3/ZPrimeTo2l2q.png, id=387, 732.7375pt x 439.6425pt>
+<figure/CH3/ZPrimeTo2l2q.png, id=388, 732.7375pt x 439.6425pt>
 File: figure/CH3/ZPrimeTo2l2q.png Graphic file (type png)
 
 <use figure/CH3/ZPrimeTo2l2q.png>
@@ -593,10 +593,10 @@ fonts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
 m/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
 6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><
 /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on main.pdf (35 pages, 4676833 bytes).
+Output written on main.pdf (35 pages, 4676823 bytes).
 PDF statistics:
- 531 PDF objects out of 1000 (max. 8388607)
- 462 compressed objects within 5 object streams
+ 532 PDF objects out of 1000 (max. 8388607)
+ 463 compressed objects within 5 object streams
  145 named destinations out of 1000 (max. 500000)
  245 words of extra memory for PDF output out of 10000 (max. 10000000)
 
