@@ -137,14 +137,7 @@ In the tracker-based muon ID, the muon has to be identified as a $Tracker~Muon$,
 
 An additional useful variable for lepton identification is the isolation. It is defined as the scalar sum of the $p_{T}$ of the reconstructed objects within a cone (typical size is $\Delta R=0.3$) space around the lepton track but excluding the $p_{T}$ of the lepton itself. Moreover, the relative isolation is defined as isolation divided by the lepton $p_{T}$ ($I_{rel} = Iso/p_{T}^{lep}$). The relative isolation is more frequently used in the modern analysis.
 
-In this analysis, a modified isolation criteria is used. The two muons originated from boosted Z decay are close to each other, and consequently the presence of another muon in the isolation cone could break the function of this variable. To solve this problem, we exclude the energy contribution of muons inside the cone.
-
-\begin{align}
-  \label{eq:ModIso}
-  I_{rel}^{mod}=\frac{\sum p_{T}^{CH}+max(0.0 , \sum E_{T}^{NH}+\sum E_{T}^{\gamma}-0.5\times \sum p_{T}^{PU})}{p_{T}^{lep}}
-\end{align}
-
-In the above equation, $p_{T}^{CH}$ denotes the charged hadron transverse momentum inside the cone. Similarly, $E_{T}^{NH}$ and $E_{T}^{\gamma}$ stand for neutral hadron and photon transverse energy respectively. The last term in the nomimator, $\sum p_{T}^{PU}$ is defined as sum of transverse momentum of the charged particles in the cone but with particles not originating from the primary vertex (for pile-up corrections). Finally, the modified requirement is $I_{rel}^{mod} < 0.1$.\\
+In this analysis, a modified isolation criteria is used. The two muons originated from boosted Z decay are close to each other, and consequently the presence of another muon in the isolation cone could break the function of this variable. In order to solve this problem we use a tracker-based isolation relative quantity, explicitely removing the momentum flow from any other muon passing our muon selection. Moreover, a tracker-based isolation is well motivated also by two additional aspects: it is more independent of pile up (pile-up tracks tipically do not match the primary vertex) and does not include possible muon radiation. Finally, the modified requirement is $I_{rel}^{mod} < 0.1$.\\
 
 \begin{table}[h]
   \begin{center}
@@ -166,7 +159,71 @@ In the above equation, $p_{T}^{CH}$ denotes the charged hadron transverse moment
   \end{center}
 \end{table}
 
-
+\newpage
 \subsection{Electron}
+
 \subsection*{Reconstruction}
-Text.
+Electrons are reconstructed from energy deposits in the ECAL matched to tracks reconstructed in the silicon tracker. They have less distinguishable signatures than muons in the detector due to the jet induced background in ECAL. Therefore, to reconstruct an election, it's essential to find a briliant way to match the infomation acquired in both tracker and ECAL.
+
+\subsection*{Clustering}
+For every single hit from an electron in ECAL, approximately 94\% of energy is contained in 3$\times$3 crystals and 97\% in 5$\times$5 crystals. To form a cluster, crystals with $E_{T} > 1$ GeV is picked as seeds. Then starting from seed crystal, dominos of size 1$\times$3 or 1$\times$5 are created in $\eta-\phi$ plane. If the energy of these dominos exceed 0.1 GeV threshold, thus added up the energy of dominos along the $\phi$ direction.
+
+Moreover, the effects of conversion process and bremsstrahlung radiation must be taken into account to reconstruct the electron energy more precisely. The concept of electron superclustering is to collect the energy of photons from bremsstrahlung radiation along the $\phi$ direction with fixed $\eta$ width of the seed crystal. The technical details of the supercluster can be found in\cite{eleSC}.
+
+\subsection*{Tracking}
+There are several steps to reconstruct electron tracks in CMS experiment. The hit on the pixel and the tracker are reconstructed in the first step. The second step is to find the seed of tracks by matching at least two hits in pixel detector. Lst step is to fit the trajetory starting from the seed. To perform this fit, the Gaussian-sum filter (GSF) algorithm is used\cite{GSF}. In GSF algorithm, the energy loss probability density function is constructed by multiple Gaussian functions. Finally, the electrons are built by matching the superclusters to the GSF tracks. Reconstruction efficiencies for electrons $E_{T} > 20$ GeV are generally above 95\% in EB and 90\% in EE\cite{eleRecoEff}.
+
+\subsection*{Identification}
+The electron identification used in this analysis is based on HEEPv4.1\cite{HEEP}. As what we did for the muon id, we need to modify the isolation definition again because of the small $DeltaR$ between two electrons. The requirements are listed as follows:\\
+
+Modified HEEPv4.1 electron ID
+\begin{itemize}
+\item Transversal supercluster energy $>$ 35 GeV.
+\item Pseudorapidity of supercluster $\eta_{SC} < 1.442$ for barrel electrons, or $1.56 < \eta_{SC} < 2.5$ for endcap electrons.
+\item Have either $E_{2\times 5}/E_{5\times 5} > 0.94$ or $E_{1\times 5}/E_{5\times 5} > 0.83$.
+\item Ratio of HCAL deposit energy to ECAL deposit energy (Fig.~\ref{fig:E5X5}) smaller than 0.5.
+\item Number of inner layer lost hits smaller than 2.
+\item Have $d_{xy} < 0.02$ cm for barrel electrons, or $d_{xy} < 0.05$ cm for endcap electrons.\\
+\end{itemize}
+
+As what we did for the muon id, by the same reason we need to modify the isolation definition again. In this case there are three isolation variableshave to be changed.
+
+\begin{itemize}
+\item Modified track isolation is required to lower than 5 GeV. This variable is defined as the scalar $p_{T}$ sum of the tracks within a $\Delta R$ = 0.3 cone around the electron, and excluding the $p_{T}$ of another electron which passes the above selections and its track is inside the cone.
+\item The electromagnetic calorimeter isolation $I_{ECAL}$ is defined as the scalar sum of $E_{T}$ of the crystals in a $\Delta R$ = 0.3 cone around the particular electron (an inner area of full-width 3 crystal), excluding a 4 crystals $\Delta R$ cone around any other electron. The dimension of the ECAL crystals corresponds roughly at $\Delta R \sim 0.01 \textup{ to } 0.02$. The threshold of $I_{ECAL}$ is varying with the electron transverse energy.
+\item The hadronic calorimeter isolation $I_{HCAL}$ is defined as the scalar sum of $E_{T}$ of the HCAL caloTowers with a center in a $\Delta R$ = 0.3 cone around the electron, excluding those lying within $\Delta R$ = 0.15 of the electron itself and of any other electron\cite{CMS_AN_2012-168}. The threshold of this variable also varies with the electron transverse energy.
+\end{itemize}
+\newpage
+
+
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=0.5\textwidth]{figure/CH3/E5X5.png}
+  \end{center}
+  \caption{\label{fig:E5X5}Example of the $E_{2\times5}/E_{5\times5}$ computation in the ECAL crystals. $E_{i \times j}$ is the energy contained in a $i \times j$ block around the seed crystal (defined as the highest deposit of the energy of the cluster).}
+\end{figure}
+
+\begin{table}
+  \begin{center}
+    \begin{tabular}{|l|c|c|}
+      \hline
+      Variable & Barrel & Endcap \\\hline
+      $E_{T}$ & $>$ 35 GeV & $>$ 35 GeV \\
+      $|\eta_{SC}|$ & $|\eta_{SC}|$ $<$ 1.442 & 1.56 $<$ $|\eta_{SC}|$ $<$ 2.5 \\
+      H/E & $<$ 0.05 & $<$ 0.05 \\ 
+      $E_{2\times5}/E_{5\times5}$ & $>$ 0.94 & - \\
+      & or $E_{1\times5}/E_{5\times5}$ $>$ 0.83 & \\ 
+      Inner Layer Lost Hits & $<=$ 1 & $<=$ 1 \\
+      $|d_{xy}|$ & $<$ 0.02 cm & $<$ 0.05 cm\\
+      \hline
+      $Iso_{Trk}^{mod}$  & $<$ 5 GeV& $<$ 5 GeV\\
+      \hline
+      $Iso_{Ecal, Hcal}^{mod}$  & $<$ 2 GeV + 0.03$E_{T}$ & $<$ 2.5 GeV for $E_{T} <$ 50 GeV \\
+      & & $<$ 2.5 GeV + 0.03$E_{T}$ for $E_{T} >$ 50 GeV \\
+      \hline
+    \end{tabular}
+    \caption{\label{tab:EleIDtable} Summary of the modified HEEPv4.1 electron ID.}
+  \end{center}
+\end{table}
+
+\newpage

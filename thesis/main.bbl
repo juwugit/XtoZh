@@ -161,4 +161,33 @@ CMS Collaboration.
 \newblock {Baseline muon selections for Run-I}.
 \newblock https://twiki.cern.ch/twiki/bin/view/CMSPublic/SWGuideMuonId.
 
+\bibitem{eleSC}
+CMS Collaboration.
+\newblock {Physics TDR volume I, The CMS Physics Technical Design R I}.
+\newblock CERN-LHCC-2006-001, page 521pp, 2006.
+
+\bibitem{GSF}
+W.~Adam, R.~Frhwirth, A.~Strandlie, and T.~Todorov.
+\newblock {Reconstruction of electrons with the gaussian-sum filter in the cms
+  tracker at the lhc}.
+\newblock {\em Journal of Physics G: Nuclear and Particle Physics}, 31(9):N9,
+  2005.
+
+\bibitem{eleRecoEff}
+CMS Collaboration.
+\newblock {E/gamma Commissioning and physics deliverables}.
+\newblock
+  https://twiki.cern.ch/twiki/bin/view/CMS/EgCommissioningAndPhysicsDeliverables.
+
+\bibitem{HEEP}
+CMS Collaboration.
+\newblock {HEEP Electron ID and isolation}.
+\newblock https://twiki.cern.ch/twiki/bin/viewauth/CMS/HEEPElectronID.
+
+\bibitem{CMS_AN_2012-168}
+T.~S. Williams, D.~Newbold, and C.~Shepherd-Themistocleous.
+\newblock Modified isolation cuts for the selection of high $p_{T}$ electrons
+  from the decay of boosted z bosons.
+\newblock CMS Note 2012/168, CMS, 2012.
+
 \end{thebibliography}
