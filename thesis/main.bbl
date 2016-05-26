@@ -101,8 +101,8 @@ Lisa Benato, Yu-Hsiang Chang, Ching-Wei Chen, Michele de~Gruttola,
   Raman~Khurana Ji-Kong~Huang, Stefano Lacaprara, Yun-Ju Lu, Jacopo Pazzini,
   Maurizio Pierini, Henry Yee-Shian Tong, Jun-Yi Wu, Shin-Shan~Eiko Yu, Marco
   Zanetti, and Alberto Zucchetta.
-\newblock Search for heavy resonances decaying into a vector boson and a higgs
-  boson in the ($ll,l\nu,\nu \nu$)$b\bar{b}$ final state.
+\newblock {Search for heavy resonances decaying into a vector boson and a Higgs
+  boson in the ($ll,l\nu,\nu \nu$)$b\bar{b}$ final state}.
 \newblock CMS Note 2015/186, CMS, 2015.
 
 \bibitem{EcalReso}
@@ -112,14 +112,14 @@ A.~Benaglia.
 
 \bibitem{CMS_AN_2006-138}
 CMS~HCAL Collaboration.
-\newblock Design, performance, and calibration of cms hadron-barrel calorimeter
-  wedges.
+\newblock {Design, Performance, and Calibration of CMS Hadron-Barrel
+  Calorimeter Wedges}.
 \newblock CMS Note 2006/138, CMS, 2006.
 
 \bibitem{CMS_AN_2004-020}
 Victor~Daniel Elvira.
-\newblock Measurement of the pion energy response and resolution in the cms
-  hcal test beam 2002 experiment.
+\newblock {Measurement of the Pion Energy Response and Resolution in the CMS
+  HCAL Test Beam 2002 Experiment}.
 \newblock CMS Note 2004/020, CMS, 2004.
 
 \bibitem{L1T}
@@ -153,7 +153,7 @@ S.~Chatrchyan et~al.
 
 \bibitem{KF}
 Wolfgang Adam, Boris Mangano, Thomas Speer, and Teddy Todorow.
-\newblock Track reconstruction in the cms tracker.
+\newblock {Track Reconstruction in the CMS tracker}.
 \newblock CMS Note 2006/041, CMS, 2006.
 
 \bibitem{MuonID}
@@ -186,8 +186,19 @@ CMS Collaboration.
 
 \bibitem{CMS_AN_2012-168}
 T.~S. Williams, D.~Newbold, and C.~Shepherd-Themistocleous.
-\newblock Modified isolation cuts for the selection of high $p_{T}$ electrons
-  from the decay of boosted z bosons.
+\newblock {Modified isolation cuts for the selection of high $p_{T}$ electrons
+  from the decay of boosted Z bosons}.
 \newblock CMS Note 2012/168, CMS, 2012.
+
+\bibitem{confinement}
+Wikipedia.
+\newblock {Color confinement}.
+\newblock https://en.wikipedia.org/wiki/Color\_confinement.
+
+\bibitem{PFalgo}
+CMS Collaboration.
+\newblock {Commissioning of the Particle-Flow reconstruction in Minimum-Bias
+  and Jet Events from pp Collisions at 7 TeV}.
+\newblock CMS Physics Analysis Summary CMS-PAS-PFT-10-002, CMS, 2010.
 
 \end{thebibliography}
