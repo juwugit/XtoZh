@@ -201,4 +201,26 @@ CMS Collaboration.
   and Jet Events from pp Collisions at 7 TeV}.
 \newblock CMS Physics Analysis Summary CMS-PAS-PFT-10-002, CMS, 2010.
 
+\bibitem{AKalgo}
+M.~Cacciari, G.~P. Salam, and G.~Soyez.
+\newblock {The anti-Jt jet clustering algorithm}.
+\newblock {\em JHEP}, 04:063, 2008.
+
+\bibitem{CAalgo1}
+M.~Wobisch and T.~Wengler.
+\newblock {Hadronization corrections to jet cross section in deep-inelastic
+  scattering}.
+\newblock arXiv:9907280 [hep-ph], http://arxiv.org/abs/9907280, 1999.
+
+\bibitem{CAalgo2}
+Y.L.~Dokshitzer et~al.
+\newblock {Better jet clustering algorithms}.
+\newblock {\em JHEP}, 08:001, 1997.
+
+\bibitem{CAalgo3}
+CMS Collaboration.
+\newblock {A Cambridge-Aachen (C-A) based Jet Algorithm for boosted top-jet
+  tagging}.
+\newblock CMS Physics Analysis Summary CMS-PAS-JME-09-001, CMS, 2009.
+
 \end{thebibliography}

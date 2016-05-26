@@ -229,5 +229,27 @@ As what we did for the muon id, by the same reason we need to modify the isolati
 Since gluons and quarks cannot exist in free state due to the color confinement\cite{confinement}, they fragment into hadrons. The result of this fragmentation (or called the "hadronization") is a jet of particles depositing energy in the detectors.
 
 \subsection*{Reconstruction}
-Text.\cite{PFalgo}
+In this analysis, two kinds of jet reconstruction algorithm are used for different analysis strategies. At first, events are reconstructed using the particle flow algorithm\cite{PFalgo}, which attempts to identify and measure all the stable particles in a collision by combining information from all the sub-detectors. This algorithm categorizes all particles into five types: muons, electrons, photons, charged and neutral hadrons. The resulting particle flow candidates are passed to the anti-k$_{T}$ (AK)\cite{AKalgo}  and Cambridge/Aachen (CA)\cite{CAalgo1,CAalgo2} jet clustering algorithms to create jets.
 
+The jet clustering algorithms are implemented as follows:
+
+\begin{align}
+  \label{eq:jetCluster}
+  d_{iB}&=p_{T,i}^{2p}\nonumber \\ d_{ij}&=min(p_{T,i}^{2p}, p_{T,j}^{2p})\frac{\Delta R_{i,j}^{2}}{R^{2}}
+\end{align}
+
+In Eq.~(\ref{eq:jetCluster}), the pair of objects ( i , j ) denote two input candidate particles to the algorithm. $\Delta R_{i,j}$ is the spatial distance between the two objects, and $R$ is the typical cone size of the jet. The parameter $p$ will be introduced later.
+
+The clustering proceeds by comparing the value of the two quantities, $d_{iB}$ and $d_{ij}$. If $d_{ij} > d_{iB}$, the algorithm will look for another possible combination of ( i , j ).  If $d_{ij} < d_{iB}$, the 4-momentum of object i will merge into j, and then the object j forms a pseudo-jet, but the algorithm will not stop looking for a new object i until all particles are clustered into jet.
+\newpage
+The parameter $p$ can be chosen as follows:
+
+\begin{itemize}
+\item $p = 1$ : regular $k_{T}$ algorithm;
+\item $p = 0$ : Cambridge/Aachen algorithm;
+\item $p = -1$ : Anti-$k_{T}$ algorithm;
+\end{itemize}
+
+In this analysis, a distance parameter of size $R=0.8$ is used for the CA algorithm, while $R=0.5$ is used for the anti-k$_{T}$ algorithm. The difference between these two algorithms is clear, CA algorithm is only considering the spatial distance of the two candidate objects (if $\Delta R_{ij} < R$, merged). In the case of anti-k$_{T}$ algorithm, $p_{T}$ of the object presents as a weight for the distance.
+
+The CA jets are used to identify events containing hadronically-decaying Higgs bosons in this analysis. This choice has been made because the CA algorithm was found to be more efficient at finding hard subjets within the jets in simulation-based studies\cite{CAalgo3}.
