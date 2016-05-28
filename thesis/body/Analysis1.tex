@@ -271,4 +271,32 @@ For the "charged" variables, $\eta < 2.4$ requirement are also applied, since th
 
 \subsection{Jet Grooming Algorithms and Pruned Jet Mass}
 
-The jet mass is the main observable in distinguishing a boson-jet from a QCD jet. Jet grooming aims to suppress uncorrelated underlying events and pile-up radiation from the target jet, and improves the discrimination by pushing the jet mass for QCD jets towards lower values while mantaining the jet mass for boson-jets around the boson-mass\cite{AN-12-137,AN-13-072}.
+The jet mass is the main observable in distinguishing a boson-jet from a QCD jet. Jet grooming aims to suppress underlying events and pile-up radiation from the target jet, and improves the discrimination by pushing the jet mass for QCD jets towards lower values while mantaining the jet mass for boson-jets around the boson-mass\cite{AN-12-137,AN-13-072}.
+
+Typically three different grooming algorithms are considered, trimming\cite{JetTrim}, filtering\cite{JetFilter} or pruning\cite{JetPruned,JetPruned2}. Studies of these different grooming methods in CMS are presented in \cite{GroomCMS}.
+
+\begin{itemize}
+  \item \textbf{Trimming algorithm:} Trimming is a technique that igores subjets below a minimum $p_{T}$ fraction threshold within the original jet. Trimming reclusters the jet's constituents with a smaller radius $R_{sub}$. Then accepts only the subjets that have $p_{T,frac} > f_{cut}$, where the $p_{T,frac}$ is defined as subjet $p_{T}$ devided by the original jet $p_{T}$, and $f_{cut}$ is typically taken proportional to $H_{T}$, the scalar sum of the $p_{T}$ of all jet reconstructed in the event.
+  \item \textbf{Filtering algorithm:} Filtering reclusters jet constituents with smaller radius $R_{filt}$, and sorts the subjets in order of their $p_{T}$. The final jet is thus redefined as the sum of the four-momentum of the n hardest subjets. By default the factor is n=3, but it's not a fixed number, n depands on the analysis.
+  \item \textbf{Pruning algorithm:} The idea is to take a jet of interest and then to recluster it using a sequential clustering algorithm for vetoing soft and large-angle recombinations between pseudojets i and j.\\ Clustering proceeds as explained in the previous section, but it is vetoed if the candidates are too far away in $\Delta R$.\\
+    \begin{align}
+      \textup{veto if }\Delta R_{ij} > r_{cut}\times 2m/p_{T}
+    \end{align}
+    And the energy sharing is too asymmetric.
+    \begin{align}
+      \textup{veto if } z_{ij} = \frac{min({p_{T,i},p_{T,j})}}{p_{T,i+j}} < z_{cut}
+    \end{align}
+\end{itemize}
+
+Where $z_{cut}$ and $r_{cut}$ are parameters of the algorithm (default value: $z_{cut}$ = 0.1, $r_{cut}$ = 0.5). If both these conditions are satisfied the softer one of the two candidate is not considered.
+
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=0.8\textwidth]{figure/CH3/JetGrooming.png}
+  \end{center}
+  \caption{\label{fig:JetGrooming}Comparison of the jet mass in generic QCD events from the groomed jets divided by the jet mass of matched ungroomed jets for the three grooming techniques, for both data and the PYTHIA 6 Monte Carlo.\cite{SMP-12-019} Events are collected with a single jet trigger.}
+\end{figure}
+
+As shown in Fig.~\ref{fig:JetGrooming}, the filtering algorithm is the least aggressive grooming technique, with groomed jet masses close to the original case. The trimming algorithm is moderately aggressive which produces a much wider final mass distribution. Pruning is the most aggressive tecnique and a bimodal distribution begins to appear.
+
+In cases where the pruned jet mass is small, jets usually have most of their energy configured in core components with little gluon radiation, which leads to narrow jets. Instead, when the pruned jet mass is large, the jets are split more symmetrically and more similar with the boson-jet structure. In this analysis we use the pruned jet mass because of its capability to improve the jet mass resolution and background rejection.

@@ -245,4 +245,36 @@ A.~Bonato, R.~Gerosa, and et~al.
   jet}.
 \newblock CMS Note 2013/072, CMS, 2013.
 
+\bibitem{JetTrim}
+J.~Thaler, D.~Krohn, and L.T. Wang.
+\newblock {Jet Trimming}.
+\newblock {\em JHEP}, 100:242001, 2010.
+
+\bibitem{JetFilter}
+J.M.~Butterworth et~al.
+\newblock {Jet substructure as a new Higgs search channel at the LHC}.
+\newblock {\em PhysRevLett}, 100:242001, 2008.
+
+\bibitem{JetPruned}
+S.~Ellis, C.~Vermilion, and J.~Walsh.
+\newblock {Techniques for improved heavy particle searches with jet
+  substructure}.
+\newblock {\em Phys. Rev.}, D80:051501, 2009.
+
+\bibitem{JetPruned2}
+S.~Ellis, C.~Vermilion, and J.~Walsh.
+\newblock {Recombination algorithms and jet substructure: Pruning as a tool for
+  heavy particle searches}.
+\newblock {\em Phys. Rev.}, D81:094023, 2010.
+
+\bibitem{GroomCMS}
+S.~Chatrchyan et~al.
+\newblock {Studies of jet mass in di-jet and W/Z + jet events}.
+\newblock {\em JHEP}, 1305:090, 2013.
+
+\bibitem{SMP-12-019}
+CMS Collaboration.
+\newblock {Jet mass in di-jet and vector boson plus jet events}.
+\newblock CMS Physics Analysis Summary CMS-PAS-SMP-12-019, CMS, 2012.
+
 \end{thebibliography}
