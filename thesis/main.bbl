@@ -1,5 +1,10 @@
 \begin{thebibliography}{10}
 
+\bibitem{SMP-12-019}
+CMS Collaboration.
+\newblock {Jet mass in di-jet and vector boson plus jet events}.
+\newblock CMS Physics Analysis Summary CMS-PAS-SMP-12-019, CMS, 2012.
+
 \bibitem{atlas-higgs-1}
 ATLAS Collaboration.
 \newblock {Observation of a new particle in the search for the Standard Model
@@ -272,9 +277,15 @@ S.~Chatrchyan et~al.
 \newblock {Studies of jet mass in di-jet and W/Z + jet events}.
 \newblock {\em JHEP}, 1305:090, 2013.
 
-\bibitem{SMP-12-019}
+\bibitem{btagAlgo}
 CMS Collaboration.
-\newblock {Jet mass in di-jet and vector boson plus jet events}.
-\newblock CMS Physics Analysis Summary CMS-PAS-SMP-12-019, CMS, 2012.
+\newblock {Identification of b-quarks jets with the CMS experiment}.
+\newblock {\em JINST}, 8:P04013, 2013.
+
+\bibitem{BTV-13-001}
+CMS Collaboration.
+\newblock {Performance of b tagging at $\sqrt{s} = $8 TeV in multihjet,
+  $t\bar{t}$ and boosted topology events}.
+\newblock CMS Physics Analysis Summary CMS-PAS-BTV-13-001, CMS, 2013.
 
 \end{thebibliography}

@@ -269,7 +269,7 @@ Loose JetID ($>$ 99\% efficiency)
 
 For the "charged" variables, $\eta < 2.4$ requirement are also applied, since there is no track coverage outside of this region, whereas the "neutral" variables extend to the whole $\eta$ region.
 
-\subsection{Jet Grooming Algorithms and Pruned Jet Mass}
+\subsection{Jet Grooming Algorithms}
 
 The jet mass is the main observable in distinguishing a boson-jet from a QCD jet. Jet grooming aims to suppress underlying events and pile-up radiation from the target jet, and improves the discrimination by pushing the jet mass for QCD jets towards lower values while mantaining the jet mass for boson-jets around the boson-mass\cite{AN-12-137,AN-13-072}.
 
@@ -300,3 +300,45 @@ Where $z_{cut}$ and $r_{cut}$ are parameters of the algorithm (default value: $z
 As shown in Fig.~\ref{fig:JetGrooming}, the filtering algorithm is the least aggressive grooming technique, with groomed jet masses close to the original case. The trimming algorithm is moderately aggressive which produces a much wider final mass distribution. Pruning is the most aggressive tecnique and a bimodal distribution begins to appear.
 
 In cases where the pruned jet mass is small, jets usually have most of their energy configured in core components with little gluon radiation, which leads to narrow jets. Instead, when the pruned jet mass is large, the jets are split more symmetrically and more similar with the boson-jet structure. In this analysis we use the pruned jet mass because of its capability to improve the jet mass resolution and background rejection.
+
+\subsection{B-tagging}
+
+B-tagging\cite{btagAlgo,BTV-13-001} is an algorithm to identify jets originating from b-quarks. It is an important component in analyses searching for new physics. Particularly challenging are those involving top quark or Higgs boson production with decays in the boosted regime.
+
+The methods for b-tagging are based on the unique features of b-jets: B-hadrons have sufficient lifetime that they can travel some distance before they decaying. On the other hand, their lifetimes are not so high as those of light quark hadrons, so they decay inside the detector rather than escape. Another characteristic is, the bottom quark is much more massive than anything it decays into. Thus its decay products tend to have higher transverse momentum. This causes b-jets to be wider, have higher multiplicities and invariant masses, and also to contain low-energy leptons with momentum perpendicular to the jet.
+
+There have different approaches of b-tagging algorithm described in \cite{btagAlgo}. In this analysis, a complex approach we used will be introduced in the next section.
+
+\subsection*{Identification using Combined Secondary Vertex}
+
+Combined Secondary Vertex (CSV) algorithm is a complex approach involves the information of secondary vertices and track-based lifetime. In order to enchance b purity, a secondary vertex must meet the following requirements:
+
+\begin{itemize}
+\item secondary vertices must share less than 65\% of their associated tracks with the primary vertex and the significance of the radial distance between the two vertices has to exceed 3$\sigma$;
+\item secondary vertex candidates with a radial distance of more than 2.5 cm with respect to the primary vertex, with masses compatible with the mass of K$^{0}$ or exceeding 6.5 GeV/c$^{2}$ are rejected, reducing the contamination by vertices corresponding to the interactions of particles with the detector material and by decays of long-lived mesons;
+\item the flight direction of each candidate has to be within a cone of $\Delta R < 0.5$ around the jet direction.
+\end{itemize}
+
+There are also requirements to the tracks that forms the primary vertex, the detail reconstruction method and selections are in \cite{btagAlgo}. After all selections, the following set of variables with high discriminating power and low correlations is used to build likelihood functions:
+
+\begin{itemize}
+\item the vertex category (real, "pseudo" or "no vertex");
+\item flight distance significance in the transverse plane ("2D");
+\item the vertex mass;
+\item number of tracks at the vertex;
+\item ratio of the energy carried by tracks at the vertex with respect to all tracks in the jet;
+\item pseudorapidities of the tracks at the vertex with respect to the jet axis;
+\item the 2D IP (impact parameter) significance of the first track that raises the invariant mass above the charm threshold of 1.5 GeV/c$^{2}$ (tracks are ordered by decreasing IP significance and the mass of the system is recalculated after adding each track);
+\item the number of tracks in the jet;
+\item the 3D IP significances for each track in the jet.
+\end{itemize}
+
+Two likelihood ratios are built from these variables. They are used to discriminate between b and c jets and between b and light-parton jets.  They are combined with prior weights of 0.25 and 0.75, respectively. The combined value is the CSV discriminator. By using these additional variables, the CSV algorithm provides discrimination also in cases when no secondary vertices are found, increasing the maximum efficiency with respect to the other algorithms (in the "no vertex" category only the last two variables in the set are available). The distributions of the vertex multiplicity and of the CSV discriminator are shown in Fig.~\ref{fig:CSVfromPaper}.\\
+
+
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=\textwidth]{figure/CH3/CSVpaper.png}
+  \end{center}
+  \caption{\label{fig:CSVfromPaper}\cite{btagAlgo} Distributions of (a) the secondary vertex multiplicity and (b) the CSV discriminator.}
+\end{figure}

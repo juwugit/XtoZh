@@ -22,4 +22,5 @@
 \contentsline {subsection}{\numberline {3.3.1}Muon}{26}{subsection.74}
 \contentsline {subsection}{\numberline {3.3.2}Electron}{29}{subsection.78}
 \contentsline {subsection}{\numberline {3.3.3}Jet}{33}{subsection.85}
-\contentsline {subsection}{\numberline {3.3.4}Jet Grooming Algorithms and Pruned Jet Mass}{35}{subsection.89}
+\contentsline {subsection}{\numberline {3.3.4}Jet Grooming Algorithms}{35}{subsection.89}
+\contentsline {subsection}{\numberline {3.3.5}B-tagging}{37}{subsection.93}

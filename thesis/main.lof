@@ -15,3 +15,4 @@
 \contentsline {figure}{\numberline {3-1}{\ignorespaces Feynman diagram for $Z'\rightarrow Zh \rightarrow 2l2q.$}}{23}{figure.66}
 \contentsline {figure}{\numberline {3-2}{\ignorespaces Example of the $E_{2\times 5}/E_{5\times 5}$ computation in the ECAL crystals. $E_{i \times j}$ is the energy contained in a $i \times j$ block around the seed crystal (defined as the highest deposit of the energy of the cluster).}}{32}{figure.83}
 \contentsline {figure}{\numberline {3-3}{\ignorespaces Comparison of the jet mass in generic QCD events from the groomed jets divided by the jet mass of matched ungroomed jets for the three grooming techniques, for both data and the PYTHIA 6 Monte Carlo.\cite {SMP-12-019} Events are collected with a single jet trigger.}}{36}{figure.92}
+\contentsline {figure}{\numberline {3-4}{\ignorespaces \cite {btagAlgo} Distributions of (a) the secondary vertex multiplicity and (b) the CSV discriminator.}}{39}{figure.95}
