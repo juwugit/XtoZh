@@ -26,3 +26,5 @@
 \contentsline {subsection}{\numberline {3.3.5}B-tagging}{37}{subsection.93}
 \contentsline {section}{\numberline {3.4}Event and Object selection}{40}{section.96}
 \contentsline {subsection}{\numberline {3.4.1}Lepton Requirements}{40}{subsection.97}
+\contentsline {subsection}{\numberline {3.4.2}Jet Requirement}{40}{subsection.100}
+\contentsline {subsection}{\numberline {3.4.3}Z boson Requirement}{41}{subsection.101}

@@ -18,6 +18,12 @@
 Besides the muon ID criteria disscussed in section 3.3.1 (table~\ref{tab:MuonIDtable}), we also require kinematic cuts on the muon candidates. We select the transverse momentum of the leading muon candidate must greater than 40 GeV, while the second leading muon transverse momentum threshold is 20 GeV. All muon candidates are must in the psuedo-rapidity $|\eta| < 2.4$ region.
 
 \subsection*{Electron Selection}
-Kinematic cuts on the electron candidates are also neccesary. Although the electron ID selection (table~\ref{tab:EleIDtable}) already required the pseudo-rapidity of electron supercluster, we cut on the $|\eta| < 2.5$ for electron candidates and all electrons must out of [1.4442,1.566] in the $\eta$ region. The $p_{T}$ requirement is a bit different from the muon case. Since the HLT trigger already selects electron $p_{T}$ greater than 33 GeV, we require both leading and sub-leading electrons $p_{T}$ greater than 40 GeV in advance.
+Kinematic cuts on the electron candidates are also applied. Although the electron ID selection (table~\ref{tab:EleIDtable}) already required the pseudo-rapidity of electron supercluster, we cut on the $|\eta| < 2.5$ for electron candidates and all electrons must out of [1.4442,1.566] in the $\eta$ region. The $p_{T}$ requirement is a bit different from the muon case. Since the HLT trigger already selects electron $p_{T}$ greater than 33 GeV, we require both leading and sub-leading electrons $p_{T}$ greater than 40 GeV in advance.
 
-\subsection*{Jet Selection}
+\subsection{Jet Requirement}
+CA8jets in our signal process is originated from Higgs decay. If the Z' mass is large enough, the Higgs will be boosted. Therefore we require higher kinematic thresholds to the CA8jets. In every event, there must find at least one CA8jet with $p_{T} > 80$ GeV, $|\eta| < 2.4$, passing loose jet ID and the pruned-jet mass must greater than 40 GeV to remove jets from backgrounds.
+
+Futhermore, in order to veto leptons that are mis-identified as jets, leptons overlap with jets are removed by the $\Delta R$ cut, i.e. if there's a lepton passing all lepton selections and the spatial distance to a CA8jet smaller than 0.1 ($\Delta R_{jet,lepton} < 0.1$), the jet will be removed.
+
+\subsection{Z boson Requirement}
+We reconstruct Z boson candidate by adding four-momentum of the selected lepton pair.
