@@ -24,7 +24,9 @@
 \BOOKMARK [2][-]{subsection.85}{Jet}{section.73}% 24
 \BOOKMARK [2][-]{subsection.89}{Jet Grooming Algorithms}{section.73}% 25
 \BOOKMARK [2][-]{subsection.93}{B-tagging}{section.73}% 26
-\BOOKMARK [1][-]{section.96}{Event and Object selection}{chapter.63}% 27
-\BOOKMARK [2][-]{subsection.97}{Lepton Requirements}{section.96}% 28
-\BOOKMARK [2][-]{subsection.100}{Jet Requirement}{section.96}% 29
-\BOOKMARK [2][-]{subsection.101}{Z boson Requirement}{section.96}% 30
+\BOOKMARK [1][-]{section.96}{Pile-up reweighting}{chapter.63}% 27
+\BOOKMARK [1][-]{section.98}{Event and Object selection}{chapter.63}% 28
+\BOOKMARK [2][-]{subsection.99}{Lepton Requirements}{section.98}% 29
+\BOOKMARK [2][-]{subsection.102}{Jet Requirement}{section.98}% 30
+\BOOKMARK [2][-]{subsection.103}{Z boson Requirement}{section.98}% 31
+\BOOKMARK [1][-]{section.106}{Data-MC comparison}{chapter.63}% 32
