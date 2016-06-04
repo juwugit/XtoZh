@@ -18,3 +18,12 @@
 \contentsline {figure}{\numberline {3-4}{\ignorespaces \cite {btagAlgo} Distributions of (a) the secondary vertex multiplicity and (b) the CSV discriminator.}}{39}{figure.95}
 \contentsline {figure}{\numberline {3-5}{\ignorespaces Number of vertices distributions after pile-up reweighting. Data are compared to the combination of all MC background samples. After reweighting, the distributions are almost identical to the data in both channels.}}{40}{figure.97}
 \contentsline {figure}{\numberline {3-6}{\ignorespaces Z and Higgs $p_{T}$ distribution are almost identical. We pick three samples with different mass points of $Z'$, 1000 GeV (red), 1500 GeV (blue) and 2000 GeV (green). These plots are made from the generator level signal samples without any proper selections.}}{42}{figure.104}
+\contentsline {figure}{\numberline {3-7}{\ignorespaces Comparison between data and all background samples for two jet variables. The definition of muon/photon energy fraction is muon/photon energy divided by jet energy.}}{45}{figure.107}
+\contentsline {figure}{\numberline {3-8}{\ignorespaces Charged electromagnetic/hadron energy fraction is defined by the ratio of the energy of charged particles in ECAL/HCAL to the jet energy.}}{45}{figure.108}
+\contentsline {figure}{\numberline {3-9}{\ignorespaces Neutral electromagnetic/hadron energy fraction is defined by the ratio of the energy of neutral particles in ECAL/HCAL to the jet energy.}}{46}{figure.109}
+\contentsline {figure}{\numberline {3-10}{\ignorespaces Comparison between data and MC in SB region using jet multiplicity (number of jets) and CA8jet transverse momentum.}}{46}{figure.110}
+\contentsline {figure}{\numberline {3-11}{\ignorespaces Comparison between data and MC in SB region using CA8jet $\eta $ and $\phi $.}}{47}{figure.111}
+\contentsline {figure}{\numberline {3-12}{\ignorespaces Left: the prunedjet mass in the SB region. Right: the spatial distance between two subjets within the CA8jet.}}{47}{figure.112}
+\contentsline {figure}{\numberline {3-13}{\ignorespaces Comparison between data and MC in SB region using mass and transverse momentum of reconstructed Z boson.}}{48}{figure.113}
+\contentsline {figure}{\numberline {3-14}{\ignorespaces Comparison between data and MC in SB region using $\eta $ and $\phi $ of reconstructed Z boson.}}{48}{figure.114}
+\contentsline {figure}{\numberline {3-15}{\ignorespaces $\Delta R$ between the two selected leptons.}}{49}{figure.115}
