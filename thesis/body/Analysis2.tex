@@ -32,10 +32,10 @@ The simulation generates the pile-up roughly to match the condiction in data, ho
 
 \subsection*{Muon Selection}
 
-Besides the muon ID criteria disscussed in section 3.3.1 (table~\ref{tab:MuonIDtable}), we also require kinematic cuts on the muon candidates. We select the transverse momentum of the leading muon candidate must greater than 40 GeV, while the second leading muon transverse momentum threshold is 20 GeV. All muon candidates are must in the psuedo-rapidity $|\eta| < 2.4$ region.
+Besides the muon ID criteria disscussed in section 3.3.1 (Table~\ref{tab:MuonIDtable}), we also require kinematic cuts on the muon candidates. We select the transverse momentum of the leading muon candidate must greater than 40 GeV, while the second leading muon transverse momentum threshold is 20 GeV. All muon candidates are must in the psuedo-rapidity $|\eta| < 2.4$ region.
 
 \subsection*{Electron Selection}
-Kinematic cuts on the electron candidates are also applied. Although the electron ID selection (table~\ref{tab:EleIDtable}) already required the pseudo-rapidity of electron supercluster, we cut on the $|\eta| < 2.5$ for electron candidates and all electrons must out of [1.4442,1.566] in the $\eta$ region to avoid the ECAL gap. The $p_{T}$ requirement is a bit different from the muon case. Since the HLT trigger already selects electron $p_{T}$ greater than 33 GeV, we require both leading and sub-leading electrons $p_{T}$ greater than 40 GeV in advance.
+Kinematic cuts on the electron candidates are also applied. Although the electron ID selection (Table~\ref{tab:EleIDtable}) already required the pseudo-rapidity of electron supercluster, we cut on the $|\eta| < 2.5$ for electron candidates and all electrons must out of [1.4442,1.566] in the $\eta$ region to avoid the ECAL gap. The $p_{T}$ requirement is a bit different from the muon case. Since the HLT trigger already selects electron $p_{T}$ greater than 33 GeV, we require both leading and sub-leading electrons $p_{T}$ greater than 40 GeV in advance.
 
 \subsection{Jet Requirement}
 CA8jets in our signal process is originated from Higgs decay. If the $Z'$ mass is large enough, the Higgs will be boosted. Therefore we require higher kinematic thresholds to the CA8jets. In every event, there must find at least one CA8jet with $p_{T} > 80$ GeV, $|\eta| < 2.4$, passing loose jet ID and the pruned-jet mass must greater than 40 GeV to remove jets from backgrounds.
@@ -57,7 +57,7 @@ For the CA8jet from Higgs, we require $p_{T}$ threshold as 80 GeV. The kinematic
   \caption{\label{fig:genZHPt}Z and Higgs $p_{T}$ distribution are almost identical. We pick three samples with different mass points of $Z'$, 1000 GeV (red), 1500 GeV (blue) and 2000 GeV (green). These plots are made from the generator level signal samples without any proper selections.}
 \end{figure}
 
-Finally, all selection requirements are summarized in table~\ref{tab:preselection}.
+Finally, all selection requirements are summarized in Table~\ref{tab:preselection}.
 \newpage
 
 \begin{center}
@@ -89,7 +89,7 @@ Finally, all selection requirements are summarized in table~\ref{tab:preselectio
         Prunedjet mass & $> 40$ GeV &\\
         Veto jet-lepton overlap & $\Delta R_{jet,lepton} < 0.1$ & Remove the jet satisfies this requirement.\\ \hline
         Z $p_{T}$ & $p_{T} > 80$ GeV &\\
-        Z mass window cut & $70 \textup{ GeV} < M_{Z} < 110 \textup{ GeV}$ &\\
+        Z mass window cut & $70 \textup{ GeV} < m_{Z} < 110 \textup{ GeV}$ &\\
         \hline
       \end{tabular}
     \end{center}
@@ -105,8 +105,8 @@ In this section, a comparison between data and simulation is reported for variou
 On top of the selections described in previous section, additional regions are defined as following:
 
 \begin{itemize}
-\item \textbf{Signal region (SR)}: Represents the phase space where the signal is expected, defined by the prunedjet mass in $110 \textup{ GeV} < M_{prunedjet} < 140 \textup{ GeV}$ region. The range is chosen by $\pm$15 GeV to the mass of Higgs.
-\item \textbf{Sidebands (SB)}: Defined by the interval between $70 \textup{ GeV} < M_{prunedjet} < 110 \textup{ GeV}$. This region is signal-depleted. In our case, we don't consider prunedjet mass higher than 140 GeV, because of the poor statistics and the excessive contribution of $t\bar{t}$ events.
+\item \textbf{Signal region (SR)}: Represents the phase space where the signal is expected, defined by the prunedjet mass in $110 \textup{ GeV} < m_{prunedjet} < 140 \textup{ GeV}$ region. The range is chosen by $\pm$15 GeV to the mass of Higgs.
+\item \textbf{Sidebands (SB)}: Defined by the interval between $70 \textup{ GeV} < m_{prunedjet} < 110 \textup{ GeV}$. This region is signal-depleted. In our case, we don't consider prunedjet mass higher than 140 GeV, because of the poor statistics and the excessive contribution of $t\bar{t}$ events.
 \end{itemize}
 
 In the following plots, the data-MC comparison is performed in SB region and all background samples are weighted to the same luminosity as data. Because the signal region in data is considered \textbf{blind} in this analysis stage, so they are not shown.
@@ -203,4 +203,52 @@ In the following plots, the data-MC comparison is performed in SB region and all
 
 The final aim of this analysis is to compare the predicted SM background with the observed data, it is important to elaborate a trustworthy strategy for the background estimation. Despite the good description of the event kinematics provided by the MC simulation, it is more advisable to minimize the dependence on the MC and develop a data driven strategy.
 
+\subsection{$\alpha$ ratio method}
+
+$\alpha$ ratio is a data driven method in order to estimate the final background in data signal region. We consider the $m_{Zh}$ MC mass spectrum in the SR and SB, then a ratio $\alpha$($m_{Zh}$) of the two is created. This factor $\alpha$ allows prediction of the mass spectrum in the signal region starting from the observed distribution in the sidebands. Under the assumption that this estrapolation from the sidebands to the signal region works in the same way both for data and MC, we can estimate the final background distribution in data signal region by multipling the $m_{Zh}$ mass spectrum observed in the sidebands by this $\alpha$ ratio:
+
+\begin{align}
+  \label{eq:AlphaRatio}
+  N_{SR}^{data}(m_{Zh}) = N_{SB}^{data}(m_{Zh})\times \frac{N^{MC}_{SR}(m_{Zh})}{N^{MC}_{SB}(m_{Zh})}= N_{SB}^{data}(m_{Zh})\times \alpha (m_{Zh})
+\end{align}
+
+We divided the spectrum in 14 non-uniform width bins, as shown in Table~\ref{tab:bin}, accordingly to the decreasing statistics in the high mass tail.
+
+\begin{center}
+  \begin{table}[h]
+    \begin{center}
+      \begin{tabular}{c|c}
+        \hline
+        \bf Bin & \bf GeV \\
+        \hline
+        \hline
+        1 & [680, 720] \\
+        2 & [720, 760] \\
+        3 & [760, 800] \\
+        4 & [800, 840] \\
+        5 & [840, 920] \\
+        6 & [920, 1000] \\
+        7 & [1000, 1100] \\
+        8 & [1100, 1250] \\
+        9 & [1250, 1400] \\
+        10 & [1400, 1600] \\
+        11 & [1600, 1800] \\
+        12 & [1800, 2000] \\
+        13 & [2000, 2200] \\
+        14 & [2200, 2400] \\
+        \hline
+      \end{tabular}
+    \end{center}
+    \caption{\label{tab:bin}Binning of the Zh invariant mass range.}
+  \end{table}
+\end{center}
+
+Finally, we multiplied the $\alpha$ ratio to the sidebands data $m_{Zh}$ distribution and obtained the prediction number of backgrounds in data signal region.
+
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=\textwidth]{figure/CH3/alpha.png}
+  \end{center}
+  \caption{\label{fig:alpha}Left figure: the $\alpha$ ratio from MC simulation. Central figure: the $m_{Zh}$ distribution observed from data SB. Right figure: the predicted $m_{Zh}$ distribution in data signal region. }
+\end{figure}
 

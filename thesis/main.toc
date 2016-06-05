@@ -31,3 +31,4 @@
 \contentsline {subsection}{\numberline {3.5.3}Z boson Requirement}{42}{subsection.103}
 \contentsline {section}{\numberline {3.6}Data-MC comparison}{44}{section.106}
 \contentsline {section}{\numberline {3.7}Background Extrapolation}{49}{section.116}
+\contentsline {subsection}{\numberline {3.7.1}$\alpha $ ratio method}{49}{subsection.117}
