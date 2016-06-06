@@ -109,7 +109,7 @@ On top of the selections described in previous section, additional regions are d
 \item \textbf{Sidebands (SB)}: Defined by the interval between $70 \textup{ GeV} < m_{prunedjet} < 110 \textup{ GeV}$. This region is signal-depleted. In our case, we don't consider prunedjet mass higher than 140 GeV, because of the poor statistics and the excessive contribution of $t\bar{t}$ events.
 \end{itemize}
 
-In the following plots, the data-MC comparison is performed in SB region and all background samples are weighted to the same luminosity as data. Because the signal region in data is considered \textbf{blind} in this analysis stage, so they are not shown.
+In the following plots, the data-MC comparison is performed in SB region and all background samples are weighted to the same luminosity as data. The results combined both muon and electron channels. Because of the signal region in data is considered \textbf{blind} in this analysis stage, so they are not shown.
 
 \begin{figure}[hbtp]
   \centering
@@ -201,7 +201,7 @@ In the following plots, the data-MC comparison is performed in SB region and all
 \newpage
 \section{Background Estimation}
 
-The final aim of this analysis is to compare the predicted SM background with the observed data, it is important to elaborate a trustworthy strategy for the background estimation. Despite the good description of the event kinematics provided by the MC simulation, it is more advisable to minimize the dependence on the MC and develop a data driven strategy.
+The final aim of this analysis is to test the $Z'$ hypothesis with the observed data, it is important to elaborate a trustworthy strategy for the SM background estimation. Despite the good description of the event kinematics provided by the MC simulation, it is more advisable to minimize the dependence on the MC and develop a data driven strategy.
 
 \subsection{$\alpha$ ratio method}
 
@@ -209,7 +209,7 @@ $\alpha$ ratio is a data driven method in order to estimate the final background
 
 \begin{align}
   \label{eq:AlphaRatio}
-  N_{SR}^{data}(m_{Zh}) = N_{SB}^{data}(m_{Zh})\times \frac{N^{MC}_{SR}(m_{Zh})}{N^{MC}_{SB}(m_{Zh})}= N_{SB}^{data}(m_{Zh})\times \alpha (m_{Zh})
+  N_{SR}^{data}(m_{Zh}) = N_{SB}^{data}(m_{Zh})\times \frac{N^{MC}_{SR}(m_{Zh})}{N^{MC}_{SB}(m_{Zh})}\equiv N_{SB}^{data}(m_{Zh})\times \alpha (m_{Zh})
 \end{align}
 
 We divided the spectrum in 14 non-uniform width bins, as shown in Table~\ref{tab:bin}, accordingly to the decreasing statistics in the high mass tail.
@@ -252,3 +252,32 @@ Finally, we multiplied the $\alpha$ ratio to the sidebands data $m_{Zh}$ distrib
   \caption{\label{fig:alpha}Left figure: the $\alpha$ ratio from MC simulation. Central figure: the $m_{Zh}$ distribution observed from data SB. Right figure: the predicted $m_{Zh}$ distribution in data signal region. }
 \end{figure}
 
+\section{Signal Yields}
+Since all selections have been settled, we can look at the data in the signal region now. In this section, signal efficiency and distributions of variables in SR will be reported. 
+
+\subsection{signal efficiency}
+The signal efficiency is defined by the fraction of the number of events passing final selection and the number of generated events in the signal MC samples (number of generated events are shown in Table.~\ref{tab:TableSignalMC}). 
+
+\begin{align}
+  \label{eq:SIGeff}
+  \epsilon_{SIG}\equiv \frac{\textup{Number of events passing the final selections}}{\textup{Number of generated events}}
+\end{align}
+
+From Eq.~(\ref{eq:SIGeff}), those number of events include both muon and electron channels. There are totally thirteen masspoints of $Z'$ in our signal MC samples. For each masspoint, the result of efficiencies are shown in Fig.~\ref{fig:SIG_eff_spectrum} (a).
+
+\begin{figure}[hbtp]
+  \centering
+  \subfigure[Signal effciencies for each $Z'$ samples]{
+    \includegraphics[scale=0.35]{figure/CH3/SIGeff.png}}
+  \hspace{0.5cm}
+  \subfigure[$m_{Zh}$ spectrum]{
+    \includegraphics[scale=0.32]{figure/CH3/h_sigXMass.png}}
+  \caption{\label{fig:SIG_eff_spectrum}(a) The signal efficiencies plot of each $Z'$ samples. (b) Invariant mass distribution of the MC background simulation compared to the observed data and MC signal shape in the SR.}
+\end{figure}
+
+\subsection{$m_{Zh}$ spectrum}
+A comparison between data and MC of the reconstructed Zh invariant mass distribution in the signal region is shown in Fig.~\ref{fig:SIG_eff_spectrum} (b). Inspecting the SR mass distributions, one can see that data do not present any significant excess from the MC expectation, so we decide to put limits on the production cross section times the branching ratio for the $Z' \rightarrow Zh$ process. This Zh invariant mass spectrum will be used for computing the limit as shape information. Furthermore, in the last chapter, the number of events in the signal yields will be used for cut and count method to set the limits.
+
+\newpage
+\subsection{CSV distribution}
+Text.
