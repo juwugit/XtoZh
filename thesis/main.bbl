@@ -293,4 +293,15 @@ A.~Denner, S.~Heinemeyer, I.~Puljak, D.~Rebuzzi, and M.~Spira.
 \newblock {Standard Model Higgs-Boson Branching Ratios with Uncertainties}.
 \newblock arXiv:1107.5909 [hep-ph], http://arxiv.org/abs/1107.5909, 2011.
 
+\bibitem{lumi}
+CMS Collaboration.
+\newblock {CMS Luminosity Based on Pixel Cluster Counting - Summer 2013
+  Update}.
+\newblock CMS Physics Analysis Summary CMS-PAS-LUM-13-001, CMS, 2013.
+
+\bibitem{PileupError}
+CMS Collaboration.
+\newblock {Estimating Systematic Errors Due to Pileup Modeling}.
+\newblock https://twiki.cern.ch/twiki/bin/view/CMS/PileupSystematicErrors.
+
 \end{thebibliography}
