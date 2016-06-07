@@ -2,11 +2,12 @@
 % 3. Analysis procedures
 %    ..
 %    ..
-%    ..
-%    3.3 Event and Object selection
-%    3.4 Data and MC comparison
-%    3.5 Background estimation
-%
+%    3.4 Pile-up
+%    3.5 Event and Object selection
+%    3.6 Data and MC comparison
+%    3.7 Background estimation
+%    3.8 Signal yields
+
 \section{Pile-up reweighting}
 At the typical luminosity provided by the LHC, it is common to reconstruct more than one vertex per event. The main event vertex is defined as the one with the highest sum of the $p_{T}^{2}$ of the associated tracks. The presence of additional interactions, known as pile-up (PU). 
 
@@ -263,7 +264,7 @@ The signal efficiency is defined by the fraction of the number of events passing
   \epsilon_{SIG}\equiv \frac{\textup{Number of events passing the final selections}}{\textup{Number of generated events}}
 \end{align}
 
-From Eq.~(\ref{eq:SIGeff}), those number of events include both muon and electron channels. There are totally thirteen masspoints of $Z'$ in our signal MC samples. For each masspoint, the result of efficiencies are shown in Fig.~\ref{fig:SIG_eff_spectrum} (a).
+In Eq.~(\ref{eq:SIGeff}), those number of events include both muon and electron channels. There are totally thirteen masspoints of $Z'$ in our signal MC samples. For each masspoint, the result of efficiencies are shown in Fig.~\ref{fig:SIG_eff_spectrum} (a).
 
 \begin{figure}[hbtp]
   \centering
@@ -275,9 +276,69 @@ From Eq.~(\ref{eq:SIGeff}), those number of events include both muon and electro
   \caption{\label{fig:SIG_eff_spectrum}(a) The signal efficiencies plot of each $Z'$ samples. (b) Invariant mass distribution of the MC background simulation compared to the observed data and MC signal shape in the SR.}
 \end{figure}
 
-\subsection{$m_{Zh}$ spectrum}
+\subsection{The $m_{Zh}$ spectrum}
 A comparison between data and MC of the reconstructed Zh invariant mass distribution in the signal region is shown in Fig.~\ref{fig:SIG_eff_spectrum} (b). Inspecting the SR mass distributions, one can see that data do not present any significant excess from the MC expectation, so we decide to put limits on the production cross section times the branching ratio for the $Z' \rightarrow Zh$ process. This Zh invariant mass spectrum will be used for computing the limit as shape information. Furthermore, in the last chapter, the number of events in the signal yields will be used for cut and count method to set the limits.
 
 \newpage
-\subsection{CSV distribution}
-Text.
+\subsection{The CSV distribution}
+Despite the reconstructed Zh mass as shape information, we introduced another powerful variable to discriminate signal from background. The overall branching ratio for a SM Higgs decaying into $b\bar{b}$ is about 56\% and for Higgs decaying into two quarks only, the BR($h\rightarrow b\bar{b}$) is about 95\% \cite{HiggsBR}. Therefore, the b-tagging CSV working point is a power tool for searching this channel.
+
+Although the recommend CSV selection (loose working point) from BTV group\cite{BTV-13-001} for the boosted Higgs decay result in very low effiency for both background and signal MC samples. Instead of taking selection on the CSV, we use the overall distribution as another source of shape information to set the limits. The method how we retrive the CSV distribution is shown in Table.~\ref{tab:CSVsel}.
+
+\begin{center}
+  \begin{table}[h]
+    \begin{center}
+      \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{Category} & \textbf{BTV recommend (CSVL)} & \textbf{Modified} \\ \hline
+        If $\Delta R_{subjets} > $ 0.3 & subjet CSV $>$ 0.244 & use the subjets CSV shape directly\\
+        If $\Delta R_{sibjets} < $ 0.3 & CA8jet CSV $>$ 0.244 & use the CA8jet CSV shape directly\\
+        \hline
+      \end{tabular}
+    \end{center}
+    \caption{\label{tab:CSVsel}The recommend selection from BTV group for boosted Higgs decay. If the $\Delta R$ between the two subjets within CA8jet larger than 0.3, applying CSVL selection on both subjets. If $\Delta R_{subjets} < 0.3$, appliny CSVL on the CA8jet. In this analysis, we use the overall CSV distributions instead of selecting events by this variable (Modified).}
+  \end{table}
+\end{center}
+
+The CSV distribution comparison between simulation background, signal and data is shown in Fig.~\ref{fig:h_sigCSV}. Note that, the area of each distribution is set to one in order to compare the shape difference. Inspecting Fig.~\ref{fig:h_sigCSV}, signal shapes tend to distribute on the right side while the backgrounds tend to be on the left, which shows the discriminating power of CSV variable. We only report and use the distribution from the $\Delta R > 0.3$ category to set the final limits because of lack of statics in the CA8jet CSV case. The higher CSV score means the subjet acts more like a b-jet.
+
+\begin{figure}[hbtp]
+  \begin{center}
+    \includegraphics[width=0.5\textwidth]{figure/CH3/h_sigCSV.png}
+  \end{center}
+  \caption{\label{fig:h_sigCSV}The CSV distribution comparison between data and MC samples in SR.}
+\end{figure}
+
+Finally, we combine the CSV and the Zh mass distribution, making 2D histograms. Results of MC backgrounds, signal and data are shown in next pages.
+
+\begin{figure}[hbtp]
+  \centering
+  \subfigure[CSV-$m_{Zh}$ distribution of total MC background]{
+    \includegraphics[scale=0.22]{figure/CH3/h2_bkgCSV}}
+  \hspace{0.5cm}
+  \subfigure[CSV-$m_{Zh}$ distribution of total data]{
+    \includegraphics[scale=0.22]{figure/CH3/h2_dataCSV.png}}
+  \caption{\label{fig:h2_bkg_data}The combined 2D shape result of data and MC background in SR.}
+\end{figure}
+
+\begin{figure}[hbtp]
+  \centering
+  \subfigure[CSV-$m_{Zh}$ distribution of 800 GeV $Z'$ mass signal sample]{
+    \includegraphics[scale=0.22]{figure/CH3/h2_sig800.png}}
+  \hspace{0.5cm}
+  \subfigure[CSV-$m_{Zh}$ distribution of 1000 GeV $Z'$ mass signal sample]{
+    \includegraphics[scale=0.22]{figure/CH3/h2_sig1000.png}}
+  \caption{\label{fig:h2_sig1}The combined 2D shape result in SR of 800 GeV and 1000 GeV signal MC samples.}
+\end{figure}
+
+\begin{figure}[hbtp]
+  \centering
+  \subfigure[CSV-$m_{Zh}$ distribution of 1500 GeV $Z'$ mass signal sample]{
+    \includegraphics[scale=0.22]{figure/CH3/h2_sig1500.png}}
+  \hspace{0.5cm}
+  \subfigure[CSV-$m_{Zh}$ distribution of 2000 GeV $Z'$ mass signal sample]{
+    \includegraphics[scale=0.22]{figure/CH3/h2_sig2000.png}}
+  \caption{\label{fig:h2_sig2}The combined 2D shape result in SR of 1500 GeV and 2000 GeV signal MC samples.}
+\end{figure}
+
+

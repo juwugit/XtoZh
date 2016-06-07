@@ -8,3 +8,4 @@
 \contentsline {table}{\numberline {3.5}{\ignorespaces Summary of the modified HEEPv4.1 electron ID.}}{32}{table.84}
 \contentsline {table}{\numberline {3.6}{\ignorespaces Event and object selection requirements used in the analysis.}}{43}{table.105}
 \contentsline {table}{\numberline {3.7}{\ignorespaces Binning of the Zh invariant mass range.}}{50}{table.119}
+\contentsline {table}{\numberline {3.8}{\ignorespaces The recommend selection from BTV group for boosted Higgs decay. If the $\Delta R$ between the two subjets within CA8jet larger than 0.3, applying CSVL selection on both subjets. If $\Delta R_{subjets} < 0.3$, appliny CSVL on the CA8jet. In this analysis, we use the overall CSV distributions instead of selecting events by this variable (Modified).}}{53}{table.127}
