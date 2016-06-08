@@ -316,4 +316,26 @@ T.~Gleisberg, S.~Hoeche, F.~Krauss, M.~Schoenherr, S.~Schumann, F.~Siegert, and
 \newblock {Event generation with SHERPA 1.1}.
 \newblock arXiv:0801.4622 [hep-ph], http://arxiv.org/abs/0801.4622, 2008.
 
+\bibitem{CLs1}
+A.~L. Read.
+\newblock {Presentation of search results: the $CL_{s}$ technique}.
+\newblock {\em J.Phys.}, G28:2693, 2002.
+
+\bibitem{CLs2}
+T.~Junk.
+\newblock {Confidence level computation for combining searches with small
+  statistics}.
+\newblock {\em Nucl. Insrum. Meth.}, A434:435, 1999.
+
+\bibitem{RooStats}
+L.~Moneta.
+\newblock {The RooStats Project}.
+\newblock arXiv:1009.1003 [hep-ph], http://arxiv.org/abs/1009.1003, 2010.
+
+\bibitem{HiggsCombineTool}
+CMS Collaboration.
+\newblock {CMS Higgs Combine Tool}.
+\newblock
+  https://twiki.cern.ch/twiki/bin/view/CMS/SWGuideHiggsAnalysisCombinedLimit.
+
 \end{thebibliography}
