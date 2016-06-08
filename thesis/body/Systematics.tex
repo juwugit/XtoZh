@@ -10,8 +10,8 @@ The background and signal predictions are affected by systematic uncertainties t
 \begin{itemize}
 \item \textbf{Luminosity:} The overall uncertainty of the LHC luminosity delivered to CMS in the 2012 Run-I is measured to be 2.6\%\cite{lumi}
 \item \textbf{Jet energy scale:} The systematic on the jet energy scale was studied by scaling up and down the jet mass and $p_{T}$ according to the uncertainty associated to the jet energy corrections used. The Zh mass distributions reconstructed by jet four-momentum is affected and therefore we consider the shape uncertainty as well, shown in Fig.~\ref{fig:SYS_JES}. The overall uncertainty is about 8\%.
-\item \textbf{CSV distribution normalization:} This systematic is from normalizing the CSV distributions of MC background prediction in order to fit the data, it is estimated about 10\% for each background.
-\item \textbf{Pile-up reweighting:} As described previously in section 3.4, we reweight the pile-up interactions in MC predictions for better modeling. To calculate the uncertainties on the pile-up simulation, we produce two pile-up distributions where the minimum bias cross section is shifted by $\pm$5\%\cite{PileupError}. The impact on the event yields is about 2\%. Despite the effects are small, we still consider shape uncertainties of pile-up. Fig.~\ref{fig:SYS_PU} shows the variation distributions of number of vertices for $\pm1\sigma$.
+\item \textbf{CSV distribution normalization:} The uncertainty comes when normalizing the CSV distributions of MC background prediction in order to match the data distribution, which is estimated about 10\%.
+\item \textbf{Pile-up reweighting:} As described previously in section 3.4, we reweight the pile-up interactions in MC predictions for better modeling. To calculate the uncertainties on the pile-up simulation, we produce two pile-up distributions where the minimum bias cross section is shifted by $\pm$5\%\cite{PileupError}. The impact on the event yields is about 2\%. Despite the effects are small, we still consider it as the shape uncertainty. Fig.~\ref{fig:SYS_PU} shows the variation distributions of number of vertices for $\pm1\sigma$.
 \item \textbf{Lepton ID scale factor:} Text.
 \end{itemize}
 
@@ -34,3 +34,35 @@ The background and signal predictions are affected by systematic uncertainties t
     \includegraphics[scale=0.22]{figure/CH3/Systematics/h_nVtx_Mu_SysLog.png}}
   \caption{\label{fig:SYS_PU}(a) shows the distributions of number of vertices in electron channel, comparing central value of the total background prediction and the $\pm1\sigma$ variation, and data as well. (b) shows the result in muon channel.}
 \end{figure}
+
+\begin{center}
+  \begin{table}[h]
+    \begin{center}
+      \begin{tabular}{|c|c|c|c|}
+        \hline
+        muon $p_{T}$ [GeV] & $0.0 < |\eta| < 0.8$ & $0.8 < |\eta| < 2.1$ & $2.1 < |\eta| < 2.4$\\ \hline
+        20-40 & 1.0043 $\pm$ 0.0004 & 1.0074 $\pm$ 0.0005 & 1.022 $\pm$ 0.001  \\
+        40-100 & 1.0012 $\pm$ 0.0004 & 1.0043 $\pm$ 0.0004 & 1.014 $\pm$ 0.001 \\
+        \hline
+      \end{tabular}
+    \end{center}
+    \caption{\label{tab:muonIDsf}Data to simulation scale factors for muon identification requirements in various $p_{T}$ and $\eta$ ranges.}
+  \end{table}
+\end{center}
+
+\begin{center}
+  \begin{table}[h]
+    \begin{center}
+      \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        electron $p_{T}$ [GeV] & $0.0 < |\eta| < 0.8$ & $0.8 < |\eta| < 1.442$ & $1.556 < |\eta| < 2.0$ & $2.0 < |\eta| < 2.5$\\ \hline
+        20-30 & 1.005 $\pm$ 0.003 & 0.981 $\pm$ 0.003 & 0.980 $\pm$ 0.005 & 1.017 $\pm$ 0.006\\
+        30-40 & 1.004 $\pm$ 0.001 & 0.991 $\pm$ 0.001 & 0.992 $\pm$ 0.002 & 1.019 $\pm$ 0.003\\
+        40-50 & 1.008 $\pm$ 0.001 & 0.994 $\pm$ 0.001 & 1.004 $\pm$ 0.002 & 1.005 $\pm$ 0.001\\
+        50-200 & 1.008 $\pm$ 0.001 & 0.999 $\pm$ 0.001 & 1.006 $\pm$ 0.003 & 1.009 $\pm$ 0.002\\
+        \hline
+      \end{tabular}
+    \end{center}
+    \caption{\label{tab:eleIDsf}Data to simulation scale factors for electron identification requirements in various $p_{T}$ and $\eta$ ranges.}
+  \end{table}
+\end{center}

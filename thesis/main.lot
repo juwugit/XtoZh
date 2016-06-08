@@ -9,3 +9,5 @@
 \contentsline {table}{\numberline {3.6}{\ignorespaces Event and object selection requirements used in the analysis.}}{43}{table.105}
 \contentsline {table}{\numberline {3.7}{\ignorespaces Binning of the Zh invariant mass range.}}{50}{table.119}
 \contentsline {table}{\numberline {3.8}{\ignorespaces The recommend selection from BTV group for boosted Higgs decay. If the $\Delta R$ between the two subjets within CA8jet larger than 0.3, applying CSVL selection on both subjets. If $\Delta R_{subjets} < 0.3$, appliny CSVL on the CA8jet. In this analysis, we use the overall CSV distributions instead of selecting events by this variable (Modified). Note that, only leading CA8jet (the Higgs candidate) and subjets within it are considered in this strategy.}}{53}{table.127}
+\contentsline {table}{\numberline {3.9}{\ignorespaces Data to simulation scale factors for muon identification requirements in various $p_{T}$ and $\eta $ ranges.}}{58}{table.135}
+\contentsline {table}{\numberline {3.10}{\ignorespaces Data to simulation scale factors for electron identification requirements in various $p_{T}$ and $\eta $ ranges.}}{58}{table.136}
