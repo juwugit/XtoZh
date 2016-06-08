@@ -304,4 +304,16 @@ CMS Collaboration.
 \newblock {Estimating Systematic Errors Due to Pileup Modeling}.
 \newblock https://twiki.cern.ch/twiki/bin/view/CMS/PileupSystematicErrors.
 
+\bibitem{SMP-13-004}
+CMS Collaboration.
+\newblock {Measurement of the production cross sections for a Z boson and one
+  or more b jets in pp collisions at $\sqrt{s}$ = 7 TeV}.
+\newblock {\em JHEP}, 06:120, 2014.
+
+\bibitem{SHERPA}
+T.~Gleisberg, S.~Hoeche, F.~Krauss, M.~Schoenherr, S.~Schumann, F.~Siegert, and
+  J.~Winter.
+\newblock {Event generation with SHERPA 1.1}.
+\newblock arXiv:0801.4622 [hep-ph], http://arxiv.org/abs/0801.4622, 2008.
+
 \end{thebibliography}
