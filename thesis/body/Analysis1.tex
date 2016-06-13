@@ -135,7 +135,7 @@ High-$p_{T}$ muon ID
 
 In the tracker-based muon ID, the muon has to be identified as a $Tracker~Muon$, and the requirement of muon hits in the global track is removed. Other requirements are the same.
 
-An additional useful variable for lepton identification is the isolation. It is defined as the scalar sum of the $p_{T}$ of the reconstructed objects within a cone (typical size is $\Delta R=0.3$, $\Delta R^{2}\equiv\sqrt{\Delta\eta^{2}+\Delta\phi^{2}}$) space around the lepton track but excluding the $p_{T}$ of the lepton itself. Moreover, the relative isolation is defined as isolation divided by the lepton $p_{T}$ ($I_{rel} = Iso/p_{T}^{lep}$). The relative isolation is more frequently used in the modern analysis.
+An additional useful variable for lepton identification is the isolation. It is defined as the scalar sum of the $p_{T}$ of the reconstructed objects within a cone (typical size is $\Delta R=0.3$, $\Delta R \equiv\sqrt{\Delta\eta^{2}+\Delta\phi^{2}}$) space around the lepton track but excluding the $p_{T}$ of the lepton itself. Moreover, the relative isolation is defined as isolation divided by the lepton $p_{T}$ ($I_{rel} = Iso/p_{T}^{lep}$). The relative isolation is more frequently used in the modern analysis.
 
 In this analysis, a modified isolation criteria is used. The two muons originated from boosted Z decay are close to each other, and consequently the presence of another muon in the isolation cone could break the function of this variable. In order to solve this problem we use a tracker-based isolation relative quantity, explicitely removing the momentum flow from any other muon passing our muon selection. Moreover, a tracker-based isolation is well motivated also by two additional aspects: it is more independent of pile up (pile-up tracks tipically do not match the primary vertex) and does not include possible muon radiation. Finally, the modified requirement is $I_{rel}^{mod} < 0.1$.\\
 
@@ -229,7 +229,7 @@ As what we did for the muon id, by the same reason we need to modify the isolati
 Since gluons and quarks cannot exist in free state due to the color confinement\cite{confinement}, they fragment into hadrons. The result of this fragmentation (or called the "hadronization") is a jet of particles depositing energy in the detectors.
 
 \subsection*{Reconstruction}
-Jet clustering algorithms are among the main tools for analyzing data from hadronic collisions. In this section, a extensively used clustering algorithm called "sequential recombination algorithm"\cite{AKalgo,CAalgo1} will be introduced. At first, events are reconstructed using the particle flow algorithm (PF)\cite{PFalgo}, which attempts to identify and measure all the stable particles in a collision by combining information from all the sub-detectors. The PF algorithm categorizes all particles into five types: muons, electrons, photons, charged and neutral hadrons. The resulting particle flow candidates are passed to the anti-k$_{T}$ (AK)\cite{AKalgo} or Cambridge/Aachen (CA)\cite{CAalgo1,CAalgo2} jet clustering algorithms to create jets (AK and CA are two commonly used branches of sequential recombination algorithms).
+Jet clustering algorithms are among the main tools for analyzing data from hadronic collisions. In this section, an extensively used clustering algorithm called "sequential recombination algorithm"\cite{AKalgo,CAalgo1} will be introduced. At first, events are reconstructed using the particle flow algorithm (PF)\cite{PFalgo}, which attempts to identify and measure all the stable particles in a collision by combining information from all the sub-detectors. The PF algorithm categorizes all particles into five types: muons, electrons, photons, charged and neutral hadrons. The resulting particle flow candidates are passed to the anti-k$_{T}$ (AK)\cite{AKalgo} or Cambridge/Aachen (CA)\cite{CAalgo1,CAalgo2} jet clustering algorithms to create jets (AK and CA are two commonly used branches of sequential recombination algorithms).
 
 The jet clustering algorithms are implemented as follows:
 
@@ -239,7 +239,7 @@ The jet clustering algorithms are implemented as follows:
   &d_{ij}=min(p_{T,i}^{2p}, p_{T,j}^{2p})\frac{\Delta R_{i,j}^{2}}{R^{2}}
 \end{align}
 
-In Eq.~(\ref{eq:jetCluster}), the pair of objects ( i , j ) denote two input candidate particles to the algorithm. $\Delta R_{ij}$ is the spatial distance between the two objects, and $R$ is the typical cone size of the jet. The parameter $p$ corresponds to different catagories of algorithms and will be introduced in the later paragraph.
+In Eq.~(\ref{eq:jetCluster}), the pair of objects ( i , j ) denote two input candidate particles to the algorithm. $\Delta R_{ij}$ ($\Delta R_{ij} \equiv\sqrt{\Delta\eta_{ij}^{2}+\Delta\phi_{ij}^{2}}$) is the spatial distance between the two objects, and $R$ is the typical cone size of the jet. The parameter $p$ corresponds to different catagories of algorithms and will be introduced in the later paragraph.
 
 The clustering proceeds by comparing the value of the two quantities, $d_{iB}$ and $d_{ij}$. If $d_{ij} > d_{iB}$, the algorithm will look for another possible combination of ( i , j ).  If $d_{ij} < d_{iB}$, the 4-momentum of object i will merge into j, and then the object j forms a pseudo-jet, but the algorithm will not stop looking for a new object until all particles are clustered into jet.
 
@@ -252,7 +252,7 @@ The parameter $p$ can be chosen as follows:
 
 The difference between CA/AK algorithms is clear, CA algorithm is only considering the spatial distance of the two candidate objects (if $\Delta R_{ij} < R$, merged). In the case of anti-k$_{T}$ algorithm, $p_{T}$ of the object presents as a weight for the distance.
 
-The anti-k$_{T}$ algorithm have better energy calibration, while the CA algorithm was found to be more efficient at finding hard subjets within the jets in simulation-based studies\cite{CAalgo3}. Therefore the CA jets are used in this analysis to identify events containing hadronically-decaying Higgs bosons.
+The anti-k$_{T}$ algorithm has better energy calibration, while the CA algorithm was found to be more efficient at finding hard subjets within the jets in simulation-based studies\cite{CAalgo3}. Therefore the CA jets are used in this analysis to identify events containing hadronically-decaying Higgs bosons.
 
 \subsection*{Identification}
 As disscussed in the previous section, this analysis use the Cambridge/Aachen algorithm with a cone radius of R = 0.8 for the identification of jets (CA8 jets). Furthermore, jets are required to pass the following loose identification criteria\cite{JetID,JetID2}:\\
@@ -267,7 +267,7 @@ Loose JetID ($>$ 99\% efficiency)
 \item Number of constituent particles larger than 1
 \end{itemize}
 
-For the "charged" variables, $\eta < 2.4$ requirement are also applied, since there is no track coverage outside of this region, whereas the "neutral" variables extend to the whole $\eta$ region.
+For the "charged" variables, $|\eta| < 2.4$ requirement are also applied, since there is no track coverage outside of this region, whereas the "neutral" variables extend to the whole $\eta$ region.
 
 \subsection{Jet Grooming Algorithms}
 
@@ -276,7 +276,7 @@ The jet mass is the main observable in distinguishing a boson-jet from a QCD jet
 Typically three different grooming algorithms are considered, trimming\cite{JetTrim}, filtering\cite{JetFilter} or pruning\cite{JetPruned,JetPruned2}. Studies of these different grooming methods in CMS are presented in \cite{GroomCMS}.
 
 \begin{itemize}
-  \item \textbf{Trimming algorithm:} Trimming is a technique that igores subjets below a minimum $p_{T}$ fraction threshold within the original jet. Trimming reclusters the jet's constituents with a smaller radius $R_{sub}$. Then accepts only the subjets that have $p_{T,frac} > f_{cut}$, where the $p_{T,frac}$ is defined as subjet $p_{T}$ devided by the original jet $p_{T}$, and $f_{cut}$ is typically taken proportional to $H_{T}$, the scalar sum of the $p_{T}$ of all jet reconstructed in the event.
+  \item \textbf{Trimming algorithm:} Trimming is a technique that ignores subjets (smaller jets formed by the breakup of a larger one) below a minimum $p_{T}$ fraction threshold within the original jet. Trimming reclusters the jet's constituents with a smaller radius $R_{sub}$. Then accepts only the subjets that have $p_{T,frac} > f_{cut}$, where the $p_{T,frac}$ is defined as subjet $p_{T}$ devided by the original jet $p_{T}$, and $f_{cut}$ is typically taken proportional to $H_{T}$, the scalar sum of the $p_{T}$ of all jet reconstructed in the event.
   \item \textbf{Filtering algorithm:} Filtering reclusters jet constituents with smaller radius $R_{filt}$, and sorts the subjets in order of their $p_{T}$. The final jet is thus redefined as the sum of the four-momentum of the n hardest subjets. By default the factor is n=3, but it's not a fixed number, n depands on the analysis.
   \item \textbf{Pruning algorithm:} The idea is to take a jet of interest and then to recluster it using a sequential clustering algorithm for vetoing soft and large-angle recombinations between pseudojets i and j.\\ Clustering proceeds as explained in the previous section, but it is vetoed if the candidates are too far away in $\Delta R$.\\
     \begin{align}
@@ -301,9 +301,9 @@ As shown in Fig.~\ref{fig:JetGrooming}, the filtering algorithm is the least agg
 
 In cases where the pruned jet mass is small, jets usually have most of their energy configured in core components with little gluon radiation, which leads to narrow jets. Instead, when the pruned jet mass is large, the jets are split more symmetrically and more similar with the boson-jet structure. In this analysis we use the pruned jet mass because of its capability to improve the jet mass resolution and background rejection.
 
-\subsection{B-tagging}
+\subsection{b-tagging}
 
-B-tagging\cite{btagAlgo,BTV-13-001} is an algorithm to identify jets originating from b-quarks. It is an important component in analyses searching for new physics. Particularly challenging are those involving top quark or Higgs boson production with decays in the boosted regime.
+b-tagging\cite{btagAlgo,BTV-13-001} is an algorithm to identify jets originating from b-quarks. It is an important component in analyses searching for new physics. Particularly challenging are those involving top quark or Higgs boson production with decays in the boosted regime.
 
 The methods for b-tagging are based on the unique features of b-jets: B-hadrons have sufficient lifetime that they can travel some distance before they decaying. On the other hand, their lifetimes are not so high as those of light quark hadrons, so they decay inside the detector rather than escape. Another characteristic is, the bottom quark is much more massive than anything it decays into. Thus its decay products tend to have higher transverse momentum. This causes b-jets to be wider, have higher multiplicities and invariant masses, and also to contain low-energy leptons with momentum perpendicular to the jet.
 

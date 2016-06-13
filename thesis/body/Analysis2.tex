@@ -11,7 +11,7 @@
 \section{Pile-up reweighting}
 At the typical luminosity provided by the LHC, it is common to reconstruct more than one vertex per event. The main event vertex is defined as the one with the highest sum of the $p_{T}^{2}$ of the associated tracks. The presence of additional interactions, known as pile-up (PU). 
 
-The simulation generates the pile-up roughly to match the condiction in data, however there are still difference between the pile-up numbers in data and MC. It is neccesary to reweight pile-up distribtuions of MC samples to match the data more precisely. By applying a proper weight to each MC event according to the pile-up distribution from data, the MC samples can describe the data better. Fig.~\ref{fig:PUreweight} shows the number of vertices after pile-up reweighting in both two lepton channel.
+The simulation generates the pile-up roughly to match the condition in data, however there are still difference between the pile-up numbers in data and MC. It is neccesary to reweight pile-up distribtuions of MC samples to match the data more precisely. By applying a proper weight to each MC event according to the pile-up distribution from data, the MC samples can describe the data better. Fig.~\ref{fig:PUreweight} shows the number of vertices after pile-up reweighting in both two lepton channel.
 
 \begin{figure}[hbtp]
   \centering
@@ -33,20 +33,20 @@ The simulation generates the pile-up roughly to match the condiction in data, ho
 
 \subsection*{Muon Selection}
 
-Besides the muon ID criteria disscussed in section 3.3.1 (Table~\ref{tab:MuonIDtable}), we also require kinematic cuts on the muon candidates. We select the transverse momentum of the leading muon candidate must greater than 40 GeV, while the second leading muon transverse momentum threshold is 20 GeV. All muon candidates are must in the psuedo-rapidity $|\eta| < 2.4$ region.
+Besides the muon ID criteria disscussed in section 3.3.1 (Table~\ref{tab:MuonIDtable}), we also require kinematic cuts on the muon candidates. We require that the transverse momentum of the leading muon candidate must be greater than 40 GeV, while the second leading muon transverse momentum minimum threshold is 20 GeV. All muon candidates must be in the psuedo-rapidity region of $|\eta| < 2.4$.
 
 \subsection*{Electron Selection}
-Kinematic cuts on the electron candidates are also applied. Although the electron ID selection (Table~\ref{tab:EleIDtable}) already required the pseudo-rapidity of electron supercluster, we cut on the $|\eta| < 2.5$ for electron candidates and all electrons must out of [1.4442,1.566] in the $\eta$ region to avoid the ECAL gap. The $p_{T}$ requirement is a bit different from the muon case. Since the HLT trigger already selects electron $p_{T}$ greater than 33 GeV, we require both leading and sub-leading electrons $p_{T}$ greater than 40 GeV in advance.
+Kinematic cuts on the electron candidates are also applied. Although the electron ID selection (Table~\ref{tab:EleIDtable}) already required the pseudo-rapidity of electron supercluster, we cut on the $|\eta| < 2.5$ for electron candidates and all electrons must be outside of [1.4442,1.566] in the $\eta$ region to avoid the ECAL gap. The $p_{T}$ requirement is a bit different from the muon case. Since the HLT trigger already selects electron $p_{T}$ greater than 33 GeV, we require both leading and sub-leading electrons $p_{T}$ greater than 40 GeV in advance.
 
 \subsection{Jet Requirement}
-CA8jets in our signal process is originated from Higgs decay. If the $Z'$ mass is large enough, the Higgs will be boosted. Therefore we require higher kinematic thresholds to the CA8jets. In every event, there must find at least one CA8jet with $p_{T} > 80$ GeV, $|\eta| < 2.4$, passing loose jet ID and the pruned-jet mass must greater than 40 GeV to remove jets from backgrounds.
+CA8jets in our signal process originate from Higgs decay. If the $Z'$ mass is large enough, the Higgs will be boosted. Therefore we require higher kinematic thresholds to the CA8jets. In every event, there must be at least one CA8jet with $p_{T} > 80$ GeV, $|\eta| < 2.4$, passing loose jet ID and the pruned-jet mass must be greater than 40 GeV to remove jets from backgrounds.
 
 Futhermore, in order to veto leptons that are mis-identified as jets, leptons overlap with jets are removed by the $\Delta R$ cut, i.e. if there's a lepton passing all lepton selections and the spatial distance to a CA8jet smaller than 0.1 ($\Delta R_{jet,lepton} < 0.1$), then the jet will be removed.
 
 \subsection{Z boson Requirement}
 The Z boson candidate is reconstructed by adding four-momentum of the selected lepton pair. Since the Z boson mass is about 91 GeV, we require the reconstructed invariant mass of the Z boson in the mass region [70 GeV, 110 GeV] where is $\pm 20$ GeV to its theoretical mass.
 
-For the CA8jet from Higgs, we require $p_{T}$ threshold as 80 GeV. The kinematics of reconstructed Z boson and Higgs should be symmetric, because they are both decayed from the heavy $Z'$, comparing their mass to $Z'$, the difference between 125 GeV and 91 GeV is negligible ($1\textup{ TeV} >> 125 \textup{ GeV} \sim 91 \textup{ GeV}$). Therefore we require the same $p_{T}$ theshold to the Z boson. Fig.~\ref{fig:genZHPt} shows the transverse momentum distributions from the signal samples.
+For the CA8jet from Higgs, we require a minimum $p_{T}$ threshold of 80 GeV. Since the $Z' p_{T}$ is zero and the mass diffence between Z and Higgs is negligible ($1\textup{ TeV} >> 125 \textup{ GeV} \sim 91 \textup{ GeV}$), the Z and the Higgs boson are back to back at the transverse plane and their $p_{T}$'s are identical. Therefore we require the same minimum $p_{T}$ theshold to the Z boson. Fig.~\ref{fig:genZHPt} shows the transverse momentum distributions from the signal samples.
 
 \begin{figure}[hbtp]
   \centering
@@ -264,7 +264,7 @@ The signal efficiency is defined by the fraction of the number of events passing
   \epsilon_{SIG}\equiv \frac{\textup{Number of events passing the final selections}}{\textup{Number of generated events}}
 \end{align}
 
-In Eq.~(\ref{eq:SIGeff}), those number of events include both muon and electron channels. There are totally thirteen masspoints of $Z'$ in our signal MC samples. For each masspoint, the result of efficiencies are shown in Fig.~\ref{fig:SIG_eff_spectrum} (a).
+The result of efficiencies are shown in Fig.~\ref{fig:SIG_eff_spectrum} (a). The figure shows a drop of efficiency in muon channel after signal mass of 1100 GeV, which comes from the muon isolation selection. It suggests the defect of the isolation definition. The isolation definition and its efficiency will be improved in the 13 TeV analysis.
 
 \begin{figure}[hbtp]
   \centering
@@ -273,7 +273,7 @@ In Eq.~(\ref{eq:SIGeff}), those number of events include both muon and electron 
   \hspace{0.5cm}
   \subfigure[$m_{Zh}$ spectrum]{
     \includegraphics[scale=0.32]{figure/CH3/h_sigXMass.png}}
-  \caption{\label{fig:SIG_eff_spectrum}(a) The signal efficiencies plot of each $Z'$ samples. (b) Invariant mass distribution of the MC background simulation compared to the observed data and MC signal shape in the SR.}
+  \caption{\label{fig:SIG_eff_spectrum}(a) The signal efficiencies plot of each $Z'$ mass point. (b) Invariant mass distribution of the MC background simulation compared to the observed data and MC signal shape in the SR.}
 \end{figure}
 
 \subsection{The $m_{Zh}$ spectrum}
@@ -300,7 +300,7 @@ Although the recommend CSV selection (loose working point) from BTV group\cite{B
   \end{table}
 \end{center}
 
-The CSV distribution comparison between simulation background, signal and data is shown in Fig.~\ref{fig:h_sigCSV}. Note that, the area of each distribution is set to one in order to compare the shape difference. Inspecting Fig.~\ref{fig:h_sigCSV}, signal shapes tend to distribute on the right side while the backgrounds tend to be on the left, which shows the discriminating power of CSV variable. We only report and use the distribution from the $\Delta R > 0.3$ category to set the final limits because of lack of statics in the CA8jet CSV case. The higher CSV score means the subjet acts more like a b-jet.
+The comparison of the CSV distributions between simulation background, signal and data is shown in Fig.~\ref{fig:h_sigCSV}. Note that, the area of each distribution is set to one in order to compare the shape difference. Inspecting Fig.~\ref{fig:h_sigCSV}, signal shapes tend to distribute on the right side while the backgrounds tend to be on the left, which shows the discriminating power of CSV variable. We only report and use the distribution from the $\Delta R > 0.3$ category to set the final limits because of lack of statics in the CA8jet CSV case. The higher CSV score means the subjet acts more like a b-jet.
 
 \begin{figure}[hbtp]
   \begin{center}

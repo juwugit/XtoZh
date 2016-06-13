@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.5.5)  12 JUN 2016 22:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.5.5)  13 JUN 2016 15:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -795,14 +795,14 @@ File: figure/CH3/alpha.png Graphic file (type png)
 Package pdftex.def Info: figure/CH3/alpha.png used on input line 251.
 (pdftex.def)             Requested size: 433.62pt x 149.28171pt.
  [50]
-<figure/CH3/SIGeff.png, id=858, 798.985pt x 574.145pt>
+<figure/CH3/SIGeff.png, id=857, 798.985pt x 574.145pt>
 File: figure/CH3/SIGeff.png Graphic file (type png)
 
 <use figure/CH3/SIGeff.png>
 Package pdftex.def Info: figure/CH3/SIGeff.png used on input line 272.
 (pdftex.def)             Requested size: 279.64894pt x 200.95375pt.
 
-<figure/CH3/h_sigXMass.png, id=859, 899.36pt x 823.075pt>
+<figure/CH3/h_sigXMass.png, id=858, 899.36pt x 823.075pt>
 File: figure/CH3/h_sigXMass.png Graphic file (type png)
 
 <use figure/CH3/h_sigXMass.png>
@@ -827,49 +827,49 @@ Overfull \hbox (25.02599pt too wide) in paragraph at lines 291--298
  [] 
  []
 
-<figure/CH3/h_sigCSV.png, id=876, 899.36pt x 823.075pt>
+<figure/CH3/h_sigCSV.png, id=875, 899.36pt x 823.075pt>
 File: figure/CH3/h_sigCSV.png Graphic file (type png)
 
 <use figure/CH3/h_sigCSV.png>
 Package pdftex.def Info: figure/CH3/h_sigCSV.png used on input line 307.
 (pdftex.def)             Requested size: 216.81pt x 198.42117pt.
 
-<figure/CH3/h2_bkgCSV.png, id=877, 899.36pt x 823.075pt>
+<figure/CH3/h2_bkgCSV.png, id=876, 899.36pt x 823.075pt>
 File: figure/CH3/h2_bkgCSV.png Graphic file (type png)
 
 <use figure/CH3/h2_bkgCSV.png>
 Package pdftex.def Info: figure/CH3/h2_bkgCSV.png used on input line 317.
 (pdftex.def)             Requested size: 197.8598pt x 181.07706pt.
 
-<figure/CH3/h2_dataCSV.png, id=878, 899.36pt x 823.075pt>
+<figure/CH3/h2_dataCSV.png, id=877, 899.36pt x 823.075pt>
 File: figure/CH3/h2_dataCSV.png Graphic file (type png)
 
 <use figure/CH3/h2_dataCSV.png>
 Package pdftex.def Info: figure/CH3/h2_dataCSV.png used on input line 320.
 (pdftex.def)             Requested size: 197.8598pt x 181.07706pt.
 
-<figure/CH3/h2_sig800.png, id=879, 899.36pt x 823.075pt>
+<figure/CH3/h2_sig800.png, id=878, 899.36pt x 823.075pt>
 File: figure/CH3/h2_sig800.png Graphic file (type png)
 
 <use figure/CH3/h2_sig800.png>
 Package pdftex.def Info: figure/CH3/h2_sig800.png used on input line 327.
 (pdftex.def)             Requested size: 197.8598pt x 181.07706pt.
 
-<figure/CH3/h2_sig1000.png, id=880, 899.36pt x 823.075pt>
+<figure/CH3/h2_sig1000.png, id=879, 899.36pt x 823.075pt>
 File: figure/CH3/h2_sig1000.png Graphic file (type png)
 
 <use figure/CH3/h2_sig1000.png>
 Package pdftex.def Info: figure/CH3/h2_sig1000.png used on input line 330.
 (pdftex.def)             Requested size: 197.8598pt x 181.07706pt.
 
-<figure/CH3/h2_sig1500.png, id=881, 899.36pt x 823.075pt>
+<figure/CH3/h2_sig1500.png, id=880, 899.36pt x 823.075pt>
 File: figure/CH3/h2_sig1500.png Graphic file (type png)
 
 <use figure/CH3/h2_sig1500.png>
 Package pdftex.def Info: figure/CH3/h2_sig1500.png used on input line 337.
 (pdftex.def)             Requested size: 197.8598pt x 181.07706pt.
 
-<figure/CH3/h2_sig2000.png, id=882, 899.36pt x 823.075pt>
+<figure/CH3/h2_sig2000.png, id=881, 899.36pt x 823.075pt>
 File: figure/CH3/h2_sig2000.png Graphic file (type png)
 
 <use figure/CH3/h2_sig2000.png>
@@ -881,7 +881,7 @@ ng> <./figure/CH3/h2_sig1500.png> <./figure/CH3/h2_sig2000.png>]
 \openout2 = `body/Systematics.aux'.
 
  (./body/Systematics.tex
-<figure/CH3/Systematics/Bkg_jes.png, id=899, 698.61pt x 473.77pt>
+<figure/CH3/Systematics/Bkg_jes.png, id=898, 698.61pt x 473.77pt>
 File: figure/CH3/Systematics/Bkg_jes.png Graphic file (type png)
 
 <use figure/CH3/Systematics/Bkg_jes.png>
@@ -889,7 +889,7 @@ Package pdftex.def Info: figure/CH3/Systematics/Bkg_jes.png used on input line
 18.
 (pdftex.def)             Requested size: 195.60947pt x 132.6547pt.
 
-<figure/CH3/Systematics/Sig_jes.png, id=900, 698.61pt x 473.77pt>
+<figure/CH3/Systematics/Sig_jes.png, id=899, 698.61pt x 473.77pt>
 File: figure/CH3/Systematics/Sig_jes.png Graphic file (type png)
 
 <use figure/CH3/Systematics/Sig_jes.png>
@@ -901,7 +901,7 @@ Package pdftex.def Info: figure/CH3/Systematics/Sig_jes.png used on input line
 
  <./figure/CH3/Systematics/Bkg_jes.png> <./figure/CH3/Systematics/Sig_jes.png>]
 
-<figure/CH3/Systematics/h_nVtx_El_SysLog.png, id=908, 899.36pt x 823.075pt>
+<figure/CH3/Systematics/h_nVtx_El_SysLog.png, id=907, 899.36pt x 823.075pt>
 File: figure/CH3/Systematics/h_nVtx_El_SysLog.png Graphic file (type png)
 
 <use figure/CH3/Systematics/h_nVtx_El_SysLog.png>
@@ -909,7 +909,7 @@ Package pdftex.def Info: figure/CH3/Systematics/h_nVtx_El_SysLog.png used on in
 put line 33.
 (pdftex.def)             Requested size: 197.8598pt x 181.07706pt.
 
-<figure/CH3/Systematics/h_nVtx_Mu_SysLog.png, id=909, 899.36pt x 823.075pt>
+<figure/CH3/Systematics/h_nVtx_Mu_SysLog.png, id=908, 899.36pt x 823.075pt>
 File: figure/CH3/Systematics/h_nVtx_Mu_SysLog.png Graphic file (type png)
 
 <use figure/CH3/Systematics/h_nVtx_Mu_SysLog.png>
@@ -922,7 +922,7 @@ Overfull \hbox (38.6191pt too wide) in paragraph at lines 51--67
  [] 
  []
 
-<figure/CH3/Systematics/StackPDF_M800.png, id=919, 899.36pt x 823.075pt>
+<figure/CH3/Systematics/StackPDF_M800.png, id=918, 899.36pt x 823.075pt>
 File: figure/CH3/Systematics/StackPDF_M800.png Graphic file (type png)
 
 <use figure/CH3/Systematics/StackPDF_M800.png>
@@ -930,7 +930,7 @@ Package pdftex.def Info: figure/CH3/Systematics/StackPDF_M800.png used on input
  line 75.
 (pdftex.def)             Requested size: 197.8598pt x 181.07706pt.
 
-<figure/CH3/Systematics/StackCSV_M800.png, id=920, 899.36pt x 823.075pt>
+<figure/CH3/Systematics/StackCSV_M800.png, id=919, 899.36pt x 823.075pt>
 File: figure/CH3/Systematics/StackCSV_M800.png Graphic file (type png)
 
 <use figure/CH3/Systematics/StackCSV_M800.png>
@@ -938,7 +938,7 @@ Package pdftex.def Info: figure/CH3/Systematics/StackCSV_M800.png used on input
  line 78.
 (pdftex.def)             Requested size: 197.8598pt x 181.07706pt.
 
-<figure/CH3/Systematics/StackPDF_M1200.png, id=921, 899.36pt x 823.075pt>
+<figure/CH3/Systematics/StackPDF_M1200.png, id=920, 899.36pt x 823.075pt>
 File: figure/CH3/Systematics/StackPDF_M1200.png Graphic file (type png)
 
 <use figure/CH3/Systematics/StackPDF_M1200.png>
@@ -946,7 +946,7 @@ Package pdftex.def Info: figure/CH3/Systematics/StackPDF_M1200.png used on inpu
 t line 81.
 (pdftex.def)             Requested size: 197.8598pt x 181.07706pt.
 
-<figure/CH3/Systematics/StackPDF_M2000.png, id=922, 899.36pt x 823.075pt>
+<figure/CH3/Systematics/StackPDF_M2000.png, id=921, 899.36pt x 823.075pt>
 File: figure/CH3/Systematics/StackPDF_M2000.png Graphic file (type png)
 
 <use figure/CH3/Systematics/StackPDF_M2000.png>
@@ -965,7 +965,7 @@ Chapter 4.
 
 
 ]
-<figure/CH4/XZH_counting_Asymptotic_log.png, id=948, 628.3475pt x 574.145pt>
+<figure/CH4/XZH_counting_Asymptotic_log.png, id=947, 628.3475pt x 574.145pt>
 File: figure/CH4/XZH_counting_Asymptotic_log.png Graphic file (type png)
 
 <use figure/CH4/XZH_counting_Asymptotic_log.png>
@@ -973,7 +973,7 @@ Package pdftex.def Info: figure/CH4/XZH_counting_Asymptotic_log.png used on inp
 ut line 25.
 (pdftex.def)             Requested size: 216.81pt x 198.10652pt.
 
-<figure/CH4/XZH_shape1d_Asymptotic_log.png, id=949, 628.3475pt x 574.145pt>
+<figure/CH4/XZH_shape1d_Asymptotic_log.png, id=948, 628.3475pt x 574.145pt>
 File: figure/CH4/XZH_shape1d_Asymptotic_log.png Graphic file (type png)
 
 <use figure/CH4/XZH_shape1d_Asymptotic_log.png>
@@ -985,7 +985,7 @@ Overfull \hbox (10.44434pt too wide) in paragraph at lines 24--28
 [][] [] 
  []
 
-<figure/CH4/XZH_shape2d_Asymptotic_log.png, id=950, 628.3475pt x 574.145pt>
+<figure/CH4/XZH_shape2d_Asymptotic_log.png, id=949, 628.3475pt x 574.145pt>
 File: figure/CH4/XZH_shape2d_Asymptotic_log.png Graphic file (type png)
 
 <use figure/CH4/XZH_shape2d_Asymptotic_log.png>
@@ -1067,13 +1067,13 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 74.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 74.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 74.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: E79AB8D46AB916910D21BD486D521F41;2885.
+(rerunfilecheck)             Checksum: 23BB4CF074A6AB5B8314CBE8A8827CBF;2885.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 74.
  ) 
 Here is how much of TeX's memory you used:
  7104 strings out of 494953
  105197 string characters out of 6180978
- 196682 words of memory out of 5000000
+ 197685 words of memory out of 5000000
  9913 multiletter control sequences out of 15000+600000
  11114 words of font info for 40 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
@@ -1094,10 +1094,10 @@ hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/te
 xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-di
 st/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on main.pdf (73 pages, 5756936 bytes).
+Output written on main.pdf (73 pages, 5757331 bytes).
 PDF statistics:
- 1108 PDF objects out of 1200 (max. 8388607)
- 943 compressed objects within 10 object streams
+ 1107 PDF objects out of 1200 (max. 8388607)
+ 942 compressed objects within 10 object streams
  278 named destinations out of 1000 (max. 500000)
  646 words of extra memory for PDF output out of 10000 (max. 10000000)
 
