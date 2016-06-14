@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.5.5)  13 JUN 2016 19:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.5.5)  14 JUN 2016 13:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -575,7 +575,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 281--282
 
  []
 
-[35] <figure/CH3/JetGrooming.png, id=740, 602.25pt x 341.275pt>
+[35] <figure/CH3/JetGrooming.png, id=741, 602.25pt x 341.275pt>
 File: figure/CH3/JetGrooming.png Graphic file (type png)
 
 <use figure/CH3/JetGrooming.png>
@@ -1094,7 +1094,7 @@ hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/te
 xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-di
 st/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on main.pdf (73 pages, 5757353 bytes).
+Output written on main.pdf (73 pages, 5757201 bytes).
 PDF statistics:
  1107 PDF objects out of 1200 (max. 8388607)
  942 compressed objects within 10 object streams
