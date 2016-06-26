@@ -415,8 +415,8 @@ reserved.\par\permission}}
 %% or just
 %%\@degreeyear}}
 \typeout{Copyright given to author,
-	permission to copy/distribute given to MIT.}
-\else \typeout{Thesis document copyright MIT unless otherwise (manually) specified}
+	permission to copy/distribute given to NCU.}
+\else \typeout{Thesis document copyright NCU unless otherwise (manually) specified}
 \fi
 
 \def\thesisdate#1{\gdef\@thesisdate{#1}}
@@ -443,7 +443,7 @@ reserved.\par\permission}}
   \par\noindent Thesis Supervisor: #1 \\ Title: #2}}
 
 % department chairman, not thesis committee chairman
-\def\chairman#1#2{\gdef\@chairmanname{#1}\gdef\@chairmantitle{#2}}
+\def\chairman#1#2#3{\gdef\@chairmanname{#1}\gdef\@chairmantitle{#2}\gdef\@chairmansectitle{#3}}
 
 %% `upcase' documentclass option: \choosecase is defined either as a dummy or
 %% a macro to change the (expanded) argument to uppercase.
@@ -475,7 +475,7 @@ at the
 \unvbox\@titlesupervisor
 \par
 \vfill
-\signature{Accepted by}{\@chairmanname \\ \@chairmantitle}
+\signature{Accepted by}{\@chairmanname \\ \@chairmantitle \\ \@chairmansectitle}
 \vfill
 \end{titlepage}}
 
@@ -518,11 +518,11 @@ requirements for the \@degreeword\ of \\
 % The \kern0pt pushes any depth into the height.  Thanks to Richard Stone.
 \def\endtitlepage{\par\kern 0pt\egroup\vss\egroup\newpage}
 
-\def\MIT{MASSACHUSETTS INSTITUTE OF TECHNOLOGY}
-\def\Mit{Massachusetts Institute of Technology}
+\def\MIT{NATIONAL CENTRAL UNIVERSITY}
+\def\Mit{National Central University}
 
 \def\permission{\par\noindent{\centering
-   The author hereby grants to MIT permission to reproduce and to
+   The author hereby grants to NCU permission to reproduce and to
    distribute publicly paper and electronic copies of this thesis
    document in whole or in part in any medium now known or hereafter
    created.}\par}

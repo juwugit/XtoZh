@@ -1,45 +1,45 @@
-\BOOKMARK [0][-]{chapter.4}{Introduction and Theory Overview}{}% 1
-\BOOKMARK [1][-]{section.5}{Introduction}{chapter.4}% 2
-\BOOKMARK [1][-]{section.6}{Theory Overview}{chapter.4}% 3
-\BOOKMARK [2][-]{subsection.7}{Heavy Vector Triplet Model}{section.6}% 4
-\BOOKMARK [2][-]{subsection.12}{Basic Phenomenology}{section.6}% 5
-\BOOKMARK [2][-]{subsection.30}{Explicit Models}{section.6}% 6
-\BOOKMARK [0][-]{chapter.37}{The LHC and the CMS Detector}{}% 7
-\BOOKMARK [1][-]{section.38}{Large Hadron Collider}{chapter.37}% 8
-\BOOKMARK [1][-]{section.41}{Compact Muon Solenoid}{chapter.37}% 9
-\BOOKMARK [2][-]{subsection.45}{Tracker}{section.41}% 10
-\BOOKMARK [2][-]{subsection.48}{ECAL}{section.41}% 11
-\BOOKMARK [2][-]{subsection.51}{HCAL}{section.41}% 12
-\BOOKMARK [2][-]{subsection.54}{Muon Chamber}{section.41}% 13
-\BOOKMARK [2][-]{subsection.59}{Trigger System}{section.41}% 14
-\BOOKMARK [0][-]{chapter.63}{Analysis Procedures}{}% 15
-\BOOKMARK [1][-]{section.64}{Monte Carlo Samples and Data sets}{chapter.63}% 16
-\BOOKMARK [2][-]{subsection.65}{Signal MC}{section.64}% 17
-\BOOKMARK [2][-]{subsection.68}{Background MC}{section.64}% 18
-\BOOKMARK [2][-]{subsection.70}{Data Samples}{section.64}% 19
-\BOOKMARK [1][-]{section.72}{Trigger}{chapter.63}% 20
-\BOOKMARK [1][-]{section.73}{Physics Objects}{chapter.63}% 21
-\BOOKMARK [2][-]{subsection.74}{Muon}{section.73}% 22
-\BOOKMARK [2][-]{subsection.78}{Electron}{section.73}% 23
-\BOOKMARK [2][-]{subsection.85}{Jet}{section.73}% 24
-\BOOKMARK [2][-]{subsection.89}{Jet Grooming Algorithms}{section.73}% 25
-\BOOKMARK [2][-]{subsection.93}{b-tagging}{section.73}% 26
-\BOOKMARK [1][-]{section.96}{Pile-up reweighting}{chapter.63}% 27
-\BOOKMARK [1][-]{section.98}{Event and Object selection}{chapter.63}% 28
-\BOOKMARK [2][-]{subsection.99}{Lepton Requirements}{section.98}% 29
-\BOOKMARK [2][-]{subsection.102}{Jet Requirement}{section.98}% 30
-\BOOKMARK [2][-]{subsection.103}{Z boson Requirement}{section.98}% 31
-\BOOKMARK [1][-]{section.106}{Data-MC comparison}{chapter.63}% 32
-\BOOKMARK [1][-]{section.116}{Background Estimation}{chapter.63}% 33
-\BOOKMARK [2][-]{subsection.117}{ ratio method}{section.116}% 34
-\BOOKMARK [1][-]{section.121}{Signal Yields}{chapter.63}% 35
-\BOOKMARK [2][-]{subsection.122}{signal efficiency}{section.121}% 36
-\BOOKMARK [2][-]{subsection.125}{The mZh spectrum}{section.121}% 37
-\BOOKMARK [2][-]{subsection.126}{The CSV distribution}{section.121}% 38
-\BOOKMARK [1][-]{section.132}{Systematic uncertainties}{chapter.63}% 39
-\BOOKMARK [0][-]{chapter.137}{Results and conclusion}{}% 40
-\BOOKMARK [1][-]{section.138}{Exclusion limit results}{chapter.137}% 41
-\BOOKMARK [2][-]{subsection.139}{Counting result}{section.138}% 42
-\BOOKMARK [2][-]{subsection.140}{1D shape result}{section.138}% 43
-\BOOKMARK [2][-]{subsection.141}{2D shape result}{section.138}% 44
-\BOOKMARK [1][-]{section.142}{Conclusion}{chapter.137}% 45
+\BOOKMARK [0][-]{chapter.5}{Introduction and Theory Overview}{}% 1
+\BOOKMARK [1][-]{section.6}{Introduction}{chapter.5}% 2
+\BOOKMARK [1][-]{section.7}{Theory Overview}{chapter.5}% 3
+\BOOKMARK [2][-]{subsection.8}{Heavy Vector Triplet Model}{section.7}% 4
+\BOOKMARK [2][-]{subsection.13}{Basic Phenomenology}{section.7}% 5
+\BOOKMARK [2][-]{subsection.31}{Explicit Models}{section.7}% 6
+\BOOKMARK [0][-]{chapter.38}{The LHC and the CMS Detector}{}% 7
+\BOOKMARK [1][-]{section.39}{Large Hadron Collider}{chapter.38}% 8
+\BOOKMARK [1][-]{section.42}{Compact Muon Solenoid}{chapter.38}% 9
+\BOOKMARK [2][-]{subsection.46}{Tracker}{section.42}% 10
+\BOOKMARK [2][-]{subsection.49}{ECAL}{section.42}% 11
+\BOOKMARK [2][-]{subsection.52}{HCAL}{section.42}% 12
+\BOOKMARK [2][-]{subsection.55}{Muon Chamber}{section.42}% 13
+\BOOKMARK [2][-]{subsection.60}{Trigger System}{section.42}% 14
+\BOOKMARK [0][-]{chapter.64}{Analysis Procedures}{}% 15
+\BOOKMARK [1][-]{section.65}{Monte Carlo Samples and Data sets}{chapter.64}% 16
+\BOOKMARK [2][-]{subsection.66}{Signal MC}{section.65}% 17
+\BOOKMARK [2][-]{subsection.69}{Background MC}{section.65}% 18
+\BOOKMARK [2][-]{subsection.71}{Data Samples}{section.65}% 19
+\BOOKMARK [1][-]{section.73}{Trigger}{chapter.64}% 20
+\BOOKMARK [1][-]{section.74}{Physics Objects}{chapter.64}% 21
+\BOOKMARK [2][-]{subsection.75}{Muon}{section.74}% 22
+\BOOKMARK [2][-]{subsection.79}{Electron}{section.74}% 23
+\BOOKMARK [2][-]{subsection.86}{Jet}{section.74}% 24
+\BOOKMARK [2][-]{subsection.90}{Jet Grooming Algorithms}{section.74}% 25
+\BOOKMARK [2][-]{subsection.94}{b-tagging}{section.74}% 26
+\BOOKMARK [1][-]{section.97}{Pile-up reweighting}{chapter.64}% 27
+\BOOKMARK [1][-]{section.99}{Event and Object selection}{chapter.64}% 28
+\BOOKMARK [2][-]{subsection.100}{Lepton Requirements}{section.99}% 29
+\BOOKMARK [2][-]{subsection.103}{Jet Requirement}{section.99}% 30
+\BOOKMARK [2][-]{subsection.104}{Z boson Requirement}{section.99}% 31
+\BOOKMARK [1][-]{section.107}{Data-MC comparison}{chapter.64}% 32
+\BOOKMARK [1][-]{section.117}{Background Estimation}{chapter.64}% 33
+\BOOKMARK [2][-]{subsection.118}{ ratio method}{section.117}% 34
+\BOOKMARK [1][-]{section.122}{Signal Yields}{chapter.64}% 35
+\BOOKMARK [2][-]{subsection.123}{signal efficiency}{section.122}% 36
+\BOOKMARK [2][-]{subsection.126}{The mZh spectrum}{section.122}% 37
+\BOOKMARK [2][-]{subsection.127}{The CSV distribution}{section.122}% 38
+\BOOKMARK [1][-]{section.133}{Systematic uncertainties}{chapter.64}% 39
+\BOOKMARK [0][-]{chapter.138}{Results and conclusion}{}% 40
+\BOOKMARK [1][-]{section.139}{Exclusion limit results}{chapter.138}% 41
+\BOOKMARK [2][-]{subsection.140}{Counting result}{section.139}% 42
+\BOOKMARK [2][-]{subsection.141}{1D shape result}{section.139}% 43
+\BOOKMARK [2][-]{subsection.142}{2D shape result}{section.139}% 44
+\BOOKMARK [1][-]{section.143}{Conclusion}{chapter.138}% 45

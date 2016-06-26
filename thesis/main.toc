@@ -1,45 +1,45 @@
-\contentsline {chapter}{\numberline {1}Introduction and Theory Overview}{1}{chapter.4}
-\contentsline {section}{\numberline {1.1}Introduction}{1}{section.5}
-\contentsline {section}{\numberline {1.2}Theory Overview}{2}{section.6}
-\contentsline {subsection}{\numberline {1.2.1}Heavy Vector Triplet Model}{2}{subsection.7}
-\contentsline {subsection}{\numberline {1.2.2}Basic Phenomenology}{3}{subsection.12}
-\contentsline {subsection}{\numberline {1.2.3}Explicit Models}{8}{subsection.30}
-\contentsline {chapter}{\numberline {2}The LHC and the CMS Detector}{11}{chapter.37}
-\contentsline {section}{\numberline {2.1}Large Hadron Collider}{11}{section.38}
-\contentsline {section}{\numberline {2.2}Compact Muon Solenoid}{13}{section.41}
-\contentsline {subsection}{\numberline {2.2.1}Tracker}{15}{subsection.45}
-\contentsline {subsection}{\numberline {2.2.2}ECAL}{16}{subsection.48}
-\contentsline {subsection}{\numberline {2.2.3}HCAL}{17}{subsection.51}
-\contentsline {subsection}{\numberline {2.2.4}Muon Chamber}{19}{subsection.54}
-\contentsline {subsection}{\numberline {2.2.5}Trigger System}{20}{subsection.59}
-\contentsline {chapter}{\numberline {3}Analysis Procedures}{22}{chapter.63}
-\contentsline {section}{\numberline {3.1}Monte Carlo Samples and Data sets}{22}{section.64}
-\contentsline {subsection}{\numberline {3.1.1}Signal MC}{22}{subsection.65}
-\contentsline {subsection}{\numberline {3.1.2}Background MC}{24}{subsection.68}
-\contentsline {subsection}{\numberline {3.1.3}Data Samples}{24}{subsection.70}
-\contentsline {section}{\numberline {3.2}Trigger}{25}{section.72}
-\contentsline {section}{\numberline {3.3}Physics Objects}{26}{section.73}
-\contentsline {subsection}{\numberline {3.3.1}Muon}{26}{subsection.74}
-\contentsline {subsection}{\numberline {3.3.2}Electron}{29}{subsection.78}
-\contentsline {subsection}{\numberline {3.3.3}Jet}{33}{subsection.85}
-\contentsline {subsection}{\numberline {3.3.4}Jet Grooming Algorithms}{35}{subsection.89}
-\contentsline {subsection}{\numberline {3.3.5}b-tagging}{37}{subsection.93}
-\contentsline {section}{\numberline {3.4}Pile-up reweighting}{40}{section.96}
-\contentsline {section}{\numberline {3.5}Event and Object selection}{41}{section.98}
-\contentsline {subsection}{\numberline {3.5.1}Lepton Requirements}{41}{subsection.99}
-\contentsline {subsection}{\numberline {3.5.2}Jet Requirement}{41}{subsection.102}
-\contentsline {subsection}{\numberline {3.5.3}Z boson Requirement}{42}{subsection.103}
-\contentsline {section}{\numberline {3.6}Data-MC comparison}{44}{section.106}
-\contentsline {section}{\numberline {3.7}Background Estimation}{49}{section.116}
-\contentsline {subsection}{\numberline {3.7.1}$\alpha $ ratio method}{49}{subsection.117}
-\contentsline {section}{\numberline {3.8}Signal Yields}{50}{section.121}
-\contentsline {subsection}{\numberline {3.8.1}signal efficiency}{50}{subsection.122}
-\contentsline {subsection}{\numberline {3.8.2}The $m_{Zh}$ spectrum}{51}{subsection.125}
-\contentsline {subsection}{\numberline {3.8.3}The CSV distribution}{53}{subsection.126}
-\contentsline {section}{\numberline {3.9}Systematic uncertainties}{56}{section.132}
-\contentsline {chapter}{\numberline {4}Results and conclusion}{60}{chapter.137}
-\contentsline {section}{\numberline {4.1}Exclusion limit results}{60}{section.138}
-\contentsline {subsection}{\numberline {4.1.1}Counting result}{60}{subsection.139}
-\contentsline {subsection}{\numberline {4.1.2}1D shape result}{61}{subsection.140}
-\contentsline {subsection}{\numberline {4.1.3}2D shape result}{61}{subsection.141}
-\contentsline {section}{\numberline {4.2}Conclusion}{61}{section.142}
+\contentsline {chapter}{\numberline {1}Introduction and Theory Overview}{1}{chapter.5}
+\contentsline {section}{\numberline {1.1}Introduction}{1}{section.6}
+\contentsline {section}{\numberline {1.2}Theory Overview}{2}{section.7}
+\contentsline {subsection}{\numberline {1.2.1}Heavy Vector Triplet Model}{2}{subsection.8}
+\contentsline {subsection}{\numberline {1.2.2}Basic Phenomenology}{3}{subsection.13}
+\contentsline {subsection}{\numberline {1.2.3}Explicit Models}{8}{subsection.31}
+\contentsline {chapter}{\numberline {2}The LHC and the CMS Detector}{11}{chapter.38}
+\contentsline {section}{\numberline {2.1}Large Hadron Collider}{11}{section.39}
+\contentsline {section}{\numberline {2.2}Compact Muon Solenoid}{13}{section.42}
+\contentsline {subsection}{\numberline {2.2.1}Tracker}{15}{subsection.46}
+\contentsline {subsection}{\numberline {2.2.2}ECAL}{16}{subsection.49}
+\contentsline {subsection}{\numberline {2.2.3}HCAL}{17}{subsection.52}
+\contentsline {subsection}{\numberline {2.2.4}Muon Chamber}{19}{subsection.55}
+\contentsline {subsection}{\numberline {2.2.5}Trigger System}{20}{subsection.60}
+\contentsline {chapter}{\numberline {3}Analysis Procedures}{22}{chapter.64}
+\contentsline {section}{\numberline {3.1}Monte Carlo Samples and Data sets}{22}{section.65}
+\contentsline {subsection}{\numberline {3.1.1}Signal MC}{22}{subsection.66}
+\contentsline {subsection}{\numberline {3.1.2}Background MC}{24}{subsection.69}
+\contentsline {subsection}{\numberline {3.1.3}Data Samples}{24}{subsection.71}
+\contentsline {section}{\numberline {3.2}Trigger}{25}{section.73}
+\contentsline {section}{\numberline {3.3}Physics Objects}{26}{section.74}
+\contentsline {subsection}{\numberline {3.3.1}Muon}{26}{subsection.75}
+\contentsline {subsection}{\numberline {3.3.2}Electron}{29}{subsection.79}
+\contentsline {subsection}{\numberline {3.3.3}Jet}{33}{subsection.86}
+\contentsline {subsection}{\numberline {3.3.4}Jet Grooming Algorithms}{35}{subsection.90}
+\contentsline {subsection}{\numberline {3.3.5}b-tagging}{37}{subsection.94}
+\contentsline {section}{\numberline {3.4}Pile-up reweighting}{40}{section.97}
+\contentsline {section}{\numberline {3.5}Event and Object selection}{41}{section.99}
+\contentsline {subsection}{\numberline {3.5.1}Lepton Requirements}{41}{subsection.100}
+\contentsline {subsection}{\numberline {3.5.2}Jet Requirement}{41}{subsection.103}
+\contentsline {subsection}{\numberline {3.5.3}Z boson Requirement}{42}{subsection.104}
+\contentsline {section}{\numberline {3.6}Data-MC comparison}{44}{section.107}
+\contentsline {section}{\numberline {3.7}Background Estimation}{49}{section.117}
+\contentsline {subsection}{\numberline {3.7.1}$\alpha $ ratio method}{49}{subsection.118}
+\contentsline {section}{\numberline {3.8}Signal Yields}{50}{section.122}
+\contentsline {subsection}{\numberline {3.8.1}signal efficiency}{50}{subsection.123}
+\contentsline {subsection}{\numberline {3.8.2}The $m_{Zh}$ spectrum}{51}{subsection.126}
+\contentsline {subsection}{\numberline {3.8.3}The CSV distribution}{53}{subsection.127}
+\contentsline {section}{\numberline {3.9}Systematic uncertainties}{56}{section.133}
+\contentsline {chapter}{\numberline {4}Results and conclusion}{60}{chapter.138}
+\contentsline {section}{\numberline {4.1}Exclusion limit results}{60}{section.139}
+\contentsline {subsection}{\numberline {4.1.1}Counting result}{60}{subsection.140}
+\contentsline {subsection}{\numberline {4.1.2}1D shape result}{61}{subsection.141}
+\contentsline {subsection}{\numberline {4.1.3}2D shape result}{61}{subsection.142}
+\contentsline {section}{\numberline {4.2}Conclusion}{61}{section.143}
